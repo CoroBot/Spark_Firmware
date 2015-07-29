@@ -1,0 +1,5 @@
+C:\Users\Owner\Documents\GitHub\SparkFirmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\motor driver firmware.cyprj|26f20d75-29ad-44f6-ad04-e73e7027fa41
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|8a4b3bd9-c0bf-4bad-b131-ea129ccdad39
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|8fe6cee0-4db0-41e5-813a-3ce1b6d03b6d
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|c28f7679-6b0c-4bf9-b540-67c08bf334a8
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|562d09d2-0f20-4790-b338-57c6d0a3f1b3
