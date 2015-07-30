@@ -146,7 +146,14 @@ int main()
         handleFrames();
         // putc and puts stuff.
         uputc(0);
-        uputs("HelloHey");
+        unsigned char outdat[12];
+        unsigned char indat[11] = {0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7};
+        uint32_t crc32 = Crc32_ComputeBuf(0, indat, 7);
+        uint32toNO(crc32, &indat[7]);
+        
+        encode_cobs(indat, 11, outdat);
+        
+        uputs(outdat);
         uputc(0);
         CyDelay(100);
         
@@ -498,7 +505,7 @@ int b_hgetkey(void) {
 	return key;
 }
 
-void uputs(char *str) {
+void uputs(char *str) { //should this take an unsigned char* ?
 	int i;
 	int slen;
 	slen = strlen(str);

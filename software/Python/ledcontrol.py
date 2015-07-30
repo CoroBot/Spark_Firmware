@@ -10,13 +10,16 @@ if __name__ == '__main__':
 	print "**** led control Test ****"
 	print "**************************\n"
 	
-	#port = raw_input("Enter your serial port\n>>")
+	# ************************** USER ENTERED PORT ***************************
+	#port = raw_input("Enter your serial port #. (EX for COM14 enter 14)\n>>")
+	#portnum = int(port.strip()) - 1 # Rileys port offset
+	#cobs = cobs_serial(portnum, 115200, 1)
 	
+	# ************************** DEFAULT DEBUG PORT ***************************
 	print "Defaulting port to COM14. Change script if neeeded"
 	cobs = cobs_serial(13, 115200, 1) #apparently the port is offset by 1 (so COM14 is 13)
-	
+
 	while True:
-		
 		option = raw_input("Enter 1 to control LEDs, 2 for the ADC value, 3 to exit.\n>>")
 		sel = option.strip()
 		if sel == '3':
