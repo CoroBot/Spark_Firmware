@@ -1,0 +1,50 @@
+*~
+*.o
+*.ko
+*.obj
+*.elf
+*.lib
+*.lst
+*.a
+*.dll
+*.so
+*.so.*
+*.dynlib
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+*.asm
+
+.DS_Store
+*.cywrk.*
+*.cyprj.*
+*.cycdx
+*.cyfit
+*.rpt
+*.uvopt
+*.uvproj
+*._timing.html
+*.cydsn/codegentemp
+*.cydsn/CortexM0
+*.cydsn/CortexM3
+*.cydsn/Generated_Source
+!*.cydsn/Dependencies
+
+CortexM0/
+CortexM3/
+
+SparkFirmware/firmware/Motor-Driver/motor driver firmware/*.cydsn/codegentemp
+SparkFirmware/firmware/Motor-Driver/motor driver firmware/*.cydsn/CortexM0
+SparkFirmware/firmware/Motor-Driver/motor driver firmware/*.cydsn/CortexM3
+SparkFirmware/firmware/Motor-Driver/motor driver firmware/*.cydsn/Generated_Source
+!SparkFirmware/firmware/Motor-Driver/motor driver firmware/*.cydsn/Dependencies
+
+SparkFirmware/firmware/Motor-Driver/Spark-Interface/*.cydsn/codegentemp
+SparkFirmware/firmware/Motor-Driver/Spark-Interface/*.cydsn/CortexM0
+SparkFirmware/firmware/Motor-Driver/Spark-Interface/*.cydsn/CortexM3
+SparkFirmware/firmware/Motor-Driver/Spark-Interface/*.cydsn/Generated_Source
+!SparkFirmware/firmware/Motor-Driver/Spark-Interface/*.cydsn/Dependencies
