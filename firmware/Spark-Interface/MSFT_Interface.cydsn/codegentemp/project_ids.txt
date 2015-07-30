@@ -1,5 +1,5 @@
-C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\MSFT_Interface.cyprj|c1044978-3116-4cff-a8fb-72d93fe2c6c1
-C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|eec73eed-a801-48ff-a535-897397262714
-C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|2caf2957-8b4a-442a-92d9-b2614fb9786a
-C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|cb430b2a-e72b-44ec-b583-68875b9a6b41
-C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|e5c576fd-3d2d-44eb-8a58-2ffe96966765
+E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\MSFT_Interface.cyprj|04a0dd37-332c-4084-86e0-5a436ff2f50a
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|23d69d92-3cb7-497e-807c-a9fbb667d7b6
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|7712934a-defe-4d88-8653-d8dc06a14537
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|bdd9d747-d977-4016-9cd1-4b4dc96911d7
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|5553b7d4-5f4b-4287-8bfe-126f29ace76a

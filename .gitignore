@@ -36,6 +36,7 @@
 
 CortexM0/
 CortexM3/
+codegentemp/
 
 SparkFirmware/firmware/Motor-Driver/motor driver firmware/*.cydsn/codegentemp
 SparkFirmware/firmware/Motor-Driver/motor driver firmware/*.cydsn/CortexM0

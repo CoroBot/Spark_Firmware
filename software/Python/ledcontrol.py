@@ -2,7 +2,7 @@
 
 # Script for LED control demo. 
 
-import cobs
+from cobs_serial import cobs_serial
 import struct
 
 if __name__ == '__main__':
@@ -10,7 +10,10 @@ if __name__ == '__main__':
 	print "**** led control Test ****"
 	print "**************************\n"
 	
-	port = raw_input("Enter your serial port\n>>")
+	#port = raw_input("Enter your serial port\n>>")
+	
+	print "Defaulting port to COM14. Change script if neeeded"
+	cobs = cobs_serial(13, 115200, 1) #apparently the port is offset by 1 (so COM14 is 13)
 	
 	while True:
 		
@@ -43,9 +46,12 @@ if __name__ == '__main__':
 			bob += numbytes
 			bob += valbytes
 			print "Sending bytes to encode and send: " + repr(list(bob)) #for debugging
-			cobs.encode_and_send(bob, port, 115200, 1.0) #confirm baud rate and com port
+			cobs.encode_and_send(bob) #confirm baud rate and com port
 		elif sel == '2':
 			#adc req
 			print "Setting LED1 to the result of ADC Read"
 			sam = bytearray([0x01, 0x08, 0x00])
-			cobs.encode_and_send(sam, port, 115200, 1.0)
+			cobs.encode_and_send(sam)
+			print cobs.block_and_return() 
+			#print cobs.read_and_build() #cant call directly, requires serial object
+			#pause and read what comes next

@@ -144,7 +144,11 @@ int main()
 		handle_uart(); 
 
         handleFrames();
-        
+        // putc and puts stuff.
+        uputc(0);
+        uputs("HelloHey");
+        uputc(0);
+        CyDelay(100);
         
 		if (ringbuff_size(&u_recv) > 0 && ringbuff_canput(&h_send,1)) {
 			int ch = ringbuff_get(&u_recv);
