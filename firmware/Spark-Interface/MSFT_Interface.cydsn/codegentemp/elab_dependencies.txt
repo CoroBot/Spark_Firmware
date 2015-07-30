@@ -1,4 +1,4 @@
-C:\Users\Riley\Dropbox\coroware\github\SparkFirmware\firmware\Spark-Interface\MSFT_Interface.cydsn\TopDesign\TopDesign.cysch
+C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\TopDesign\TopDesign.cysch
 C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\USBFS_v2_80\USBFS_v2_80.cysym
 C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\USBFS_v2_80\USBFS_v2_80.pdf
 C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\USBFS_v2_80\USBFS_v2_80.cycdx
@@ -1107,7 +1107,7 @@ C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cyprim
 C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\PSoC5\API\aliases.h
 C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\PSoC5\API\pins.c
 C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_pins_v2_10\PSoC5\API\pins.h
-C:\Users\Riley\Dropbox\coroware\github\SparkFirmware\firmware\Spark-Interface\MSFT_Interface.cydsn\MSFT_Interface.cydwr
+C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\MSFT_Interface.cydwr
 C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v4_20\PSoC5\API\cm3gcc.ld
 C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v4_20\PSoC5\API\Cm3RealView.scat
 C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\cy_boot_v4_20\PSoC5\API\Cm3Start.c

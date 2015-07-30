@@ -1,5 +1,5 @@
 -- Project:   motor driver firmware
--- Generated: 07/29/2015 15:17:41
+-- Generated: 07/30/2015 12:15:10
 -- PSoC Creator  3.2
 
 ENTITY \motor driver firmware\ IS
@@ -2150,6 +2150,13 @@ BEGIN
             sclk_s => open,
             tx_req => Net_47,
             rx_req => Net_46);
+
+    \UART:SCB_IRQ\:interrupt
+        GENERIC MAP(
+            int_type => "10")
+        PORT MAP(
+            interrupt => Net_44,
+            clock => ClockBlock_HFCLK);
 
     \UART:rx(0)\:iocell
         GENERIC MAP(

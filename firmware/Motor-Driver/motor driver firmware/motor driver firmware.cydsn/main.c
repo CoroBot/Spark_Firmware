@@ -17,23 +17,30 @@
 
 #define true 1
 #define false 0
+#define SYSTEM_DATA_LENGTH 8
+#define COBS_FRAME_OVERHEAD 5
+#define CRC_LENGTH 4
 
-uint16 fcur;
-uint16 rcur;
-uint16 fenc;
-uint16 renc;
+// Global Variables
+uint16 front_current;
+uint16 rear_current;
 
+uint16 front_encoder;
+uint16 rear_encoder;
+
+uint16 front_speed = 0;
+uint16 rear_speed = 0;
+
+uint8 dir = 0;
+
+// Function Declarations
 void handleFrames(void);
 void handle_Frame(uint8_t *frame, unsigned int length);
 void encode_and_send(uint16 fmotorcur, uint16 rmotorcur, uint16 fmotorenc, uint16 rmotorenc);
-unsigned char* sixteen_bit_shift(uint16 in);
+void int16_to_be(unsigned char *target, uint16_t num);
 void read_current_and_encoder();
 
-uint8 dir = 0;
-uint16 speedf = 0;
-uint16 speedr = 0;
-
-
+// Program begins here
 int main()
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
@@ -49,90 +56,47 @@ int main()
 
     for(;;)
     {
-        /*unsigned char in[] = {'1','2','3'};
-        unsigned char out[sizeof(in)+5];
-        unsigned char check[4];
-        unsigned char todec[sizeof(in)+4];
-        uint32_t checksum;
-        checksum = Crc32_ComputeBuf(0,in,sizeof(in));
-        check[0] = (checksum>>24) & 0xFF;
-        check[1] = (checksum>>16) & 0xFF;
-        check[2] = (checksum>>8) & 0xFF;
-        check[3] = checksum & 0XFF;
-        unsigned int i = 0;
-        for(i=0; i < sizeof(in); i++)
-        {
-            todec[i] = in[i];
-        }
-        int j;
-        for(j = 0;j<4;j++)
-        {
-            todec[j+sizeof(in)] = check[j];
-        }
-        encode_cobs(todec,sizeof(todec),out);
-        //encode_cobs(in,sizeof(in),out);
-        UART_UartPutChar('\0');
-        UART_UartPutString((char*)out);
-        UART_UartPutChar('\0');
-        CyDelay(20);*/
-        
-        /*
-        char out[16];
-        int in;
-        in = QuadDec_1_ReadCounter();
-        sprintf(out, "%d", in);
-        UART_UartPutString(out);
-        UART_UartPutChar('\n');*/
-        
         handleFrames();
         DIR_CONTROL_Write(dir);
-        PWM_F_WriteCompare(speedf);
-        PWM_R_WriteCompare(speedr);
+        PWM_F_WriteCompare(front_speed);
+        PWM_R_WriteCompare(rear_speed);
         CyDelayUs(100);
     }
 }
 
-void read_currenct_and_encoder()
+void read_current_and_encoder()
 {
     ADC_StartConvert();
     CyDelayUs(10);
-    fcur = ADC_GetResult16(0);
-    rcur = ADC_GetResult16(1);
-    fenc = QuadDec_1_ReadCounter();
-    renc = QuadDec_2_ReadCounter();
+    front_current = ADC_GetResult16(0);
+    rear_current = ADC_GetResult16(1);
+    front_encoder = QuadDec_1_ReadCounter();
+    rear_encoder = QuadDec_2_ReadCounter();
 }
 
-unsigned char* sixteen_bit_shift(uint16 in)
-{
-    static unsigned char out[2];
-    out[0] = (in>>8) & 0xFF;
-    out[1] = in & 0xFF;
-    return out;
+void int16_to_be(unsigned char *target, uint16_t num) {
+    target[0] = (num>>8) & 0xFF;
+    target[1] = num & 0xFF;
 }
 
-void encode_and_send(uint16 fmotorcur, uint16 rmotorcur, uint16 fmotorenc, uint16 rmotorenc)
-{
-    unsigned char data[8];
-    unsigned char outdat[sizeof(data)+5];
-    unsigned char check[4];
-    unsigned char toenc[sizeof(data)+4];
+void encode_and_send(uint16 fmotorcur, uint16 rmotorcur, uint16 fmotorenc, uint16 rmotorenc) {
+    unsigned char data[SYSTEM_DATA_LENGTH+CRC_LENGTH];
+    unsigned char outdat[SYSTEM_DATA_LENGTH + COBS_FRAME_OVERHEAD];
     uint32_t checksum;
-    //convert the data into bytes
-    memcpy(data, sixteen_bit_shift(fmotorcur),2);
-    memcpy(data+2, sixteen_bit_shift(rmotorcur),2);
-    memcpy(data+4, sixteen_bit_shift(fmotorenc),2);
-    memcpy(data+6, sixteen_bit_shift(rmotorenc),2);
-    //add that data to the array to be encode
-    memcpy(toenc, data, sizeof(data));
+
+    //Serialize data into buffer - all integers are represented in big endian (network) order
+    int16_to_be(&data[0], fmotorcur);
+    int16_to_be(&data[2], rmotorcur);
+    int16_to_be(&data[4], fmotorenc);
+    int16_to_be(&data[6], rmotorenc);
+    
     //generate and append the checksum
-    checksum = Crc32_ComputeBuf(0,data,sizeof(data));
-    check[0] = (checksum>>24) & 0xFF;
-    check[1] = (checksum>>16) & 0xFF;
-    check[2] = (checksum>>8) & 0xFF;
-    check[3] = checksum & 0XFF;
-    memcpy(toenc+sizeof(data), check, sizeof(check));
+    checksum = Crc32_ComputeBuf(0,data,SYSTEM_DATA_LENGTH);
+    uint32toNO(checksum, &data[8]);
+    
     //encode and fire off the frame
-    encode_cobs(toenc,sizeof(toenc),outdat);
+    encode_cobs(data,SYSTEM_DATA_LENGTH+CRC_LENGTH,outdat);
+
     UART_UartPutChar('\0');
     unsigned int i;
     for(i = 0; i<sizeof(outdat);i++)
@@ -151,10 +115,10 @@ void handleFrames(void) {
 	
 	while (1) {
 		inbyte = UART_UartGetByte();
-		if (inbyte == UART_UART_RX_UNDERFLOW) { // Out of bytes for now. Wait for another go-round.
+		if (inbyte >255) { // Out of bytes for now. Wait for another go-round.
 			return; 
 		}
-		// Zeroes are frame delimeters. If the byte is not a zero, it's probably part of the data.
+		// Zeroes are frame delimeters. If the byte is not a zero, it's part of the data.
 		// If so, add it to the input buffer - with boundary checking to avoid buffer overruns.
 		if (inbyte != 0) {
 			if (offset == 63) { // Frame too long - dump.
@@ -174,7 +138,7 @@ void handleFrames(void) {
 		break; // Have a full frame - time to do something sane with it.
 	}
 	int rv = decode_cobs(inframe, offset, decoded);
-	if (rv < 0) { // If the decoder blew up, we have a bad frame. floor.
+	if (rv < 0) { // If the decoder blew up, we have a bad frame. Drop it on the floor
 		offset = 0;
 		return;
 	}
@@ -188,12 +152,11 @@ void handleFrames(void) {
 	handle_Frame(decoded, rv); // Good frame - Process result
 }
 
-void handle_Frame(uint8_t *frame, unsigned int length)
-{
+void handle_Frame(uint8_t *frame, unsigned int length) {
     switch(frame[0]){
         case 10:
-            read_currenct_and_encoder();
-            encode_and_send(fcur,rcur,fenc,renc);
+            read_current_and_encoder();
+            encode_and_send(front_current,rear_current,front_encoder,rear_encoder);
             return;
         case 11:
             QuadDec_1_WriteCounter(32768);
@@ -220,8 +183,8 @@ void handle_Frame(uint8_t *frame, unsigned int length)
     if(length >8)
     {
         dir = frame[0]-1;
-        speedf = (frame[1] << 8) +frame[2];
-        speedr = (frame[3] << 8) +frame[4];
+        front_speed = (frame[1] << 8) +frame[2];
+        rear_speed = (frame[3] << 8) +frame[4];
     }
 }
 

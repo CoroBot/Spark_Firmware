@@ -1,5 +1,5 @@
 -- Project:   motor driver firmware
--- Generated: 07/29/2015 15:17:42
+-- Generated: 07/30/2015 12:15:10
 -- PSoC Creator  3.2
 
 ENTITY \motor driver firmware\ IS
@@ -50,11 +50,11 @@ ARCHITECTURE __DEFAULT__ OF \motor driver firmware\ IS
     SIGNAL Mode1(0)__PA : bit;
     SIGNAL Mode2(0)__PA : bit;
     SIGNAL Net_101 : bit;
-    ATTRIBUTE placement_force OF Net_101 : SIGNAL IS "U(0,1,A)2";
+    ATTRIBUTE placement_force OF Net_101 : SIGNAL IS "U(0,1,A)3";
     SIGNAL Net_137 : bit;
-    ATTRIBUTE placement_force OF Net_137 : SIGNAL IS "U(1,1,A)1";
+    ATTRIBUTE placement_force OF Net_137 : SIGNAL IS "U(0,1,A)1";
     SIGNAL Net_149 : bit;
-    ATTRIBUTE placement_force OF Net_149 : SIGNAL IS "U(1,1,B)0";
+    ATTRIBUTE placement_force OF Net_149 : SIGNAL IS "U(0,1,B)0";
     SIGNAL Net_152 : bit;
     SIGNAL Net_153 : bit;
     SIGNAL Net_160 : bit;
@@ -99,7 +99,7 @@ ARCHITECTURE __DEFAULT__ OF \motor driver firmware\ IS
     SIGNAL Net_811 : bit;
     SIGNAL Net_812 : bit;
     SIGNAL Net_98 : bit;
-    ATTRIBUTE placement_force OF Net_98 : SIGNAL IS "U(0,1,A)3";
+    ATTRIBUTE placement_force OF Net_98 : SIGNAL IS "U(0,1,A)2";
     SIGNAL Power1(0)__PA : bit;
     SIGNAL Power2(0)__PA : bit;
     SIGNAL \ADC:Net_1845_ff7\ : bit;
@@ -144,7 +144,7 @@ ARCHITECTURE __DEFAULT__ OF \motor driver firmware\ IS
     SIGNAL \UART:ss_3\ : bit;
     SIGNAL \\\UART:tx(0)\\__PA\ : bit;
     SIGNAL __ONE__ : bit;
-    ATTRIBUTE placement_force OF __ONE__ : SIGNAL IS "U(0,1,B)0";
+    ATTRIBUTE placement_force OF __ONE__ : SIGNAL IS "U(1,1,B)0";
     ATTRIBUTE POWER OF __ONE__ : SIGNAL IS true;
     SIGNAL __ZERO__ : bit;
     ATTRIBUTE GROUND OF __ZERO__ : SIGNAL IS true;
@@ -187,9 +187,9 @@ ARCHITECTURE __DEFAULT__ OF \motor driver firmware\ IS
     ATTRIBUTE lib_model OF Net_101 : LABEL IS "macrocell1";
     ATTRIBUTE Location OF Net_101 : LABEL IS "U(0,1)";
     ATTRIBUTE lib_model OF Net_137 : LABEL IS "macrocell2";
-    ATTRIBUTE Location OF Net_137 : LABEL IS "U(1,1)";
+    ATTRIBUTE Location OF Net_137 : LABEL IS "U(0,1)";
     ATTRIBUTE lib_model OF Net_149 : LABEL IS "macrocell3";
-    ATTRIBUTE Location OF Net_149 : LABEL IS "U(1,1)";
+    ATTRIBUTE Location OF Net_149 : LABEL IS "U(0,1)";
     ATTRIBUTE lib_model OF Net_98 : LABEL IS "macrocell4";
     ATTRIBUTE Location OF Net_98 : LABEL IS "U(0,1)";
     ATTRIBUTE lib_model OF Power1(0) : LABEL IS "iocell15";
@@ -205,12 +205,13 @@ ARCHITECTURE __DEFAULT__ OF \motor driver firmware\ IS
     ATTRIBUTE Location OF \QuadDec_1:cy_m0s8_tcpwm_1\ : LABEL IS "F(TCPWM,2)";
     ATTRIBUTE Location OF \QuadDec_2:cy_m0s8_tcpwm_1\ : LABEL IS "F(TCPWM,1)";
     ATTRIBUTE Location OF \UART:SCB\ : LABEL IS "F(SCB,0)";
+    ATTRIBUTE Location OF \UART:SCB_IRQ\ : LABEL IS "[IntrHod=(0)][IntrId=(10)]";
     ATTRIBUTE lib_model OF \UART:rx(0)\ : LABEL IS "iocell17";
     ATTRIBUTE Location OF \UART:rx(0)\ : LABEL IS "P4[0]";
     ATTRIBUTE lib_model OF \UART:tx(0)\ : LABEL IS "iocell18";
     ATTRIBUTE Location OF \UART:tx(0)\ : LABEL IS "P4[1]";
     ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell5";
-    ATTRIBUTE Location OF __ONE__ : LABEL IS "U(0,1)";
+    ATTRIBUTE Location OF __ONE__ : LABEL IS "U(1,1)";
     ATTRIBUTE lib_model OF cursense1(0) : LABEL IS "iocell19";
     ATTRIBUTE Location OF cursense1(0) : LABEL IS "P3[4]";
     ATTRIBUTE lib_model OF cursense2(0) : LABEL IS "iocell20";
@@ -2176,6 +2177,13 @@ BEGIN
             sclk_s => open,
             tx_req => Net_47,
             rx_req => Net_46);
+
+    \UART:SCB_IRQ\:interrupt
+        GENERIC MAP(
+            int_type => "10")
+        PORT MAP(
+            interrupt => Net_44,
+            clock => ClockBlock_HFCLK);
 
     \UART:rx(0)\:iocell
         GENERIC MAP(

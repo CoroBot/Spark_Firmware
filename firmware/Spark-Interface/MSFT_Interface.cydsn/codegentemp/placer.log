@@ -6,7 +6,7 @@
 
 #Build Date:         May  8 2015 09:27:37
 
-#File Generated:     Jul 22 2015 18:19:18
+#File Generated:     Jul 29 2015 16:54:18
 
 #Purpose:            
 
@@ -114,7 +114,7 @@ Clock: U_IntClock           | Frequency:  52.9 MHz | Target:   0.9 MHz
 ======================================================================
                      End of Clock Summary
 ######################################################################
-D2088: Phase 7, elapsed time : 4.8 (sec)
+D2088: Phase 7, elapsed time : 3.7 (sec)
 
 Final Design Statistics
     Number of Combinational MCs 	:	12
@@ -164,5 +164,5 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
-I2076: Total run-time: 5.6 sec.
+I2076: Total run-time: 4.4 sec.
 
