@@ -15,6 +15,7 @@
 /**********************************************************/
 #include <project.h>
 #include <cobs.h>
+#include <string.h>
 //#include <cypins.h>
 
 /***************************************
@@ -67,6 +68,10 @@ int   cmd_offset = 0;
 
 uint8 hexdigits[]="0123456789ABCDEF";
 
+// Hacky implementation to respond to an ADC request
+int sendADCFlag = 0;
+int16 adcval = 0;
+
 /**********************************************************/
 /* Function Declarations                                  */
 /**********************************************************/
@@ -90,11 +95,15 @@ void hexp(int by);
 void hexdump(uint8 *buffer, int numbytes);
 
 // merged functions
+void encode_and_send_usb(unsigned char* buf, int length);
 int blinkLED(void);
 void handleFrames(void);
 void handle_Frame(uint8_t *frame, unsigned int length);
 void set_attribute(uint8_t *frame, unsigned int length);
 void report_adc_val();
+
+//network utility functions, could be moved to cobs
+void uint16toNO(uint16_t invalue, unsigned char *outbuf);
 
 // Hardware Control Functions
 
@@ -137,6 +146,8 @@ int main()
     //PWM_1_WriteCompare(1900); //period is 2000.
     blinkLED(); //to signal all set up is done, entering for loop
     
+    
+    
     for(;;)
     {
         
@@ -144,18 +155,52 @@ int main()
 		handle_uart(); 
 
         handleFrames();
-        // putc and puts stuff.
-        uputc(0);
-        unsigned char outdat[12];
-        unsigned char indat[11] = {0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7};
-        uint32_t crc32 = Crc32_ComputeBuf(0, indat, 7);
-        uint32toNO(crc32, &indat[7]);
+         
         
-        encode_cobs(indat, 11, outdat);
+        // send the adc value if the user requested it.
+        // This is a duplicate of the "method 1" below, wrapped in an if check.
+        if (sendADCFlag) {
+            unsigned char outdat[12];
+            unsigned char indat[11] = {0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7};
+            uint16toNO(uint16_t invalue, unsigned char *outbuf);
+            
+            uint32_t crc32 = Crc32_ComputeBuf(0, indat, 7);
+            uint32toNO(crc32, &indat[7]);
+            
+            encode_cobs(indat, 11, outdat);
+            
+            uputc(0);
+            uputs(outdat);
+            uputc(0);
+            sendADCFlag = 0;   
+        }
         
-        uputs(outdat);
-        uputc(0);
-        CyDelay(100);
+        // Test writing out of psoc to PC
+        
+        // *********** method 1 *****************
+        
+//        // Dummy test arrays
+//        unsigned char outdat[12];
+//        unsigned char indat[11] = {0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7};
+//        
+//        
+//        uint32_t crc32 = Crc32_ComputeBuf(0, indat, 7);
+//        uint32toNO(crc32, &indat[7]);
+//        
+//        encode_cobs(indat, 11, outdat);
+//        
+//        uputc(0);
+//        uputs(outdat);
+//        uputc(0);
+        
+        
+        // ************ method 2 *****************
+        
+//        unsigned char indat[7] = {0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7};
+//        encode_and_send_usb(indat, 7); // at the moment, parameters dont matter, 
+//                                       //behavior is hardcoded until debugged.
+        
+        // end test communications.
         
 		if (ringbuff_size(&u_recv) > 0 && ringbuff_canput(&h_send,1)) {
 			int ch = ringbuff_get(&u_recv);
@@ -167,67 +212,52 @@ int main()
 	}
 }
 
-int blinkLED(void) {
 
-    PWM_1_WriteCompare(PWM_1_ReadPeriod()); //sets the duty cycle to on 100% of time
-    //LED_1_Write(1);
-	CyDelay(200);
-	
-    //LED_1_Write(0);
-    PWM_1_WriteCompare(0);
-	CyDelay(200);
-
-    //LED_1_Write(1);
-	PWM_1_WriteCompare(PWM_1_ReadPeriod()); //1900 old val
-    CyDelay(200);
-    
-    //LED_1_Write(0);
-    PWM_1_WriteCompare(0);
-    CyDelay(200);
-    
-    return 0;
-}
-
-void init(void) {
-
-	// Set up USB UART Receive Buffer
-	u_recv.buffer = u_ringbuff_buff_rx;
-	u_recv.capacity = 2048;
-	u_recv.head = 0;
-	u_recv.tail = 0;
-	u_recv.available = 0;	
-
-	// Set up USB UART Transmit Buffer
-	u_send.buffer = u_ringbuff_buff_tx;
-	u_send.capacity = 2048;
-	u_send.head = 0;
-	u_send.tail = 0;
-	u_send.available = 0;	
-
-	// Set up Hardware UART Receive Buffer
-	h_recv.buffer = h_ringbuff_buff_rx;
-	h_recv.capacity = 2048;
-	h_recv.head = 0;
-	h_recv.tail = 0;
-	h_recv.available = 0;	
-
-	// Set up Hardware UART Transmit Buffer
-	h_send.buffer = h_ringbuff_buff_tx;
-	h_send.capacity = 2048;
-	h_send.head = 0;
-	h_send.tail = 0;
-	h_send.available = 0;	
-
-}
-
-void hw_init(void) {
-	U_Start();
-}
 
 
 // ***********************************************
 // Merged functions
 // ***********************************************
+
+void uint16toNO(uint16_t invalue, unsigned char *outbuf) {
+    outbuf[1] = (invalue & 0xFF);
+	outbuf[0] = (invalue >> 8) & 0xFF;
+}
+
+void encode_and_send_usb(unsigned char* buf, int length) {
+
+//    // Duplicate code from main:
+//    
+//    // Test writing out of psoc to PC
+//    
+//    // Dummy test arrays
+//    unsigned char outdat[12];
+//    unsigned char indat[11] = {0x1, 0x0, 0x3, 0x0, 0x0, 0x6, 0x7};
+//    uint32_t crc32 = Crc32_ComputeBuf(0, indat, 7);
+//    uint32toNO(crc32, &indat[7]);
+//    
+//    encode_cobs(indat, 11, outdat);
+//    
+//    uputc(0);
+//    uputs(outdat);
+//    uputc(0);
+        
+    // ********** Desired Functionaliy (once its debugged) ***************
+        
+    unsigned char indat[length + 4];
+    memcpy(indat, buf, length); 
+    //strncpy(buf, indat, length); 
+    
+    uint32_t crc32 = Crc32_ComputeBuf(0, indat, length);
+    uint32toNO(crc32, &indat[length]);
+    
+    unsigned char outdat[length + 5];
+    encode_cobs(indat, length + 4, outdat);
+    
+    uputc(0);
+    uputs(outdat);
+    uputc(0);
+}
 
 void handleFrames(void) {
     
@@ -333,6 +363,14 @@ void report_adc_val() {
     // encode and send back over wire?
     // for now lets just set an led to the pot value to show we can read the ADC.
     PWM_1_WriteCompare(adcResult);
+    
+    //set global flags (hacky way)
+    adcval = adcResult;
+    sendADCFlag = 1;
+    
+    // desired way, prep data buffer and encode_and_send();
+//    unsigned char dat[7] = {0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7};
+//    encode_and_send_usb(dat, 7);
 }
 
 void set_attribute(uint8_t *frame, unsigned int length) {
@@ -342,6 +380,7 @@ void set_attribute(uint8_t *frame, unsigned int length) {
 	}
     
 	//decode both integers
+    
 	uint16_t attrib = NO_to_int16(&frame[3]); //first two data bytes are attribute
 	uint16_t value = NO_to_int16(&frame[5]); //second two bytes are value
 
@@ -364,6 +403,60 @@ void set_attribute(uint8_t *frame, unsigned int length) {
 // ******************************
 // End merged functions
 // ******************************
+
+//Note, reordered from above, just to make debugging easier.
+int blinkLED(void) {
+
+    PWM_1_WriteCompare(PWM_1_ReadPeriod()); //sets the duty cycle to on 100% of time
+	CyDelay(200);
+	
+    PWM_1_WriteCompare(0); // turns LED off
+	CyDelay(200);
+
+	PWM_1_WriteCompare(PWM_1_ReadPeriod());
+    CyDelay(200);
+    
+    PWM_1_WriteCompare(0);
+    CyDelay(200);
+    
+    return 0;
+}
+
+void init(void) {
+
+	// Set up USB UART Receive Buffer
+	u_recv.buffer = u_ringbuff_buff_rx;
+	u_recv.capacity = 2048;
+	u_recv.head = 0;
+	u_recv.tail = 0;
+	u_recv.available = 0;	
+
+	// Set up USB UART Transmit Buffer
+	u_send.buffer = u_ringbuff_buff_tx;
+	u_send.capacity = 2048;
+	u_send.head = 0;
+	u_send.tail = 0;
+	u_send.available = 0;	
+
+	// Set up Hardware UART Receive Buffer
+	h_recv.buffer = h_ringbuff_buff_rx;
+	h_recv.capacity = 2048;
+	h_recv.head = 0;
+	h_recv.tail = 0;
+	h_recv.available = 0;	
+
+	// Set up Hardware UART Transmit Buffer
+	h_send.buffer = h_ringbuff_buff_tx;
+	h_send.capacity = 2048;
+	h_send.head = 0;
+	h_send.tail = 0;
+	h_send.available = 0;	
+
+}
+
+void hw_init(void) {
+	U_Start();
+}
 
 void handle_usb(void) {
 	int i;

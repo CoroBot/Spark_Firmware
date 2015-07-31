@@ -55,6 +55,6 @@ if __name__ == '__main__':
 			print "Setting LED1 to the result of ADC Read"
 			sam = bytearray([0x01, 0x08, 0x00])
 			cobs.encode_and_send(sam)
-			print cobs.block_and_return() 
+			print repr(cobs.block_and_return())
 			#print cobs.read_and_build() #cant call directly, requires serial object
 			#pause and read what comes next
