@@ -30,7 +30,7 @@
 #define ATTRIB_LED1 1
 #define ATTRIB_LED2 2
 #define ATTRIB_LED3 3
-#define ATTRIB_SERV 4
+#define ATTRIB_SERVO1 4
 
 
 /**********************************************************/
@@ -132,6 +132,7 @@ int main()
     PWM_1_Start();
     PWM_2_Start();
     PWM_3_Start();
+    PWM_4_Start();
     
 	USB_Start(0,USB_DWR_VDDD_OPERATION); 
 
@@ -395,7 +396,9 @@ void set_attribute(uint8_t *frame, unsigned int length) {
 			break;
 		case ATTRIB_LED3:
             PWM_3_WriteCompare(value);
-			break;
+            //PWM_4_WriteCompare((value/PWM_3_ReadPeriod()) * PWM_4_ReadPeriod()); //Convert from 16bit value to duty cycle
+			PWM_4_WriteCompare(value);
+            break;
 		default:
 			break;
 	}

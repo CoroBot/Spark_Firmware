@@ -132,26 +132,32 @@ CYPACKED typedef struct
 #define cy_cfg_addr_table ((const uint32 CYFAR *)0x48000000u)
 #define cy_cfg_data_table ((const cy_cfg_addrvalue_t CYFAR *)0x480000ACu)
 
+/* UDB_0_3_1_CONFIG Address: CYDEV_UCFG_B0_P5_U1_BASE Size (bytes): 128 */
+#define BS_UDB_0_3_1_CONFIG_VAL ((const uint8 CYFAR *)0x48000CB4u)
+
+/* UCFG_BCTL0 Address: CYREG_BCTL0_MDCLK_EN Size (bytes): 16 */
+#define BS_UCFG_BCTL0_VAL ((const uint8 CYFAR *)0x48000D34u)
+
 /* IOPINS0_0 Address: CYREG_PRT0_DM0 Size (bytes): 8 */
-#define BS_IOPINS0_0_VAL ((const uint8 CYFAR *)0x48000CF8u)
+#define BS_IOPINS0_0_VAL ((const uint8 CYFAR *)0x48000D44u)
 
 /* IOPINS0_7 Address: CYREG_PRT12_DM0 Size (bytes): 8 */
-#define BS_IOPINS0_7_VAL ((const uint8 CYFAR *)0x48000D00u)
+#define BS_IOPINS0_7_VAL ((const uint8 CYFAR *)0x48000D4Cu)
 
 /* IOPINS0_8 Address: CYREG_PRT15_DR Size (bytes): 10 */
-#define BS_IOPINS0_8_VAL ((const uint8 CYFAR *)0x48000D08u)
+#define BS_IOPINS0_8_VAL ((const uint8 CYFAR *)0x48000D54u)
 
 /* IOPINS0_1 Address: CYREG_PRT1_DR Size (bytes): 10 */
-#define BS_IOPINS0_1_VAL ((const uint8 CYFAR *)0x48000D14u)
+#define BS_IOPINS0_1_VAL ((const uint8 CYFAR *)0x48000D60u)
 
 /* IOPINS0_2 Address: CYREG_PRT2_DM0 Size (bytes): 8 */
-#define BS_IOPINS0_2_VAL ((const uint8 CYFAR *)0x48000D20u)
+#define BS_IOPINS0_2_VAL ((const uint8 CYFAR *)0x48000D6Cu)
 
 /* IOPINS0_3 Address: CYREG_PRT3_DR Size (bytes): 10 */
-#define BS_IOPINS0_3_VAL ((const uint8 CYFAR *)0x48000D28u)
+#define BS_IOPINS0_3_VAL ((const uint8 CYFAR *)0x48000D74u)
 
 /* PHUB_CFGMEM1 Address: CYREG_PHUB_CFGMEM1_CFG0 Size (bytes): 4 */
-#define BS_PHUB_CFGMEM1_VAL ((const uint8 CYFAR *)0x48000D34u)
+#define BS_PHUB_CFGMEM1_VAL ((const uint8 CYFAR *)0x48000D80u)
 
 
 /*******************************************************************************
@@ -217,6 +223,8 @@ static void ClockSetup(void)
 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG1_CFG0 + 0x2u), 0x18u);
 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG2_CFG0), 0x0047u);
 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG2_CFG0 + 0x2u), 0x18u);
+	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG3_CFG0), 0x0293u);
+	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG3_CFG0 + 0x2u), 0x18u);
 
 	/* Configure ILO based on settings from Clock DWR */
 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_SLOWCLK_ILO_CR0), 0x06u);
@@ -252,7 +260,7 @@ static void ClockSetup(void)
 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_UCFG), 0x00u);
 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_LD), 0x02u);
 
-	CY_SET_XTND_REG8((void CYFAR *)(CYREG_PM_ACT_CFG2), ((CY_GET_XTND_REG8((void CYFAR *)CYREG_PM_ACT_CFG2) | 0x07u)));
+	CY_SET_XTND_REG8((void CYFAR *)(CYREG_PM_ACT_CFG2), ((CY_GET_XTND_REG8((void CYFAR *)CYREG_PM_ACT_CFG2) | 0x0Fu)));
 }
 
 
@@ -362,14 +370,28 @@ void cyfitter_cfg(void)
 			uint16 size;
 		} CYPACKED_ATTR cfg_memset_t;
 
+
+		CYPACKED typedef struct {
+			void CYFAR *dest;
+			const void CYFAR *src;
+			uint16 size;
+		} CYPACKED_ATTR cfg_memcpy_t;
+
 		static const cfg_memset_t CYCODE cfg_memset_list [] = {
 			/* address, size */
 			{(void CYFAR *)(CYREG_PRT4_DR), 48u},
-			{(void CYFAR *)(CYDEV_UCFG_B0_P0_U0_BASE), 4096u},
+			{(void CYFAR *)(CYDEV_UCFG_B0_P0_U0_BASE), 2688u},
+			{(void CYFAR *)(CYDEV_UCFG_B0_P5_ROUTE_BASE), 1280u},
 			{(void CYFAR *)(CYDEV_UCFG_B1_P2_U0_BASE), 2048u},
 			{(void CYFAR *)(CYDEV_UCFG_DSI0_BASE), 2560u},
 			{(void CYFAR *)(CYDEV_UCFG_DSI12_BASE), 512u},
-			{(void CYFAR *)(CYREG_BCTL0_MDCLK_EN), 32u},
+			{(void CYFAR *)(CYREG_BCTL1_MDCLK_EN), 16u},
+		};
+
+		static const cfg_memcpy_t CYCODE cfg_memcpy_list [] = {
+			/* dest, src, size */
+			{(void CYFAR *)(CYDEV_UCFG_B0_P5_U1_BASE), BS_UDB_0_3_1_CONFIG_VAL, 128u},
+			{(void CYFAR *)(CYREG_BCTL0_MDCLK_EN), BS_UCFG_BCTL0_VAL, 16u},
 		};
 
 		uint8 CYDATA i;
@@ -379,6 +401,16 @@ void cyfitter_cfg(void)
 		{
 			const cfg_memset_t CYCODE * CYDATA ms = &cfg_memset_list[i];
 			CYMEMZERO(ms->address, (size_t)(uint32)(ms->size));
+		}
+
+		/* Copy device configuration data into registers */
+		for (i = 0u; i < (sizeof(cfg_memcpy_list)/sizeof(cfg_memcpy_list[0])); i++)
+		{
+			const cfg_memcpy_t CYCODE * CYDATA mc = &cfg_memcpy_list[i];
+			void * CYDATA destPtr = mc->dest;
+			const void * CYDATA srcPtr = mc->src;
+			uint16 CYDATA numBytes = mc->size;
+			CYCONFIGCPY(destPtr, srcPtr, numBytes);
 		}
 
 		cfg_write_bytes32(cy_cfg_addr_table, cy_cfg_data_table);

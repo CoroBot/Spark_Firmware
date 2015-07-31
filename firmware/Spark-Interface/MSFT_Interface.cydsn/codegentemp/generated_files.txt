@@ -87,6 +87,14 @@
   <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\LED_3_aliases.h" value="NONE;LED_3" />
   <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\LED_3.c" value="ARM_C_FILE;LED_3" />
   <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\LED_3.h" value="NONE;LED_3" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\PWM_4.c" value="ARM_C_FILE;PWM_4" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\PWM_4.h" value="NONE;PWM_4" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\PWM_4_PM.c" value="ARM_C_FILE;PWM_4" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\Clock_2.c" value="ARM_C_FILE;Clock_2" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\Clock_2.h" value="NONE;Clock_2" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\SRVO1_aliases.h" value="NONE;SRVO1" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\SRVO1.c" value="ARM_C_FILE;SRVO1" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\SRVO1.h" value="NONE;SRVO1" />
   <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\USB_Dm_aliases.h" value="NONE;USB_Dm" />
   <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\USB_Dm.c" value="ARM_C_FILE;USB_Dm" />
   <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\USB_Dm.h" value="NONE;USB_Dm" />
