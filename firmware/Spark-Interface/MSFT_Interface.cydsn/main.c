@@ -30,6 +30,7 @@
 #define ATTRIB_LED1 1
 #define ATTRIB_LED2 2
 #define ATTRIB_LED3 3
+#define ATTRIB_SERV 4
 
 
 /**********************************************************/
@@ -160,14 +161,14 @@ int main()
         // send the adc value if the user requested it.
         // This is a duplicate of the "method 1" below, wrapped in an if check.
         if (sendADCFlag) {
-            unsigned char outdat[12];
-            unsigned char indat[11] = {0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7};
-            uint16toNO(uint16_t invalue, unsigned char *outbuf);
+            unsigned char outdat[7];
+            unsigned char indat[6];
+            uint16toNO(adcval, &indat[0]);
             
-            uint32_t crc32 = Crc32_ComputeBuf(0, indat, 7);
-            uint32toNO(crc32, &indat[7]);
+            uint32_t crc32 = Crc32_ComputeBuf(0, indat, 2);
+            uint32toNO(crc32, &indat[2]);
             
-            encode_cobs(indat, 11, outdat);
+            encode_cobs(indat, 6, outdat);
             
             uputc(0);
             uputs(outdat);
