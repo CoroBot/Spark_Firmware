@@ -25,7 +25,7 @@
       <Tool Name="postbuild" Command="" Options="" />
     </Toolchain>
   </Toolchains>
-  <Project Name="motor driver firmware" Path="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" Version="5.0" Type="Normal">
+  <Project Name="motor driver firmware" Path="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" Version="5.0" Type="Normal">
     <CMSIS_SVD_File>motor driver firmware.svd</CMSIS_SVD_File>
     <Datasheet />
     <LinkerFiles>
@@ -34,15 +34,15 @@
       <LinkerFile Toolchain="ARM IAR Generic">.\Generated_Source\PSoC4\Cm0Iar.icf</LinkerFile>
     </LinkerFiles>
     <Folders>
-      <Folder BuildType="BUILD" Path="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn">
-        <Files Root="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn">
+      <Folder BuildType="BUILD" Path="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn">
+        <Files Root="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn">
           <File BuildType="BUILD" Toolchain="">.\main.c</File>
           <File BuildType="BUILD" Toolchain="">.\cobs.c</File>
           <File BuildType="BUILD" Toolchain="">.\cobs.h</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\Generated_Source\PSoC4">
-        <Files Root="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\Generated_Source\PSoC4">
+        <Files Root="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn">
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\cyfitter_cfg.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\cyfitter_cfg.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\cymetadata.c</File>
@@ -55,12 +55,6 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\cyfitteriar.inc</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\cyfitter.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\cydisabledsheets.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\QuadDec_1.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\QuadDec_1.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\QuadDec_1_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\QuadDec_2.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\QuadDec_2.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\QuadDec_2_PM.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Clock_1.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Clock_1.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Cm0Start.c</File>
@@ -109,9 +103,6 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\AIN1_1.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\AIN1_1.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\AIN1_1_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\PWM_R.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\PWM_R.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\PWM_R_PM.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\BIN2_2.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\BIN2_2.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\BIN2_2_aliases.h</File>
@@ -127,35 +118,12 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\DIR_CONTROL.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\DIR_CONTROL.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\DIR_CONTROL_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\PWM_F.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\PWM_F.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\PWM_F_PM.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\cursense1.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\cursense1.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\cursense1_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\cursense2.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\cursense2.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\cursense2_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Mode1.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Mode1.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Mode1_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Mode2.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Mode2.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Mode2_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Power1.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Power1.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Power1_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Power2.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Power2.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Power2_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\ADC.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\ADC.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\ADC_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\ADC_INT.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\ADC_IRQ.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\ADC_IRQ.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\ADC_intClock.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\ADC_intClock.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\UART.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\UART.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\UART_SPI_UART.h</File>
@@ -177,51 +145,81 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\UART_rx.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\UART_rx.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\UART_rx_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\UART_SCB_IRQ.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\UART_SCB_IRQ.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\QuadDec_Front.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\QuadDec_Front.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\QuadDec_Front_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\QuadDec_Rear.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\QuadDec_Rear.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\QuadDec_Rear_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Motor_Current_ADC.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Motor_Current_ADC.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Motor_Current_ADC_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Motor_Current_ADC_INT.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Mode_Front.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Mode_Front.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Mode_Front_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Mode_Rear.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Mode_Rear.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Mode_Rear_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\PWM_Rear.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\PWM_Rear.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\PWM_Rear_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\PWM_Front.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\PWM_Front.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\PWM_Front_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Power_Front.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Power_Front.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Power_Front_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Power_Rear.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Power_Rear.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Power_Rear_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Motor_Current_ADC_IRQ.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Motor_Current_ADC_IRQ.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Motor_Current_ADC_intClock.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Motor_Current_ADC_intClock.h</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\Export\ARM_GCC_Generic">
-        <Files Root="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\Export\ARM_GCC_Generic">
+        <Files Root="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn">
           <File BuildType="BUILD" Toolchain="ARM GCC Generic">.\Export\ARM_GCC_Generic\CyComponentLibrary.a</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\Export\ARM_MDK_Generic">
-        <Files Root="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\Export\ARM_MDK_Generic">
+        <Files Root="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn">
           <File BuildType="BUILD" Toolchain="ARM MDK Generic">.\Export\ARM_MDK_Generic\CyComponentLibrary.a</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\Export\ARM_IAR_Generic">
-        <Files Root="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\Export\ARM_IAR_Generic">
+        <Files Root="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn">
           <File BuildType="BUILD" Toolchain="ARM IAR Generic">.\Export\ARM_IAR_Generic\CyComponentLibrary.a</File>
         </Files>
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\codegentemp">
-        <Files Root="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" />
+        <Files Root="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\ARM_GCC_441">
-        <Files Root="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" />
+        <Files Root="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\ARM_GCC_473">
-        <Files Root="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" />
+        <Files Root="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\DP8051_Keil_952">
-        <Files Root="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" />
+        <Files Root="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\DP8051">
-        <Files Root="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" />
+        <Files Root="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM0">
-        <Files Root="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" />
+        <Files Root="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM3">
-        <Files Root="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" />
+        <Files Root="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\Generated_Source\PSoC3">
-        <Files Root="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" />
+        <Files Root="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\Generated_Source\PSoC5">
-        <Files Root="C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" />
+        <Files Root="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn" />
       </Folder>
     </Folders>
   </Project>

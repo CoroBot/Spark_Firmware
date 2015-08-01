@@ -31,7 +31,7 @@ uint16 rear_encoder;
 uint16 front_speed = 0;
 uint16 rear_speed = 0;
 
-uint8 dir = 0;
+uint8 direction = 0;
 
 // Function Declarations
 void handleFrames(void);
@@ -45,33 +45,33 @@ int main()
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
 
-    PWM_F_Start();
-    PWM_R_Start();
-    QuadDec_1_Start();
-    QuadDec_2_Start();
-    QuadDec_1_TriggerCommand(QuadDec_1_MASK, QuadDec_1_CMD_RELOAD);
-    QuadDec_2_TriggerCommand(QuadDec_2_MASK, QuadDec_2_CMD_RELOAD);
+    PWM_Front_Start();
+    PWM_Rear_Start();
+    QuadDec_Front_Start();
+    QuadDec_Rear_Start();
+    QuadDec_Front_TriggerCommand(QuadDec_Front_MASK, QuadDec_Front_CMD_RELOAD);
+    QuadDec_Rear_TriggerCommand(QuadDec_Rear_MASK, QuadDec_Rear_CMD_RELOAD);
     UART_Start();
-    ADC_Start();
+    Motor_Current_ADC_Start();
 
     for(;;)
     {
         handleFrames();
-        DIR_CONTROL_Write(dir);
-        PWM_F_WriteCompare(front_speed);
-        PWM_R_WriteCompare(rear_speed);
+        DIR_CONTROL_Write(direction);
+        PWM_Front_WriteCompare(front_speed);
+        PWM_Rear_WriteCompare(rear_speed);
         CyDelayUs(100);
     }
 }
 
 void read_current_and_encoder()
 {
-    ADC_StartConvert();
+    Motor_Current_ADC_StartConvert();
     CyDelayUs(10);
-    front_current = ADC_GetResult16(0);
-    rear_current = ADC_GetResult16(1);
-    front_encoder = QuadDec_1_ReadCounter();
-    rear_encoder = QuadDec_2_ReadCounter();
+    front_current = Motor_Current_ADC_GetResult16(0);
+    rear_current = Motor_Current_ADC_GetResult16(1);
+    front_encoder = QuadDec_Front_ReadCounter();
+    rear_encoder = QuadDec_Rear_ReadCounter();
 }
 
 void int16_to_be(unsigned char *target, uint16_t num) {
@@ -153,36 +153,49 @@ void handleFrames(void) {
 }
 
 void handle_Frame(uint8_t *frame, unsigned int length) {
-    switch(frame[0]){
-        case 10:
-            read_current_and_encoder();
-            encode_and_send(front_current,rear_current,front_encoder,rear_encoder);
+    switch(frame[0])
+    {
+        case 0:
+            //something not universe breaking maybe?
             return;
-        case 11:
-            QuadDec_1_WriteCounter(32768);
+        case 1: //going to front motor
+            if(frame[1] == 0)//okay we know we need to get something
+            {
+                if(frame[2] == 0)//get motor direction
+                {
+                }
+                else if(frame[2] == 1)//get motor speed
+                {
+                }
+                else if(frame[2] == 2)//get encoder counter
+                {
+                }
+                else if(frame[2] == 3)//get current data
+                {
+                }
+            }
+            else if(frame[1] == 1)//we need to set something instead
+            {
+                if(frame[2] == 0)//set motor direction
+                {
+                }
+                else if(frame[2] == 1)//set motor speed
+                {
+                }
+                else if(frame[2] == 2)//set encoder counter
+                {
+                }
+                else if(frame[2] == 3)//set current data -- not possible, remove?
+                {
+                }
+            }
             return;
-        case 12:
-            QuadDec_2_WriteCounter(32768);
+        case 2: //going to rear motor
             return;
-        case 13:
-            Mode1_Write(!Mode1_Read());
-            return;
-        case 14:
-            Mode2_Write(!Mode2_Read());
-            return;
-        case 15:
-            Power1_Write(!Power1_Read());
-            return;
-        case 16:
-            Power2_Write(!Power2_Read());
-            return;
-        default:
-            break;
-            
     } 
     if(length >8)
     {
-        dir = frame[0]-1;
+        direction = frame[0]-1;
         front_speed = (frame[1] << 8) +frame[2];
         rear_speed = (frame[3] << 8) +frame[4];
     }
