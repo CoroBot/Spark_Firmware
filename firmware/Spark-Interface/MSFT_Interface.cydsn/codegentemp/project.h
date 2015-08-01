@@ -62,8 +62,6 @@
 #include "ADC_TempBuf_dma.h"
 #include "ADC_FinalBuf_dma.h"
 #include "ADC_IRQ.h"
-#include "ADC_SAR_ExtVref_aliases.h"
-#include "ADC_SAR_ExtVref.h"
 #include "core_cm3_psoc5.h"
 #include "core_cm3.h"
 #include "CyDmac.h"
