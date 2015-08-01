@@ -27846,8 +27846,8 @@ ClockBlock/dclk_glb_3                                      clockblockcell      0
 ++++ Path 671 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 Path Begin     : \PWM_4:PWMUDB:sP16:pwmdp:u0\/cl0
-Path End       : Net_3605/main_1
-Capture Clock  : Net_3605/clock_0
+Path End       : Net_3678/main_1
+Capture Clock  : Net_3678/clock_0
 Path slack     : 9992323p
 
 Capture Clock Arrival Time                            0
@@ -27875,13 +27875,13 @@ pin name                               model name     delay     AT    slack  edg
 \PWM_4:PWMUDB:sP16:pwmdp:u0\/cl0       datapathcell7   1060   1060  9992314  RISE       1
 \PWM_4:PWMUDB:sP16:pwmdp:u1\/cl0i      datapathcell8      0   1060  9992314  RISE       1
 \PWM_4:PWMUDB:sP16:pwmdp:u1\/cl0_comb  datapathcell8   1560   2620  9992314  RISE       1
-Net_3605/main_1                        macrocell7      2600   5220  9992323  RISE       1
+Net_3678/main_1                        macrocell7      2600   5220  9992323  RISE       1
 
 Capture Clock Path
 pin name                                                   model name      delay     AT  edge  Fanout
 ---------------------------------------------------------  --------------  -----  -----  ----  ------
 ClockBlock/dclk_glb_3                                      clockblockcell      0      0  RISE       1
-Net_3605/clock_0                                           macrocell7          0      0  RISE       1
+Net_3678/clock_0                                           macrocell7          0      0  RISE       1
 
 
 
@@ -27928,8 +27928,8 @@ ClockBlock/dclk_glb_3                                      clockblockcell      0
 ++++ Path 673 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 Path Begin     : \PWM_4:PWMUDB:runmode_enable\/q
-Path End       : Net_3605/main_0
-Capture Clock  : Net_3605/clock_0
+Path End       : Net_3678/main_0
+Capture Clock  : Net_3678/clock_0
 Path slack     : 9994373p
 
 Capture Clock Arrival Time                            0
@@ -27955,13 +27955,13 @@ Data path
 pin name                         model name   delay     AT    slack  edge  Fanout
 -------------------------------  -----------  -----  -----  -------  ----  ------
 \PWM_4:PWMUDB:runmode_enable\/q  macrocell87    875    875  9989809  RISE       1
-Net_3605/main_0                  macrocell7    2295   3170  9994373  RISE       1
+Net_3678/main_0                  macrocell7    2295   3170  9994373  RISE       1
 
 Capture Clock Path
 pin name                                                   model name      delay     AT  edge  Fanout
 ---------------------------------------------------------  --------------  -----  -----  ----  ------
 ClockBlock/dclk_glb_3                                      clockblockcell      0      0  RISE       1
-Net_3605/clock_0                                           macrocell7          0      0  RISE       1
+Net_3678/clock_0                                           macrocell7          0      0  RISE       1
 
 
 

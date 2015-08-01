@@ -115,7 +115,7 @@ set_location "\ADC:AMuxHw_2_Decoder_one_hot_12\" macrocell 0 2 0 3
 set_location "\ADC:AMuxHw_2_Decoder_one_hot_33\" macrocell 2 0 0 3
 set_location "\U:BUART:tx_status_0\" macrocell 2 0 1 0
 set_location "\PWM_4:PWMUDB:runmode_enable\" macrocell 0 3 1 0
-set_location "Net_3605" macrocell 0 3 1 2
+set_location "Net_3678" macrocell 0 3 1 2
 set_location "\U:BUART:txn_split\" macrocell 2 2 1 0
 set_location "\ADC:AMuxHw_2_Decoder_one_hot_32\" macrocell 3 4 0 3
 set_location "\U:BUART:tx_state_0\" macrocell 2 1 1 0

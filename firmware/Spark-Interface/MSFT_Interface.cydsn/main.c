@@ -161,21 +161,25 @@ int main()
         
         // send the adc value if the user requested it.
         // This is a duplicate of the "method 1" below, wrapped in an if check.
-        if (sendADCFlag) {
-            unsigned char outdat[7];
-            unsigned char indat[6];
-            uint16toNO(adcval, &indat[0]);
-            
-            uint32_t crc32 = Crc32_ComputeBuf(0, indat, 2);
-            uint32toNO(crc32, &indat[2]);
-            
-            encode_cobs(indat, 6, outdat);
-            
-            uputc(0);
-            uputs(outdat);
-            uputc(0);
-            sendADCFlag = 0;   
-        }
+//        if (sendADCFlag) {
+//            unsigned char outdat[7];
+//            unsigned char indat[6];
+//            uint16toNO(adcval, &indat[0]);
+//            
+//            uint32_t crc32 = Crc32_ComputeBuf(0, indat, 2);
+//            uint32toNO(crc32, &indat[2]);
+//            
+//            encode_cobs(indat, 6, outdat);
+//            
+//            uputc(0);
+//            //uputs(outdat);
+//            int i;
+//            for (i = 0; i < 7; i++) {
+//                uputc(outdat[i]); 
+//            }
+//            uputc(0);
+//            sendADCFlag = 0;   
+//        }
         
         // Test writing out of psoc to PC
         
@@ -198,10 +202,14 @@ int main()
         
         // ************ method 2 *****************
         
-//        unsigned char indat[7] = {0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7};
-//        encode_and_send_usb(indat, 7); // at the moment, parameters dont matter, 
-//                                       //behavior is hardcoded until debugged.
-        
+        //unsigned char indat[7] = {0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7};
+        if (sendADCFlag) {
+            unsigned char indat[2];
+            uint16toNO(adcval, &indat[0]);
+            encode_and_send_usb(indat, 2); // at the moment, parameters dont matter, 
+                                           //behavior is hardcoded until debugged.
+            sendADCFlag = 0;
+        }
         // end test communications.
         
 		if (ringbuff_size(&u_recv) > 0 && ringbuff_canput(&h_send,1)) {
@@ -257,7 +265,10 @@ void encode_and_send_usb(unsigned char* buf, int length) {
     encode_cobs(indat, length + 4, outdat);
     
     uputc(0);
-    uputs(outdat);
+    int i;
+    for (i = 0; i < (length + 5); i++) {
+        uputc(outdat[i]); 
+    }
     uputc(0);
 }
 

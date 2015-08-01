@@ -4306,7 +4306,7 @@ net Net_3149
 	switch ":ioport2:inputs1_mux.pin3__pin_input==>:ioport2:pin3.pin_input"
 	term   ":ioport2:pin3.pin_input"
 end Net_3149
-net Net_3605
+net Net_3678
 	term   ":udb@[UDB=(0,3)]:pld1:mc2.q"
 	switch ":udb@[UDB=(0,3)]:pld1:mc2.q==>:udb@[UDB=(0,3)]:pld1:output_permute2.q_2"
 	switch ":udb@[UDB=(0,3)]:pld1:output_permute2.output_2==>Stub-:udbswitch@[UDB=(0,3)][side=top]:v34"
@@ -4321,7 +4321,7 @@ net Net_3605
 	switch "Stub-:dsiswitch_top@[DSI=(0,4)][side=top]:dsihc_top:v93+:dsiswitch_top@[DSI=(0,4)][side=top]:dsihc_top:v95+:dsiswitch_top@[DSI=(0,4)][side=top]:dsihc_top:v97==>:ioport2:inputs2_mux.in_1"
 	switch ":ioport2:inputs2_mux.pin4__pin_input==>:ioport2:pin4.pin_input"
 	term   ":ioport2:pin4.pin_input"
-end Net_3605
+end Net_3678
 net Net_96
 	term   ":usbcell.sof_int"
 	switch ":usbcell.sof_int==>Stub-:dsiswitch_top@[DSI=(0,2)][side=top]:dsihc_top:v4+:dsiswitch_top@[DSI=(0,2)][side=top]:dsihc_top:v6"

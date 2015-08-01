@@ -59,8 +59,11 @@ if __name__ == '__main__':
 			retarray = cobs.block_and_return()
 			print "Cobs decode result array: "
 			print repr(retarray)
-			adcval = struct.unpack('H', retarray)
-			print "ADC val :"
-			print int(adcval[0])
+			try:
+				adcval = struct.unpack('H', retarray)
+				print "ADC val :"
+				print int(adcval[0])
+			except:
+				print "Error converting adc value"
 			#print cobs.read_and_build() #cant call directly, requires serial object
 			#pause and read what comes next

@@ -1,5 +1,5 @@
 # MSFT_Interface
-# 2015-07-31 04:01:39Z
+# 2015-08-01 18:44:49Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -18,7 +18,7 @@ set_location "Net_218" 2 2 0 2
 set_location "Net_2572" 0 1 0 1
 set_location "Net_3149" 3 2 0 1
 set_location "Net_318" 1 2 0 3
-set_location "Net_3605" 0 3 1 2
+set_location "Net_3678" 0 3 1 2
 set_io "Pin_1(0)" iocell 0 0
 set_io "Rx_1(0)" iocell 12 7
 set_location "Rx_1(0)_SYNC" 1 2 5 0

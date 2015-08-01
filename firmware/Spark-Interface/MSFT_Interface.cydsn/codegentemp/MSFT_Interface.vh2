@@ -2,7 +2,7 @@
 --	Conversion of MSFT_Interface.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Thu Jul 30 21:01:32 2015
+--	Sat Aug 01 11:44:42 2015
 --
 
 USE cypress.cypress.all;
@@ -2250,8 +2250,8 @@ SIGNAL \PWM_4:PWMUDB:pwm2_i\ : bit;
 SIGNAL \PWM_4:PWMUDB:tc_i_reg\ : bit;
 SIGNAL \PWM_4:Net_101\ : bit;
 SIGNAL \PWM_4:Net_96\ : bit;
-SIGNAL Net_3622 : bit;
-SIGNAL Net_3623 : bit;
+SIGNAL Net_3731 : bit;
+SIGNAL Net_3732 : bit;
 SIGNAL \PWM_4:PWMUDB:pwm_temp\ : bit;
 SIGNAL \PWM_4:PWMUDB:MODULE_10:b_31\ : bit;
 SIGNAL \PWM_4:PWMUDB:MODULE_10:b_30\ : bit;
@@ -2449,9 +2449,9 @@ SIGNAL \PWM_4:PWMUDB:MODULE_10:g2:a0:g1:z1:s0:g1:u0:c_2\ : bit;
 SIGNAL \PWM_4:PWMUDB:MODULE_10:g2:a0:g1:z1:s0:g1:u0:c_1\ : bit;
 SIGNAL \PWM_4:PWMUDB:MODULE_10:g2:a0:g1:z1:s0:g1:u0:c_0\ : bit;
 SIGNAL \PWM_4:PWMUDB:MODULE_10:g2:a0:g1:z1:s0:g1:u0:b_0\ : bit;
-SIGNAL Net_3605 : bit;
-SIGNAL Net_3624 : bit;
-SIGNAL Net_3621 : bit;
+SIGNAL Net_3678 : bit;
+SIGNAL Net_3733 : bit;
+SIGNAL Net_3730 : bit;
 SIGNAL \PWM_4:Net_113\ : bit;
 SIGNAL \PWM_4:Net_107\ : bit;
 SIGNAL \PWM_4:Net_114\ : bit;
@@ -5411,7 +5411,7 @@ SRVO1:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(one),
-		y=>Net_3605,
+		y=>Net_3678,
 		fb=>(tmpFB_0__SRVO1_net_0),
 		analog=>(open),
 		io=>(tmpIO_0__SRVO1_net_0),
@@ -6073,7 +6073,7 @@ Net_318:cy_dff
 \PWM_4:PWMUDB:pwm_i_reg\:cy_dff
 	PORT MAP(d=>\PWM_4:PWMUDB:pwm_i\,
 		clk=>\PWM_4:PWMUDB:ClockOutFromEnBlock\,
-		q=>Net_3605);
+		q=>Net_3678);
 \PWM_4:PWMUDB:pwm1_i_reg\:cy_dff
 	PORT MAP(d=>zero,
 		clk=>\PWM_4:PWMUDB:ClockOutFromEnBlock\,
