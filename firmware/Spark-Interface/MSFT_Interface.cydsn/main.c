@@ -202,14 +202,14 @@ int main()
         
         // ************ method 2 *****************
         
-        //unsigned char indat[7] = {0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7};
-        if (sendADCFlag) {
-            unsigned char indat[2];
-            uint16toNO(adcval, &indat[0]);
-            encode_and_send_usb(indat, 2); // at the moment, parameters dont matter, 
-                                           //behavior is hardcoded until debugged.
-            sendADCFlag = 0;
-        }
+//        //unsigned char indat[7] = {0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7};
+//        if (sendADCFlag) {
+//            unsigned char indat[2];
+//            uint16toNO(adcval, &indat[0]);
+//            encode_and_send_usb(indat, 2); // at the moment, parameters dont matter, 
+//                                           //behavior is hardcoded until debugged.
+//            sendADCFlag = 0;
+//        }
         // end test communications.
         
 		if (ringbuff_size(&u_recv) > 0 && ringbuff_canput(&h_send,1)) {
@@ -371,15 +371,19 @@ void handle_Frame(uint8_t *frame, unsigned int length) {
 }
 
 void report_adc_val() {
-    blinkLED();
+    //blinkLED();
     int16 adcResult = ADC_GetResult16(0x00u);   
     // encode and send back over wire?
     // for now lets just set an led to the pot value to show we can read the ADC.
     PWM_1_WriteCompare(adcResult);
     
     //set global flags (hacky way)
-    adcval = adcResult;
-    sendADCFlag = 1;
+//    adcval = adcResult;
+//    sendADCFlag = 1;
+    
+    unsigned char indat[2];
+    uint16toNO(adcResult, &indat[0]);
+    encode_and_send_usb(indat, 2);
     
     // desired way, prep data buffer and encode_and_send();
 //    unsigned char dat[7] = {0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7};
