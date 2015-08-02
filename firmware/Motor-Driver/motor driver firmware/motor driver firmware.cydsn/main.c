@@ -17,7 +17,7 @@
 
 #define true 1
 #define false 0
-#define SYSTEM_DATA_LENGTH 8
+#define SYSTEM_DATA_LENGTH 2
 #define COBS_FRAME_OVERHEAD 5
 #define CRC_LENGTH 4
 
@@ -36,7 +36,8 @@ uint8 direction = 0;
 // Function Declarations
 void handleFrames(void);
 void handle_Frame(uint8_t *frame, unsigned int length);
-void encode_and_send(uint16 fmotorcur, uint16 rmotorcur, uint16 fmotorenc, uint16 rmotorenc);
+//void encode_and_send(uint16 fmotorcur, uint16 rmotorcur, uint16 fmotorenc, uint16 rmotorenc);
+void encode_and_send(uint16 tosend);
 void int16_to_be(unsigned char *target, uint16_t num);
 void read_current_and_encoder();
 
@@ -60,6 +61,7 @@ int main()
         DIR_CONTROL_Write(direction);
         PWM_Front_WriteCompare(front_speed);
         PWM_Rear_WriteCompare(rear_speed);
+        read_current_and_encoder();
         CyDelayUs(100);
     }
 }
@@ -79,7 +81,7 @@ void int16_to_be(unsigned char *target, uint16_t num) {
     target[1] = num & 0xFF;
 }
 
-void encode_and_send(uint16 fmotorcur, uint16 rmotorcur, uint16 fmotorenc, uint16 rmotorenc) {
+/*void encode_and_send(uint16 fmotorcur, uint16 rmotorcur, uint16 fmotorenc, uint16 rmotorenc) {
     unsigned char data[SYSTEM_DATA_LENGTH+CRC_LENGTH];
     unsigned char outdat[SYSTEM_DATA_LENGTH + COBS_FRAME_OVERHEAD];
     uint32_t checksum;
@@ -93,6 +95,30 @@ void encode_and_send(uint16 fmotorcur, uint16 rmotorcur, uint16 fmotorenc, uint1
     //generate and append the checksum
     checksum = Crc32_ComputeBuf(0,data,SYSTEM_DATA_LENGTH);
     uint32toNO(checksum, &data[8]);
+    
+    //encode and fire off the frame
+    encode_cobs(data,SYSTEM_DATA_LENGTH+CRC_LENGTH,outdat);
+
+    UART_UartPutChar('\0');
+    unsigned int i;
+    for(i = 0; i<sizeof(outdat);i++)
+    {
+        UART_UartPutChar(outdat[i]);
+    }
+    UART_UartPutChar('\0');
+}*/
+
+void encode_and_send(uint16 tosend) {
+    unsigned char data[SYSTEM_DATA_LENGTH+CRC_LENGTH];
+    unsigned char outdat[SYSTEM_DATA_LENGTH + COBS_FRAME_OVERHEAD];
+    uint32_t checksum;
+
+    //Serialize data into buffer - all integers are represented in big endian (network) order
+    int16_to_be(&data[0], tosend);
+    
+    //generate and append the checksum
+    checksum = Crc32_ComputeBuf(0,data,SYSTEM_DATA_LENGTH);
+    uint32toNO(checksum, &data[2]);
     
     //encode and fire off the frame
     encode_cobs(data,SYSTEM_DATA_LENGTH+CRC_LENGTH,outdat);
@@ -161,44 +187,108 @@ void handle_Frame(uint8_t *frame, unsigned int length) {
         case 1: //going to front motor
             if(frame[1] == 0)//okay we know we need to get something
             {
-                if(frame[2] == 0)//get motor direction
+                switch(frame[2])
                 {
-                }
-                else if(frame[2] == 1)//get motor speed
-                {
-                }
-                else if(frame[2] == 2)//get encoder counter
-                {
-                }
-                else if(frame[2] == 3)//get current data
-                {
+                    case 0: //get motor direction
+                        encode_and_send(direction);
+                        break;
+                    case 1://get motor speed
+                        encode_and_send(front_speed);
+                        break;
+                    case 2://get encoder counter
+                        encode_and_send(front_encoder);
+                        break;
+                    case 3://get current data
+                        encode_and_send(front_current);
+                        break;
+                    case 4://get mode pin
+                        encode_and_send(Mode_Front_Read());
+                        break;
+                    case 5://get power pin
+                        encode_and_send(Power_Front_Read());
+                        break;
                 }
             }
             else if(frame[1] == 1)//we need to set something instead
             {
-                if(frame[2] == 0)//set motor direction
+                switch(frame[2])
                 {
-                }
-                else if(frame[2] == 1)//set motor speed
-                {
-                }
-                else if(frame[2] == 2)//set encoder counter
-                {
-                }
-                else if(frame[2] == 3)//set current data -- not possible, remove?
-                {
+                    case 0: //set motor direction
+                        direction = frame[3];
+                        break;
+                    case 1://set motor speed
+                        front_speed = (frame[3] << 8) +frame[4];
+                        break;
+                    case 2://set encoder counter
+                        QuadDec_Front_WriteCounter((frame[3] << 8) +frame[4]);
+                        break;
+                    case 3://set current data -- not possible, remove?
+                        break;
+                    case 4://set mode pin
+                        Mode_Front_Write(frame[3]);
+                        break;
+                    case 5://set power pin
+                        Power_Front_Write(frame[3]);
+                        break;
                 }
             }
             return;
         case 2: //going to rear motor
+            if(frame[1] == 0)//okay we know we need to get something
+            {
+                switch(frame[2])
+                {
+                    case 0: //get motor direction
+                        encode_and_send(direction);
+                        break;
+                    case 1://get motor speed
+                        encode_and_send(rear_speed);
+                        break;
+                    case 2://get encoder counter
+                        encode_and_send(rear_encoder);
+                        break;
+                    case 3://get current data
+                        encode_and_send(rear_current);
+                        break;
+                    case 4://get mode pin
+                        encode_and_send(Mode_Rear_Read());
+                        break;
+                    case 5://get power pin
+                        encode_and_send(Power_Rear_Read());
+                        break;
+                }
+            }
+            else if(frame[1] == 1)//we need to set something instead
+            {
+                switch(frame[2])
+                {
+                    case 0: //set motor direction
+                        direction = frame[3];
+                        break;
+                    case 1://set motor speed
+                        rear_speed = (frame[3] << 8) +frame[4];
+                        break;
+                    case 2://set encoder counter
+                        QuadDec_Rear_WriteCounter((frame[3] << 8) +frame[4]);
+                        break;
+                    case 3://set current data -- not possible, remove?
+                        break;
+                    case 4://set mode pin
+                        Mode_Rear_Write(frame[3]);
+                        break;
+                    case 5://set power pin
+                        Power_Rear_Write(frame[3]);
+                        break;
+                }
+            }
             return;
     } 
-    if(length >8)
+    /*if(length >8)
     {
         direction = frame[0]-1;
         front_speed = (frame[1] << 8) +frame[2];
         rear_speed = (frame[3] << 8) +frame[4];
-    }
+    }*/
 }
 
 /* [] END OF FILE */

@@ -19,8 +19,8 @@
 Number of clocks: 14
 Clock: Clock_1                          | N/A  | Target: 1.00 MHz   | 
 Clock: Clock_1(FFB)                     | N/A  | Target: 1.00 MHz   | 
-Clock: Clock_2                          | N/A  | Target: 24.00 MHz  | 
-Clock: Clock_2(FFB)                     | N/A  | Target: 24.00 MHz  | 
+Clock: Clock_2                          | N/A  | Target: 6.00 MHz   | 
+Clock: Clock_2(FFB)                     | N/A  | Target: 6.00 MHz   | 
 Clock: CyHFCLK                          | N/A  | Target: 24.00 MHz  | 
 Clock: CyILO                            | N/A  | Target: 0.03 MHz   | 
 Clock: CyIMO                            | N/A  | Target: 24.00 MHz  | 

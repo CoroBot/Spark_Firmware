@@ -2,7 +2,7 @@
 --	Conversion of motor driver firmware.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Fri Jul 31 20:13:43 2015
+--	Sat Aug 01 17:09:22 2015
 --
 
 USE cypress.cypress.all;
@@ -1597,7 +1597,7 @@ Clock_2:cy_clock_v1_0
 		id=>"674b97d0-4faf-4f6f-957d-c6211b5493a2",
 		source_clock_id=>"",
 		divisor=>0,
-		period=>"41666666.6666667",
+		period=>"166666666.666667",
 		is_direct=>'0',
 		is_digital=>'0')
 	PORT MAP(clock_out=>Net_983,
