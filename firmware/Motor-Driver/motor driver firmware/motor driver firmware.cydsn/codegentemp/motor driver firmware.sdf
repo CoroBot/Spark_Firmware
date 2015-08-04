@@ -1,6 +1,6 @@
 (DELAYFILE
  (SDFVERSION "IEEE 1497 4.0")
- (DATE "2015-08-02T00:09:24Z")
+ (DATE "2015-08-04T00:12:31Z")
  (DESIGN "motor driver firmware")
  (VENDOR "Cypress Semiconductor")
  (PROGRAM "PSoC Creator")
