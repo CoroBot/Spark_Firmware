@@ -7,6 +7,27 @@
   <width>32</width>
   <peripherals>
     <peripheral>
+      <name>Rear_Dir</name>
+      <description>No description available</description>
+      <baseAddress>0x400F0072</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x0</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <registers>
+        <register>
+          <name>Rear_Dir_CONTROL_REG</name>
+          <description>No description available</description>
+          <addressOffset>0x0</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+      </registers>
+    </peripheral>
+    <peripheral>
       <name>Motor_Current_ADC</name>
       <description>Sequencing SAR ADC</description>
       <baseAddress>0x0</baseAddress>
@@ -4311,9 +4332,9 @@
       </registers>
     </peripheral>
     <peripheral>
-      <name>DIR_CONTROL</name>
+      <name>Front_Dir</name>
       <description>No description available</description>
-      <baseAddress>0x400F0070</baseAddress>
+      <baseAddress>0x400F0073</baseAddress>
       <addressBlock>
         <offset>0</offset>
         <size>0x0</size>
@@ -4321,7 +4342,7 @@
       </addressBlock>
       <registers>
         <register>
-          <name>DIR_CONTROL_CONTROL_REG</name>
+          <name>Front_Dir_CONTROL_REG</name>
           <description>No description available</description>
           <addressOffset>0x0</addressOffset>
           <size>8</size>

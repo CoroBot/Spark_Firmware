@@ -103,7 +103,7 @@ extern uint8  PWM_Rear_initVar;
 #define PWM_Rear_PWM_ALIGN                      (0lu)
 #define PWM_Rear_PWM_RUN_MODE                   (0lu)
 #define PWM_Rear_PWM_DEAD_TIME_CYCLE            (0lu)
-#define PWM_Rear_PWM_PRESCALER                  (1lu)
+#define PWM_Rear_PWM_PRESCALER                  (0lu)
 
 /* Signal modes */
 #define PWM_Rear_PWM_RELOAD_SIGNAL_MODE         (0lu)

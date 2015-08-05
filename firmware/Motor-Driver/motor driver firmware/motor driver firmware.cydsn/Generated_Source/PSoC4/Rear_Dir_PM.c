@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: DIR_CONTROL_PM.c
+* File Name: Rear_Dir_PM.c
 * Version 1.80
 *
 * Description:
@@ -15,16 +15,16 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#include "DIR_CONTROL.h"
+#include "Rear_Dir.h"
 
 /* Check for removal by optimization */
-#if !defined(DIR_CONTROL_Sync_ctrl_reg__REMOVED)
+#if !defined(Rear_Dir_Sync_ctrl_reg__REMOVED)
 
-static DIR_CONTROL_BACKUP_STRUCT  DIR_CONTROL_backup = {0u};
+static Rear_Dir_BACKUP_STRUCT  Rear_Dir_backup = {0u};
 
     
 /*******************************************************************************
-* Function Name: DIR_CONTROL_SaveConfig
+* Function Name: Rear_Dir_SaveConfig
 ********************************************************************************
 *
 * Summary:
@@ -37,14 +37,14 @@ static DIR_CONTROL_BACKUP_STRUCT  DIR_CONTROL_backup = {0u};
 *  None
 *
 *******************************************************************************/
-void DIR_CONTROL_SaveConfig(void) 
+void Rear_Dir_SaveConfig(void) 
 {
-    DIR_CONTROL_backup.controlState = DIR_CONTROL_Control;
+    Rear_Dir_backup.controlState = Rear_Dir_Control;
 }
 
 
 /*******************************************************************************
-* Function Name: DIR_CONTROL_RestoreConfig
+* Function Name: Rear_Dir_RestoreConfig
 ********************************************************************************
 *
 * Summary:
@@ -58,14 +58,14 @@ void DIR_CONTROL_SaveConfig(void)
 *
 *
 *******************************************************************************/
-void DIR_CONTROL_RestoreConfig(void) 
+void Rear_Dir_RestoreConfig(void) 
 {
-     DIR_CONTROL_Control = DIR_CONTROL_backup.controlState;
+     Rear_Dir_Control = Rear_Dir_backup.controlState;
 }
 
 
 /*******************************************************************************
-* Function Name: DIR_CONTROL_Sleep
+* Function Name: Rear_Dir_Sleep
 ********************************************************************************
 *
 * Summary:
@@ -78,14 +78,14 @@ void DIR_CONTROL_RestoreConfig(void)
 *  None
 *
 *******************************************************************************/
-void DIR_CONTROL_Sleep(void) 
+void Rear_Dir_Sleep(void) 
 {
-    DIR_CONTROL_SaveConfig();
+    Rear_Dir_SaveConfig();
 }
 
 
 /*******************************************************************************
-* Function Name: DIR_CONTROL_Wakeup
+* Function Name: Rear_Dir_Wakeup
 ********************************************************************************
 *
 * Summary:
@@ -98,9 +98,9 @@ void DIR_CONTROL_Sleep(void)
 *  None
 *
 *******************************************************************************/
-void DIR_CONTROL_Wakeup(void)  
+void Rear_Dir_Wakeup(void)  
 {
-    DIR_CONTROL_RestoreConfig();
+    Rear_Dir_RestoreConfig();
 }
 
 #endif /* End check for removal by optimization */

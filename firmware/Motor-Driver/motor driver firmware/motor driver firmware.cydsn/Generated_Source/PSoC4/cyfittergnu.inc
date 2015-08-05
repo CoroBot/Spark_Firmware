@@ -377,7 +377,7 @@
 .set AIN1_1__0__MASK, 0x40
 .set AIN1_1__0__OUT_SEL, CYREG_UDB_PA2_CFG10
 .set AIN1_1__0__OUT_SEL_SHIFT, 12
-.set AIN1_1__0__OUT_SEL_VAL, 1
+.set AIN1_1__0__OUT_SEL_VAL, 0
 .set AIN1_1__0__PA__CFG0, CYREG_UDB_PA2_CFG0
 .set AIN1_1__0__PA__CFG1, CYREG_UDB_PA2_CFG1
 .set AIN1_1__0__PA__CFG10, CYREG_UDB_PA2_CFG10
@@ -435,7 +435,7 @@
 .set AIN1_2__0__MASK, 0x80
 .set AIN1_2__0__OUT_SEL, CYREG_UDB_PA3_CFG10
 .set AIN1_2__0__OUT_SEL_SHIFT, 14
-.set AIN1_2__0__OUT_SEL_VAL, 1
+.set AIN1_2__0__OUT_SEL_VAL, 0
 .set AIN1_2__0__PA__CFG0, CYREG_UDB_PA3_CFG0
 .set AIN1_2__0__PA__CFG1, CYREG_UDB_PA3_CFG1
 .set AIN1_2__0__PA__CFG10, CYREG_UDB_PA3_CFG10
@@ -493,7 +493,7 @@
 .set AIN2_1__0__MASK, 0x80
 .set AIN2_1__0__OUT_SEL, CYREG_UDB_PA2_CFG10
 .set AIN2_1__0__OUT_SEL_SHIFT, 14
-.set AIN2_1__0__OUT_SEL_VAL, 0
+.set AIN2_1__0__OUT_SEL_VAL, 3
 .set AIN2_1__0__PA__CFG0, CYREG_UDB_PA2_CFG0
 .set AIN2_1__0__PA__CFG1, CYREG_UDB_PA2_CFG1
 .set AIN2_1__0__PA__CFG10, CYREG_UDB_PA2_CFG10
@@ -609,7 +609,7 @@
 .set BIN1_1__0__MASK, 0x01
 .set BIN1_1__0__OUT_SEL, CYREG_UDB_PA3_CFG10
 .set BIN1_1__0__OUT_SEL_SHIFT, 0
-.set BIN1_1__0__OUT_SEL_VAL, 1
+.set BIN1_1__0__OUT_SEL_VAL, 0
 .set BIN1_1__0__PA__CFG0, CYREG_UDB_PA3_CFG0
 .set BIN1_1__0__PA__CFG1, CYREG_UDB_PA3_CFG1
 .set BIN1_1__0__PA__CFG10, CYREG_UDB_PA3_CFG10
@@ -875,6 +875,41 @@
 .set PWM_Rear_cy_m0s8_tcpwm_1__TR_CTRL1, CYREG_TCPWM_CNT2_TR_CTRL1
 .set PWM_Rear_cy_m0s8_tcpwm_1__TR_CTRL2, CYREG_TCPWM_CNT2_TR_CTRL2
 
+/* Rear_Dir */
+.set Rear_Dir_Sync_ctrl_reg__0__MASK, 0x01
+.set Rear_Dir_Sync_ctrl_reg__0__POS, 0
+.set Rear_Dir_Sync_ctrl_reg__16BIT_CONTROL_AUX_CTL_REG, CYREG_UDB_W16_ACTL_02
+.set Rear_Dir_Sync_ctrl_reg__16BIT_CONTROL_CONTROL_REG, CYREG_UDB_W16_CTL_02
+.set Rear_Dir_Sync_ctrl_reg__16BIT_CONTROL_COUNT_REG, CYREG_UDB_W16_CTL_02
+.set Rear_Dir_Sync_ctrl_reg__16BIT_COUNT_CONTROL_REG, CYREG_UDB_W16_CTL_02
+.set Rear_Dir_Sync_ctrl_reg__16BIT_COUNT_COUNT_REG, CYREG_UDB_W16_CTL_02
+.set Rear_Dir_Sync_ctrl_reg__16BIT_MASK_MASK_REG, CYREG_UDB_W16_MSK_02
+.set Rear_Dir_Sync_ctrl_reg__16BIT_MASK_PERIOD_REG, CYREG_UDB_W16_MSK_02
+.set Rear_Dir_Sync_ctrl_reg__16BIT_PERIOD_MASK_REG, CYREG_UDB_W16_MSK_02
+.set Rear_Dir_Sync_ctrl_reg__16BIT_PERIOD_PERIOD_REG, CYREG_UDB_W16_MSK_02
+.set Rear_Dir_Sync_ctrl_reg__CONTROL_AUX_CTL_REG, CYREG_UDB_W8_ACTL_02
+.set Rear_Dir_Sync_ctrl_reg__CONTROL_REG, CYREG_UDB_W8_CTL_02
+.set Rear_Dir_Sync_ctrl_reg__CONTROL_ST_REG, CYREG_UDB_CAT16_CTL_ST_02
+.set Rear_Dir_Sync_ctrl_reg__COUNT_REG, CYREG_UDB_W8_CTL_02
+.set Rear_Dir_Sync_ctrl_reg__COUNT_ST_REG, CYREG_UDB_CAT16_CTL_ST_02
+.set Rear_Dir_Sync_ctrl_reg__MASK, 0x01
+.set Rear_Dir_Sync_ctrl_reg__MASK_CTL_AUX_CTL_REG, CYREG_UDB_CAT16_ACTL_MSK_02
+.set Rear_Dir_Sync_ctrl_reg__PER_CTL_AUX_CTL_REG, CYREG_UDB_CAT16_ACTL_MSK_02
+.set Rear_Dir_Sync_ctrl_reg__PERIOD_REG, CYREG_UDB_W8_MSK_02
+
+/* Front_Dir */
+.set Front_Dir_Sync_ctrl_reg__0__MASK, 0x01
+.set Front_Dir_Sync_ctrl_reg__0__POS, 0
+.set Front_Dir_Sync_ctrl_reg__CONTROL_AUX_CTL_REG, CYREG_UDB_W8_ACTL_03
+.set Front_Dir_Sync_ctrl_reg__CONTROL_REG, CYREG_UDB_W8_CTL_03
+.set Front_Dir_Sync_ctrl_reg__CONTROL_ST_REG, CYREG_UDB_CAT16_CTL_ST_03
+.set Front_Dir_Sync_ctrl_reg__COUNT_REG, CYREG_UDB_W8_CTL_03
+.set Front_Dir_Sync_ctrl_reg__COUNT_ST_REG, CYREG_UDB_CAT16_CTL_ST_03
+.set Front_Dir_Sync_ctrl_reg__MASK, 0x01
+.set Front_Dir_Sync_ctrl_reg__MASK_CTL_AUX_CTL_REG, CYREG_UDB_CAT16_ACTL_MSK_03
+.set Front_Dir_Sync_ctrl_reg__PER_CTL_AUX_CTL_REG, CYREG_UDB_CAT16_ACTL_MSK_03
+.set Front_Dir_Sync_ctrl_reg__PERIOD_REG, CYREG_UDB_W8_MSK_03
+
 /* Mode_Rear */
 .set Mode_Rear__0__DM__MASK, 0x1C0000
 .set Mode_Rear__0__DM__SHIFT, 18
@@ -974,7 +1009,7 @@
 .set cursense1__0__MASK, 0x10
 .set cursense1__0__OUT_SEL, CYREG_UDB_PA3_CFG10
 .set cursense1__0__OUT_SEL_SHIFT, 8
-.set cursense1__0__OUT_SEL_VAL, 0
+.set cursense1__0__OUT_SEL_VAL, 1
 .set cursense1__0__PA__CFG0, CYREG_UDB_PA3_CFG0
 .set cursense1__0__PA__CFG1, CYREG_UDB_PA3_CFG1
 .set cursense1__0__PA__CFG10, CYREG_UDB_PA3_CFG10
@@ -1032,7 +1067,7 @@
 .set cursense2__0__MASK, 0x08
 .set cursense2__0__OUT_SEL, CYREG_UDB_PA0_CFG10
 .set cursense2__0__OUT_SEL_SHIFT, 6
-.set cursense2__0__OUT_SEL_VAL, 2
+.set cursense2__0__OUT_SEL_VAL, 1
 .set cursense2__0__PA__CFG0, CYREG_UDB_PA0_CFG0
 .set cursense2__0__PA__CFG1, CYREG_UDB_PA0_CFG1
 .set cursense2__0__PA__CFG10, CYREG_UDB_PA0_CFG10
@@ -1187,34 +1222,6 @@
 .set Power_Rear__PORT, 3
 .set Power_Rear__PS, CYREG_PRT3_PS
 .set Power_Rear__SHIFT, 5
-
-/* DIR_CONTROL */
-.set DIR_CONTROL_Sync_ctrl_reg__0__MASK, 0x01
-.set DIR_CONTROL_Sync_ctrl_reg__0__POS, 0
-.set DIR_CONTROL_Sync_ctrl_reg__1__MASK, 0x02
-.set DIR_CONTROL_Sync_ctrl_reg__1__POS, 1
-.set DIR_CONTROL_Sync_ctrl_reg__16BIT_CONTROL_AUX_CTL_REG, CYREG_UDB_W16_ACTL_00
-.set DIR_CONTROL_Sync_ctrl_reg__16BIT_CONTROL_CONTROL_REG, CYREG_UDB_W16_CTL_00
-.set DIR_CONTROL_Sync_ctrl_reg__16BIT_CONTROL_COUNT_REG, CYREG_UDB_W16_CTL_00
-.set DIR_CONTROL_Sync_ctrl_reg__16BIT_COUNT_CONTROL_REG, CYREG_UDB_W16_CTL_00
-.set DIR_CONTROL_Sync_ctrl_reg__16BIT_COUNT_COUNT_REG, CYREG_UDB_W16_CTL_00
-.set DIR_CONTROL_Sync_ctrl_reg__16BIT_MASK_MASK_REG, CYREG_UDB_W16_MSK_00
-.set DIR_CONTROL_Sync_ctrl_reg__16BIT_MASK_PERIOD_REG, CYREG_UDB_W16_MSK_00
-.set DIR_CONTROL_Sync_ctrl_reg__16BIT_PERIOD_MASK_REG, CYREG_UDB_W16_MSK_00
-.set DIR_CONTROL_Sync_ctrl_reg__16BIT_PERIOD_PERIOD_REG, CYREG_UDB_W16_MSK_00
-.set DIR_CONTROL_Sync_ctrl_reg__32BIT_CONTROL_AUX_CTL_REG, CYREG_UDB_W32_ACTL_00
-.set DIR_CONTROL_Sync_ctrl_reg__32BIT_CONTROL_REG, CYREG_UDB_W32_CTL_00
-.set DIR_CONTROL_Sync_ctrl_reg__32BIT_COUNT_REG, CYREG_UDB_W32_CTL_00
-.set DIR_CONTROL_Sync_ctrl_reg__32BIT_PERIOD_REG, CYREG_UDB_W32_MSK_00
-.set DIR_CONTROL_Sync_ctrl_reg__CONTROL_AUX_CTL_REG, CYREG_UDB_W8_ACTL_00
-.set DIR_CONTROL_Sync_ctrl_reg__CONTROL_REG, CYREG_UDB_W8_CTL_00
-.set DIR_CONTROL_Sync_ctrl_reg__CONTROL_ST_REG, CYREG_UDB_CAT16_CTL_ST_00
-.set DIR_CONTROL_Sync_ctrl_reg__COUNT_REG, CYREG_UDB_W8_CTL_00
-.set DIR_CONTROL_Sync_ctrl_reg__COUNT_ST_REG, CYREG_UDB_CAT16_CTL_ST_00
-.set DIR_CONTROL_Sync_ctrl_reg__MASK, 0x03
-.set DIR_CONTROL_Sync_ctrl_reg__MASK_CTL_AUX_CTL_REG, CYREG_UDB_CAT16_ACTL_MSK_00
-.set DIR_CONTROL_Sync_ctrl_reg__PER_CTL_AUX_CTL_REG, CYREG_UDB_CAT16_ACTL_MSK_00
-.set DIR_CONTROL_Sync_ctrl_reg__PERIOD_REG, CYREG_UDB_W8_MSK_00
 
 /* Power_Front */
 .set Power_Front__0__DM__MASK, 0x7000
@@ -1512,7 +1519,7 @@
 .set CYDEV_PROJ_TYPE_STANDARD, 0
 .set CYDEV_STACK_SIZE, 0x0400
 .set CYDEV_USE_BUNDLED_CMSIS, 1
-.set CYDEV_VARIABLE_VDDA, 1
+.set CYDEV_VARIABLE_VDDA, 0
 .set CYDEV_VDDA, 5
 .set CYDEV_VDDA_MV, 5000
 .set CYDEV_VDDD, 5

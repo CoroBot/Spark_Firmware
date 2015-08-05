@@ -115,9 +115,6 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\AIN1_2.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\AIN1_2.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\AIN1_2_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\DIR_CONTROL.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\DIR_CONTROL.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\DIR_CONTROL_PM.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\cursense1.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\cursense1.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\cursense1_aliases.h</File>
@@ -177,6 +174,12 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Motor_Current_ADC_IRQ.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Motor_Current_ADC_intClock.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Motor_Current_ADC_intClock.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Front_Dir.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Front_Dir.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Front_Dir_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Rear_Dir.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Rear_Dir.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Rear_Dir_PM.c</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\Export\ARM_GCC_Generic">

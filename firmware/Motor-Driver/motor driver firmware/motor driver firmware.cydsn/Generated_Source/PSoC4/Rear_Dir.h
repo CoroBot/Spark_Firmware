@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: DIR_CONTROL.h  
+* File Name: Rear_Dir.h  
 * Version 1.80
 *
 * Description:
@@ -14,8 +14,8 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#if !defined(CY_CONTROL_REG_DIR_CONTROL_H) /* CY_CONTROL_REG_DIR_CONTROL_H */
-#define CY_CONTROL_REG_DIR_CONTROL_H
+#if !defined(CY_CONTROL_REG_Rear_Dir_H) /* CY_CONTROL_REG_Rear_Dir_H */
+#define CY_CONTROL_REG_Rear_Dir_H
 
 #include "cytypes.h"
 
@@ -29,20 +29,20 @@ typedef struct
 {
     uint8 controlState;
 
-} DIR_CONTROL_BACKUP_STRUCT;
+} Rear_Dir_BACKUP_STRUCT;
 
 
 /***************************************
 *         Function Prototypes 
 ***************************************/
 
-void    DIR_CONTROL_Write(uint8 control) ;
-uint8   DIR_CONTROL_Read(void) ;
+void    Rear_Dir_Write(uint8 control) ;
+uint8   Rear_Dir_Read(void) ;
 
-void DIR_CONTROL_SaveConfig(void) ;
-void DIR_CONTROL_RestoreConfig(void) ;
-void DIR_CONTROL_Sleep(void) ; 
-void DIR_CONTROL_Wakeup(void) ;
+void Rear_Dir_SaveConfig(void) ;
+void Rear_Dir_RestoreConfig(void) ;
+void Rear_Dir_Sleep(void) ; 
+void Rear_Dir_Wakeup(void) ;
 
 
 /***************************************
@@ -50,10 +50,10 @@ void DIR_CONTROL_Wakeup(void) ;
 ***************************************/
 
 /* Control Register */
-#define DIR_CONTROL_Control        (* (reg8 *) DIR_CONTROL_Sync_ctrl_reg__CONTROL_REG )
-#define DIR_CONTROL_Control_PTR    (  (reg8 *) DIR_CONTROL_Sync_ctrl_reg__CONTROL_REG )
+#define Rear_Dir_Control        (* (reg8 *) Rear_Dir_Sync_ctrl_reg__CONTROL_REG )
+#define Rear_Dir_Control_PTR    (  (reg8 *) Rear_Dir_Sync_ctrl_reg__CONTROL_REG )
 
-#endif /* End CY_CONTROL_REG_DIR_CONTROL_H */
+#endif /* End CY_CONTROL_REG_Rear_Dir_H */
 
 
 /* [] END OF FILE */

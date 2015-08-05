@@ -377,7 +377,7 @@
 #define AIN1_1__0__MASK 0x40u
 #define AIN1_1__0__OUT_SEL CYREG_UDB_PA2_CFG10
 #define AIN1_1__0__OUT_SEL_SHIFT 12u
-#define AIN1_1__0__OUT_SEL_VAL 1u
+#define AIN1_1__0__OUT_SEL_VAL 0u
 #define AIN1_1__0__PA__CFG0 CYREG_UDB_PA2_CFG0
 #define AIN1_1__0__PA__CFG1 CYREG_UDB_PA2_CFG1
 #define AIN1_1__0__PA__CFG10 CYREG_UDB_PA2_CFG10
@@ -435,7 +435,7 @@
 #define AIN1_2__0__MASK 0x80u
 #define AIN1_2__0__OUT_SEL CYREG_UDB_PA3_CFG10
 #define AIN1_2__0__OUT_SEL_SHIFT 14u
-#define AIN1_2__0__OUT_SEL_VAL 1u
+#define AIN1_2__0__OUT_SEL_VAL 0u
 #define AIN1_2__0__PA__CFG0 CYREG_UDB_PA3_CFG0
 #define AIN1_2__0__PA__CFG1 CYREG_UDB_PA3_CFG1
 #define AIN1_2__0__PA__CFG10 CYREG_UDB_PA3_CFG10
@@ -493,7 +493,7 @@
 #define AIN2_1__0__MASK 0x80u
 #define AIN2_1__0__OUT_SEL CYREG_UDB_PA2_CFG10
 #define AIN2_1__0__OUT_SEL_SHIFT 14u
-#define AIN2_1__0__OUT_SEL_VAL 0u
+#define AIN2_1__0__OUT_SEL_VAL 3u
 #define AIN2_1__0__PA__CFG0 CYREG_UDB_PA2_CFG0
 #define AIN2_1__0__PA__CFG1 CYREG_UDB_PA2_CFG1
 #define AIN2_1__0__PA__CFG10 CYREG_UDB_PA2_CFG10
@@ -609,7 +609,7 @@
 #define BIN1_1__0__MASK 0x01u
 #define BIN1_1__0__OUT_SEL CYREG_UDB_PA3_CFG10
 #define BIN1_1__0__OUT_SEL_SHIFT 0u
-#define BIN1_1__0__OUT_SEL_VAL 1u
+#define BIN1_1__0__OUT_SEL_VAL 0u
 #define BIN1_1__0__PA__CFG0 CYREG_UDB_PA3_CFG0
 #define BIN1_1__0__PA__CFG1 CYREG_UDB_PA3_CFG1
 #define BIN1_1__0__PA__CFG10 CYREG_UDB_PA3_CFG10
@@ -875,6 +875,41 @@
 #define PWM_Rear_cy_m0s8_tcpwm_1__TR_CTRL1 CYREG_TCPWM_CNT2_TR_CTRL1
 #define PWM_Rear_cy_m0s8_tcpwm_1__TR_CTRL2 CYREG_TCPWM_CNT2_TR_CTRL2
 
+/* Rear_Dir */
+#define Rear_Dir_Sync_ctrl_reg__0__MASK 0x01u
+#define Rear_Dir_Sync_ctrl_reg__0__POS 0
+#define Rear_Dir_Sync_ctrl_reg__16BIT_CONTROL_AUX_CTL_REG CYREG_UDB_W16_ACTL_02
+#define Rear_Dir_Sync_ctrl_reg__16BIT_CONTROL_CONTROL_REG CYREG_UDB_W16_CTL_02
+#define Rear_Dir_Sync_ctrl_reg__16BIT_CONTROL_COUNT_REG CYREG_UDB_W16_CTL_02
+#define Rear_Dir_Sync_ctrl_reg__16BIT_COUNT_CONTROL_REG CYREG_UDB_W16_CTL_02
+#define Rear_Dir_Sync_ctrl_reg__16BIT_COUNT_COUNT_REG CYREG_UDB_W16_CTL_02
+#define Rear_Dir_Sync_ctrl_reg__16BIT_MASK_MASK_REG CYREG_UDB_W16_MSK_02
+#define Rear_Dir_Sync_ctrl_reg__16BIT_MASK_PERIOD_REG CYREG_UDB_W16_MSK_02
+#define Rear_Dir_Sync_ctrl_reg__16BIT_PERIOD_MASK_REG CYREG_UDB_W16_MSK_02
+#define Rear_Dir_Sync_ctrl_reg__16BIT_PERIOD_PERIOD_REG CYREG_UDB_W16_MSK_02
+#define Rear_Dir_Sync_ctrl_reg__CONTROL_AUX_CTL_REG CYREG_UDB_W8_ACTL_02
+#define Rear_Dir_Sync_ctrl_reg__CONTROL_REG CYREG_UDB_W8_CTL_02
+#define Rear_Dir_Sync_ctrl_reg__CONTROL_ST_REG CYREG_UDB_CAT16_CTL_ST_02
+#define Rear_Dir_Sync_ctrl_reg__COUNT_REG CYREG_UDB_W8_CTL_02
+#define Rear_Dir_Sync_ctrl_reg__COUNT_ST_REG CYREG_UDB_CAT16_CTL_ST_02
+#define Rear_Dir_Sync_ctrl_reg__MASK 0x01u
+#define Rear_Dir_Sync_ctrl_reg__MASK_CTL_AUX_CTL_REG CYREG_UDB_CAT16_ACTL_MSK_02
+#define Rear_Dir_Sync_ctrl_reg__PER_CTL_AUX_CTL_REG CYREG_UDB_CAT16_ACTL_MSK_02
+#define Rear_Dir_Sync_ctrl_reg__PERIOD_REG CYREG_UDB_W8_MSK_02
+
+/* Front_Dir */
+#define Front_Dir_Sync_ctrl_reg__0__MASK 0x01u
+#define Front_Dir_Sync_ctrl_reg__0__POS 0
+#define Front_Dir_Sync_ctrl_reg__CONTROL_AUX_CTL_REG CYREG_UDB_W8_ACTL_03
+#define Front_Dir_Sync_ctrl_reg__CONTROL_REG CYREG_UDB_W8_CTL_03
+#define Front_Dir_Sync_ctrl_reg__CONTROL_ST_REG CYREG_UDB_CAT16_CTL_ST_03
+#define Front_Dir_Sync_ctrl_reg__COUNT_REG CYREG_UDB_W8_CTL_03
+#define Front_Dir_Sync_ctrl_reg__COUNT_ST_REG CYREG_UDB_CAT16_CTL_ST_03
+#define Front_Dir_Sync_ctrl_reg__MASK 0x01u
+#define Front_Dir_Sync_ctrl_reg__MASK_CTL_AUX_CTL_REG CYREG_UDB_CAT16_ACTL_MSK_03
+#define Front_Dir_Sync_ctrl_reg__PER_CTL_AUX_CTL_REG CYREG_UDB_CAT16_ACTL_MSK_03
+#define Front_Dir_Sync_ctrl_reg__PERIOD_REG CYREG_UDB_W8_MSK_03
+
 /* Mode_Rear */
 #define Mode_Rear__0__DM__MASK 0x1C0000u
 #define Mode_Rear__0__DM__SHIFT 18
@@ -974,7 +1009,7 @@
 #define cursense1__0__MASK 0x10u
 #define cursense1__0__OUT_SEL CYREG_UDB_PA3_CFG10
 #define cursense1__0__OUT_SEL_SHIFT 8u
-#define cursense1__0__OUT_SEL_VAL 0u
+#define cursense1__0__OUT_SEL_VAL 1u
 #define cursense1__0__PA__CFG0 CYREG_UDB_PA3_CFG0
 #define cursense1__0__PA__CFG1 CYREG_UDB_PA3_CFG1
 #define cursense1__0__PA__CFG10 CYREG_UDB_PA3_CFG10
@@ -1032,7 +1067,7 @@
 #define cursense2__0__MASK 0x08u
 #define cursense2__0__OUT_SEL CYREG_UDB_PA0_CFG10
 #define cursense2__0__OUT_SEL_SHIFT 6u
-#define cursense2__0__OUT_SEL_VAL 2u
+#define cursense2__0__OUT_SEL_VAL 1u
 #define cursense2__0__PA__CFG0 CYREG_UDB_PA0_CFG0
 #define cursense2__0__PA__CFG1 CYREG_UDB_PA0_CFG1
 #define cursense2__0__PA__CFG10 CYREG_UDB_PA0_CFG10
@@ -1187,34 +1222,6 @@
 #define Power_Rear__PORT 3u
 #define Power_Rear__PS CYREG_PRT3_PS
 #define Power_Rear__SHIFT 5
-
-/* DIR_CONTROL */
-#define DIR_CONTROL_Sync_ctrl_reg__0__MASK 0x01u
-#define DIR_CONTROL_Sync_ctrl_reg__0__POS 0
-#define DIR_CONTROL_Sync_ctrl_reg__1__MASK 0x02u
-#define DIR_CONTROL_Sync_ctrl_reg__1__POS 1
-#define DIR_CONTROL_Sync_ctrl_reg__16BIT_CONTROL_AUX_CTL_REG CYREG_UDB_W16_ACTL_00
-#define DIR_CONTROL_Sync_ctrl_reg__16BIT_CONTROL_CONTROL_REG CYREG_UDB_W16_CTL_00
-#define DIR_CONTROL_Sync_ctrl_reg__16BIT_CONTROL_COUNT_REG CYREG_UDB_W16_CTL_00
-#define DIR_CONTROL_Sync_ctrl_reg__16BIT_COUNT_CONTROL_REG CYREG_UDB_W16_CTL_00
-#define DIR_CONTROL_Sync_ctrl_reg__16BIT_COUNT_COUNT_REG CYREG_UDB_W16_CTL_00
-#define DIR_CONTROL_Sync_ctrl_reg__16BIT_MASK_MASK_REG CYREG_UDB_W16_MSK_00
-#define DIR_CONTROL_Sync_ctrl_reg__16BIT_MASK_PERIOD_REG CYREG_UDB_W16_MSK_00
-#define DIR_CONTROL_Sync_ctrl_reg__16BIT_PERIOD_MASK_REG CYREG_UDB_W16_MSK_00
-#define DIR_CONTROL_Sync_ctrl_reg__16BIT_PERIOD_PERIOD_REG CYREG_UDB_W16_MSK_00
-#define DIR_CONTROL_Sync_ctrl_reg__32BIT_CONTROL_AUX_CTL_REG CYREG_UDB_W32_ACTL_00
-#define DIR_CONTROL_Sync_ctrl_reg__32BIT_CONTROL_REG CYREG_UDB_W32_CTL_00
-#define DIR_CONTROL_Sync_ctrl_reg__32BIT_COUNT_REG CYREG_UDB_W32_CTL_00
-#define DIR_CONTROL_Sync_ctrl_reg__32BIT_PERIOD_REG CYREG_UDB_W32_MSK_00
-#define DIR_CONTROL_Sync_ctrl_reg__CONTROL_AUX_CTL_REG CYREG_UDB_W8_ACTL_00
-#define DIR_CONTROL_Sync_ctrl_reg__CONTROL_REG CYREG_UDB_W8_CTL_00
-#define DIR_CONTROL_Sync_ctrl_reg__CONTROL_ST_REG CYREG_UDB_CAT16_CTL_ST_00
-#define DIR_CONTROL_Sync_ctrl_reg__COUNT_REG CYREG_UDB_W8_CTL_00
-#define DIR_CONTROL_Sync_ctrl_reg__COUNT_ST_REG CYREG_UDB_CAT16_CTL_ST_00
-#define DIR_CONTROL_Sync_ctrl_reg__MASK 0x03u
-#define DIR_CONTROL_Sync_ctrl_reg__MASK_CTL_AUX_CTL_REG CYREG_UDB_CAT16_ACTL_MSK_00
-#define DIR_CONTROL_Sync_ctrl_reg__PER_CTL_AUX_CTL_REG CYREG_UDB_CAT16_ACTL_MSK_00
-#define DIR_CONTROL_Sync_ctrl_reg__PERIOD_REG CYREG_UDB_W8_MSK_00
 
 /* Power_Front */
 #define Power_Front__0__DM__MASK 0x7000u
@@ -1514,7 +1521,7 @@
 #define CYDEV_PROJ_TYPE_STANDARD 0
 #define CYDEV_STACK_SIZE 0x0400
 #define CYDEV_USE_BUNDLED_CMSIS 1
-#define CYDEV_VARIABLE_VDDA 1
+#define CYDEV_VARIABLE_VDDA 0
 #define CYDEV_VDDA 5
 #define CYDEV_VDDA_MV 5000
 #define CYDEV_VDDD 5

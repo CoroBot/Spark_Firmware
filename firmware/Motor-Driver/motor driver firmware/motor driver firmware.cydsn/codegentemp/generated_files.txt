@@ -60,9 +60,9 @@
   <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\Mode_Rear.c" value="ARM_C_FILE;Mode_Rear" />
   <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\Mode_Rear.h" value="NONE;Mode_Rear" />
   <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\Mode_Rear_aliases.h" value="NONE;Mode_Rear" />
-  <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\DIR_CONTROL.h" value="NONE;DIR_CONTROL" />
-  <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\DIR_CONTROL.c" value="ARM_C_FILE;DIR_CONTROL" />
-  <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\DIR_CONTROL_PM.c" value="ARM_C_FILE;DIR_CONTROL" />
+  <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\Front_Dir.h" value="NONE;Front_Dir" />
+  <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\Front_Dir.c" value="ARM_C_FILE;Front_Dir" />
+  <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\Front_Dir_PM.c" value="ARM_C_FILE;Front_Dir" />
   <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\PWM_Rear.c" value="ARM_C_FILE;PWM_Rear" />
   <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\PWM_Rear.h" value="NONE;PWM_Rear" />
   <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\PWM_Rear_PM.c" value="ARM_C_FILE;PWM_Rear" />
@@ -104,6 +104,9 @@
   <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\Power_Rear.c" value="ARM_C_FILE;Power_Rear" />
   <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\Power_Rear.h" value="NONE;Power_Rear" />
   <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\Power_Rear_aliases.h" value="NONE;Power_Rear" />
+  <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\Rear_Dir.h" value="NONE;Rear_Dir" />
+  <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\Rear_Dir.c" value="ARM_C_FILE;Rear_Dir" />
+  <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\Rear_Dir_PM.c" value="ARM_C_FILE;Rear_Dir" />
   <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\UART_SCBCLK.c" value="ARM_C_FILE;UART_SCBCLK" />
   <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\UART_SCBCLK.h" value="NONE;UART_SCBCLK" />
   <file name="C:\Users\Riley\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\UART_tx.c" value="ARM_C_FILE;UART_tx" />

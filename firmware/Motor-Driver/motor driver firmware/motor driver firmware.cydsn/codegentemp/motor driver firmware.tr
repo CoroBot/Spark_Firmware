@@ -19,8 +19,8 @@
 Number of clocks: 14
 Clock: Clock_1                          | N/A  | Target: 1.00 MHz   | 
 Clock: Clock_1(FFB)                     | N/A  | Target: 1.00 MHz   | 
-Clock: Clock_2                          | N/A  | Target: 6.00 MHz   | 
-Clock: Clock_2(FFB)                     | N/A  | Target: 6.00 MHz   | 
+Clock: Clock_2                          | N/A  | Target: 12.00 MHz  | 
+Clock: Clock_2(FFB)                     | N/A  | Target: 12.00 MHz  | 
 Clock: CyHFCLK                          | N/A  | Target: 24.00 MHz  | 
 Clock: CyILO                            | N/A  | Target: 0.03 MHz   | 
 Clock: CyIMO                            | N/A  | Target: 24.00 MHz  | 
@@ -66,22 +66,22 @@ Port Name  Setup to Clk  Clock Name:Phase
 
 Port Name      Clock to Out  Clock Name:Phase  
 -------------  ------------  ----------------  
-AIN1_1(0)_PAD  33972         Clock_1(FFB):R    
-AIN1_1(0)_PAD  33707         CyHFCLK:R         
-AIN1_2(0)_PAD  30589         CyHFCLK:R         
-AIN1_2(0)_PAD  30547         Clock_1(FFB):R    
-AIN2_1(0)_PAD  33858         Clock_1(FFB):R    
-AIN2_1(0)_PAD  33592         CyHFCLK:R         
-AIN2_2(0)_PAD  30437         CyHFCLK:R         
-AIN2_2(0)_PAD  30413         Clock_1(FFB):R    
-BIN1_1(0)_PAD  31263         Clock_1(FFB):R    
-BIN1_1(0)_PAD  30998         CyHFCLK:R         
-BIN1_2(0)_PAD  31318         CyHFCLK:R         
-BIN1_2(0)_PAD  31277         Clock_1(FFB):R    
-BIN2_1(0)_PAD  30806         Clock_1(FFB):R    
-BIN2_1(0)_PAD  30541         CyHFCLK:R         
-BIN2_2(0)_PAD  30737         CyHFCLK:R         
-BIN2_2(0)_PAD  30713         Clock_1(FFB):R    
+AIN1_1(0)_PAD  34317         CyHFCLK:R         
+AIN1_1(0)_PAD  34144         Clock_1(FFB):R    
+AIN1_2(0)_PAD  30913         Clock_1(FFB):R    
+AIN1_2(0)_PAD  30477         CyHFCLK:R         
+AIN2_1(0)_PAD  33215         CyHFCLK:R         
+AIN2_1(0)_PAD  33042         Clock_1(FFB):R    
+AIN2_2(0)_PAD  31262         Clock_1(FFB):R    
+AIN2_2(0)_PAD  30821         CyHFCLK:R         
+BIN1_1(0)_PAD  30051         CyHFCLK:R         
+BIN1_1(0)_PAD  29878         Clock_1(FFB):R    
+BIN1_2(0)_PAD  31459         Clock_1(FFB):R    
+BIN1_2(0)_PAD  31023         CyHFCLK:R         
+BIN2_1(0)_PAD  30135         CyHFCLK:R         
+BIN2_1(0)_PAD  29962         Clock_1(FFB):R    
+BIN2_2(0)_PAD  31562         Clock_1(FFB):R    
+BIN2_2(0)_PAD  31121         CyHFCLK:R         
 
 
                          3.3::Pad to Pad

@@ -1,5 +1,5 @@
 -- Project:   motor driver firmware
--- Generated: 08/03/2015 17:12:29
+-- Generated: 08/04/2015 17:51:35
 -- PSoC Creator  3.2
 
 ENTITY \motor driver firmware\ IS
@@ -98,12 +98,13 @@ ARCHITECTURE __DEFAULT__ OF \motor driver firmware\ IS
     ATTRIBUTE global_signal OF Net_983_ff9 : SIGNAL IS true;
     SIGNAL Power_Front(0)__PA : bit;
     SIGNAL Power_Rear(0)__PA : bit;
-    SIGNAL \DIR_CONTROL:control_2\ : bit;
-    SIGNAL \DIR_CONTROL:control_3\ : bit;
-    SIGNAL \DIR_CONTROL:control_4\ : bit;
-    SIGNAL \DIR_CONTROL:control_5\ : bit;
-    SIGNAL \DIR_CONTROL:control_6\ : bit;
-    SIGNAL \DIR_CONTROL:control_7\ : bit;
+    SIGNAL \Front_Dir:control_1\ : bit;
+    SIGNAL \Front_Dir:control_2\ : bit;
+    SIGNAL \Front_Dir:control_3\ : bit;
+    SIGNAL \Front_Dir:control_4\ : bit;
+    SIGNAL \Front_Dir:control_5\ : bit;
+    SIGNAL \Front_Dir:control_6\ : bit;
+    SIGNAL \Front_Dir:control_7\ : bit;
     SIGNAL \Motor_Current_ADC:Net_1845_ff7\ : bit;
     ATTRIBUTE global_signal OF \Motor_Current_ADC:Net_1845_ff7\ : SIGNAL IS true;
     SIGNAL \Motor_Current_ADC:Net_3108\ : bit;
@@ -125,6 +126,13 @@ ARCHITECTURE __DEFAULT__ OF \motor driver firmware\ IS
     SIGNAL \Motor_Current_ADC:Net_3111_8\ : bit;
     SIGNAL \Motor_Current_ADC:Net_3111_9\ : bit;
     SIGNAL \Motor_Current_ADC:Net_3112\ : bit;
+    SIGNAL \Rear_Dir:control_1\ : bit;
+    SIGNAL \Rear_Dir:control_2\ : bit;
+    SIGNAL \Rear_Dir:control_3\ : bit;
+    SIGNAL \Rear_Dir:control_4\ : bit;
+    SIGNAL \Rear_Dir:control_5\ : bit;
+    SIGNAL \Rear_Dir:control_6\ : bit;
+    SIGNAL \Rear_Dir:control_7\ : bit;
     SIGNAL \UART:Net_1053\ : bit;
     SIGNAL \UART:Net_1055\ : bit;
     SIGNAL \UART:Net_1059\ : bit;
@@ -170,8 +178,9 @@ ARCHITECTURE __DEFAULT__ OF \motor driver firmware\ IS
     ATTRIBUTE lib_model OF Net_98 : LABEL IS "macrocell4";
     ATTRIBUTE lib_model OF Power_Front(0) : LABEL IS "iocell15";
     ATTRIBUTE lib_model OF Power_Rear(0) : LABEL IS "iocell16";
-    ATTRIBUTE lib_model OF \DIR_CONTROL:Sync:ctrl_reg\ : LABEL IS "controlcell1";
+    ATTRIBUTE lib_model OF \Front_Dir:Sync:ctrl_reg\ : LABEL IS "controlcell1";
     ATTRIBUTE Location OF \Motor_Current_ADC:cy_psoc4_sar\ : LABEL IS "F(SARADC,0)";
+    ATTRIBUTE lib_model OF \Rear_Dir:Sync:ctrl_reg\ : LABEL IS "controlcell2";
     ATTRIBUTE lib_model OF \UART:rx(0)\ : LABEL IS "iocell17";
     ATTRIBUTE lib_model OF \UART:tx(0)\ : LABEL IS "iocell18";
     ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell5";
@@ -1991,7 +2000,7 @@ BEGIN
             out_clock_en => '1',
             out_reset => '0');
 
-    \DIR_CONTROL:Sync:ctrl_reg\:controlcell
+    \Front_Dir:Sync:ctrl_reg\:controlcell
         GENERIC MAP(
             cy_ctrl_mode_0 => "00000000",
             cy_ctrl_mode_1 => "00000000",
@@ -2000,13 +2009,13 @@ BEGIN
             cy_init_value => "00000000",
             clken_mode => 1)
         PORT MAP(
-            control_7 => \DIR_CONTROL:control_7\,
-            control_6 => \DIR_CONTROL:control_6\,
-            control_5 => \DIR_CONTROL:control_5\,
-            control_4 => \DIR_CONTROL:control_4\,
-            control_3 => \DIR_CONTROL:control_3\,
-            control_2 => \DIR_CONTROL:control_2\,
-            control_1 => Net_336,
+            control_7 => \Front_Dir:control_7\,
+            control_6 => \Front_Dir:control_6\,
+            control_5 => \Front_Dir:control_5\,
+            control_4 => \Front_Dir:control_4\,
+            control_3 => \Front_Dir:control_3\,
+            control_2 => \Front_Dir:control_2\,
+            control_1 => \Front_Dir:control_1\,
             control_0 => Net_304,
             busclk => ClockBlock_HFCLK);
 
@@ -2125,6 +2134,25 @@ BEGIN
             line_out => Net_827,
             line_out_compl => Net_828,
             interrupt => Net_823);
+
+    \Rear_Dir:Sync:ctrl_reg\:controlcell
+        GENERIC MAP(
+            cy_ctrl_mode_0 => "00000000",
+            cy_ctrl_mode_1 => "00000000",
+            cy_ext_reset => 0,
+            cy_force_order => 1,
+            cy_init_value => "00000000",
+            clken_mode => 1)
+        PORT MAP(
+            control_7 => \Rear_Dir:control_7\,
+            control_6 => \Rear_Dir:control_6\,
+            control_5 => \Rear_Dir:control_5\,
+            control_4 => \Rear_Dir:control_4\,
+            control_3 => \Rear_Dir:control_3\,
+            control_2 => \Rear_Dir:control_2\,
+            control_1 => \Rear_Dir:control_1\,
+            control_0 => Net_336,
+            busclk => ClockBlock_HFCLK);
 
     \UART:SCB\:m0s8scbcell
         GENERIC MAP(

@@ -2,7 +2,7 @@
 --	Conversion of motor driver firmware.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Mon Aug 03 17:12:29 2015
+--	Tue Aug 04 17:51:34 2015
 --
 
 USE cypress.cypress.all;
@@ -256,31 +256,32 @@ SIGNAL Net_1019 : bit;
 SIGNAL \demux_2:tmp__demux_2_1_reg\ : bit;
 SIGNAL Net_137 : bit;
 SIGNAL Net_149 : bit;
-SIGNAL \DIR_CONTROL:clk\ : bit;
-SIGNAL \DIR_CONTROL:rst\ : bit;
+SIGNAL \Front_Dir:clk\ : bit;
+SIGNAL \Front_Dir:rst\ : bit;
 SIGNAL Net_304 : bit;
-SIGNAL \DIR_CONTROL:control_out_0\ : bit;
-SIGNAL \DIR_CONTROL:control_out_1\ : bit;
-SIGNAL Net_875 : bit;
-SIGNAL \DIR_CONTROL:control_out_2\ : bit;
-SIGNAL Net_876 : bit;
-SIGNAL \DIR_CONTROL:control_out_3\ : bit;
-SIGNAL Net_877 : bit;
-SIGNAL \DIR_CONTROL:control_out_4\ : bit;
-SIGNAL Net_878 : bit;
-SIGNAL \DIR_CONTROL:control_out_5\ : bit;
-SIGNAL Net_879 : bit;
-SIGNAL \DIR_CONTROL:control_out_6\ : bit;
-SIGNAL Net_880 : bit;
-SIGNAL \DIR_CONTROL:control_out_7\ : bit;
-SIGNAL \DIR_CONTROL:control_7\ : bit;
-SIGNAL \DIR_CONTROL:control_6\ : bit;
-SIGNAL \DIR_CONTROL:control_5\ : bit;
-SIGNAL \DIR_CONTROL:control_4\ : bit;
-SIGNAL \DIR_CONTROL:control_3\ : bit;
-SIGNAL \DIR_CONTROL:control_2\ : bit;
-SIGNAL \DIR_CONTROL:control_1\ : bit;
-SIGNAL \DIR_CONTROL:control_0\ : bit;
+SIGNAL \Front_Dir:control_out_0\ : bit;
+SIGNAL Net_1036 : bit;
+SIGNAL \Front_Dir:control_out_1\ : bit;
+SIGNAL Net_1037 : bit;
+SIGNAL \Front_Dir:control_out_2\ : bit;
+SIGNAL Net_1038 : bit;
+SIGNAL \Front_Dir:control_out_3\ : bit;
+SIGNAL Net_1040 : bit;
+SIGNAL \Front_Dir:control_out_4\ : bit;
+SIGNAL Net_1041 : bit;
+SIGNAL \Front_Dir:control_out_5\ : bit;
+SIGNAL Net_1042 : bit;
+SIGNAL \Front_Dir:control_out_6\ : bit;
+SIGNAL Net_1043 : bit;
+SIGNAL \Front_Dir:control_out_7\ : bit;
+SIGNAL \Front_Dir:control_7\ : bit;
+SIGNAL \Front_Dir:control_6\ : bit;
+SIGNAL \Front_Dir:control_5\ : bit;
+SIGNAL \Front_Dir:control_4\ : bit;
+SIGNAL \Front_Dir:control_3\ : bit;
+SIGNAL \Front_Dir:control_2\ : bit;
+SIGNAL \Front_Dir:control_1\ : bit;
+SIGNAL \Front_Dir:control_0\ : bit;
 SIGNAL \PWM_Rear:Net_81\ : bit;
 SIGNAL \PWM_Rear:Net_75\ : bit;
 SIGNAL \PWM_Rear:Net_69\ : bit;
@@ -510,6 +511,31 @@ TERMINAL Net_994 : bit;
 TERMINAL Net_995 : bit;
 TERMINAL Net_996 : bit;
 TERMINAL Net_997 : bit;
+SIGNAL \Rear_Dir:clk\ : bit;
+SIGNAL \Rear_Dir:rst\ : bit;
+SIGNAL \Rear_Dir:control_out_0\ : bit;
+SIGNAL Net_1068 : bit;
+SIGNAL \Rear_Dir:control_out_1\ : bit;
+SIGNAL Net_1069 : bit;
+SIGNAL \Rear_Dir:control_out_2\ : bit;
+SIGNAL Net_1070 : bit;
+SIGNAL \Rear_Dir:control_out_3\ : bit;
+SIGNAL Net_1071 : bit;
+SIGNAL \Rear_Dir:control_out_4\ : bit;
+SIGNAL Net_1072 : bit;
+SIGNAL \Rear_Dir:control_out_5\ : bit;
+SIGNAL Net_1073 : bit;
+SIGNAL \Rear_Dir:control_out_6\ : bit;
+SIGNAL Net_1074 : bit;
+SIGNAL \Rear_Dir:control_out_7\ : bit;
+SIGNAL \Rear_Dir:control_7\ : bit;
+SIGNAL \Rear_Dir:control_6\ : bit;
+SIGNAL \Rear_Dir:control_5\ : bit;
+SIGNAL \Rear_Dir:control_4\ : bit;
+SIGNAL \Rear_Dir:control_3\ : bit;
+SIGNAL \Rear_Dir:control_2\ : bit;
+SIGNAL \Rear_Dir:control_1\ : bit;
+SIGNAL \Rear_Dir:control_0\ : bit;
 BEGIN
 
 zero <=  ('0') ;
@@ -1568,7 +1594,7 @@ Mode_Rear:cy_psoc3_pins_v1_10
 		out_clock_en=>tmpOE__M1QA_net_0,
 		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__Mode_Rear_net_0);
-\DIR_CONTROL:Sync:ctrl_reg\:cy_psoc3_control
+\Front_Dir:Sync:ctrl_reg\:cy_psoc3_control
 	GENERIC MAP(cy_init_value=>"00000000",
 		cy_force_order=>'1',
 		cy_ctrl_mode_1=>"00000000",
@@ -1576,8 +1602,8 @@ Mode_Rear:cy_psoc3_pins_v1_10
 		cy_ext_reset=>'0')
 	PORT MAP(reset=>zero,
 		clock=>zero,
-		control=>(\DIR_CONTROL:control_7\, \DIR_CONTROL:control_6\, \DIR_CONTROL:control_5\, \DIR_CONTROL:control_4\,
-			\DIR_CONTROL:control_3\, \DIR_CONTROL:control_2\, Net_336, Net_304));
+		control=>(\Front_Dir:control_7\, \Front_Dir:control_6\, \Front_Dir:control_5\, \Front_Dir:control_4\,
+			\Front_Dir:control_3\, \Front_Dir:control_2\, \Front_Dir:control_1\, Net_304));
 \PWM_Rear:cy_m0s8_tcpwm_1\:cy_m0s8_tcpwm_v1_0
 	GENERIC MAP(cy_registers=>"")
 	PORT MAP(clock=>Net_983,
@@ -1597,7 +1623,7 @@ Clock_2:cy_clock_v1_0
 		id=>"674b97d0-4faf-4f6f-957d-c6211b5493a2",
 		source_clock_id=>"",
 		divisor=>0,
-		period=>"166666666.666667",
+		period=>"83333333.3333333",
 		is_direct=>'0',
 		is_digital=>'0')
 	PORT MAP(clock_out=>Net_983,
@@ -2468,5 +2494,15 @@ Rear_Driver_P12:cy_annotation_universal_v1_0
 			Net_1005, Net_1006, Net_1007, Net_990,
 			Net_1008, Net_991, Net_992, Net_993,
 			Net_994, Net_995, Net_996, Net_997));
+\Rear_Dir:Sync:ctrl_reg\:cy_psoc3_control
+	GENERIC MAP(cy_init_value=>"00000000",
+		cy_force_order=>'1',
+		cy_ctrl_mode_1=>"00000000",
+		cy_ctrl_mode_0=>"00000000",
+		cy_ext_reset=>'0')
+	PORT MAP(reset=>zero,
+		clock=>zero,
+		control=>(\Rear_Dir:control_7\, \Rear_Dir:control_6\, \Rear_Dir:control_5\, \Rear_Dir:control_4\,
+			\Rear_Dir:control_3\, \Rear_Dir:control_2\, \Rear_Dir:control_1\, Net_336));
 
 END R_T_L;

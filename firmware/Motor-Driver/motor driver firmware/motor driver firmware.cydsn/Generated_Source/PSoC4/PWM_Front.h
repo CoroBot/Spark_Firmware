@@ -103,7 +103,7 @@ extern uint8  PWM_Front_initVar;
 #define PWM_Front_PWM_ALIGN                      (0lu)
 #define PWM_Front_PWM_RUN_MODE                   (0lu)
 #define PWM_Front_PWM_DEAD_TIME_CYCLE            (0lu)
-#define PWM_Front_PWM_PRESCALER                  (1lu)
+#define PWM_Front_PWM_PRESCALER                  (0lu)
 
 /* Signal modes */
 #define PWM_Front_PWM_RELOAD_SIGNAL_MODE         (0lu)

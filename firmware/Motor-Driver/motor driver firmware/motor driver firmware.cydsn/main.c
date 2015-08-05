@@ -31,7 +31,8 @@ uint16 rear_encoder;
 uint16 front_speed = 0;
 uint16 rear_speed = 0;
 
-uint8 direction = 0;
+uint8 front_direction = 0;
+uint8 rear_direction = 0;
 
 // Function Declarations
 void handleFrames(void);
@@ -60,7 +61,8 @@ int main()
     for(;;)
     {
         handleFrames();
-        DIR_CONTROL_Write(direction);
+        Front_Dir_Write(front_direction);
+        Rear_Dir_Write(rear_direction);
         PWM_Front_WriteCompare(front_speed);
         PWM_Rear_WriteCompare(rear_speed);
         read_current_and_encoder();
@@ -71,9 +73,24 @@ int main()
 void read_current_and_encoder()
 {
     Motor_Current_ADC_StartConvert();
-    CyDelayUs(10);
-    front_current = Motor_Current_ADC_GetResult16(0);
-    rear_current = Motor_Current_ADC_GetResult16(1);
+    int hold_front_current = Motor_Current_ADC_GetResult16(0);
+    int hold_rear_current = Motor_Current_ADC_GetResult16(1);
+    if(hold_front_current <=0)
+    {
+        front_current = 0;
+    }
+    else
+    {
+        front_current = hold_front_current;
+    }
+    if(hold_rear_current <=0)
+    {
+        rear_current = 0;
+    }
+    else
+    {
+        rear_current = hold_rear_current;
+    }
     front_encoder = QuadDec_Front_ReadCounter();
     rear_encoder = QuadDec_Rear_ReadCounter();
 }
@@ -194,7 +211,12 @@ void handle_Frame(uint8_t *frame, unsigned int length)
     else if(frame[0] == 2)//going to rear motor
     {
         getset_rearmotor(frame);
-    } 
+    }
+    else if(frame[0] == 3)//going to both motors
+    {
+        getset_frontmotor(frame);
+        getset_rearmotor(frame);
+    }
 }
 
 //this function handles all the commands for the front motor.
@@ -205,7 +227,7 @@ void getset_frontmotor(uint8_t *frame)
         switch(frame[2])
         {
             case 0: //get motor direction
-                encode_and_send(direction);
+                encode_and_send(front_direction);
                 break;
             case 1://get motor speed
                 encode_and_send(front_speed);
@@ -229,7 +251,7 @@ void getset_frontmotor(uint8_t *frame)
         switch(frame[2])
         {
             case 0: //set motor direction
-                direction = frame[3];
+                front_direction = frame[3];
                 break;
             case 1://set motor speed
                 front_speed = (frame[3] << 8) +frame[4];
@@ -257,7 +279,7 @@ void getset_rearmotor(uint8_t *frame)
         switch(frame[2])
         {
             case 0: //get motor direction
-                encode_and_send(direction);
+                encode_and_send(rear_direction);
                 break;
             case 1://get motor speed
                 encode_and_send(rear_speed);
@@ -281,7 +303,7 @@ void getset_rearmotor(uint8_t *frame)
         switch(frame[2])
         {
             case 0: //set motor direction
-                direction = frame[3];
+                rear_direction = frame[3];
                 break;
             case 1://set motor speed
                 rear_speed = (frame[3] << 8) +frame[4];

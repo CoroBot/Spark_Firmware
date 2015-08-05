@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: DIR_CONTROL.c  
+* File Name: Rear_Dir.c  
 * Version 1.80
 *
 * Description:
@@ -14,14 +14,14 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#include "DIR_CONTROL.h"
+#include "Rear_Dir.h"
 
 /* Check for removal by optimization */
-#if !defined(DIR_CONTROL_Sync_ctrl_reg__REMOVED)
+#if !defined(Rear_Dir_Sync_ctrl_reg__REMOVED)
 
     
 /*******************************************************************************
-* Function Name: DIR_CONTROL_Write
+* Function Name: Rear_Dir_Write
 ********************************************************************************
 *
 * Summary:
@@ -34,14 +34,14 @@
 *  None.
 *
 *******************************************************************************/
-void DIR_CONTROL_Write(uint8 control) 
+void Rear_Dir_Write(uint8 control) 
 {
-    DIR_CONTROL_Control = control;
+    Rear_Dir_Control = control;
 }
 
 
 /*******************************************************************************
-* Function Name: DIR_CONTROL_Read
+* Function Name: Rear_Dir_Read
 ********************************************************************************
 *
 * Summary:
@@ -54,9 +54,9 @@ void DIR_CONTROL_Write(uint8 control)
 *  Returns the current value in the Control Register.
 *
 *******************************************************************************/
-uint8 DIR_CONTROL_Read(void) 
+uint8 Rear_Dir_Read(void) 
 {
-    return DIR_CONTROL_Control;
+    return Rear_Dir_Control;
 }
 
 #endif /* End check for removal by optimization */
