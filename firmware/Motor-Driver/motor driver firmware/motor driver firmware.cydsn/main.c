@@ -41,14 +41,18 @@ void handle_Frame(uint8_t *frame, unsigned int length);
 void encode_and_send(uint16 tosend);
 void int16_to_be(unsigned char *target, uint16_t num);
 void read_current_and_encoder();
-void getset_frontmotor(uint8_t* frame);
-void getset_rearmotor(uint8_t* frame);
+void frontmotor(uint8_t* frame);
+void rearmotor(uint8_t* frame);
+void get_frontmotor(uint8_t* frame);
+void set_frontmotor(uint8_t* frame);
+void get_rearmotor(uint8_t* frame);
+void set_rearmotor(uint8_t* frame);
 
 // Program begins here
 int main()
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
-
+    //start the relevant components
     PWM_Front_Start();
     PWM_Rear_Start();
     QuadDec_Front_Start();
@@ -60,13 +64,13 @@ int main()
 
     for(;;)
     {
-        handleFrames();
-        Front_Dir_Write(front_direction);
-        Rear_Dir_Write(rear_direction);
-        PWM_Front_WriteCompare(front_speed);
-        PWM_Rear_WriteCompare(rear_speed);
-        read_current_and_encoder();
-        CyDelayUs(100);
+        handleFrames();                         //deal with any relevant incoming frames
+        Front_Dir_Write(front_direction);       //write the front directional control register
+        Rear_Dir_Write(rear_direction);         //write the rear directional control register
+        PWM_Front_WriteCompare(front_speed);    //set the speed of the front wheel
+        PWM_Rear_WriteCompare(rear_speed);      //set the speed of the rear wheel
+        read_current_and_encoder();             //read the adc values and the quadrature encoder values
+        CyDelayUs(100);                         //this delay is just to prevent it form dropping too many frames
     }
 }
 
@@ -206,120 +210,144 @@ void handle_Frame(uint8_t *frame, unsigned int length)
     }
     else if(frame[0] == 1)//going to front motor
     {
-        getset_frontmotor(frame);
+        frontmotor(frame);
     }
     else if(frame[0] == 2)//going to rear motor
     {
-        getset_rearmotor(frame);
+        rearmotor(frame);
     }
     else if(frame[0] == 3)//going to both motors
     {
-        getset_frontmotor(frame);
-        getset_rearmotor(frame);
+        frontmotor(frame);
+        rearmotor(frame);
     }
 }
 
 //this function handles all the commands for the front motor.
-void getset_frontmotor(uint8_t *frame)
+void frontmotor(uint8_t *frame)
 {
     if(frame[1] == 0)//okay we know we need to get something
     {
-        switch(frame[2])
-        {
-            case 0: //get motor direction
-                encode_and_send(front_direction);
-                break;
-            case 1://get motor speed
-                encode_and_send(front_speed);
-                break;
-            case 2://get encoder counter
-                encode_and_send(front_encoder);
-                break;
-            case 3://get current data
-                encode_and_send(front_current);
-                break;
-            case 4://get mode pin
-                encode_and_send(Mode_Front_Read());
-                break;
-            case 5://get power pin
-                encode_and_send(Power_Front_Read());
-                break;
-        }
+        get_frontmotor(frame);
     }
     else if(frame[1] == 1)//we need to set something instead
     {
-        switch(frame[2])
-        {
-            case 0: //set motor direction
-                front_direction = frame[3];
-                break;
-            case 1://set motor speed
-                front_speed = (frame[3] << 8) +frame[4];
-                break;
-            case 2://set encoder counter
-                QuadDec_Front_WriteCounter((frame[3] << 8) +frame[4]);
-                break;
-            case 3://set current data -- not possible, remove?
-                break;
-            case 4://set mode pin
-                Mode_Front_Write(frame[3]);
-                break;
-            case 5://set power pin
-                Power_Front_Write(frame[3]);
-                break;
-        }
+        set_frontmotor(frame);
+    }
+}
+
+//handles getting all the data from the front motor
+void get_frontmotor(uint8_t* frame)
+{
+    switch(frame[2])
+    {
+        case 0: //get motor direction
+            encode_and_send(front_direction);
+            break;
+        case 1://get motor speed
+            encode_and_send(front_speed);
+            break;
+        case 2://get encoder counter
+            encode_and_send(front_encoder);
+            break;
+        case 3://get current data
+            encode_and_send(front_current);
+            break;
+        case 4://get mode pin
+            encode_and_send(Mode_Front_Read());
+            break;
+        case 5://get power pin
+            encode_and_send(Power_Front_Read());
+            break;
+    }
+}
+
+//handles setting values for the front motor
+void set_frontmotor(uint8_t* frame)
+{
+    switch(frame[2])
+    {
+        case 0: //set motor direction
+            front_direction = frame[3];
+            break;
+        case 1://set motor speed
+            front_speed = (frame[3] << 8) +frame[4];
+            break;
+        case 2://set encoder counter
+            QuadDec_Front_WriteCounter((frame[3] << 8) +frame[4]);
+            break;
+        case 3://set current data -- not possible, remove?
+            break;
+        case 4://set mode pin
+            Mode_Front_Write(frame[3]);
+            break;
+        case 5://set power pin
+            Power_Front_Write(frame[3]);
+            break;
     }
 }
 
 //this function handles all of the commands for the rear motor.
-void getset_rearmotor(uint8_t *frame)
+void rearmotor(uint8_t *frame)
 {
     if(frame[1] == 0)//okay we know we need to get something
     {
-        switch(frame[2])
-        {
-            case 0: //get motor direction
-                encode_and_send(rear_direction);
-                break;
-            case 1://get motor speed
-                encode_and_send(rear_speed);
-                break;
-            case 2://get encoder counter
-                encode_and_send(rear_encoder);
-                break;
-            case 3://get current data
-                encode_and_send(rear_current);
-                break;
-            case 4://get mode pin
-                encode_and_send(Mode_Rear_Read());
-                break;
-            case 5://get power pin
-                encode_and_send(Power_Rear_Read());
-                break;
-        }
+        get_rearmotor(frame);
     }
     else if(frame[1] == 1)//we need to set something instead
     {
-        switch(frame[2])
-        {
-            case 0: //set motor direction
-                rear_direction = frame[3];
-                break;
-            case 1://set motor speed
-                rear_speed = (frame[3] << 8) +frame[4];
-                break;
-            case 2://set encoder counter
-                QuadDec_Rear_WriteCounter((frame[3] << 8) +frame[4]);
-                break;
-            case 3://set current data -- not possible, remove?
-                break;
-            case 4://set mode pin
-                Mode_Rear_Write(frame[3]);
-                break;
-            case 5://set power pin
-                Power_Rear_Write(frame[3]);
-                break;
-        }
+        set_rearmotor(frame);
+    }
+}
+
+//handles getting values form the rear motor
+void get_rearmotor(uint8_t* frame)
+{
+    switch(frame[2])
+    {
+        case 0: //get motor direction
+            encode_and_send(rear_direction);
+            break;
+        case 1://get motor speed
+            encode_and_send(rear_speed);
+            break;
+        case 2://get encoder counter
+            encode_and_send(rear_encoder);
+            break;
+        case 3://get current data
+            encode_and_send(rear_current);
+            break;
+        case 4://get mode pin
+            encode_and_send(Mode_Rear_Read());
+            break;
+        case 5://get power pin
+            encode_and_send(Power_Rear_Read());
+            break;
+    }
+}
+
+//handles setting all the values for the rear motor
+void set_rearmotor(uint8_t* frame)
+{
+    switch(frame[2])
+    {
+        case 0: //set motor direction
+            rear_direction = frame[3];
+            break;
+        case 1://set motor speed
+            rear_speed = (frame[3] << 8) +frame[4];
+            break;
+        case 2://set encoder counter
+            QuadDec_Rear_WriteCounter((frame[3] << 8) +frame[4]);
+            break;
+        case 3://set current data -- not possible, remove?
+            break;
+        case 4://set mode pin
+            Mode_Rear_Write(frame[3]);
+            break;
+        case 5://set power pin
+            Power_Rear_Write(frame[3]);
+            break;
     }
 }
 

@@ -17,7 +17,7 @@ if __name__ == '__main__':
 	
 	# ************************** DEFAULT DEBUG PORT ***************************
 	print "Defaulting port to COM14. Change script if neeeded"
-	cobs = cobs_serial(13, 115200, 1) #apparently the port is offset by 1 (so COM14 is 13)
+	cobs = cobs_serial(11, 115200, 1) #apparently the port is offset by 1 (so COM14 is 13)
 
 	while True:
 		option = raw_input("Enter 1 to control LEDs, 2 for the ADC value, 3 to exit.\n>>")

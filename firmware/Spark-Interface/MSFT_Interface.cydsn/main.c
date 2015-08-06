@@ -292,7 +292,7 @@ void handle_Frame(uint8_t *frame, unsigned int length) {
 
 void report_adc_val() {
     //blinkLED();
-    
+    //ADC_StartConvert();
     int16 adcResult = ADC_GetResult16(0x00u);   
     
     PWM_1_WriteCompare(adcResult);
