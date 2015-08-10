@@ -25,12 +25,15 @@
 // Commands
 #define SET_ATTRIB 1
 #define READ_ADC 8
+#define SPIN_MOTOR 5
 
 // Local attributes
 #define ATTRIB_LED1 1
 #define ATTRIB_LED2 2
 #define ATTRIB_LED3 3
 #define ATTRIB_SERVO1 4
+
+//#define ATTRIB_MOT1_SPD 5
 
 
 /**********************************************************/
@@ -93,11 +96,13 @@ void hexdump(uint8 *buffer, int numbytes);
 
 // merged functions
 void encode_and_send_usb(unsigned char* buf, int length);
+void encode_and_send_uart(unsigned char* buf, int length);
 int blinkLED(void);
 void handleFrames(void);
 void handle_Frame(uint8_t *frame, unsigned int length);
 void set_attribute(uint8_t *frame, unsigned int length);
 void report_adc_val();
+void command_motor_forward();
 
 //network utility functions, could be moved to cobs
 void uint16toNO(uint16_t invalue, unsigned char *outbuf);
@@ -192,6 +197,27 @@ void encode_and_send_usb(unsigned char* buf, int length) {
     uputc(0);
 }
 
+void encode_and_send_uart(unsigned char* buf, int length) {
+
+    unsigned char indat[length + 4];
+    memcpy(indat, buf, length); 
+    //strncpy(buf, indat, length); 
+    
+    uint32_t crc32 = Crc32_ComputeBuf(0, indat, length);
+    uint32toNO(crc32, &indat[length]);
+    
+    unsigned char outdat[length + 5];
+    encode_cobs(indat, length + 4, outdat);
+    
+    //changed to hputc
+    hputc(0);
+    int i;
+    for (i = 0; i < (length + 5); i++) {
+        hputc(outdat[i]); 
+    }
+    hputc(0);
+}
+
 void handleFrames(void) {
     
 	static int offset = 0;
@@ -279,8 +305,11 @@ void handle_Frame(uint8_t *frame, unsigned int length) {
 			//Enable_Output = true;
 			break;
 
-		case 5: // Disable Output
+		case SPIN_MOTOR: // Disable Output
 			//Enable_Output = false;
+            command_motor_forward();
+            
+            //encode_and_send_uart();
 			break;
 		case 8: // Read ADC value
             report_adc_val(); //temporarily just sets LED1 to the adc read value.
@@ -288,6 +317,17 @@ void handle_Frame(uint8_t *frame, unsigned int length) {
 		default:
 			break;
 	}	
+}
+
+void command_motor_forward() {
+    unsigned char psoc4_cmd[5];
+    psoc4_cmd[0] = 0x1;
+    psoc4_cmd[1] = 0x1;
+    psoc4_cmd[2] = 0x1;
+    uint16toNO(30000, &psoc4_cmd[3]);
+    
+    encode_and_send_uart(psoc4_cmd, 5); //untested. but doesnt crash here.
+    blinkLED();
 }
 
 void report_adc_val() {

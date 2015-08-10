@@ -17,12 +17,19 @@ if __name__ == '__main__':
 	
 	# ************************** DEFAULT DEBUG PORT ***************************
 	print "Defaulting port to COM14. Change script if neeeded"
-	cobs = cobs_serial(11, 115200, 1) #apparently the port is offset by 1 (so COM14 is 13)
+	cobs = cobs_serial(13, 115200, 1) #apparently the port is offset by 1 (so COM14 is 13)
 
+	menu = "\nOption Menu:\n"
+	menu += "1. Control LEDs\n"
+	menu += "2. Request the ADC value\n"
+	menu += "3. Set the first/front motor speed\n"
+	menu += "4. Exit\n"
+	menu += "\nPlease Enter a number from above menu >>"
+		
 	while True:
-		option = raw_input("Enter 1 to control LEDs, 2 for the ADC value, 3 to exit.\n>>")
+		option = raw_input(menu)
 		sel = option.strip()
-		if sel == '3':
+		if sel == '4':
 			break
 		elif sel == '1':
 			print "LED Control"
@@ -67,3 +74,13 @@ if __name__ == '__main__':
 				print "Error converting adc value"
 			#print cobs.read_and_build() #cant call directly, requires serial object
 			#pause and read what comes next
+		elif sel == '3':
+			#motor speed
+			print "Sending command to the psoc5, commanding it to talk to the psoc4"
+			cmd = bytearray([0x01, 0x05, 0x00])
+			#cmd += struct.pack('>H', 5)
+			#cmd += struct.pack('>H', 30000)
+			print "debug: array to encode: " + repr(cmd)
+			print "debug: sending array to encode and send routine"
+			cobs.encode_and_send(cmd)
+			

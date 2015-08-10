@@ -2,7 +2,7 @@
 --	Conversion of motor driver firmware.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Thu Aug 06 15:28:04 2015
+--	Sun Aug 09 18:28:40 2015
 --
 
 USE cypress.cypress.all;
