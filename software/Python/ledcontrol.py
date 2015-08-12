@@ -10,6 +10,11 @@ if __name__ == '__main__':
 	print "**** led control Test ****"
 	print "**************************\n"
 	
+	#Servo Constants, TowerPro MG995
+	maxpulse = 214
+	minpulse = 54
+	servo_period = 2000 #period of PWM component = 20ms
+	
 	# ************************** USER ENTERED PORT ***************************
 	#port = raw_input("Enter your serial port #. (EX for COM14 enter 14)\n>>")
 	#portnum = int(port.strip()) - 1 # Rileys port offset
@@ -23,15 +28,16 @@ if __name__ == '__main__':
 	menu += "1. Control LEDs\n"
 	menu += "2. Request the ADC value\n"
 	menu += "3. Set the first/front motor speed\n"
-	menu += "4. Exit\n"
+	menu += "4. Set servo duty cycle\n"
+	menu += "5. Exit\n"
 	menu += "\nPlease Enter a number from above menu >>"
 		
 	while True:
 		option = raw_input(menu)
 		sel = option.strip()
-		if sel == '4':
+		if sel == '5':
 			break
-		elif sel == '1':
+		elif sel == '1': # LED CONTROL
 			print "LED Control"
 			option = raw_input("Enter an LED to control, 1-3\n>>")
 			try:
@@ -57,7 +63,7 @@ if __name__ == '__main__':
 			bob += valbytes
 			print "Sending bytes to encode and send: " + repr(list(bob)) #for debugging
 			cobs.encode_and_send(bob) #confirm baud rate and com port
-		elif sel == '2':
+		elif sel == '2': # READING ADC
 			#adc req
 			print "Setting LED1 to the result of ADC Read"
 			sam = bytearray([0x01, 0x08, 0x00])
@@ -74,7 +80,7 @@ if __name__ == '__main__':
 				print "Error converting adc value"
 			#print cobs.read_and_build() #cant call directly, requires serial object
 			#pause and read what comes next
-		elif sel == '3':
+		elif sel == '3': #MOTOR TEST
 			#motor speed
 			print "Sending command to the psoc5, commanding it to talk to the psoc4"
 			cmd = bytearray([0x01, 0x05, 0x00])
@@ -83,4 +89,27 @@ if __name__ == '__main__':
 			print "debug: array to encode: " + repr(cmd)
 			print "debug: sending array to encode and send routine"
 			cobs.encode_and_send(cmd)
+		elif sel == '4': # SERVO CONTROL
+			#
+			print "Servo Control \n(see script to change min and max pulse widths. Currently defaulted to a TowerPro MG995 Servo)"
+			option = raw_input("Enter a percentage >>")
+			try:
+				percent = float(option.strip())
+				if percent < 0 or percent > 100:
+					print "Error, Value not between 0 and 100."
+					continue
+				pwmcompare = ((percent/100) * (maxpulse - minpulse)) + minpulse
+				pwmcompare = servo_period - pwmcompare #left align the positive pulse
+				print "debug pwmcompare final value before conversion:" + repr(pwmcompare)
+				comparebytes = struct.pack('>H', pwmcompare) #H is for unsigned short
+			except:
+				print "Error converting number"
+				continue
 			
+			numbytes = struct.pack('>H', 4) #H is for unsigned short
+			
+			bytestosend = bytearray([0x01, 0x01, 0x04])
+			bytestosend += numbytes
+			bytestosend += comparebytes
+			print "Sending bytes to encode and send: " + repr(list(bytestosend)) #for debugging
+			cobs.encode_and_send(bytestosend) #confirm baud rate and com port

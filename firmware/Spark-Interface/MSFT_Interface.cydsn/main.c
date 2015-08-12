@@ -365,7 +365,10 @@ void set_attribute(uint8_t *frame, unsigned int length) {
 		case ATTRIB_LED3:
             PWM_3_WriteCompare(value);
             //PWM_4_WriteCompare((value/PWM_3_ReadPeriod()) * PWM_4_ReadPeriod()); //Convert from 16bit value to duty cycle
-			PWM_4_WriteCompare(value);
+			//PWM_4_WriteCompare(value);
+            break;
+        case ATTRIB_SERVO1:
+            PWM_4_WriteCompare(value);
             break;
 		default:
 			break;
