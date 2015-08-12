@@ -7,7 +7,7 @@ import struct
 
 if __name__ == '__main__':
 	print "\n**************************"
-	print "**** led control Test ****"
+	print "**** Spark Control Test ****"
 	print "**************************\n"
 	
 	#Servo Constants, TowerPro MG995
@@ -16,14 +16,16 @@ if __name__ == '__main__':
 	servo_period = 2000 #period of PWM component = 20ms
 	
 	# ************************** USER ENTERED PORT ***************************
-	#port = raw_input("Enter your serial port #. (EX for COM14 enter 14)\n>>")
-	#portnum = int(port.strip()) - 1 # Rileys port offset
-	#cobs = cobs_serial(portnum, 115200, 1)
+	port = raw_input("Enter your serial port (EX: COM14)\n>>")
+	cobs = cobs_serial(port, 115200, 1)
 	
 	# ************************** DEFAULT DEBUG PORT ***************************
-	print "Defaulting port to COM14. Change script if neeeded"
-	cobs = cobs_serial(13, 115200, 1) #apparently the port is offset by 1 (so COM14 is 13)
+	#print "Defaulting port to COM14. Change script if neeeded"
+	#cobs = cobs_serial('COM14', 115200, 1) #apparently the port is offset by 1 (so COM14 is 13)
 
+	# *************************** END PORT CONFIG ****************************
+	
+	
 	menu = "\nOption Menu:\n"
 	menu += "1. Control LEDs\n"
 	menu += "2. Request the ADC value\n"
@@ -82,10 +84,19 @@ if __name__ == '__main__':
 			#pause and read what comes next
 		elif sel == '3': #MOTOR TEST
 			#motor speed
+			
+			option = raw_input("Enter a new compare value for the motor duty cycle, 0-65535\n>>")
+			try:
+				val = int(option.strip())
+				valbytes = struct.pack('>H', val)
+			except:
+				print "Error converting value"
+				continue
+								
 			print "Sending command to the psoc5, commanding it to talk to the psoc4"
-			cmd = bytearray([0x01, 0x05, 0x00])
-			#cmd += struct.pack('>H', 5)
-			#cmd += struct.pack('>H', 30000)
+			cmd = bytearray([0x01, 0x01, 0x04])
+			cmd += struct.pack('>H', 5)
+			cmd += valbytes
 			print "debug: array to encode: " + repr(cmd)
 			print "debug: sending array to encode and send routine"
 			cobs.encode_and_send(cmd)

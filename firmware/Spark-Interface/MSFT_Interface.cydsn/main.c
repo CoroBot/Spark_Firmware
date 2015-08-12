@@ -32,8 +32,7 @@
 #define ATTRIB_LED2 2
 #define ATTRIB_LED3 3
 #define ATTRIB_SERVO1 4
-
-//#define ATTRIB_MOT1_SPD 5
+#define ATTRIB_MOT1_SPD 5
 
 
 /**********************************************************/
@@ -102,7 +101,7 @@ void handleFrames(void);
 void handle_Frame(uint8_t *frame, unsigned int length);
 void set_attribute(uint8_t *frame, unsigned int length);
 void report_adc_val();
-void command_motor_forward();
+void command_motor_forward(uint16 value);
 
 //network utility functions, could be moved to cobs
 void uint16toNO(uint16_t invalue, unsigned char *outbuf);
@@ -291,7 +290,7 @@ void handle_Frame(uint8_t *frame, unsigned int length) {
 			//send_frame_really();
 			break;
 		
-		case 1: // Set attribute (integer)
+		case SET_ATTRIB: // Set attribute (integer)
 			set_attribute(frame, length);
 			break;
 
@@ -307,7 +306,7 @@ void handle_Frame(uint8_t *frame, unsigned int length) {
 
 		case SPIN_MOTOR: // Disable Output
 			//Enable_Output = false;
-            command_motor_forward();
+            //command_motor_forward();
             
             //encode_and_send_uart();
 			break;
@@ -319,14 +318,14 @@ void handle_Frame(uint8_t *frame, unsigned int length) {
 	}	
 }
 
-void command_motor_forward() {
+void command_motor_forward(uint16 value) {
     unsigned char psoc4_cmd[5];
-    psoc4_cmd[0] = 0x1;
+    psoc4_cmd[0] = 0x1; //hard coded to "set" "front motor" "speed"
     psoc4_cmd[1] = 0x1;
     psoc4_cmd[2] = 0x1;
-    uint16toNO(30000, &psoc4_cmd[3]);
+    uint16toNO(value, &psoc4_cmd[3]); //provide value
     
-    encode_and_send_uart(psoc4_cmd, 5); //untested. but doesnt crash here.
+    encode_and_send_uart(psoc4_cmd, 5); //untested.
     blinkLED();
 }
 
@@ -364,11 +363,12 @@ void set_attribute(uint8_t *frame, unsigned int length) {
 			break;
 		case ATTRIB_LED3:
             PWM_3_WriteCompare(value);
-            //PWM_4_WriteCompare((value/PWM_3_ReadPeriod()) * PWM_4_ReadPeriod()); //Convert from 16bit value to duty cycle
-			//PWM_4_WriteCompare(value);
             break;
         case ATTRIB_SERVO1:
             PWM_4_WriteCompare(value);
+            break;
+        case ATTRIB_MOT1_SPD:
+            command_motor_forward(value); //send the uint16 value to the PSOC4 in Rileys format
             break;
 		default:
 			break;
