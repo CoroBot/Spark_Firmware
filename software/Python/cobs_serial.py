@@ -82,15 +82,15 @@ class test_cobs_serial:
 	
 	def test_uart(self): #generates a random frame and sends it to the serial portion of the library then gets a frame back and checks to see if its good
 		framesize = random.randint(1,245)
-		randframe = bytearray(random.sample(xrange(255),framesize))
+		randframe = bytearray(random.sample(xrange(256),framesize))
 		self.cobs.encode_and_send(randframe)
 		got = self.cobs.block_and_return()
 		if randframe[0:framesize] != got:
 			self.dropped+=1
-			#print "sent: ",
-			#print randframe[0:framesize]
-			#print "got: ",
-			#print got
+			#print "sent: "
+			#print "  ",repr(randframe)
+			#print "got: "
+			#print "  ",repr(got)
 			
 	def printerrors(self): #prints the total number of dropped frames to the command line
 		print "total dropped frames: ",
@@ -98,14 +98,14 @@ class test_cobs_serial:
 	
 	def mass_test(self,number):#this takes in a number of tests to run, runs them, and spits out the results
 		for i in range(0,number):
-			#time.sleep(0.005)
 			self.test_uart()
+			time.sleep(0.020)
 			if i%(number/10) == 0:
 				print "number of tests run: ",
 				print i
 				self.printerrors()
 		self.printerrors()
-		self.cobs.close_port()
+		#self.cobs.close_port()
 		
 if __name__ == '__main__':
 	tester = test_cobs_serial(int(sys.argv[1]),int(sys.argv[2]),float(sys.argv[3]))
