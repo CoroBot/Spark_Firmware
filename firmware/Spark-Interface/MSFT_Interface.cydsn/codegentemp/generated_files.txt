@@ -95,6 +95,20 @@
   <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\SRVO1_aliases.h" value="NONE;SRVO1" />
   <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\SRVO1.c" value="ARM_C_FILE;SRVO1" />
   <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\SRVO1.h" value="NONE;SRVO1" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\Clock_3.c" value="ARM_C_FILE;Clock_3" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\Clock_3.h" value="NONE;Clock_3" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\PWM_5.c" value="ARM_C_FILE;PWM_5" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\PWM_5.h" value="NONE;PWM_5" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\PWM_5_PM.c" value="ARM_C_FILE;PWM_5" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\TrigSignal_aliases.h" value="NONE;TrigSignal" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\TrigSignal.c" value="ARM_C_FILE;TrigSignal" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\TrigSignal.h" value="NONE;TrigSignal" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\Timer_1.c" value="ARM_C_FILE;Timer_1" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\Timer_1.h" value="NONE;Timer_1" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\Timer_1_PM.c" value="ARM_C_FILE;Timer_1" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\EchoSignal_aliases.h" value="NONE;EchoSignal" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\EchoSignal.c" value="ARM_C_FILE;EchoSignal" />
+  <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\EchoSignal.h" value="NONE;EchoSignal" />
   <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\USB_Dm_aliases.h" value="NONE;USB_Dm" />
   <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\USB_Dm.c" value="ARM_C_FILE;USB_Dm" />
   <file name="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Spark-Interface\MSFT_Interface.cydsn\codegentemp\USB_Dm.h" value="NONE;USB_Dm" />

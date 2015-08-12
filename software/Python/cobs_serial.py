@@ -46,7 +46,7 @@ class cobs_serial:
 		self.ser.read()
 		while True:
 			inbyte = self.ser.read()
-			print repr(inbyte)
+			#print repr(inbyte)
 			if inbyte != '\0':
 				if offset == 250:
 					return None

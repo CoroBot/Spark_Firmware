@@ -101,6 +101,7 @@ void handleFrames(void);
 void handle_Frame(uint8_t *frame, unsigned int length);
 void set_attribute(uint8_t *frame, unsigned int length);
 void report_adc_val();
+void report_timer_val();
 void command_motor_forward(uint16 value);
 
 //network utility functions, could be moved to cobs
@@ -133,6 +134,8 @@ int main()
     PWM_2_Start();
     PWM_3_Start();
     PWM_4_Start();
+    PWM_5_Start();
+    Timer_1_Start();
     
 	USB_Start(0,USB_DWR_VDDD_OPERATION); 
 
@@ -310,9 +313,25 @@ void handle_Frame(uint8_t *frame, unsigned int length) {
 		case 8: // Read ADC value
             report_adc_val(); //temporarily just sets LED1 to the adc read value.
             break;
+        case 9: // Read Timer Value - ultrasonic
+            report_timer_val();
+            break;
 		default:
 			break;
 	}	
+}
+
+void report_timer_val() {
+    //blinkLED();
+
+    uint16 timerResult = Timer_1_ReadCapture();  
+    
+    //PWM_1_WriteCompare(timerResult);
+    
+    // encode and send back over wire?
+    unsigned char indat[2];
+    uint16toNO(timerResult, &indat[0]);
+    encode_and_send_usb(indat, 2);
 }
 
 void command_motor_forward(uint16 value) {
@@ -323,7 +342,7 @@ void command_motor_forward(uint16 value) {
     uint16toNO(value, &psoc4_cmd[3]); //provide value
     
     encode_and_send_uart(psoc4_cmd, 5); //untested.
-    blinkLED();
+    //blinkLED();
 }
 
 void report_adc_val() {
@@ -331,7 +350,7 @@ void report_adc_val() {
     //ADC_StartConvert();
     int16 adcResult = ADC_GetResult16(0x00u);   
     
-    PWM_1_WriteCompare(adcResult);
+    //PWM_1_WriteCompare(adcResult);
     
     // encode and send back over wire?
     unsigned char indat[2];

@@ -15,6 +15,7 @@ if __name__ == '__main__':
 	maxpulse = 214 # 10.7% of period
 	minpulse = 54 # 2.7% of period
 	
+	# Open the serial port
 	# ************************** USER ENTERED PORT ***************************
 	port = raw_input("Enter your serial port (EX: COM14)\n>>")
 	cobs = cobs_serial(port, 115200, 1)
@@ -25,20 +26,21 @@ if __name__ == '__main__':
 	
 	# *************************** END PORT CONFIG ****************************
 	
-	
+	#User Menu
 	menu = "\nOption Menu:\n"
 	menu += "1. Control LEDs\n"
 	menu += "2. Request the ADC value\n"
 	menu += "3. Set the first/front motor speed\n"
 	menu += "4. Set servo duty cycle\n"
-	#menu += "5. Request ultrasonic distance\n"
-	menu += "5. Exit\n"
+	menu += "5. Request ultrasonic distance\n"
+	menu += "6. Exit\n"
 	menu += "\nPlease Enter a number from above menu >>"
 		
+	#Loop until user quits	
 	while True:
 		option = raw_input(menu)
 		sel = option.strip()
-		if sel == '5':
+		if sel == '6':
 			break
 		elif sel == '1': # LED CONTROL
 			print "LED Control"
@@ -68,21 +70,19 @@ if __name__ == '__main__':
 			cobs.encode_and_send(bob) #confirm baud rate and com port
 		elif sel == '2': # READING ADC
 			#adc req
-			print "Setting LED1 to the result of ADC Read"
+			#print "Setting LED1 to the result of ADC Read"
 			sam = bytearray([0x01, 0x08, 0x00])
 			cobs.encode_and_send(sam)
-			print "Reading raw bytes from serial response"
+			#print "Reading raw bytes from serial response"
 			retarray = cobs.block_and_return()
-			print "Cobs decode result array: "
-			print repr(retarray)
+			#print "Cobs decode result array: "
+			#print repr(retarray)
 			try:
 				adcval = struct.unpack('H', retarray)
 				print "ADC val :"
 				print int(adcval[0])
 			except:
 				print "Error converting adc value"
-			#print cobs.read_and_build() #cant call directly, requires serial object
-			#pause and read what comes next
 		elif sel == '3': #MOTOR TEST
 			#motor speed
 			
@@ -98,7 +98,7 @@ if __name__ == '__main__':
 			cmd = bytearray([0x01, 0x01, 0x04])
 			cmd += struct.pack('>H', 5)
 			cmd += valbytes
-			print "debug: array to encode: " + repr(cmd)
+			#print "debug: array to encode: " + repr(cmd)
 			print "debug: sending array to encode and send routine"
 			cobs.encode_and_send(cmd)
 		elif sel == '4': # SERVO CONTROL
@@ -112,7 +112,7 @@ if __name__ == '__main__':
 					continue
 				pwmcompare = ((percent/100) * (maxpulse - minpulse)) + minpulse
 				pwmcompare = servo_period - pwmcompare #left align the positive pulse
-				print "debug pwmcompare final value before conversion:" + repr(pwmcompare)
+				#print "debug pwmcompare final value before conversion:" + repr(pwmcompare)
 				comparebytes = struct.pack('>H', pwmcompare) #H is for unsigned short
 			except:
 				print "Error converting number"
@@ -126,4 +126,17 @@ if __name__ == '__main__':
 			print "Sending bytes to encode and send: " + repr(list(bytestosend)) #for debugging
 			cobs.encode_and_send(bytestosend) #confirm baud rate and com port
 		elif sel == '5': #ultrasonic read
-			
+			#timer req
+			#print "Setting LED1 to the result of ADC Read"
+			sam = bytearray([0x01, 0x09, 0x00])
+			cobs.encode_and_send(sam)
+			#print "Reading raw bytes from serial response"
+			retarray = cobs.block_and_return()
+			print "Cobs decode result array: "
+			#print repr(retarray)
+			try:
+				timerval = struct.unpack('H', retarray)
+				print "Timer val :"
+				print int(timerval[0])
+			except:
+				print "Error converting timer value"

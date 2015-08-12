@@ -1,16 +1,18 @@
 -- Project:   MSFT_Interface
--- Generated: 08/11/2015 20:36:00
+-- Generated: 08/11/2015 22:17:05
 -- PSoC Creator  3.2
 
 ENTITY MSFT_Interface IS
     PORT(
         DE(0)_PAD : OUT std_ulogic;
+        EchoSignal(0)_PAD : IN std_ulogic;
         LED_1(0)_PAD : OUT std_ulogic;
         LED_2(0)_PAD : OUT std_ulogic;
         LED_3(0)_PAD : OUT std_ulogic;
         Pin_1(0)_PAD : OUT std_ulogic;
         Rx_1(0)_PAD : IN std_ulogic;
         SRVO1(0)_PAD : OUT std_ulogic;
+        TrigSignal(0)_PAD : OUT std_ulogic;
         Tx_1(0)_PAD : OUT std_ulogic;
         VBUS(0)_PAD : IN std_ulogic;
         nRE(0)_PAD : OUT std_ulogic);
@@ -38,189 +40,201 @@ ARCHITECTURE __DEFAULT__ OF MSFT_Interface IS
     SIGNAL ClockBlock_XTAL : bit;
     SIGNAL ClockBlock_XTAL_32KHZ : bit;
     SIGNAL DE(0)__PA : bit;
+    SIGNAL EchoSignal(0)__PA : bit;
     SIGNAL LED_1(0)__PA : bit;
     SIGNAL LED_2(0)__PA : bit;
     SIGNAL LED_3(0)__PA : bit;
     SIGNAL Net_1047 : bit;
     SIGNAL Net_1048 : bit;
-    ATTRIBUTE placement_force OF Net_1048 : SIGNAL IS "U(1,3,B)0";
+    ATTRIBUTE placement_force OF Net_1048 : SIGNAL IS "U(0,1,A)2";
     SIGNAL Net_1330 : bit;
     ATTRIBUTE udbclken_assigned OF Net_1330 : SIGNAL IS "True";
     ATTRIBUTE global_signal OF Net_1330 : SIGNAL IS true;
     SIGNAL Net_1330_local : bit;
     SIGNAL Net_1558 : bit;
-    ATTRIBUTE placement_force OF Net_1558 : SIGNAL IS "U(3,0,A)1";
+    ATTRIBUTE placement_force OF Net_1558 : SIGNAL IS "U(0,0,A)1";
     SIGNAL Net_218 : bit;
-    ATTRIBUTE placement_force OF Net_218 : SIGNAL IS "U(3,3,A)2";
+    ATTRIBUTE placement_force OF Net_218 : SIGNAL IS "U(2,4,A)0";
     SIGNAL Net_223 : bit;
     SIGNAL Net_223_SYNCOUT : bit;
     SIGNAL Net_2572 : bit;
-    ATTRIBUTE placement_force OF Net_2572 : SIGNAL IS "U(1,0,A)1";
+    ATTRIBUTE placement_force OF Net_2572 : SIGNAL IS "U(0,0,A)2";
     SIGNAL Net_288 : bit;
     SIGNAL Net_289 : bit;
     SIGNAL Net_311 : bit;
     SIGNAL Net_3149 : bit;
-    ATTRIBUTE placement_force OF Net_3149 : SIGNAL IS "U(0,1,A)1";
+    ATTRIBUTE placement_force OF Net_3149 : SIGNAL IS "U(0,3,A)3";
     SIGNAL Net_318 : bit;
-    ATTRIBUTE placement_force OF Net_318 : SIGNAL IS "U(2,4,A)2";
+    ATTRIBUTE placement_force OF Net_318 : SIGNAL IS "U(1,0,A)2";
     SIGNAL Net_3526 : bit;
     ATTRIBUTE udbclken_assigned OF Net_3526 : SIGNAL IS "True";
     ATTRIBUTE global_signal OF Net_3526 : SIGNAL IS true;
     SIGNAL Net_3526_local : bit;
     SIGNAL Net_3678 : bit;
-    ATTRIBUTE placement_force OF Net_3678 : SIGNAL IS "U(0,2,A)2";
+    ATTRIBUTE placement_force OF Net_3678 : SIGNAL IS "U(1,4,A)2";
+    SIGNAL Net_3779 : bit;
+    SIGNAL Net_3779_SYNCOUT : bit;
+    SIGNAL Net_4162 : bit;
+    ATTRIBUTE udbclken_assigned OF Net_4162 : SIGNAL IS "True";
+    ATTRIBUTE global_signal OF Net_4162 : SIGNAL IS true;
+    SIGNAL Net_4162_local : bit;
+    SIGNAL Net_4187 : bit;
+    ATTRIBUTE placement_force OF Net_4187 : SIGNAL IS "U(2,0,A)2";
+    SIGNAL Net_4279 : bit;
+    ATTRIBUTE placement_force OF Net_4279 : SIGNAL IS "U(3,0,A)3";
     SIGNAL Net_96 : bit;
     SIGNAL Pin_1(0)__PA : bit;
     SIGNAL Rx_1(0)__PA : bit;
     SIGNAL SRVO1(0)__PA : bit;
+    SIGNAL TrigSignal(0)__PA : bit;
     SIGNAL Tx_1(0)__PA : bit;
     SIGNAL VBUS(0)__PA : bit;
     SIGNAL Vpot(0)__PA : bit;
     SIGNAL \ADC:AMuxHw_2_Decoder_is_active\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_is_active\ : SIGNAL IS "U(2,2,B)2";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_is_active\ : SIGNAL IS "U(2,5,A)0";
     ATTRIBUTE soft OF \ADC:AMuxHw_2_Decoder_is_active\ : SIGNAL IS 1;
     SIGNAL \ADC:AMuxHw_2_Decoder_is_active_split\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_is_active_split\ : SIGNAL IS "U(2,2,A)0";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_is_active_split\ : SIGNAL IS "U(2,5,B)0";
     SIGNAL \ADC:AMuxHw_2_Decoder_old_id_0\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_old_id_0\ : SIGNAL IS "U(2,0,B)3";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_old_id_0\ : SIGNAL IS "U(3,5,A)1";
     SIGNAL \ADC:AMuxHw_2_Decoder_old_id_1\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_old_id_1\ : SIGNAL IS "U(2,1,B)2";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_old_id_1\ : SIGNAL IS "U(3,5,A)3";
     SIGNAL \ADC:AMuxHw_2_Decoder_old_id_2\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_old_id_2\ : SIGNAL IS "U(2,1,B)3";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_old_id_2\ : SIGNAL IS "U(2,4,A)2";
     SIGNAL \ADC:AMuxHw_2_Decoder_old_id_3\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_old_id_3\ : SIGNAL IS "U(2,1,A)2";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_old_id_3\ : SIGNAL IS "U(1,0,B)0";
     SIGNAL \ADC:AMuxHw_2_Decoder_old_id_4\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_old_id_4\ : SIGNAL IS "U(2,0,B)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_old_id_4\ : SIGNAL IS "U(3,5,A)2";
     SIGNAL \ADC:AMuxHw_2_Decoder_old_id_5\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_old_id_5\ : SIGNAL IS "U(2,0,A)2";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_old_id_5\ : SIGNAL IS "U(2,4,A)1";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_0\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_0\ : SIGNAL IS "U(0,0,A)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_0\ : SIGNAL IS "U(0,5,A)1";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_10\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_10\ : SIGNAL IS "U(1,2,B)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_10\ : SIGNAL IS "U(2,1,B)2";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_11\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_11\ : SIGNAL IS "U(2,5,B)0";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_11\ : SIGNAL IS "U(2,1,B)3";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_12\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_12\ : SIGNAL IS "U(3,4,B)0";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_12\ : SIGNAL IS "U(0,0,B)1";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_13\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_13\ : SIGNAL IS "U(1,5,B)3";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_13\ : SIGNAL IS "U(1,5,B)2";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_14\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_14\ : SIGNAL IS "U(3,4,B)3";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_14\ : SIGNAL IS "U(3,3,A)0";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_15\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_15\ : SIGNAL IS "U(3,5,B)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_15\ : SIGNAL IS "U(3,2,A)1";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_16\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_16\ : SIGNAL IS "U(3,3,A)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_16\ : SIGNAL IS "U(0,4,B)3";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_17\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_17\ : SIGNAL IS "U(1,5,A)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_17\ : SIGNAL IS "U(0,2,B)1";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_18\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_18\ : SIGNAL IS "U(2,5,A)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_18\ : SIGNAL IS "U(0,5,A)0";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_19\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_19\ : SIGNAL IS "U(1,5,B)2";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_19\ : SIGNAL IS "U(0,2,B)2";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_1\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_1\ : SIGNAL IS "U(3,1,A)3";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_1\ : SIGNAL IS "U(0,4,B)0";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_20\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_20\ : SIGNAL IS "U(1,2,A)3";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_20\ : SIGNAL IS "U(2,1,A)3";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_21\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_21\ : SIGNAL IS "U(1,1,A)0";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_21\ : SIGNAL IS "U(2,2,B)3";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_22\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_22\ : SIGNAL IS "U(3,1,A)2";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_22\ : SIGNAL IS "U(2,1,A)1";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_23\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_23\ : SIGNAL IS "U(3,2,A)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_23\ : SIGNAL IS "U(0,2,B)3";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_24\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_24\ : SIGNAL IS "U(3,1,B)3";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_24\ : SIGNAL IS "U(0,5,B)0";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_25\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_25\ : SIGNAL IS "U(2,1,B)0";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_25\ : SIGNAL IS "U(0,5,B)2";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_26\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_26\ : SIGNAL IS "U(1,0,B)0";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_26\ : SIGNAL IS "U(0,5,B)3";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_27\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_27\ : SIGNAL IS "U(1,1,A)2";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_27\ : SIGNAL IS "U(2,5,A)3";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_28\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_28\ : SIGNAL IS "U(0,0,B)0";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_28\ : SIGNAL IS "U(2,0,B)0";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_29\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_29\ : SIGNAL IS "U(1,2,B)0";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_29\ : SIGNAL IS "U(1,0,B)3";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_2\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_2\ : SIGNAL IS "U(2,0,A)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_2\ : SIGNAL IS "U(0,5,B)1";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_30\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_30\ : SIGNAL IS "U(3,5,B)2";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_30\ : SIGNAL IS "U(3,4,A)0";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_31\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_31\ : SIGNAL IS "U(3,5,A)2";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_31\ : SIGNAL IS "U(3,1,A)3";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_32\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_32\ : SIGNAL IS "U(2,5,A)0";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_32\ : SIGNAL IS "U(1,5,A)2";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_33\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_33\ : SIGNAL IS "U(1,5,B)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_33\ : SIGNAL IS "U(1,5,A)0";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_34\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_34\ : SIGNAL IS "U(3,1,A)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_34\ : SIGNAL IS "U(0,2,B)0";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_35\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_35\ : SIGNAL IS "U(3,3,A)3";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_35\ : SIGNAL IS "U(3,5,A)0";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_36\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_36\ : SIGNAL IS "U(2,2,B)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_36\ : SIGNAL IS "U(2,5,A)2";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_37\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_37\ : SIGNAL IS "U(0,0,B)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_37\ : SIGNAL IS "U(3,2,B)0";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_38\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_38\ : SIGNAL IS "U(2,5,B)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_38\ : SIGNAL IS "U(2,2,B)1";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_39\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_39\ : SIGNAL IS "U(3,5,A)3";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_39\ : SIGNAL IS "U(3,4,B)1";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_3\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_3\ : SIGNAL IS "U(1,1,A)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_3\ : SIGNAL IS "U(0,4,A)0";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_40\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_40\ : SIGNAL IS "U(0,1,B)2";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_40\ : SIGNAL IS "U(3,3,A)1";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_41\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_41\ : SIGNAL IS "U(3,0,B)0";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_41\ : SIGNAL IS "U(3,4,B)2";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_42\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_42\ : SIGNAL IS "U(0,1,B)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_42\ : SIGNAL IS "U(3,5,B)3";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_43\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_43\ : SIGNAL IS "U(3,4,B)2";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_43\ : SIGNAL IS "U(2,4,A)3";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_44\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_44\ : SIGNAL IS "U(0,5,A)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_44\ : SIGNAL IS "U(3,2,A)2";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_45\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_45\ : SIGNAL IS "U(3,3,A)0";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_45\ : SIGNAL IS "U(3,2,A)0";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_46\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_46\ : SIGNAL IS "U(1,2,A)0";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_46\ : SIGNAL IS "U(3,3,B)0";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_47\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_47\ : SIGNAL IS "U(3,1,B)0";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_47\ : SIGNAL IS "U(3,3,A)2";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_48\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_48\ : SIGNAL IS "U(3,5,A)0";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_48\ : SIGNAL IS "U(3,4,B)3";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_49\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_49\ : SIGNAL IS "U(3,1,B)2";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_49\ : SIGNAL IS "U(2,1,B)1";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_4\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_4\ : SIGNAL IS "U(2,0,B)2";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_4\ : SIGNAL IS "U(3,2,B)3";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_50\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_50\ : SIGNAL IS "U(2,0,A)3";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_50\ : SIGNAL IS "U(3,5,B)0";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_51\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_51\ : SIGNAL IS "U(1,2,A)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_51\ : SIGNAL IS "U(1,5,A)1";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_52\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_52\ : SIGNAL IS "U(1,1,B)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_52\ : SIGNAL IS "U(3,3,B)3";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_53\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_53\ : SIGNAL IS "U(3,5,B)3";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_53\ : SIGNAL IS "U(0,4,B)1";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_54\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_54\ : SIGNAL IS "U(2,2,B)0";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_54\ : SIGNAL IS "U(3,4,A)2";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_55\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_55\ : SIGNAL IS "U(3,2,A)2";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_55\ : SIGNAL IS "U(0,4,A)2";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_56\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_56\ : SIGNAL IS "U(2,1,A)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_56\ : SIGNAL IS "U(2,1,A)2";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_57\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_57\ : SIGNAL IS "U(3,5,B)0";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_57\ : SIGNAL IS "U(2,2,B)0";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_58\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_58\ : SIGNAL IS "U(2,0,A)0";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_58\ : SIGNAL IS "U(3,3,B)1";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_59\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_59\ : SIGNAL IS "U(2,5,A)3";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_59\ : SIGNAL IS "U(3,4,A)3";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_5\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_5\ : SIGNAL IS "U(0,0,A)3";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_5\ : SIGNAL IS "U(3,4,A)1";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_60\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_60\ : SIGNAL IS "U(1,5,A)0";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_60\ : SIGNAL IS "U(0,0,B)2";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_61\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_61\ : SIGNAL IS "U(3,2,B)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_61\ : SIGNAL IS "U(2,1,A)0";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_62\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_62\ : SIGNAL IS "U(1,2,B)2";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_62\ : SIGNAL IS "U(2,0,B)2";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_63\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_63\ : SIGNAL IS "U(1,2,B)3";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_63\ : SIGNAL IS "U(3,3,B)2";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_6\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_6\ : SIGNAL IS "U(2,1,B)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_6\ : SIGNAL IS "U(1,5,B)3";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_7\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_7\ : SIGNAL IS "U(1,1,B)0";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_7\ : SIGNAL IS "U(0,4,A)3";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_8\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_8\ : SIGNAL IS "U(1,0,B)2";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_8\ : SIGNAL IS "U(2,1,B)0";
     SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_9\ : bit;
-    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_9\ : SIGNAL IS "U(1,0,B)1";
+    ATTRIBUTE placement_force OF \ADC:AMuxHw_2_Decoder_one_hot_9\ : SIGNAL IS "U(3,1,A)0";
     SIGNAL \ADC:Net_3698\ : bit;
     SIGNAL \ADC:Net_3830\ : bit;
     SIGNAL \ADC:Net_3935\ : bit;
@@ -238,9 +252,9 @@ ARCHITECTURE __DEFAULT__ OF MSFT_Interface IS
     SIGNAL \ADC:SAR:Net_207_9\ : bit;
     SIGNAL \ADC:SAR:Net_252\ : bit;
     SIGNAL \ADC:bSAR_SEQ:bus_clk_nrq_reg\ : bit;
-    ATTRIBUTE placement_force OF \ADC:bSAR_SEQ:bus_clk_nrq_reg\ : SIGNAL IS "U(1,3,A)0";
+    ATTRIBUTE placement_force OF \ADC:bSAR_SEQ:bus_clk_nrq_reg\ : SIGNAL IS "U(0,1,B)3";
     SIGNAL \ADC:bSAR_SEQ:cnt_enable\ : bit;
-    ATTRIBUTE placement_force OF \ADC:bSAR_SEQ:cnt_enable\ : SIGNAL IS "U(2,1,A)0";
+    ATTRIBUTE placement_force OF \ADC:bSAR_SEQ:cnt_enable\ : SIGNAL IS "U(1,4,A)1";
     SIGNAL \ADC:bSAR_SEQ:cnt_tc\ : bit;
     SIGNAL \ADC:bSAR_SEQ:control_2\ : bit;
     SIGNAL \ADC:bSAR_SEQ:control_3\ : bit;
@@ -252,7 +266,7 @@ ARCHITECTURE __DEFAULT__ OF MSFT_Interface IS
     SIGNAL \ADC:bSAR_SEQ:enable\ : bit;
     SIGNAL \ADC:bSAR_SEQ:load_period\ : bit;
     SIGNAL \ADC:bSAR_SEQ:nrq_reg\ : bit;
-    ATTRIBUTE placement_force OF \ADC:bSAR_SEQ:nrq_reg\ : SIGNAL IS "U(1,3,B)1";
+    ATTRIBUTE placement_force OF \ADC:bSAR_SEQ:nrq_reg\ : SIGNAL IS "U(0,1,A)0";
     SIGNAL \ADC:ch_addr_0\ : bit;
     SIGNAL \ADC:ch_addr_1\ : bit;
     SIGNAL \ADC:ch_addr_2\ : bit;
@@ -274,7 +288,7 @@ ARCHITECTURE __DEFAULT__ OF MSFT_Interface IS
     SIGNAL \PWM_1:PWMUDB:control_6\ : bit;
     SIGNAL \PWM_1:PWMUDB:control_7\ : bit;
     SIGNAL \PWM_1:PWMUDB:runmode_enable\ : bit;
-    ATTRIBUTE placement_force OF \PWM_1:PWMUDB:runmode_enable\ : SIGNAL IS "U(3,0,A)0";
+    ATTRIBUTE placement_force OF \PWM_1:PWMUDB:runmode_enable\ : SIGNAL IS "U(0,0,A)0";
     SIGNAL \PWM_2:PWMUDB:sP16:pwmdp:u0.ce0__sig\ : bit;
     SIGNAL \PWM_1:PWMUDB:tc_i\ : bit;
     SIGNAL \PWM_2:PWMUDB:cmp1_less\ : bit;
@@ -287,7 +301,7 @@ ARCHITECTURE __DEFAULT__ OF MSFT_Interface IS
     SIGNAL \PWM_2:PWMUDB:control_6\ : bit;
     SIGNAL \PWM_2:PWMUDB:control_7\ : bit;
     SIGNAL \PWM_2:PWMUDB:runmode_enable\ : bit;
-    ATTRIBUTE placement_force OF \PWM_2:PWMUDB:runmode_enable\ : SIGNAL IS "U(1,0,A)2";
+    ATTRIBUTE placement_force OF \PWM_2:PWMUDB:runmode_enable\ : SIGNAL IS "U(0,3,A)1";
     SIGNAL \PWM_3:PWMUDB:sP16:pwmdp:u0.ce0__sig\ : bit;
     SIGNAL \PWM_2:PWMUDB:tc_i\ : bit;
     SIGNAL \PWM_3:PWMUDB:cmp1_less\ : bit;
@@ -300,7 +314,7 @@ ARCHITECTURE __DEFAULT__ OF MSFT_Interface IS
     SIGNAL \PWM_3:PWMUDB:control_6\ : bit;
     SIGNAL \PWM_3:PWMUDB:control_7\ : bit;
     SIGNAL \PWM_3:PWMUDB:runmode_enable\ : bit;
-    ATTRIBUTE placement_force OF \PWM_3:PWMUDB:runmode_enable\ : SIGNAL IS "U(0,1,A)0";
+    ATTRIBUTE placement_force OF \PWM_3:PWMUDB:runmode_enable\ : SIGNAL IS "U(0,3,A)0";
     SIGNAL \PWM_4:PWMUDB:sP16:pwmdp:u0.ce0__sig\ : bit;
     SIGNAL \PWM_3:PWMUDB:tc_i\ : bit;
     SIGNAL \PWM_4:PWMUDB:cmp1_eq\ : bit;
@@ -314,15 +328,37 @@ ARCHITECTURE __DEFAULT__ OF MSFT_Interface IS
     SIGNAL \PWM_4:PWMUDB:control_6\ : bit;
     SIGNAL \PWM_4:PWMUDB:control_7\ : bit;
     SIGNAL \PWM_4:PWMUDB:prevCompare1\ : bit;
-    ATTRIBUTE placement_force OF \PWM_4:PWMUDB:prevCompare1\ : SIGNAL IS "U(0,2,A)3";
+    ATTRIBUTE placement_force OF \PWM_4:PWMUDB:prevCompare1\ : SIGNAL IS "U(1,4,A)3";
     SIGNAL \PWM_4:PWMUDB:runmode_enable\ : bit;
-    ATTRIBUTE placement_force OF \PWM_4:PWMUDB:runmode_enable\ : SIGNAL IS "U(0,2,A)0";
+    ATTRIBUTE placement_force OF \PWM_4:PWMUDB:runmode_enable\ : SIGNAL IS "U(1,4,A)0";
+    SIGNAL \PWM_5:PWMUDB:sP16:pwmdp:u0.ce0__sig\ : bit;
     SIGNAL \PWM_4:PWMUDB:status_0\ : bit;
-    ATTRIBUTE placement_force OF \PWM_4:PWMUDB:status_0\ : SIGNAL IS "U(0,2,B)0";
+    ATTRIBUTE placement_force OF \PWM_4:PWMUDB:status_0\ : SIGNAL IS "U(1,4,B)0";
     SIGNAL \PWM_4:PWMUDB:status_2\ : bit;
-    ATTRIBUTE placement_force OF \PWM_4:PWMUDB:status_2\ : SIGNAL IS "U(0,2,B)2";
+    ATTRIBUTE placement_force OF \PWM_4:PWMUDB:status_2\ : SIGNAL IS "U(1,4,B)3";
     SIGNAL \PWM_4:PWMUDB:status_3\ : bit;
     SIGNAL \PWM_4:PWMUDB:tc_i\ : bit;
+    SIGNAL \PWM_5:PWMUDB:cmp1_eq\ : bit;
+    SIGNAL \PWM_5:PWMUDB:cmp1_less\ : bit;
+    SIGNAL \PWM_5:PWMUDB:control_0\ : bit;
+    SIGNAL \PWM_5:PWMUDB:control_1\ : bit;
+    SIGNAL \PWM_5:PWMUDB:control_2\ : bit;
+    SIGNAL \PWM_5:PWMUDB:control_3\ : bit;
+    SIGNAL \PWM_5:PWMUDB:control_4\ : bit;
+    SIGNAL \PWM_5:PWMUDB:control_5\ : bit;
+    SIGNAL \PWM_5:PWMUDB:control_6\ : bit;
+    SIGNAL \PWM_5:PWMUDB:control_7\ : bit;
+    SIGNAL \PWM_5:PWMUDB:prevCompare1\ : bit;
+    ATTRIBUTE placement_force OF \PWM_5:PWMUDB:prevCompare1\ : SIGNAL IS "U(3,0,B)3";
+    SIGNAL \PWM_5:PWMUDB:runmode_enable\ : bit;
+    ATTRIBUTE placement_force OF \PWM_5:PWMUDB:runmode_enable\ : SIGNAL IS "U(2,0,A)0";
+    SIGNAL \Timer_1:TimerUDB:sT16:timerdp:u0.ce0__sig\ : bit;
+    SIGNAL \PWM_5:PWMUDB:status_0\ : bit;
+    ATTRIBUTE placement_force OF \PWM_5:PWMUDB:status_0\ : SIGNAL IS "U(3,0,A)1";
+    SIGNAL \PWM_5:PWMUDB:status_2\ : bit;
+    ATTRIBUTE placement_force OF \PWM_5:PWMUDB:status_2\ : SIGNAL IS "U(2,0,A)1";
+    SIGNAL \PWM_5:PWMUDB:status_3\ : bit;
+    SIGNAL \PWM_5:PWMUDB:tc_i\ : bit;
     SIGNAL \RS485CTL:control_0\ : bit;
     SIGNAL \RS485CTL:control_1\ : bit;
     SIGNAL \RS485CTL:control_2\ : bit;
@@ -330,6 +366,31 @@ ARCHITECTURE __DEFAULT__ OF MSFT_Interface IS
     SIGNAL \RS485CTL:control_4\ : bit;
     SIGNAL \RS485CTL:control_5\ : bit;
     SIGNAL \RS485CTL:control_6\ : bit;
+    SIGNAL \Timer_1:TimerUDB:capt_fifo_load\ : bit;
+    ATTRIBUTE placement_force OF \Timer_1:TimerUDB:capt_fifo_load\ : SIGNAL IS "U(3,1,B)0";
+    SIGNAL \Timer_1:TimerUDB:capture_last\ : bit;
+    ATTRIBUTE placement_force OF \Timer_1:TimerUDB:capture_last\ : SIGNAL IS "U(3,1,B)2";
+    SIGNAL \Timer_1:TimerUDB:control_0\ : bit;
+    SIGNAL \Timer_1:TimerUDB:control_1\ : bit;
+    SIGNAL \Timer_1:TimerUDB:control_2\ : bit;
+    SIGNAL \Timer_1:TimerUDB:control_3\ : bit;
+    SIGNAL \Timer_1:TimerUDB:control_4\ : bit;
+    SIGNAL \Timer_1:TimerUDB:control_5\ : bit;
+    SIGNAL \Timer_1:TimerUDB:control_6\ : bit;
+    SIGNAL \Timer_1:TimerUDB:control_7\ : bit;
+    SIGNAL \Timer_1:TimerUDB:per_zero\ : bit;
+    SIGNAL \Timer_1:TimerUDB:status_2\ : bit;
+    SIGNAL \Timer_1:TimerUDB:status_3\ : bit;
+    SIGNAL \Timer_1:TimerUDB:status_tc\ : bit;
+    ATTRIBUTE placement_force OF \Timer_1:TimerUDB:status_tc\ : SIGNAL IS "U(3,1,B)1";
+    SIGNAL \Timer_1:TimerUDB:trig_fall_detected\ : bit;
+    ATTRIBUTE placement_force OF \Timer_1:TimerUDB:trig_fall_detected\ : SIGNAL IS "U(3,0,B)1";
+    SIGNAL \Timer_1:TimerUDB:trig_last\ : bit;
+    ATTRIBUTE placement_force OF \Timer_1:TimerUDB:trig_last\ : SIGNAL IS "U(3,0,A)0";
+    SIGNAL \Timer_1:TimerUDB:trig_reg\ : bit;
+    ATTRIBUTE placement_force OF \Timer_1:TimerUDB:trig_reg\ : SIGNAL IS "U(3,1,A)2";
+    SIGNAL \Timer_1:TimerUDB:trig_rise_detected\ : bit;
+    ATTRIBUTE placement_force OF \Timer_1:TimerUDB:trig_rise_detected\ : SIGNAL IS "U(3,0,B)0";
     SIGNAL \U:BUART:control_0\ : bit;
     SIGNAL \U:BUART:control_1\ : bit;
     SIGNAL \U:BUART:control_2\ : bit;
@@ -339,15 +400,15 @@ ARCHITECTURE __DEFAULT__ OF MSFT_Interface IS
     SIGNAL \U:BUART:control_6\ : bit;
     SIGNAL \U:BUART:control_7\ : bit;
     SIGNAL \U:BUART:counter_load_not\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:counter_load_not\ : SIGNAL IS "U(3,3,B)1";
+    ATTRIBUTE placement_force OF \U:BUART:counter_load_not\ : SIGNAL IS "U(1,5,B)1";
     SIGNAL \U:BUART:pollcount_0\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:pollcount_0\ : SIGNAL IS "U(0,5,B)1";
+    ATTRIBUTE placement_force OF \U:BUART:pollcount_0\ : SIGNAL IS "U(1,0,A)1";
     SIGNAL \U:BUART:pollcount_1\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:pollcount_1\ : SIGNAL IS "U(0,5,B)0";
+    ATTRIBUTE placement_force OF \U:BUART:pollcount_1\ : SIGNAL IS "U(1,0,A)0";
     SIGNAL \U:BUART:rx_address_detected\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:rx_address_detected\ : SIGNAL IS "U(1,4,B)1";
+    ATTRIBUTE placement_force OF \U:BUART:rx_address_detected\ : SIGNAL IS "U(0,2,A)3";
     SIGNAL \U:BUART:rx_bitclk_enable\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:rx_bitclk_enable\ : SIGNAL IS "U(0,5,B)2";
+    ATTRIBUTE placement_force OF \U:BUART:rx_bitclk_enable\ : SIGNAL IS "U(0,3,B)2";
     SIGNAL \U:BUART:rx_count7_tc\ : bit;
     SIGNAL \U:BUART:rx_count_0\ : bit;
     SIGNAL \U:BUART:rx_count_1\ : bit;
@@ -357,63 +418,63 @@ ARCHITECTURE __DEFAULT__ OF MSFT_Interface IS
     SIGNAL \U:BUART:rx_count_5\ : bit;
     SIGNAL \U:BUART:rx_count_6\ : bit;
     SIGNAL \U:BUART:rx_counter_load\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:rx_counter_load\ : SIGNAL IS "U(0,5,A)0";
+    ATTRIBUTE placement_force OF \U:BUART:rx_counter_load\ : SIGNAL IS "U(1,1,B)3";
     SIGNAL \U:BUART:rx_fifofull\ : bit;
     SIGNAL \U:BUART:rx_fifonotempty\ : bit;
     SIGNAL \U:BUART:rx_last\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:rx_last\ : SIGNAL IS "U(0,4,A)2";
+    ATTRIBUTE placement_force OF \U:BUART:rx_last\ : SIGNAL IS "U(1,2,A)1";
     SIGNAL \U:BUART:rx_load_fifo\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:rx_load_fifo\ : SIGNAL IS "U(0,3,A)1";
+    ATTRIBUTE placement_force OF \U:BUART:rx_load_fifo\ : SIGNAL IS "U(1,3,B)1";
     SIGNAL \U:BUART:rx_markspace_pre\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:rx_markspace_pre\ : SIGNAL IS "U(1,4,A)2";
+    ATTRIBUTE placement_force OF \U:BUART:rx_markspace_pre\ : SIGNAL IS "U(1,2,B)3";
     SIGNAL \U:BUART:rx_parity_bit\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:rx_parity_bit\ : SIGNAL IS "U(1,4,A)0";
+    ATTRIBUTE placement_force OF \U:BUART:rx_parity_bit\ : SIGNAL IS "U(1,2,A)0";
     SIGNAL \U:BUART:rx_parity_error_pre\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:rx_parity_error_pre\ : SIGNAL IS "U(0,4,B)0";
+    ATTRIBUTE placement_force OF \U:BUART:rx_parity_error_pre\ : SIGNAL IS "U(1,3,A)0";
     SIGNAL \U:BUART:rx_postpoll\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:rx_postpoll\ : SIGNAL IS "U(0,4,A)3";
+    ATTRIBUTE placement_force OF \U:BUART:rx_postpoll\ : SIGNAL IS "U(1,2,A)2";
     ATTRIBUTE soft OF \U:BUART:rx_postpoll\ : SIGNAL IS 1;
     SIGNAL \U:BUART:rx_state_0\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:rx_state_0\ : SIGNAL IS "U(0,4,A)1";
+    ATTRIBUTE placement_force OF \U:BUART:rx_state_0\ : SIGNAL IS "U(1,2,B)1";
     SIGNAL \U:BUART:rx_state_2\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:rx_state_2\ : SIGNAL IS "U(0,3,B)2";
+    ATTRIBUTE placement_force OF \U:BUART:rx_state_2\ : SIGNAL IS "U(1,3,B)0";
     SIGNAL \U:BUART:rx_state_3\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:rx_state_3\ : SIGNAL IS "U(0,4,A)0";
+    ATTRIBUTE placement_force OF \U:BUART:rx_state_3\ : SIGNAL IS "U(1,1,A)1";
     SIGNAL \U:BUART:rx_state_stop1_reg\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:rx_state_stop1_reg\ : SIGNAL IS "U(0,3,B)1";
+    ATTRIBUTE placement_force OF \U:BUART:rx_state_stop1_reg\ : SIGNAL IS "U(1,2,B)0";
     SIGNAL \U:BUART:rx_status_2\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:rx_status_2\ : SIGNAL IS "U(0,3,A)2";
+    ATTRIBUTE placement_force OF \U:BUART:rx_status_2\ : SIGNAL IS "U(1,3,A)1";
     SIGNAL \U:BUART:rx_status_3\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:rx_status_3\ : SIGNAL IS "U(0,4,B)2";
+    ATTRIBUTE placement_force OF \U:BUART:rx_status_3\ : SIGNAL IS "U(1,2,A)3";
     SIGNAL \U:BUART:rx_status_4\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:rx_status_4\ : SIGNAL IS "U(1,3,A)3";
+    ATTRIBUTE placement_force OF \U:BUART:rx_status_4\ : SIGNAL IS "U(1,4,B)2";
     SIGNAL \U:BUART:rx_status_5\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:rx_status_5\ : SIGNAL IS "U(1,3,A)1";
+    ATTRIBUTE placement_force OF \U:BUART:rx_status_5\ : SIGNAL IS "U(2,2,A)1";
     SIGNAL \U:BUART:tx_bitclk\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:tx_bitclk\ : SIGNAL IS "U(2,4,A)3";
+    ATTRIBUTE placement_force OF \U:BUART:tx_bitclk\ : SIGNAL IS "U(1,1,A)0";
     SIGNAL \U:BUART:tx_bitclk_enable_pre\ : bit;
     SIGNAL \U:BUART:tx_counter_dp\ : bit;
     SIGNAL \U:BUART:tx_ctrl_mark_last\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:tx_ctrl_mark_last\ : SIGNAL IS "U(2,4,B)1";
+    ATTRIBUTE placement_force OF \U:BUART:tx_ctrl_mark_last\ : SIGNAL IS "U(1,0,A)3";
     SIGNAL \U:BUART:tx_fifo_empty\ : bit;
     SIGNAL \U:BUART:tx_fifo_notfull\ : bit;
     SIGNAL \U:BUART:tx_mark\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:tx_mark\ : SIGNAL IS "U(2,4,A)0";
+    ATTRIBUTE placement_force OF \U:BUART:tx_mark\ : SIGNAL IS "U(2,3,B)1";
     SIGNAL \U:BUART:tx_parity_bit\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:tx_parity_bit\ : SIGNAL IS "U(3,3,B)0";
+    ATTRIBUTE placement_force OF \U:BUART:tx_parity_bit\ : SIGNAL IS "U(2,3,B)0";
     SIGNAL \U:BUART:tx_shift_out\ : bit;
     SIGNAL \U:BUART:tx_state_0\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:tx_state_0\ : SIGNAL IS "U(2,4,B)3";
+    ATTRIBUTE placement_force OF \U:BUART:tx_state_0\ : SIGNAL IS "U(2,2,A)0";
     SIGNAL \U:BUART:tx_state_1\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:tx_state_1\ : SIGNAL IS "U(2,3,B)0";
+    ATTRIBUTE placement_force OF \U:BUART:tx_state_1\ : SIGNAL IS "U(2,4,B)1";
     SIGNAL \U:BUART:tx_state_2\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:tx_state_2\ : SIGNAL IS "U(3,4,A)3";
+    ATTRIBUTE placement_force OF \U:BUART:tx_state_2\ : SIGNAL IS "U(1,1,B)0";
     SIGNAL \U:BUART:tx_status_0\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:tx_status_0\ : SIGNAL IS "U(2,5,B)3";
+    ATTRIBUTE placement_force OF \U:BUART:tx_status_0\ : SIGNAL IS "U(2,2,B)2";
     SIGNAL \U:BUART:tx_status_2\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:tx_status_2\ : SIGNAL IS "U(2,5,A)2";
+    ATTRIBUTE placement_force OF \U:BUART:tx_status_2\ : SIGNAL IS "U(2,2,A)3";
     SIGNAL \U:BUART:txn\ : bit;
-    ATTRIBUTE placement_force OF \U:BUART:txn\ : SIGNAL IS "U(2,3,B)3";
+    ATTRIBUTE placement_force OF \U:BUART:txn\ : SIGNAL IS "U(2,4,B)0";
     SIGNAL \U:BUART:txn_split\ : bit;
     ATTRIBUTE placement_force OF \U:BUART:txn_split\ : SIGNAL IS "U(2,3,A)0";
     SIGNAL \U:Net_9\ : bit;
@@ -502,326 +563,397 @@ ARCHITECTURE __DEFAULT__ OF MSFT_Interface IS
     SIGNAL \PWM_4:PWMUDB:sP16:pwmdp:u0.cfbo__sig\ : bit;
     SIGNAL \PWM_4:PWMUDB:sP16:pwmdp:u1.sor__sig\ : bit;
     SIGNAL \PWM_4:PWMUDB:sP16:pwmdp:u1.cmsbo__sig\ : bit;
+    SIGNAL \PWM_5:PWMUDB:sP16:pwmdp:u0.cl0__sig\ : bit;
+    SIGNAL \PWM_5:PWMUDB:sP16:pwmdp:u0.z0__sig\ : bit;
+    SIGNAL \PWM_5:PWMUDB:sP16:pwmdp:u0.ff0__sig\ : bit;
+    SIGNAL \PWM_5:PWMUDB:sP16:pwmdp:u0.ce1__sig\ : bit;
+    SIGNAL \PWM_5:PWMUDB:sP16:pwmdp:u0.cl1__sig\ : bit;
+    SIGNAL \PWM_5:PWMUDB:sP16:pwmdp:u0.z1__sig\ : bit;
+    SIGNAL \PWM_5:PWMUDB:sP16:pwmdp:u0.ff1__sig\ : bit;
+    SIGNAL \PWM_5:PWMUDB:sP16:pwmdp:u0.co_msb__sig\ : bit;
+    SIGNAL \PWM_5:PWMUDB:sP16:pwmdp:u0.sol_msb__sig\ : bit;
+    SIGNAL \PWM_5:PWMUDB:sP16:pwmdp:u0.cfbo__sig\ : bit;
+    SIGNAL \PWM_5:PWMUDB:sP16:pwmdp:u1.sor__sig\ : bit;
+    SIGNAL \PWM_5:PWMUDB:sP16:pwmdp:u1.cmsbo__sig\ : bit;
+    SIGNAL \Timer_1:TimerUDB:sT16:timerdp:u0.cl0__sig\ : bit;
+    SIGNAL \Timer_1:TimerUDB:sT16:timerdp:u0.z0__sig\ : bit;
+    SIGNAL \Timer_1:TimerUDB:sT16:timerdp:u0.ff0__sig\ : bit;
+    SIGNAL \Timer_1:TimerUDB:sT16:timerdp:u0.ce1__sig\ : bit;
+    SIGNAL \Timer_1:TimerUDB:sT16:timerdp:u0.cl1__sig\ : bit;
+    SIGNAL \Timer_1:TimerUDB:sT16:timerdp:u0.z1__sig\ : bit;
+    SIGNAL \Timer_1:TimerUDB:sT16:timerdp:u0.ff1__sig\ : bit;
+    SIGNAL \Timer_1:TimerUDB:sT16:timerdp:u0.co_msb__sig\ : bit;
+    SIGNAL \Timer_1:TimerUDB:sT16:timerdp:u0.sol_msb__sig\ : bit;
+    SIGNAL \Timer_1:TimerUDB:sT16:timerdp:u0.cfbo__sig\ : bit;
+    SIGNAL \Timer_1:TimerUDB:sT16:timerdp:u1.sor__sig\ : bit;
+    SIGNAL \Timer_1:TimerUDB:sT16:timerdp:u1.cmsbo__sig\ : bit;
     ATTRIBUTE Location OF ClockBlock : LABEL IS "F(Clock,0)";
     ATTRIBUTE lib_model OF DE(0) : LABEL IS "iocell1";
     ATTRIBUTE Location OF DE(0) : LABEL IS "P1[7]";
-    ATTRIBUTE lib_model OF LED_1(0) : LABEL IS "iocell2";
+    ATTRIBUTE lib_model OF EchoSignal(0) : LABEL IS "iocell2";
+    ATTRIBUTE Location OF EchoSignal(0) : LABEL IS "P0[2]";
+    ATTRIBUTE Location OF EchoSignal(0)_SYNC : LABEL IS "U(2,1)";
+    ATTRIBUTE lib_model OF LED_1(0) : LABEL IS "iocell3";
     ATTRIBUTE Location OF LED_1(0) : LABEL IS "P2[1]";
-    ATTRIBUTE lib_model OF LED_2(0) : LABEL IS "iocell3";
+    ATTRIBUTE lib_model OF LED_2(0) : LABEL IS "iocell4";
     ATTRIBUTE Location OF LED_2(0) : LABEL IS "P2[2]";
-    ATTRIBUTE lib_model OF LED_3(0) : LABEL IS "iocell4";
+    ATTRIBUTE lib_model OF LED_3(0) : LABEL IS "iocell5";
     ATTRIBUTE Location OF LED_3(0) : LABEL IS "P2[3]";
     ATTRIBUTE lib_model OF Net_1048 : LABEL IS "macrocell1";
-    ATTRIBUTE Location OF Net_1048 : LABEL IS "U(1,3)";
+    ATTRIBUTE Location OF Net_1048 : LABEL IS "U(0,1)";
     ATTRIBUTE lib_model OF Net_1558 : LABEL IS "macrocell2";
-    ATTRIBUTE Location OF Net_1558 : LABEL IS "U(3,0)";
+    ATTRIBUTE Location OF Net_1558 : LABEL IS "U(0,0)";
     ATTRIBUTE lib_model OF Net_218 : LABEL IS "macrocell3";
-    ATTRIBUTE Location OF Net_218 : LABEL IS "U(3,3)";
+    ATTRIBUTE Location OF Net_218 : LABEL IS "U(2,4)";
     ATTRIBUTE lib_model OF Net_2572 : LABEL IS "macrocell4";
-    ATTRIBUTE Location OF Net_2572 : LABEL IS "U(1,0)";
+    ATTRIBUTE Location OF Net_2572 : LABEL IS "U(0,0)";
     ATTRIBUTE lib_model OF Net_3149 : LABEL IS "macrocell5";
-    ATTRIBUTE Location OF Net_3149 : LABEL IS "U(0,1)";
+    ATTRIBUTE Location OF Net_3149 : LABEL IS "U(0,3)";
     ATTRIBUTE lib_model OF Net_318 : LABEL IS "macrocell6";
-    ATTRIBUTE Location OF Net_318 : LABEL IS "U(2,4)";
+    ATTRIBUTE Location OF Net_318 : LABEL IS "U(1,0)";
     ATTRIBUTE lib_model OF Net_3678 : LABEL IS "macrocell7";
-    ATTRIBUTE Location OF Net_3678 : LABEL IS "U(0,2)";
-    ATTRIBUTE lib_model OF Pin_1(0) : LABEL IS "iocell5";
+    ATTRIBUTE Location OF Net_3678 : LABEL IS "U(1,4)";
+    ATTRIBUTE lib_model OF Net_4187 : LABEL IS "macrocell8";
+    ATTRIBUTE Location OF Net_4187 : LABEL IS "U(2,0)";
+    ATTRIBUTE lib_model OF Net_4279 : LABEL IS "macrocell9";
+    ATTRIBUTE Location OF Net_4279 : LABEL IS "U(3,0)";
+    ATTRIBUTE lib_model OF Pin_1(0) : LABEL IS "iocell6";
     ATTRIBUTE Location OF Pin_1(0) : LABEL IS "P0[0]";
-    ATTRIBUTE lib_model OF Rx_1(0) : LABEL IS "iocell6";
+    ATTRIBUTE lib_model OF Rx_1(0) : LABEL IS "iocell7";
     ATTRIBUTE Location OF Rx_1(0) : LABEL IS "P12[7]";
-    ATTRIBUTE Location OF Rx_1(0)_SYNC : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF SRVO1(0) : LABEL IS "iocell7";
+    ATTRIBUTE Location OF Rx_1(0)_SYNC : LABEL IS "U(1,1)";
+    ATTRIBUTE lib_model OF SRVO1(0) : LABEL IS "iocell8";
     ATTRIBUTE Location OF SRVO1(0) : LABEL IS "P2[4]";
-    ATTRIBUTE lib_model OF Tx_1(0) : LABEL IS "iocell8";
+    ATTRIBUTE lib_model OF TrigSignal(0) : LABEL IS "iocell9";
+    ATTRIBUTE Location OF TrigSignal(0) : LABEL IS "P0[3]";
+    ATTRIBUTE lib_model OF Tx_1(0) : LABEL IS "iocell10";
     ATTRIBUTE Location OF Tx_1(0) : LABEL IS "P1[6]";
-    ATTRIBUTE lib_model OF VBUS(0) : LABEL IS "iocell9";
+    ATTRIBUTE lib_model OF VBUS(0) : LABEL IS "iocell11";
     ATTRIBUTE Location OF VBUS(0) : LABEL IS "P0[1]";
-    ATTRIBUTE lib_model OF Vpot(0) : LABEL IS "iocell10";
+    ATTRIBUTE lib_model OF Vpot(0) : LABEL IS "iocell12";
     ATTRIBUTE Location OF Vpot(0) : LABEL IS "P3[3]";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_is_active\ : LABEL IS "macrocell8";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_is_active\ : LABEL IS "U(2,2)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_is_active_split\ : LABEL IS "macrocell9";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_is_active_split\ : LABEL IS "U(2,2)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_old_id_0\ : LABEL IS "macrocell10";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_old_id_0\ : LABEL IS "U(2,0)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_old_id_1\ : LABEL IS "macrocell11";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_old_id_1\ : LABEL IS "U(2,1)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_old_id_2\ : LABEL IS "macrocell12";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_old_id_2\ : LABEL IS "U(2,1)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_old_id_3\ : LABEL IS "macrocell13";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_old_id_3\ : LABEL IS "U(2,1)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_old_id_4\ : LABEL IS "macrocell14";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_old_id_4\ : LABEL IS "U(2,0)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_old_id_5\ : LABEL IS "macrocell15";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_old_id_5\ : LABEL IS "U(2,0)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_0\ : LABEL IS "macrocell16";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_0\ : LABEL IS "U(0,0)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_10\ : LABEL IS "macrocell17";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_10\ : LABEL IS "U(1,2)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_11\ : LABEL IS "macrocell18";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_11\ : LABEL IS "U(2,5)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_12\ : LABEL IS "macrocell19";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_12\ : LABEL IS "U(3,4)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_13\ : LABEL IS "macrocell20";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_is_active\ : LABEL IS "macrocell10";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_is_active\ : LABEL IS "U(2,5)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_is_active_split\ : LABEL IS "macrocell11";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_is_active_split\ : LABEL IS "U(2,5)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_old_id_0\ : LABEL IS "macrocell12";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_old_id_0\ : LABEL IS "U(3,5)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_old_id_1\ : LABEL IS "macrocell13";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_old_id_1\ : LABEL IS "U(3,5)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_old_id_2\ : LABEL IS "macrocell14";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_old_id_2\ : LABEL IS "U(2,4)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_old_id_3\ : LABEL IS "macrocell15";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_old_id_3\ : LABEL IS "U(1,0)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_old_id_4\ : LABEL IS "macrocell16";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_old_id_4\ : LABEL IS "U(3,5)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_old_id_5\ : LABEL IS "macrocell17";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_old_id_5\ : LABEL IS "U(2,4)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_0\ : LABEL IS "macrocell18";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_0\ : LABEL IS "U(0,5)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_10\ : LABEL IS "macrocell19";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_10\ : LABEL IS "U(2,1)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_11\ : LABEL IS "macrocell20";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_11\ : LABEL IS "U(2,1)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_12\ : LABEL IS "macrocell21";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_12\ : LABEL IS "U(0,0)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_13\ : LABEL IS "macrocell22";
     ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_13\ : LABEL IS "U(1,5)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_14\ : LABEL IS "macrocell21";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_14\ : LABEL IS "U(3,4)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_15\ : LABEL IS "macrocell22";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_15\ : LABEL IS "U(3,5)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_16\ : LABEL IS "macrocell23";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_16\ : LABEL IS "U(3,3)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_17\ : LABEL IS "macrocell24";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_17\ : LABEL IS "U(1,5)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_18\ : LABEL IS "macrocell25";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_18\ : LABEL IS "U(2,5)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_19\ : LABEL IS "macrocell26";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_19\ : LABEL IS "U(1,5)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_1\ : LABEL IS "macrocell27";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_1\ : LABEL IS "U(3,1)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_20\ : LABEL IS "macrocell28";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_20\ : LABEL IS "U(1,2)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_21\ : LABEL IS "macrocell29";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_21\ : LABEL IS "U(1,1)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_22\ : LABEL IS "macrocell30";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_22\ : LABEL IS "U(3,1)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_23\ : LABEL IS "macrocell31";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_23\ : LABEL IS "U(3,2)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_24\ : LABEL IS "macrocell32";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_24\ : LABEL IS "U(3,1)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_25\ : LABEL IS "macrocell33";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_25\ : LABEL IS "U(2,1)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_26\ : LABEL IS "macrocell34";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_26\ : LABEL IS "U(1,0)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_27\ : LABEL IS "macrocell35";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_27\ : LABEL IS "U(1,1)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_28\ : LABEL IS "macrocell36";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_28\ : LABEL IS "U(0,0)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_29\ : LABEL IS "macrocell37";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_29\ : LABEL IS "U(1,2)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_2\ : LABEL IS "macrocell38";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_2\ : LABEL IS "U(2,0)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_30\ : LABEL IS "macrocell39";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_30\ : LABEL IS "U(3,5)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_31\ : LABEL IS "macrocell40";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_31\ : LABEL IS "U(3,5)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_32\ : LABEL IS "macrocell41";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_32\ : LABEL IS "U(2,5)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_33\ : LABEL IS "macrocell42";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_14\ : LABEL IS "macrocell23";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_14\ : LABEL IS "U(3,3)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_15\ : LABEL IS "macrocell24";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_15\ : LABEL IS "U(3,2)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_16\ : LABEL IS "macrocell25";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_16\ : LABEL IS "U(0,4)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_17\ : LABEL IS "macrocell26";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_17\ : LABEL IS "U(0,2)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_18\ : LABEL IS "macrocell27";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_18\ : LABEL IS "U(0,5)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_19\ : LABEL IS "macrocell28";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_19\ : LABEL IS "U(0,2)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_1\ : LABEL IS "macrocell29";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_1\ : LABEL IS "U(0,4)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_20\ : LABEL IS "macrocell30";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_20\ : LABEL IS "U(2,1)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_21\ : LABEL IS "macrocell31";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_21\ : LABEL IS "U(2,2)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_22\ : LABEL IS "macrocell32";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_22\ : LABEL IS "U(2,1)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_23\ : LABEL IS "macrocell33";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_23\ : LABEL IS "U(0,2)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_24\ : LABEL IS "macrocell34";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_24\ : LABEL IS "U(0,5)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_25\ : LABEL IS "macrocell35";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_25\ : LABEL IS "U(0,5)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_26\ : LABEL IS "macrocell36";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_26\ : LABEL IS "U(0,5)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_27\ : LABEL IS "macrocell37";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_27\ : LABEL IS "U(2,5)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_28\ : LABEL IS "macrocell38";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_28\ : LABEL IS "U(2,0)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_29\ : LABEL IS "macrocell39";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_29\ : LABEL IS "U(1,0)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_2\ : LABEL IS "macrocell40";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_2\ : LABEL IS "U(0,5)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_30\ : LABEL IS "macrocell41";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_30\ : LABEL IS "U(3,4)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_31\ : LABEL IS "macrocell42";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_31\ : LABEL IS "U(3,1)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_32\ : LABEL IS "macrocell43";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_32\ : LABEL IS "U(1,5)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_33\ : LABEL IS "macrocell44";
     ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_33\ : LABEL IS "U(1,5)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_34\ : LABEL IS "macrocell43";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_34\ : LABEL IS "U(3,1)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_35\ : LABEL IS "macrocell44";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_35\ : LABEL IS "U(3,3)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_36\ : LABEL IS "macrocell45";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_36\ : LABEL IS "U(2,2)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_37\ : LABEL IS "macrocell46";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_37\ : LABEL IS "U(0,0)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_38\ : LABEL IS "macrocell47";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_38\ : LABEL IS "U(2,5)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_39\ : LABEL IS "macrocell48";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_39\ : LABEL IS "U(3,5)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_3\ : LABEL IS "macrocell49";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_3\ : LABEL IS "U(1,1)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_40\ : LABEL IS "macrocell50";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_40\ : LABEL IS "U(0,1)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_41\ : LABEL IS "macrocell51";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_41\ : LABEL IS "U(3,0)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_42\ : LABEL IS "macrocell52";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_42\ : LABEL IS "U(0,1)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_43\ : LABEL IS "macrocell53";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_43\ : LABEL IS "U(3,4)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_44\ : LABEL IS "macrocell54";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_44\ : LABEL IS "U(0,5)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_45\ : LABEL IS "macrocell55";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_45\ : LABEL IS "U(3,3)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_46\ : LABEL IS "macrocell56";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_46\ : LABEL IS "U(1,2)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_47\ : LABEL IS "macrocell57";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_47\ : LABEL IS "U(3,1)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_48\ : LABEL IS "macrocell58";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_48\ : LABEL IS "U(3,5)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_49\ : LABEL IS "macrocell59";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_49\ : LABEL IS "U(3,1)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_4\ : LABEL IS "macrocell60";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_4\ : LABEL IS "U(2,0)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_50\ : LABEL IS "macrocell61";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_50\ : LABEL IS "U(2,0)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_51\ : LABEL IS "macrocell62";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_51\ : LABEL IS "U(1,2)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_52\ : LABEL IS "macrocell63";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_52\ : LABEL IS "U(1,1)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_53\ : LABEL IS "macrocell64";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_53\ : LABEL IS "U(3,5)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_54\ : LABEL IS "macrocell65";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_54\ : LABEL IS "U(2,2)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_55\ : LABEL IS "macrocell66";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_55\ : LABEL IS "U(3,2)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_56\ : LABEL IS "macrocell67";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_34\ : LABEL IS "macrocell45";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_34\ : LABEL IS "U(0,2)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_35\ : LABEL IS "macrocell46";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_35\ : LABEL IS "U(3,5)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_36\ : LABEL IS "macrocell47";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_36\ : LABEL IS "U(2,5)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_37\ : LABEL IS "macrocell48";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_37\ : LABEL IS "U(3,2)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_38\ : LABEL IS "macrocell49";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_38\ : LABEL IS "U(2,2)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_39\ : LABEL IS "macrocell50";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_39\ : LABEL IS "U(3,4)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_3\ : LABEL IS "macrocell51";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_3\ : LABEL IS "U(0,4)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_40\ : LABEL IS "macrocell52";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_40\ : LABEL IS "U(3,3)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_41\ : LABEL IS "macrocell53";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_41\ : LABEL IS "U(3,4)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_42\ : LABEL IS "macrocell54";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_42\ : LABEL IS "U(3,5)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_43\ : LABEL IS "macrocell55";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_43\ : LABEL IS "U(2,4)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_44\ : LABEL IS "macrocell56";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_44\ : LABEL IS "U(3,2)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_45\ : LABEL IS "macrocell57";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_45\ : LABEL IS "U(3,2)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_46\ : LABEL IS "macrocell58";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_46\ : LABEL IS "U(3,3)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_47\ : LABEL IS "macrocell59";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_47\ : LABEL IS "U(3,3)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_48\ : LABEL IS "macrocell60";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_48\ : LABEL IS "U(3,4)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_49\ : LABEL IS "macrocell61";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_49\ : LABEL IS "U(2,1)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_4\ : LABEL IS "macrocell62";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_4\ : LABEL IS "U(3,2)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_50\ : LABEL IS "macrocell63";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_50\ : LABEL IS "U(3,5)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_51\ : LABEL IS "macrocell64";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_51\ : LABEL IS "U(1,5)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_52\ : LABEL IS "macrocell65";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_52\ : LABEL IS "U(3,3)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_53\ : LABEL IS "macrocell66";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_53\ : LABEL IS "U(0,4)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_54\ : LABEL IS "macrocell67";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_54\ : LABEL IS "U(3,4)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_55\ : LABEL IS "macrocell68";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_55\ : LABEL IS "U(0,4)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_56\ : LABEL IS "macrocell69";
     ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_56\ : LABEL IS "U(2,1)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_57\ : LABEL IS "macrocell68";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_57\ : LABEL IS "U(3,5)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_58\ : LABEL IS "macrocell69";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_58\ : LABEL IS "U(2,0)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_59\ : LABEL IS "macrocell70";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_59\ : LABEL IS "U(2,5)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_5\ : LABEL IS "macrocell71";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_5\ : LABEL IS "U(0,0)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_60\ : LABEL IS "macrocell72";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_60\ : LABEL IS "U(1,5)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_61\ : LABEL IS "macrocell73";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_61\ : LABEL IS "U(3,2)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_62\ : LABEL IS "macrocell74";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_62\ : LABEL IS "U(1,2)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_63\ : LABEL IS "macrocell75";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_63\ : LABEL IS "U(1,2)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_6\ : LABEL IS "macrocell76";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_6\ : LABEL IS "U(2,1)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_7\ : LABEL IS "macrocell77";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_7\ : LABEL IS "U(1,1)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_8\ : LABEL IS "macrocell78";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_8\ : LABEL IS "U(1,0)";
-    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_9\ : LABEL IS "macrocell79";
-    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_9\ : LABEL IS "U(1,0)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_57\ : LABEL IS "macrocell70";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_57\ : LABEL IS "U(2,2)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_58\ : LABEL IS "macrocell71";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_58\ : LABEL IS "U(3,3)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_59\ : LABEL IS "macrocell72";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_59\ : LABEL IS "U(3,4)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_5\ : LABEL IS "macrocell73";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_5\ : LABEL IS "U(3,4)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_60\ : LABEL IS "macrocell74";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_60\ : LABEL IS "U(0,0)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_61\ : LABEL IS "macrocell75";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_61\ : LABEL IS "U(2,1)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_62\ : LABEL IS "macrocell76";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_62\ : LABEL IS "U(2,0)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_63\ : LABEL IS "macrocell77";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_63\ : LABEL IS "U(3,3)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_6\ : LABEL IS "macrocell78";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_6\ : LABEL IS "U(1,5)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_7\ : LABEL IS "macrocell79";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_7\ : LABEL IS "U(0,4)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_8\ : LABEL IS "macrocell80";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_8\ : LABEL IS "U(2,1)";
+    ATTRIBUTE lib_model OF \ADC:AMuxHw_2_Decoder_one_hot_9\ : LABEL IS "macrocell81";
+    ATTRIBUTE Location OF \ADC:AMuxHw_2_Decoder_one_hot_9\ : LABEL IS "U(3,1)";
     ATTRIBUTE lib_model OF \ADC:FinalBuf\ : LABEL IS "drqcell1";
     ATTRIBUTE Location OF \ADC:FinalBuf\ : LABEL IS "[DrqHod=(0)][DrqId=(0)]";
     ATTRIBUTE Location OF \ADC:IRQ\ : LABEL IS "[IntrHod=(0)][IntrId=(0)]";
     ATTRIBUTE Location OF \ADC:SAR:ADC_SAR\ : LABEL IS "F(SAR,1)";
-    ATTRIBUTE Location OF \ADC:Sync:genblk1[0]:INST\ : LABEL IS "U(1,3)";
+    ATTRIBUTE Location OF \ADC:Sync:genblk1[0]:INST\ : LABEL IS "U(1,1)";
     ATTRIBUTE lib_model OF \ADC:TempBuf\ : LABEL IS "drqcell2";
     ATTRIBUTE Location OF \ADC:TempBuf\ : LABEL IS "[DrqHod=(0)][DrqId=(1)]";
-    ATTRIBUTE Location OF \ADC:bSAR_SEQ:ChannelCounter\ : LABEL IS "U(2,1)";
+    ATTRIBUTE Location OF \ADC:bSAR_SEQ:ChannelCounter\ : LABEL IS "U(2,4)";
     ATTRIBUTE lib_model OF \ADC:bSAR_SEQ:CtrlReg\ : LABEL IS "controlcell1";
-    ATTRIBUTE Location OF \ADC:bSAR_SEQ:CtrlReg\ : LABEL IS "U(1,1)";
+    ATTRIBUTE Location OF \ADC:bSAR_SEQ:CtrlReg\ : LABEL IS "U(1,5)";
     ATTRIBUTE lib_model OF \ADC:bSAR_SEQ:EOCSts\ : LABEL IS "statuscell1";
-    ATTRIBUTE Location OF \ADC:bSAR_SEQ:EOCSts\ : LABEL IS "U(1,2)";
-    ATTRIBUTE lib_model OF \ADC:bSAR_SEQ:bus_clk_nrq_reg\ : LABEL IS "macrocell80";
-    ATTRIBUTE Location OF \ADC:bSAR_SEQ:bus_clk_nrq_reg\ : LABEL IS "U(1,3)";
-    ATTRIBUTE lib_model OF \ADC:bSAR_SEQ:cnt_enable\ : LABEL IS "macrocell81";
-    ATTRIBUTE Location OF \ADC:bSAR_SEQ:cnt_enable\ : LABEL IS "U(2,1)";
-    ATTRIBUTE lib_model OF \ADC:bSAR_SEQ:nrq_reg\ : LABEL IS "macrocell82";
-    ATTRIBUTE Location OF \ADC:bSAR_SEQ:nrq_reg\ : LABEL IS "U(1,3)";
+    ATTRIBUTE Location OF \ADC:bSAR_SEQ:EOCSts\ : LABEL IS "U(1,0)";
+    ATTRIBUTE lib_model OF \ADC:bSAR_SEQ:bus_clk_nrq_reg\ : LABEL IS "macrocell82";
+    ATTRIBUTE Location OF \ADC:bSAR_SEQ:bus_clk_nrq_reg\ : LABEL IS "U(0,1)";
+    ATTRIBUTE lib_model OF \ADC:bSAR_SEQ:cnt_enable\ : LABEL IS "macrocell83";
+    ATTRIBUTE Location OF \ADC:bSAR_SEQ:cnt_enable\ : LABEL IS "U(1,4)";
+    ATTRIBUTE lib_model OF \ADC:bSAR_SEQ:nrq_reg\ : LABEL IS "macrocell84";
+    ATTRIBUTE Location OF \ADC:bSAR_SEQ:nrq_reg\ : LABEL IS "U(0,1)";
     ATTRIBUTE lib_model OF \PWM_1:PWMUDB:genblk1:ctrlreg\ : LABEL IS "controlcell2";
-    ATTRIBUTE Location OF \PWM_1:PWMUDB:genblk1:ctrlreg\ : LABEL IS "U(3,0)";
-    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:runmode_enable\ : LABEL IS "macrocell83";
-    ATTRIBUTE Location OF \PWM_1:PWMUDB:runmode_enable\ : LABEL IS "U(3,0)";
+    ATTRIBUTE Location OF \PWM_1:PWMUDB:genblk1:ctrlreg\ : LABEL IS "U(0,0)";
+    ATTRIBUTE lib_model OF \PWM_1:PWMUDB:runmode_enable\ : LABEL IS "macrocell85";
+    ATTRIBUTE Location OF \PWM_1:PWMUDB:runmode_enable\ : LABEL IS "U(0,0)";
     ATTRIBUTE lib_model OF \PWM_1:PWMUDB:sP16:pwmdp:u0\ : LABEL IS "datapathcell1";
-    ATTRIBUTE Location OF \PWM_1:PWMUDB:sP16:pwmdp:u0\ : LABEL IS "U(2,0)";
+    ATTRIBUTE Location OF \PWM_1:PWMUDB:sP16:pwmdp:u0\ : LABEL IS "U(0,0)";
     ATTRIBUTE lib_model OF \PWM_1:PWMUDB:sP16:pwmdp:u1\ : LABEL IS "datapathcell2";
-    ATTRIBUTE Location OF \PWM_1:PWMUDB:sP16:pwmdp:u1\ : LABEL IS "U(3,0)";
+    ATTRIBUTE Location OF \PWM_1:PWMUDB:sP16:pwmdp:u1\ : LABEL IS "U(1,0)";
     ATTRIBUTE lib_model OF \PWM_2:PWMUDB:genblk1:ctrlreg\ : LABEL IS "controlcell3";
-    ATTRIBUTE Location OF \PWM_2:PWMUDB:genblk1:ctrlreg\ : LABEL IS "U(1,0)";
-    ATTRIBUTE lib_model OF \PWM_2:PWMUDB:runmode_enable\ : LABEL IS "macrocell84";
-    ATTRIBUTE Location OF \PWM_2:PWMUDB:runmode_enable\ : LABEL IS "U(1,0)";
+    ATTRIBUTE Location OF \PWM_2:PWMUDB:genblk1:ctrlreg\ : LABEL IS "U(0,3)";
+    ATTRIBUTE lib_model OF \PWM_2:PWMUDB:runmode_enable\ : LABEL IS "macrocell86";
+    ATTRIBUTE Location OF \PWM_2:PWMUDB:runmode_enable\ : LABEL IS "U(0,3)";
     ATTRIBUTE lib_model OF \PWM_2:PWMUDB:sP16:pwmdp:u0\ : LABEL IS "datapathcell3";
-    ATTRIBUTE Location OF \PWM_2:PWMUDB:sP16:pwmdp:u0\ : LABEL IS "U(0,0)";
+    ATTRIBUTE Location OF \PWM_2:PWMUDB:sP16:pwmdp:u0\ : LABEL IS "U(0,2)";
     ATTRIBUTE lib_model OF \PWM_2:PWMUDB:sP16:pwmdp:u1\ : LABEL IS "datapathcell4";
-    ATTRIBUTE Location OF \PWM_2:PWMUDB:sP16:pwmdp:u1\ : LABEL IS "U(1,0)";
+    ATTRIBUTE Location OF \PWM_2:PWMUDB:sP16:pwmdp:u1\ : LABEL IS "U(0,3)";
     ATTRIBUTE lib_model OF \PWM_3:PWMUDB:genblk1:ctrlreg\ : LABEL IS "controlcell4";
-    ATTRIBUTE Location OF \PWM_3:PWMUDB:genblk1:ctrlreg\ : LABEL IS "U(0,1)";
-    ATTRIBUTE lib_model OF \PWM_3:PWMUDB:runmode_enable\ : LABEL IS "macrocell85";
-    ATTRIBUTE Location OF \PWM_3:PWMUDB:runmode_enable\ : LABEL IS "U(0,1)";
+    ATTRIBUTE Location OF \PWM_3:PWMUDB:genblk1:ctrlreg\ : LABEL IS "U(0,2)";
+    ATTRIBUTE lib_model OF \PWM_3:PWMUDB:runmode_enable\ : LABEL IS "macrocell87";
+    ATTRIBUTE Location OF \PWM_3:PWMUDB:runmode_enable\ : LABEL IS "U(0,3)";
     ATTRIBUTE lib_model OF \PWM_3:PWMUDB:sP16:pwmdp:u0\ : LABEL IS "datapathcell5";
-    ATTRIBUTE Location OF \PWM_3:PWMUDB:sP16:pwmdp:u0\ : LABEL IS "U(1,1)";
+    ATTRIBUTE Location OF \PWM_3:PWMUDB:sP16:pwmdp:u0\ : LABEL IS "U(0,4)";
     ATTRIBUTE lib_model OF \PWM_3:PWMUDB:sP16:pwmdp:u1\ : LABEL IS "datapathcell6";
-    ATTRIBUTE Location OF \PWM_3:PWMUDB:sP16:pwmdp:u1\ : LABEL IS "U(0,1)";
+    ATTRIBUTE Location OF \PWM_3:PWMUDB:sP16:pwmdp:u1\ : LABEL IS "U(0,5)";
     ATTRIBUTE lib_model OF \PWM_4:PWMUDB:genblk1:ctrlreg\ : LABEL IS "controlcell5";
-    ATTRIBUTE Location OF \PWM_4:PWMUDB:genblk1:ctrlreg\ : LABEL IS "U(0,2)";
+    ATTRIBUTE Location OF \PWM_4:PWMUDB:genblk1:ctrlreg\ : LABEL IS "U(1,4)";
     ATTRIBUTE lib_model OF \PWM_4:PWMUDB:genblk8:stsreg\ : LABEL IS "statusicell1";
-    ATTRIBUTE Location OF \PWM_4:PWMUDB:genblk8:stsreg\ : LABEL IS "U(0,2)";
-    ATTRIBUTE lib_model OF \PWM_4:PWMUDB:prevCompare1\ : LABEL IS "macrocell86";
-    ATTRIBUTE Location OF \PWM_4:PWMUDB:prevCompare1\ : LABEL IS "U(0,2)";
-    ATTRIBUTE lib_model OF \PWM_4:PWMUDB:runmode_enable\ : LABEL IS "macrocell87";
-    ATTRIBUTE Location OF \PWM_4:PWMUDB:runmode_enable\ : LABEL IS "U(0,2)";
+    ATTRIBUTE Location OF \PWM_4:PWMUDB:genblk8:stsreg\ : LABEL IS "U(1,4)";
+    ATTRIBUTE lib_model OF \PWM_4:PWMUDB:prevCompare1\ : LABEL IS "macrocell88";
+    ATTRIBUTE Location OF \PWM_4:PWMUDB:prevCompare1\ : LABEL IS "U(1,4)";
+    ATTRIBUTE lib_model OF \PWM_4:PWMUDB:runmode_enable\ : LABEL IS "macrocell89";
+    ATTRIBUTE Location OF \PWM_4:PWMUDB:runmode_enable\ : LABEL IS "U(1,4)";
     ATTRIBUTE lib_model OF \PWM_4:PWMUDB:sP16:pwmdp:u0\ : LABEL IS "datapathcell7";
-    ATTRIBUTE Location OF \PWM_4:PWMUDB:sP16:pwmdp:u0\ : LABEL IS "U(1,2)";
+    ATTRIBUTE Location OF \PWM_4:PWMUDB:sP16:pwmdp:u0\ : LABEL IS "U(1,3)";
     ATTRIBUTE lib_model OF \PWM_4:PWMUDB:sP16:pwmdp:u1\ : LABEL IS "datapathcell8";
-    ATTRIBUTE Location OF \PWM_4:PWMUDB:sP16:pwmdp:u1\ : LABEL IS "U(0,2)";
-    ATTRIBUTE lib_model OF \PWM_4:PWMUDB:status_0\ : LABEL IS "macrocell88";
-    ATTRIBUTE Location OF \PWM_4:PWMUDB:status_0\ : LABEL IS "U(0,2)";
-    ATTRIBUTE lib_model OF \PWM_4:PWMUDB:status_2\ : LABEL IS "macrocell89";
-    ATTRIBUTE Location OF \PWM_4:PWMUDB:status_2\ : LABEL IS "U(0,2)";
-    ATTRIBUTE lib_model OF \RS485CTL:Sync:ctrl_reg\ : LABEL IS "controlcell6";
-    ATTRIBUTE Location OF \RS485CTL:Sync:ctrl_reg\ : LABEL IS "U(1,5)";
-    ATTRIBUTE lib_model OF \U:BUART:counter_load_not\ : LABEL IS "macrocell90";
-    ATTRIBUTE Location OF \U:BUART:counter_load_not\ : LABEL IS "U(3,3)";
-    ATTRIBUTE lib_model OF \U:BUART:pollcount_0\ : LABEL IS "macrocell91";
-    ATTRIBUTE Location OF \U:BUART:pollcount_0\ : LABEL IS "U(0,5)";
-    ATTRIBUTE lib_model OF \U:BUART:pollcount_1\ : LABEL IS "macrocell92";
-    ATTRIBUTE Location OF \U:BUART:pollcount_1\ : LABEL IS "U(0,5)";
-    ATTRIBUTE lib_model OF \U:BUART:rx_address_detected\ : LABEL IS "macrocell93";
-    ATTRIBUTE Location OF \U:BUART:rx_address_detected\ : LABEL IS "U(1,4)";
-    ATTRIBUTE lib_model OF \U:BUART:rx_bitclk_enable\ : LABEL IS "macrocell94";
-    ATTRIBUTE Location OF \U:BUART:rx_bitclk_enable\ : LABEL IS "U(0,5)";
-    ATTRIBUTE lib_model OF \U:BUART:rx_counter_load\ : LABEL IS "macrocell95";
-    ATTRIBUTE Location OF \U:BUART:rx_counter_load\ : LABEL IS "U(0,5)";
-    ATTRIBUTE lib_model OF \U:BUART:rx_last\ : LABEL IS "macrocell96";
-    ATTRIBUTE Location OF \U:BUART:rx_last\ : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF \U:BUART:rx_load_fifo\ : LABEL IS "macrocell97";
-    ATTRIBUTE Location OF \U:BUART:rx_load_fifo\ : LABEL IS "U(0,3)";
-    ATTRIBUTE lib_model OF \U:BUART:rx_markspace_pre\ : LABEL IS "macrocell98";
-    ATTRIBUTE Location OF \U:BUART:rx_markspace_pre\ : LABEL IS "U(1,4)";
-    ATTRIBUTE lib_model OF \U:BUART:rx_parity_bit\ : LABEL IS "macrocell99";
-    ATTRIBUTE Location OF \U:BUART:rx_parity_bit\ : LABEL IS "U(1,4)";
-    ATTRIBUTE lib_model OF \U:BUART:rx_parity_error_pre\ : LABEL IS "macrocell100";
-    ATTRIBUTE Location OF \U:BUART:rx_parity_error_pre\ : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF \U:BUART:rx_postpoll\ : LABEL IS "macrocell101";
-    ATTRIBUTE Location OF \U:BUART:rx_postpoll\ : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF \U:BUART:rx_state_0\ : LABEL IS "macrocell102";
-    ATTRIBUTE Location OF \U:BUART:rx_state_0\ : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF \U:BUART:rx_state_2\ : LABEL IS "macrocell103";
-    ATTRIBUTE Location OF \U:BUART:rx_state_2\ : LABEL IS "U(0,3)";
-    ATTRIBUTE lib_model OF \U:BUART:rx_state_3\ : LABEL IS "macrocell104";
-    ATTRIBUTE Location OF \U:BUART:rx_state_3\ : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF \U:BUART:rx_state_stop1_reg\ : LABEL IS "macrocell105";
-    ATTRIBUTE Location OF \U:BUART:rx_state_stop1_reg\ : LABEL IS "U(0,3)";
-    ATTRIBUTE lib_model OF \U:BUART:rx_status_2\ : LABEL IS "macrocell106";
-    ATTRIBUTE Location OF \U:BUART:rx_status_2\ : LABEL IS "U(0,3)";
-    ATTRIBUTE lib_model OF \U:BUART:rx_status_3\ : LABEL IS "macrocell107";
-    ATTRIBUTE Location OF \U:BUART:rx_status_3\ : LABEL IS "U(0,4)";
-    ATTRIBUTE lib_model OF \U:BUART:rx_status_4\ : LABEL IS "macrocell108";
-    ATTRIBUTE Location OF \U:BUART:rx_status_4\ : LABEL IS "U(1,3)";
-    ATTRIBUTE lib_model OF \U:BUART:rx_status_5\ : LABEL IS "macrocell109";
-    ATTRIBUTE Location OF \U:BUART:rx_status_5\ : LABEL IS "U(1,3)";
-    ATTRIBUTE lib_model OF \U:BUART:sCR_SyncCtl:CtrlReg\ : LABEL IS "controlcell7";
-    ATTRIBUTE Location OF \U:BUART:sCR_SyncCtl:CtrlReg\ : LABEL IS "U(2,4)";
-    ATTRIBUTE Location OF \U:BUART:sRX:RxBitCounter\ : LABEL IS "U(0,5)";
-    ATTRIBUTE lib_model OF \U:BUART:sRX:RxShifter:u0\ : LABEL IS "datapathcell9";
-    ATTRIBUTE Location OF \U:BUART:sRX:RxShifter:u0\ : LABEL IS "U(1,4)";
-    ATTRIBUTE lib_model OF \U:BUART:sRX:RxSts\ : LABEL IS "statusicell2";
-    ATTRIBUTE Location OF \U:BUART:sRX:RxSts\ : LABEL IS "U(0,3)";
-    ATTRIBUTE lib_model OF \U:BUART:sTX:TxShifter:u0\ : LABEL IS "datapathcell10";
-    ATTRIBUTE Location OF \U:BUART:sTX:TxShifter:u0\ : LABEL IS "U(2,5)";
-    ATTRIBUTE lib_model OF \U:BUART:sTX:TxSts\ : LABEL IS "statusicell3";
-    ATTRIBUTE Location OF \U:BUART:sTX:TxSts\ : LABEL IS "U(2,5)";
-    ATTRIBUTE lib_model OF \U:BUART:sTX:sCLOCK:TxBitClkGen\ : LABEL IS "datapathcell11";
-    ATTRIBUTE Location OF \U:BUART:sTX:sCLOCK:TxBitClkGen\ : LABEL IS "U(3,3)";
-    ATTRIBUTE lib_model OF \U:BUART:tx_bitclk\ : LABEL IS "macrocell110";
-    ATTRIBUTE Location OF \U:BUART:tx_bitclk\ : LABEL IS "U(2,4)";
-    ATTRIBUTE lib_model OF \U:BUART:tx_ctrl_mark_last\ : LABEL IS "macrocell111";
-    ATTRIBUTE Location OF \U:BUART:tx_ctrl_mark_last\ : LABEL IS "U(2,4)";
-    ATTRIBUTE lib_model OF \U:BUART:tx_mark\ : LABEL IS "macrocell112";
-    ATTRIBUTE Location OF \U:BUART:tx_mark\ : LABEL IS "U(2,4)";
-    ATTRIBUTE lib_model OF \U:BUART:tx_parity_bit\ : LABEL IS "macrocell113";
-    ATTRIBUTE Location OF \U:BUART:tx_parity_bit\ : LABEL IS "U(3,3)";
-    ATTRIBUTE lib_model OF \U:BUART:tx_state_0\ : LABEL IS "macrocell114";
-    ATTRIBUTE Location OF \U:BUART:tx_state_0\ : LABEL IS "U(2,4)";
-    ATTRIBUTE lib_model OF \U:BUART:tx_state_1\ : LABEL IS "macrocell115";
-    ATTRIBUTE Location OF \U:BUART:tx_state_1\ : LABEL IS "U(2,3)";
-    ATTRIBUTE lib_model OF \U:BUART:tx_state_2\ : LABEL IS "macrocell116";
-    ATTRIBUTE Location OF \U:BUART:tx_state_2\ : LABEL IS "U(3,4)";
-    ATTRIBUTE lib_model OF \U:BUART:tx_status_0\ : LABEL IS "macrocell117";
-    ATTRIBUTE Location OF \U:BUART:tx_status_0\ : LABEL IS "U(2,5)";
-    ATTRIBUTE lib_model OF \U:BUART:tx_status_2\ : LABEL IS "macrocell118";
-    ATTRIBUTE Location OF \U:BUART:tx_status_2\ : LABEL IS "U(2,5)";
-    ATTRIBUTE lib_model OF \U:BUART:txn\ : LABEL IS "macrocell119";
-    ATTRIBUTE Location OF \U:BUART:txn\ : LABEL IS "U(2,3)";
-    ATTRIBUTE lib_model OF \U:BUART:txn_split\ : LABEL IS "macrocell120";
+    ATTRIBUTE Location OF \PWM_4:PWMUDB:sP16:pwmdp:u1\ : LABEL IS "U(1,4)";
+    ATTRIBUTE lib_model OF \PWM_4:PWMUDB:status_0\ : LABEL IS "macrocell90";
+    ATTRIBUTE Location OF \PWM_4:PWMUDB:status_0\ : LABEL IS "U(1,4)";
+    ATTRIBUTE lib_model OF \PWM_4:PWMUDB:status_2\ : LABEL IS "macrocell91";
+    ATTRIBUTE Location OF \PWM_4:PWMUDB:status_2\ : LABEL IS "U(1,4)";
+    ATTRIBUTE lib_model OF \PWM_5:PWMUDB:genblk1:ctrlreg\ : LABEL IS "controlcell6";
+    ATTRIBUTE Location OF \PWM_5:PWMUDB:genblk1:ctrlreg\ : LABEL IS "U(0,1)";
+    ATTRIBUTE lib_model OF \PWM_5:PWMUDB:genblk8:stsreg\ : LABEL IS "statusicell2";
+    ATTRIBUTE Location OF \PWM_5:PWMUDB:genblk8:stsreg\ : LABEL IS "U(3,0)";
+    ATTRIBUTE lib_model OF \PWM_5:PWMUDB:prevCompare1\ : LABEL IS "macrocell92";
+    ATTRIBUTE Location OF \PWM_5:PWMUDB:prevCompare1\ : LABEL IS "U(3,0)";
+    ATTRIBUTE lib_model OF \PWM_5:PWMUDB:runmode_enable\ : LABEL IS "macrocell93";
+    ATTRIBUTE Location OF \PWM_5:PWMUDB:runmode_enable\ : LABEL IS "U(2,0)";
+    ATTRIBUTE lib_model OF \PWM_5:PWMUDB:sP16:pwmdp:u0\ : LABEL IS "datapathcell9";
+    ATTRIBUTE Location OF \PWM_5:PWMUDB:sP16:pwmdp:u0\ : LABEL IS "U(2,0)";
+    ATTRIBUTE lib_model OF \PWM_5:PWMUDB:sP16:pwmdp:u1\ : LABEL IS "datapathcell10";
+    ATTRIBUTE Location OF \PWM_5:PWMUDB:sP16:pwmdp:u1\ : LABEL IS "U(3,0)";
+    ATTRIBUTE lib_model OF \PWM_5:PWMUDB:status_0\ : LABEL IS "macrocell94";
+    ATTRIBUTE Location OF \PWM_5:PWMUDB:status_0\ : LABEL IS "U(3,0)";
+    ATTRIBUTE lib_model OF \PWM_5:PWMUDB:status_2\ : LABEL IS "macrocell95";
+    ATTRIBUTE Location OF \PWM_5:PWMUDB:status_2\ : LABEL IS "U(2,0)";
+    ATTRIBUTE lib_model OF \RS485CTL:Sync:ctrl_reg\ : LABEL IS "controlcell7";
+    ATTRIBUTE Location OF \RS485CTL:Sync:ctrl_reg\ : LABEL IS "U(0,5)";
+    ATTRIBUTE lib_model OF \Timer_1:TimerUDB:capt_fifo_load\ : LABEL IS "macrocell96";
+    ATTRIBUTE Location OF \Timer_1:TimerUDB:capt_fifo_load\ : LABEL IS "U(3,1)";
+    ATTRIBUTE lib_model OF \Timer_1:TimerUDB:capture_last\ : LABEL IS "macrocell97";
+    ATTRIBUTE Location OF \Timer_1:TimerUDB:capture_last\ : LABEL IS "U(3,1)";
+    ATTRIBUTE lib_model OF \Timer_1:TimerUDB:rstSts:stsreg\ : LABEL IS "statusicell3";
+    ATTRIBUTE Location OF \Timer_1:TimerUDB:rstSts:stsreg\ : LABEL IS "U(2,0)";
+    ATTRIBUTE lib_model OF \Timer_1:TimerUDB:sCTRLReg:SyncCtl:ctrlreg\ : LABEL IS "controlcell8";
+    ATTRIBUTE Location OF \Timer_1:TimerUDB:sCTRLReg:SyncCtl:ctrlreg\ : LABEL IS "U(3,1)";
+    ATTRIBUTE lib_model OF \Timer_1:TimerUDB:sT16:timerdp:u0\ : LABEL IS "datapathcell11";
+    ATTRIBUTE Location OF \Timer_1:TimerUDB:sT16:timerdp:u0\ : LABEL IS "U(3,1)";
+    ATTRIBUTE lib_model OF \Timer_1:TimerUDB:sT16:timerdp:u1\ : LABEL IS "datapathcell12";
+    ATTRIBUTE Location OF \Timer_1:TimerUDB:sT16:timerdp:u1\ : LABEL IS "U(2,1)";
+    ATTRIBUTE lib_model OF \Timer_1:TimerUDB:status_tc\ : LABEL IS "macrocell98";
+    ATTRIBUTE Location OF \Timer_1:TimerUDB:status_tc\ : LABEL IS "U(3,1)";
+    ATTRIBUTE lib_model OF \Timer_1:TimerUDB:trig_fall_detected\ : LABEL IS "macrocell99";
+    ATTRIBUTE Location OF \Timer_1:TimerUDB:trig_fall_detected\ : LABEL IS "U(3,0)";
+    ATTRIBUTE lib_model OF \Timer_1:TimerUDB:trig_last\ : LABEL IS "macrocell100";
+    ATTRIBUTE Location OF \Timer_1:TimerUDB:trig_last\ : LABEL IS "U(3,0)";
+    ATTRIBUTE lib_model OF \Timer_1:TimerUDB:trig_reg\ : LABEL IS "macrocell101";
+    ATTRIBUTE Location OF \Timer_1:TimerUDB:trig_reg\ : LABEL IS "U(3,1)";
+    ATTRIBUTE lib_model OF \Timer_1:TimerUDB:trig_rise_detected\ : LABEL IS "macrocell102";
+    ATTRIBUTE Location OF \Timer_1:TimerUDB:trig_rise_detected\ : LABEL IS "U(3,0)";
+    ATTRIBUTE lib_model OF \U:BUART:counter_load_not\ : LABEL IS "macrocell103";
+    ATTRIBUTE Location OF \U:BUART:counter_load_not\ : LABEL IS "U(1,5)";
+    ATTRIBUTE lib_model OF \U:BUART:pollcount_0\ : LABEL IS "macrocell104";
+    ATTRIBUTE Location OF \U:BUART:pollcount_0\ : LABEL IS "U(1,0)";
+    ATTRIBUTE lib_model OF \U:BUART:pollcount_1\ : LABEL IS "macrocell105";
+    ATTRIBUTE Location OF \U:BUART:pollcount_1\ : LABEL IS "U(1,0)";
+    ATTRIBUTE lib_model OF \U:BUART:rx_address_detected\ : LABEL IS "macrocell106";
+    ATTRIBUTE Location OF \U:BUART:rx_address_detected\ : LABEL IS "U(0,2)";
+    ATTRIBUTE lib_model OF \U:BUART:rx_bitclk_enable\ : LABEL IS "macrocell107";
+    ATTRIBUTE Location OF \U:BUART:rx_bitclk_enable\ : LABEL IS "U(0,3)";
+    ATTRIBUTE lib_model OF \U:BUART:rx_counter_load\ : LABEL IS "macrocell108";
+    ATTRIBUTE Location OF \U:BUART:rx_counter_load\ : LABEL IS "U(1,1)";
+    ATTRIBUTE lib_model OF \U:BUART:rx_last\ : LABEL IS "macrocell109";
+    ATTRIBUTE Location OF \U:BUART:rx_last\ : LABEL IS "U(1,2)";
+    ATTRIBUTE lib_model OF \U:BUART:rx_load_fifo\ : LABEL IS "macrocell110";
+    ATTRIBUTE Location OF \U:BUART:rx_load_fifo\ : LABEL IS "U(1,3)";
+    ATTRIBUTE lib_model OF \U:BUART:rx_markspace_pre\ : LABEL IS "macrocell111";
+    ATTRIBUTE Location OF \U:BUART:rx_markspace_pre\ : LABEL IS "U(1,2)";
+    ATTRIBUTE lib_model OF \U:BUART:rx_parity_bit\ : LABEL IS "macrocell112";
+    ATTRIBUTE Location OF \U:BUART:rx_parity_bit\ : LABEL IS "U(1,2)";
+    ATTRIBUTE lib_model OF \U:BUART:rx_parity_error_pre\ : LABEL IS "macrocell113";
+    ATTRIBUTE Location OF \U:BUART:rx_parity_error_pre\ : LABEL IS "U(1,3)";
+    ATTRIBUTE lib_model OF \U:BUART:rx_postpoll\ : LABEL IS "macrocell114";
+    ATTRIBUTE Location OF \U:BUART:rx_postpoll\ : LABEL IS "U(1,2)";
+    ATTRIBUTE lib_model OF \U:BUART:rx_state_0\ : LABEL IS "macrocell115";
+    ATTRIBUTE Location OF \U:BUART:rx_state_0\ : LABEL IS "U(1,2)";
+    ATTRIBUTE lib_model OF \U:BUART:rx_state_2\ : LABEL IS "macrocell116";
+    ATTRIBUTE Location OF \U:BUART:rx_state_2\ : LABEL IS "U(1,3)";
+    ATTRIBUTE lib_model OF \U:BUART:rx_state_3\ : LABEL IS "macrocell117";
+    ATTRIBUTE Location OF \U:BUART:rx_state_3\ : LABEL IS "U(1,1)";
+    ATTRIBUTE lib_model OF \U:BUART:rx_state_stop1_reg\ : LABEL IS "macrocell118";
+    ATTRIBUTE Location OF \U:BUART:rx_state_stop1_reg\ : LABEL IS "U(1,2)";
+    ATTRIBUTE lib_model OF \U:BUART:rx_status_2\ : LABEL IS "macrocell119";
+    ATTRIBUTE Location OF \U:BUART:rx_status_2\ : LABEL IS "U(1,3)";
+    ATTRIBUTE lib_model OF \U:BUART:rx_status_3\ : LABEL IS "macrocell120";
+    ATTRIBUTE Location OF \U:BUART:rx_status_3\ : LABEL IS "U(1,2)";
+    ATTRIBUTE lib_model OF \U:BUART:rx_status_4\ : LABEL IS "macrocell121";
+    ATTRIBUTE Location OF \U:BUART:rx_status_4\ : LABEL IS "U(1,4)";
+    ATTRIBUTE lib_model OF \U:BUART:rx_status_5\ : LABEL IS "macrocell122";
+    ATTRIBUTE Location OF \U:BUART:rx_status_5\ : LABEL IS "U(2,2)";
+    ATTRIBUTE lib_model OF \U:BUART:sCR_SyncCtl:CtrlReg\ : LABEL IS "controlcell9";
+    ATTRIBUTE Location OF \U:BUART:sCR_SyncCtl:CtrlReg\ : LABEL IS "U(2,3)";
+    ATTRIBUTE Location OF \U:BUART:sRX:RxBitCounter\ : LABEL IS "U(1,2)";
+    ATTRIBUTE lib_model OF \U:BUART:sRX:RxShifter:u0\ : LABEL IS "datapathcell13";
+    ATTRIBUTE Location OF \U:BUART:sRX:RxShifter:u0\ : LABEL IS "U(1,1)";
+    ATTRIBUTE lib_model OF \U:BUART:sRX:RxSts\ : LABEL IS "statusicell4";
+    ATTRIBUTE Location OF \U:BUART:sRX:RxSts\ : LABEL IS "U(1,3)";
+    ATTRIBUTE lib_model OF \U:BUART:sTX:TxShifter:u0\ : LABEL IS "datapathcell14";
+    ATTRIBUTE Location OF \U:BUART:sTX:TxShifter:u0\ : LABEL IS "U(2,3)";
+    ATTRIBUTE lib_model OF \U:BUART:sTX:TxSts\ : LABEL IS "statusicell5";
+    ATTRIBUTE Location OF \U:BUART:sTX:TxSts\ : LABEL IS "U(2,2)";
+    ATTRIBUTE lib_model OF \U:BUART:sTX:sCLOCK:TxBitClkGen\ : LABEL IS "datapathcell15";
+    ATTRIBUTE Location OF \U:BUART:sTX:sCLOCK:TxBitClkGen\ : LABEL IS "U(1,5)";
+    ATTRIBUTE lib_model OF \U:BUART:tx_bitclk\ : LABEL IS "macrocell123";
+    ATTRIBUTE Location OF \U:BUART:tx_bitclk\ : LABEL IS "U(1,1)";
+    ATTRIBUTE lib_model OF \U:BUART:tx_ctrl_mark_last\ : LABEL IS "macrocell124";
+    ATTRIBUTE Location OF \U:BUART:tx_ctrl_mark_last\ : LABEL IS "U(1,0)";
+    ATTRIBUTE lib_model OF \U:BUART:tx_mark\ : LABEL IS "macrocell125";
+    ATTRIBUTE Location OF \U:BUART:tx_mark\ : LABEL IS "U(2,3)";
+    ATTRIBUTE lib_model OF \U:BUART:tx_parity_bit\ : LABEL IS "macrocell126";
+    ATTRIBUTE Location OF \U:BUART:tx_parity_bit\ : LABEL IS "U(2,3)";
+    ATTRIBUTE lib_model OF \U:BUART:tx_state_0\ : LABEL IS "macrocell127";
+    ATTRIBUTE Location OF \U:BUART:tx_state_0\ : LABEL IS "U(2,2)";
+    ATTRIBUTE lib_model OF \U:BUART:tx_state_1\ : LABEL IS "macrocell128";
+    ATTRIBUTE Location OF \U:BUART:tx_state_1\ : LABEL IS "U(2,4)";
+    ATTRIBUTE lib_model OF \U:BUART:tx_state_2\ : LABEL IS "macrocell129";
+    ATTRIBUTE Location OF \U:BUART:tx_state_2\ : LABEL IS "U(1,1)";
+    ATTRIBUTE lib_model OF \U:BUART:tx_status_0\ : LABEL IS "macrocell130";
+    ATTRIBUTE Location OF \U:BUART:tx_status_0\ : LABEL IS "U(2,2)";
+    ATTRIBUTE lib_model OF \U:BUART:tx_status_2\ : LABEL IS "macrocell131";
+    ATTRIBUTE Location OF \U:BUART:tx_status_2\ : LABEL IS "U(2,2)";
+    ATTRIBUTE lib_model OF \U:BUART:txn\ : LABEL IS "macrocell132";
+    ATTRIBUTE Location OF \U:BUART:txn\ : LABEL IS "U(2,4)";
+    ATTRIBUTE lib_model OF \U:BUART:txn_split\ : LABEL IS "macrocell133";
     ATTRIBUTE Location OF \U:BUART:txn_split\ : LABEL IS "U(2,3)";
     ATTRIBUTE Location OF \U:RXInternalInterrupt\ : LABEL IS "[IntrHod=(0)][IntrId=(1)]";
     ATTRIBUTE Location OF \U:TXInternalInterrupt\ : LABEL IS "[IntrHod=(0)][IntrId=(2)]";
-    ATTRIBUTE lib_model OF \USB:Dm(0)\ : LABEL IS "iocell11";
+    ATTRIBUTE lib_model OF \USB:Dm(0)\ : LABEL IS "iocell13";
     ATTRIBUTE Location OF \USB:Dm(0)\ : LABEL IS "P15[7]";
-    ATTRIBUTE lib_model OF \USB:Dp(0)\ : LABEL IS "iocell12";
+    ATTRIBUTE lib_model OF \USB:Dp(0)\ : LABEL IS "iocell14";
     ATTRIBUTE Location OF \USB:Dp(0)\ : LABEL IS "P15[6]";
     ATTRIBUTE Location OF \USB:Dp\ : LABEL IS "F(PICU,8)";
     ATTRIBUTE Location OF \USB:USB\ : LABEL IS "F(USB,0)";
@@ -833,7 +965,7 @@ ARCHITECTURE __DEFAULT__ OF MSFT_Interface IS
     ATTRIBUTE Location OF \USB:ep_2\ : LABEL IS "[IntrHod=(0)][IntrId=(4)]";
     ATTRIBUTE Location OF \USB:ep_3\ : LABEL IS "[IntrHod=(0)][IntrId=(5)]";
     ATTRIBUTE Location OF \USB:sof_int\ : LABEL IS "[IntrHod=(0)][IntrId=(21)]";
-    ATTRIBUTE lib_model OF nRE(0) : LABEL IS "iocell13";
+    ATTRIBUTE lib_model OF nRE(0) : LABEL IS "iocell15";
     ATTRIBUTE Location OF nRE(0) : LABEL IS "P12[6]";
     COMPONENT clockblockcell
         PORT (
@@ -1244,10 +1376,12 @@ BEGIN
             dclk_0 => Net_1330_local,
             dclk_glb_1 => \ADC:clock\,
             dclk_1 => \ADC:clock_local\,
-            dclk_glb_2 => \U:Net_9\,
-            dclk_2 => \U:Net_9_local\,
-            dclk_glb_3 => Net_3526,
-            dclk_3 => Net_3526_local);
+            dclk_glb_2 => Net_4162,
+            dclk_2 => Net_4162_local,
+            dclk_glb_3 => \U:Net_9\,
+            dclk_3 => \U:Net_9_local\,
+            dclk_glb_4 => Net_3526,
+            dclk_4 => Net_3526_local);
 
     DE:logicalport
         GENERIC MAP(
@@ -1339,6 +1473,106 @@ BEGIN
             out_clock => open,
             out_clock_en => '1',
             out_reset => '0');
+
+    EchoSignal:logicalport
+        GENERIC MAP(
+            drive_mode => "001",
+            ibuf_enabled => "1",
+            id => "39ce85a7-4eab-470c-9019-b4f4dfeb855f",
+            init_dr_st => "0",
+            input_buffer_sel => "00",
+            input_clk_en => 0,
+            input_sync => "1",
+            input_sync_mode => "0",
+            intr_mode => "00",
+            invert_in_clock => 0,
+            invert_in_clock_en => 0,
+            invert_in_reset => 0,
+            invert_out_clock => 0,
+            invert_out_clock_en => 0,
+            invert_out_reset => 0,
+            io_voltage => "",
+            layout_mode => "CONTIGUOUS",
+            oe_conn => "0",
+            oe_reset => 0,
+            oe_sync => "0",
+            output_clk_en => 0,
+            output_clock_mode => "0",
+            output_conn => "0",
+            output_mode => "0",
+            output_reset => 0,
+            output_sync => "0",
+            ovt_hyst_trim => "0",
+            ovt_needed => "0",
+            ovt_slew_control => "00",
+            pa_in_clock => -1,
+            pa_in_clock_en => -1,
+            pa_in_reset => -1,
+            pa_out_clock => -1,
+            pa_out_clock_en => -1,
+            pa_out_reset => -1,
+            pin_aliases => "",
+            pin_mode => "I",
+            por_state => 4,
+            port_alias_group => "",
+            port_alias_required => 0,
+            sio_group_cnt => 0,
+            sio_hifreq => "",
+            sio_hyst => "1",
+            sio_ibuf => "00000000",
+            sio_info => "00",
+            sio_obuf => "00000000",
+            sio_refsel => "00000000",
+            sio_vtrip => "00000000",
+            slew_rate => "0",
+            spanning => 0,
+            sw_only => 0,
+            use_annotation => "0",
+            vtrip => "00",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0)
+        PORT MAP(
+            in_clock_en => open,
+            in_reset => open,
+            out_clock_en => open,
+            out_reset => open,
+            in_clock => open);
+
+    EchoSignal(0):iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "EchoSignal",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
+        PORT MAP(
+            pa_out => EchoSignal(0)__PA,
+            oe => open,
+            fb => Net_3779,
+            pad_in => EchoSignal(0)_PAD,
+            in_clock => ClockBlock_BUS_CLK,
+            in_clock_en => '1',
+            in_reset => '0',
+            out_clock => open,
+            out_clock_en => '1',
+            out_reset => '0');
+
+    EchoSignal(0)_SYNC:synccell
+        GENERIC MAP(
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            in => Net_3779,
+            out => Net_3779_SYNCOUT,
+            clock => ClockBlock_BUS_CLK);
 
     LED_1:logicalport
         GENERIC MAP(
@@ -1691,6 +1925,29 @@ BEGIN
             main_1 => \PWM_4:PWMUDB:cmp1_eq\,
             main_2 => \PWM_4:PWMUDB:cmp1_less\);
 
+    Net_4187:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0 * main_1)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => Net_4187,
+            clock_0 => Net_4162,
+            main_0 => \PWM_5:PWMUDB:runmode_enable\,
+            main_1 => \PWM_5:PWMUDB:tc_i\);
+
+    Net_4279:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0 * !main_1 * !main_2)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => Net_4279,
+            clock_0 => Net_4162,
+            main_0 => \PWM_5:PWMUDB:runmode_enable\,
+            main_1 => \PWM_5:PWMUDB:cmp1_eq\,
+            main_2 => \PWM_5:PWMUDB:cmp1_less\);
+
     Pin_1:logicalport
         GENERIC MAP(
             drive_mode => "110",
@@ -1966,6 +2223,97 @@ BEGIN
             pin_input => Net_3678,
             pad_out => SRVO1(0)_PAD,
             pad_in => SRVO1(0)_PAD,
+            in_clock => open,
+            in_clock_en => '1',
+            in_reset => '0',
+            out_clock => open,
+            out_clock_en => '1',
+            out_reset => '0');
+
+    TrigSignal:logicalport
+        GENERIC MAP(
+            drive_mode => "110",
+            ibuf_enabled => "1",
+            id => "7880308e-cfba-4474-b6b3-50486e4d7b54",
+            init_dr_st => "0",
+            input_buffer_sel => "00",
+            input_clk_en => 0,
+            input_sync => "1",
+            input_sync_mode => "0",
+            intr_mode => "00",
+            invert_in_clock => 0,
+            invert_in_clock_en => 0,
+            invert_in_reset => 0,
+            invert_out_clock => 0,
+            invert_out_clock_en => 0,
+            invert_out_reset => 0,
+            io_voltage => "",
+            layout_mode => "CONTIGUOUS",
+            oe_conn => "0",
+            oe_reset => 0,
+            oe_sync => "0",
+            output_clk_en => 0,
+            output_clock_mode => "0",
+            output_conn => "1",
+            output_mode => "0",
+            output_reset => 0,
+            output_sync => "0",
+            ovt_hyst_trim => "0",
+            ovt_needed => "0",
+            ovt_slew_control => "00",
+            pa_in_clock => -1,
+            pa_in_clock_en => -1,
+            pa_in_reset => -1,
+            pa_out_clock => -1,
+            pa_out_clock_en => -1,
+            pa_out_reset => -1,
+            pin_aliases => "",
+            pin_mode => "O",
+            por_state => 4,
+            port_alias_group => "",
+            port_alias_required => 0,
+            sio_group_cnt => 0,
+            sio_hifreq => "",
+            sio_hyst => "1",
+            sio_ibuf => "00000000",
+            sio_info => "00",
+            sio_obuf => "00000000",
+            sio_refsel => "00000000",
+            sio_vtrip => "00000000",
+            slew_rate => "0",
+            spanning => 0,
+            sw_only => 0,
+            use_annotation => "0",
+            vtrip => "10",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0)
+        PORT MAP(
+            in_clock_en => open,
+            in_reset => open,
+            out_clock_en => open,
+            out_reset => open);
+
+    TrigSignal(0):iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "TrigSignal",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
+        PORT MAP(
+            pa_out => TrigSignal(0)__PA,
+            oe => open,
+            pin_input => Net_4279,
+            pad_out => TrigSignal(0)_PAD,
+            pad_in => TrigSignal(0)_PAD,
             in_clock => open,
             in_clock_en => '1',
             in_reset => '0',
@@ -4077,6 +4425,182 @@ BEGIN
             main_0 => \PWM_4:PWMUDB:runmode_enable\,
             main_1 => \PWM_4:PWMUDB:tc_i\);
 
+    \PWM_5:PWMUDB:genblk1:ctrlreg\:controlcell
+        GENERIC MAP(
+            cy_ctrl_mode_0 => "11111111",
+            cy_ctrl_mode_1 => "00000000",
+            cy_ext_reset => 0,
+            cy_force_order => 1,
+            cy_init_value => "00000000",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            clock => Net_4162,
+            control_7 => \PWM_5:PWMUDB:control_7\,
+            control_6 => \PWM_5:PWMUDB:control_6\,
+            control_5 => \PWM_5:PWMUDB:control_5\,
+            control_4 => \PWM_5:PWMUDB:control_4\,
+            control_3 => \PWM_5:PWMUDB:control_3\,
+            control_2 => \PWM_5:PWMUDB:control_2\,
+            control_1 => \PWM_5:PWMUDB:control_1\,
+            control_0 => \PWM_5:PWMUDB:control_0\,
+            busclk => ClockBlock_BUS_CLK);
+
+    \PWM_5:PWMUDB:genblk8:stsreg\:statusicell
+        GENERIC MAP(
+            cy_force_order => 1,
+            cy_int_mask => "1111111",
+            cy_md_select => "0100111",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            clock => Net_4162,
+            status_6 => open,
+            status_5 => open,
+            status_4 => open,
+            status_3 => \PWM_5:PWMUDB:status_3\,
+            status_2 => \PWM_5:PWMUDB:status_2\,
+            status_1 => open,
+            status_0 => \PWM_5:PWMUDB:status_0\);
+
+    \PWM_5:PWMUDB:prevCompare1\:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * !main_1)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \PWM_5:PWMUDB:prevCompare1\,
+            clock_0 => Net_4162,
+            main_0 => \PWM_5:PWMUDB:cmp1_eq\,
+            main_1 => \PWM_5:PWMUDB:cmp1_less\);
+
+    \PWM_5:PWMUDB:runmode_enable\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \PWM_5:PWMUDB:runmode_enable\,
+            clock_0 => Net_4162,
+            main_0 => \PWM_5:PWMUDB:control_7\);
+
+    \PWM_5:PWMUDB:sP16:pwmdp:u0\:datapathcell
+        GENERIC MAP(
+            a0_init => "00000000",
+            a1_init => "00000000",
+            ce0_sync => 1,
+            ce1_sync => 1,
+            cl0_sync => 1,
+            cl1_sync => 1,
+            cmsb_sync => 1,
+            co_msb_sync => 1,
+            cy_dpconfig => "0000000001000000000000001100000001000000010000000000000011000000000000001100000000000000110000000000000011000000000000001100000011111111000000001111111111111111101000000000000000000100000000000000000000011000",
+            d0_init => "00000000",
+            d1_init => "00000000",
+            f0_blk_sync => 1,
+            f0_bus_sync => 1,
+            f1_blk_sync => 1,
+            f1_bus_sync => 1,
+            ff0_sync => 1,
+            ff1_sync => 1,
+            ov_msb_sync => 1,
+            so_sync => 1,
+            z0_sync => 1,
+            z1_sync => 1,
+            uses_p_in => '0',
+            uses_p_out => '0',
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            clock => Net_4162,
+            cs_addr_2 => \PWM_5:PWMUDB:tc_i\,
+            cs_addr_1 => \PWM_5:PWMUDB:runmode_enable\,
+            busclk => ClockBlock_BUS_CLK,
+            ce0 => \PWM_5:PWMUDB:sP16:pwmdp:u0.ce0__sig\,
+            cl0 => \PWM_5:PWMUDB:sP16:pwmdp:u0.cl0__sig\,
+            z0 => \PWM_5:PWMUDB:sP16:pwmdp:u0.z0__sig\,
+            ff0 => \PWM_5:PWMUDB:sP16:pwmdp:u0.ff0__sig\,
+            ce1 => \PWM_5:PWMUDB:sP16:pwmdp:u0.ce1__sig\,
+            cl1 => \PWM_5:PWMUDB:sP16:pwmdp:u0.cl1__sig\,
+            z1 => \PWM_5:PWMUDB:sP16:pwmdp:u0.z1__sig\,
+            ff1 => \PWM_5:PWMUDB:sP16:pwmdp:u0.ff1__sig\,
+            co_msb => \PWM_5:PWMUDB:sP16:pwmdp:u0.co_msb__sig\,
+            sol_msb => \PWM_5:PWMUDB:sP16:pwmdp:u0.sol_msb__sig\,
+            cfbo => \PWM_5:PWMUDB:sP16:pwmdp:u0.cfbo__sig\,
+            sil => \PWM_5:PWMUDB:sP16:pwmdp:u1.sor__sig\,
+            cmsbi => \PWM_5:PWMUDB:sP16:pwmdp:u1.cmsbo__sig\);
+
+    \PWM_5:PWMUDB:sP16:pwmdp:u1\:datapathcell
+        GENERIC MAP(
+            a0_init => "00000000",
+            a1_init => "00000000",
+            ce0_sync => 1,
+            ce1_sync => 1,
+            cl0_sync => 1,
+            cl1_sync => 1,
+            cmsb_sync => 1,
+            co_msb_sync => 1,
+            cy_dpconfig => "0000000001000000000000001100000001000000010000000000000011000000000000001100000000000000110000000000000011000000000000001100000011111111000000001111111111111111101011110000000000000100000011110000000000011000",
+            d0_init => "00000000",
+            d1_init => "00000000",
+            f0_blk_sync => 1,
+            f0_bus_sync => 1,
+            f1_blk_sync => 1,
+            f1_bus_sync => 1,
+            ff0_sync => 1,
+            ff1_sync => 1,
+            ov_msb_sync => 1,
+            so_sync => 1,
+            z0_sync => 1,
+            z1_sync => 1,
+            uses_p_in => '0',
+            uses_p_out => '0',
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            clock => Net_4162,
+            cs_addr_2 => \PWM_5:PWMUDB:tc_i\,
+            cs_addr_1 => \PWM_5:PWMUDB:runmode_enable\,
+            ce0_comb => \PWM_5:PWMUDB:cmp1_eq\,
+            cl0_comb => \PWM_5:PWMUDB:cmp1_less\,
+            z0_comb => \PWM_5:PWMUDB:tc_i\,
+            f1_blk_stat_comb => \PWM_5:PWMUDB:status_3\,
+            busclk => ClockBlock_BUS_CLK,
+            ce0i => \PWM_5:PWMUDB:sP16:pwmdp:u0.ce0__sig\,
+            cl0i => \PWM_5:PWMUDB:sP16:pwmdp:u0.cl0__sig\,
+            z0i => \PWM_5:PWMUDB:sP16:pwmdp:u0.z0__sig\,
+            ff0i => \PWM_5:PWMUDB:sP16:pwmdp:u0.ff0__sig\,
+            ce1i => \PWM_5:PWMUDB:sP16:pwmdp:u0.ce1__sig\,
+            cl1i => \PWM_5:PWMUDB:sP16:pwmdp:u0.cl1__sig\,
+            z1i => \PWM_5:PWMUDB:sP16:pwmdp:u0.z1__sig\,
+            ff1i => \PWM_5:PWMUDB:sP16:pwmdp:u0.ff1__sig\,
+            ci => \PWM_5:PWMUDB:sP16:pwmdp:u0.co_msb__sig\,
+            sir => \PWM_5:PWMUDB:sP16:pwmdp:u0.sol_msb__sig\,
+            cfbi => \PWM_5:PWMUDB:sP16:pwmdp:u0.cfbo__sig\,
+            sor => \PWM_5:PWMUDB:sP16:pwmdp:u1.sor__sig\,
+            cmsbo => \PWM_5:PWMUDB:sP16:pwmdp:u1.cmsbo__sig\);
+
+    \PWM_5:PWMUDB:status_0\:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * !main_1 * !main_2)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \PWM_5:PWMUDB:status_0\,
+            clock_0 => Net_4162,
+            main_0 => \PWM_5:PWMUDB:prevCompare1\,
+            main_1 => \PWM_5:PWMUDB:cmp1_eq\,
+            main_2 => \PWM_5:PWMUDB:cmp1_less\);
+
+    \PWM_5:PWMUDB:status_2\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0 * main_1)",
+            clken_mode => 1)
+        PORT MAP(
+            q => \PWM_5:PWMUDB:status_2\,
+            main_0 => \PWM_5:PWMUDB:runmode_enable\,
+            main_1 => \PWM_5:PWMUDB:tc_i\);
+
     \RS485CTL:Sync:ctrl_reg\:controlcell
         GENERIC MAP(
             cy_ctrl_mode_0 => "00000000",
@@ -4095,6 +4619,228 @@ BEGIN
             control_1 => \RS485CTL:control_1\,
             control_0 => \RS485CTL:control_0\,
             busclk => ClockBlock_BUS_CLK);
+
+    \Timer_1:TimerUDB:capt_fifo_load\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0 * main_1 * main_2 * main_3 * !main_4)",
+            clken_mode => 1)
+        PORT MAP(
+            q => \Timer_1:TimerUDB:capt_fifo_load\,
+            main_0 => \Timer_1:TimerUDB:control_7\,
+            main_1 => \Timer_1:TimerUDB:control_4\,
+            main_2 => \Timer_1:TimerUDB:capture_last\,
+            main_3 => \Timer_1:TimerUDB:trig_fall_detected\,
+            main_4 => Net_3779_SYNCOUT);
+
+    \Timer_1:TimerUDB:capture_last\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \Timer_1:TimerUDB:capture_last\,
+            clock_0 => Net_4162,
+            main_0 => Net_3779_SYNCOUT);
+
+    \Timer_1:TimerUDB:rstSts:stsreg\:statusicell
+        GENERIC MAP(
+            cy_force_order => 1,
+            cy_int_mask => "1111111",
+            cy_md_select => "0000011",
+            clk_inv => '0',
+            clken_mode => 1,
+            reset_inv => '0')
+        PORT MAP(
+            reset => Net_4187,
+            clock => Net_4162,
+            status_6 => open,
+            status_5 => open,
+            status_4 => open,
+            status_3 => \Timer_1:TimerUDB:status_3\,
+            status_2 => \Timer_1:TimerUDB:status_2\,
+            status_1 => \Timer_1:TimerUDB:capt_fifo_load\,
+            status_0 => \Timer_1:TimerUDB:status_tc\);
+
+    \Timer_1:TimerUDB:sCTRLReg:SyncCtl:ctrlreg\:controlcell
+        GENERIC MAP(
+            cy_ctrl_mode_0 => "11111111",
+            cy_ctrl_mode_1 => "00000000",
+            cy_ext_reset => 0,
+            cy_force_order => 1,
+            cy_init_value => "00000000",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            clock => Net_4162,
+            control_7 => \Timer_1:TimerUDB:control_7\,
+            control_6 => \Timer_1:TimerUDB:control_6\,
+            control_5 => \Timer_1:TimerUDB:control_5\,
+            control_4 => \Timer_1:TimerUDB:control_4\,
+            control_3 => \Timer_1:TimerUDB:control_3\,
+            control_2 => \Timer_1:TimerUDB:control_2\,
+            control_1 => \Timer_1:TimerUDB:control_1\,
+            control_0 => \Timer_1:TimerUDB:control_0\,
+            busclk => ClockBlock_BUS_CLK);
+
+    \Timer_1:TimerUDB:sT16:timerdp:u0\:datapathcell
+        GENERIC MAP(
+            a0_init => "00000000",
+            a1_init => "00000000",
+            ce0_sync => 1,
+            ce1_sync => 1,
+            cl0_sync => 1,
+            cl1_sync => 1,
+            cmsb_sync => 1,
+            co_msb_sync => 1,
+            cy_dpconfig => "0000000001000000000000000100000001000000010000000000000010000000000000001000000000000000100000000000000010000000000000001000000011111111000000001111111111111111000000000000000000000001000000000000000000011000",
+            d0_init => "00000000",
+            d1_init => "00000000",
+            f0_blk_sync => 1,
+            f0_bus_sync => 1,
+            f1_blk_sync => 1,
+            f1_bus_sync => 1,
+            ff0_sync => 1,
+            ff1_sync => 1,
+            ov_msb_sync => 1,
+            so_sync => 1,
+            z0_sync => 1,
+            z1_sync => 1,
+            uses_p_in => '0',
+            uses_p_out => '0',
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            clock => Net_4162,
+            cs_addr_2 => Net_4187,
+            cs_addr_1 => \Timer_1:TimerUDB:trig_reg\,
+            cs_addr_0 => \Timer_1:TimerUDB:per_zero\,
+            f0_load => \Timer_1:TimerUDB:capt_fifo_load\,
+            busclk => ClockBlock_BUS_CLK,
+            ce0 => \Timer_1:TimerUDB:sT16:timerdp:u0.ce0__sig\,
+            cl0 => \Timer_1:TimerUDB:sT16:timerdp:u0.cl0__sig\,
+            z0 => \Timer_1:TimerUDB:sT16:timerdp:u0.z0__sig\,
+            ff0 => \Timer_1:TimerUDB:sT16:timerdp:u0.ff0__sig\,
+            ce1 => \Timer_1:TimerUDB:sT16:timerdp:u0.ce1__sig\,
+            cl1 => \Timer_1:TimerUDB:sT16:timerdp:u0.cl1__sig\,
+            z1 => \Timer_1:TimerUDB:sT16:timerdp:u0.z1__sig\,
+            ff1 => \Timer_1:TimerUDB:sT16:timerdp:u0.ff1__sig\,
+            co_msb => \Timer_1:TimerUDB:sT16:timerdp:u0.co_msb__sig\,
+            sol_msb => \Timer_1:TimerUDB:sT16:timerdp:u0.sol_msb__sig\,
+            cfbo => \Timer_1:TimerUDB:sT16:timerdp:u0.cfbo__sig\,
+            sil => \Timer_1:TimerUDB:sT16:timerdp:u1.sor__sig\,
+            cmsbi => \Timer_1:TimerUDB:sT16:timerdp:u1.cmsbo__sig\);
+
+    \Timer_1:TimerUDB:sT16:timerdp:u1\:datapathcell
+        GENERIC MAP(
+            a0_init => "00000000",
+            a1_init => "00000000",
+            ce0_sync => 1,
+            ce1_sync => 1,
+            cl0_sync => 1,
+            cl1_sync => 1,
+            cmsb_sync => 1,
+            co_msb_sync => 1,
+            cy_dpconfig => "0000000001000000000000000100000001000000010000000000000010000000000000001000000000000000100000000000000010000000000000001000000011111111000000001111111111111111100000110000000000000001000000110000000000011000",
+            d0_init => "00000000",
+            d1_init => "00000000",
+            f0_blk_sync => 1,
+            f0_bus_sync => 1,
+            f1_blk_sync => 1,
+            f1_bus_sync => 1,
+            ff0_sync => 1,
+            ff1_sync => 1,
+            ov_msb_sync => 1,
+            so_sync => 1,
+            z0_sync => 1,
+            z1_sync => 1,
+            uses_p_in => '0',
+            uses_p_out => '0',
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            clock => Net_4162,
+            cs_addr_2 => Net_4187,
+            cs_addr_1 => \Timer_1:TimerUDB:trig_reg\,
+            cs_addr_0 => \Timer_1:TimerUDB:per_zero\,
+            f0_load => \Timer_1:TimerUDB:capt_fifo_load\,
+            z0_comb => \Timer_1:TimerUDB:per_zero\,
+            f0_bus_stat_comb => \Timer_1:TimerUDB:status_3\,
+            f0_blk_stat_comb => \Timer_1:TimerUDB:status_2\,
+            busclk => ClockBlock_BUS_CLK,
+            ce0i => \Timer_1:TimerUDB:sT16:timerdp:u0.ce0__sig\,
+            cl0i => \Timer_1:TimerUDB:sT16:timerdp:u0.cl0__sig\,
+            z0i => \Timer_1:TimerUDB:sT16:timerdp:u0.z0__sig\,
+            ff0i => \Timer_1:TimerUDB:sT16:timerdp:u0.ff0__sig\,
+            ce1i => \Timer_1:TimerUDB:sT16:timerdp:u0.ce1__sig\,
+            cl1i => \Timer_1:TimerUDB:sT16:timerdp:u0.cl1__sig\,
+            z1i => \Timer_1:TimerUDB:sT16:timerdp:u0.z1__sig\,
+            ff1i => \Timer_1:TimerUDB:sT16:timerdp:u0.ff1__sig\,
+            ci => \Timer_1:TimerUDB:sT16:timerdp:u0.co_msb__sig\,
+            sir => \Timer_1:TimerUDB:sT16:timerdp:u0.sol_msb__sig\,
+            cfbi => \Timer_1:TimerUDB:sT16:timerdp:u0.cfbo__sig\,
+            sor => \Timer_1:TimerUDB:sT16:timerdp:u1.sor__sig\,
+            cmsbo => \Timer_1:TimerUDB:sT16:timerdp:u1.cmsbo__sig\);
+
+    \Timer_1:TimerUDB:status_tc\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0 * main_1 * main_2 * main_3)",
+            clken_mode => 1)
+        PORT MAP(
+            q => \Timer_1:TimerUDB:status_tc\,
+            main_0 => \Timer_1:TimerUDB:control_7\,
+            main_1 => \Timer_1:TimerUDB:control_4\,
+            main_2 => \Timer_1:TimerUDB:per_zero\,
+            main_3 => \Timer_1:TimerUDB:trig_fall_detected\);
+
+    \Timer_1:TimerUDB:trig_fall_detected\:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * !main_1 * main_2 * main_3 * main_4) + (!main_1 * main_2 * main_3 * main_5)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \Timer_1:TimerUDB:trig_fall_detected\,
+            clock_0 => Net_4162,
+            main_0 => Net_4279,
+            main_1 => Net_4187,
+            main_2 => \Timer_1:TimerUDB:control_7\,
+            main_3 => \Timer_1:TimerUDB:control_4\,
+            main_4 => \Timer_1:TimerUDB:trig_last\,
+            main_5 => \Timer_1:TimerUDB:trig_fall_detected\);
+
+    \Timer_1:TimerUDB:trig_last\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \Timer_1:TimerUDB:trig_last\,
+            clock_0 => Net_4162,
+            main_0 => Net_4279);
+
+    \Timer_1:TimerUDB:trig_reg\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0 * main_1 * main_2)",
+            clken_mode => 1)
+        PORT MAP(
+            q => \Timer_1:TimerUDB:trig_reg\,
+            main_0 => \Timer_1:TimerUDB:control_7\,
+            main_1 => \Timer_1:TimerUDB:control_4\,
+            main_2 => \Timer_1:TimerUDB:trig_fall_detected\);
+
+    \Timer_1:TimerUDB:trig_rise_detected\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0 * !main_1 * main_2 * main_3 * !main_4) + (!main_1 * main_2 * main_3 * main_5)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \Timer_1:TimerUDB:trig_rise_detected\,
+            clock_0 => Net_4162,
+            main_0 => Net_4279,
+            main_1 => Net_4187,
+            main_2 => \Timer_1:TimerUDB:control_7\,
+            main_3 => \Timer_1:TimerUDB:control_4\,
+            main_4 => \Timer_1:TimerUDB:trig_last\,
+            main_5 => \Timer_1:TimerUDB:trig_rise_detected\);
 
     \U:BUART:counter_load_not\:macrocell
         GENERIC MAP(
