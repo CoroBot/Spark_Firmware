@@ -136,16 +136,13 @@ int main()
     
 	USB_Start(0,USB_DWR_VDDD_OPERATION); 
 
-	while(!USB_GetConfiguration()){}; 
-
+	while(!USB_GetConfiguration()){}; // loop until micro usb plugged in (gumstick configuration)
     
 	USB_CDC_Init();
 	hw_init();
 	
 	RS485CTL_Write(0);
 
-    // LED Controls
-    //PWM_1_WriteCompare(1900); //period is 2000.
     blinkLED(); //to signal all set up is done, entering for loop
     
     for(;;)

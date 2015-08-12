@@ -10,10 +10,10 @@ if __name__ == '__main__':
 	print "**** Spark Control Test ****"
 	print "**************************\n"
 	
-	#Servo Constants, TowerPro MG995
-	maxpulse = 214
-	minpulse = 54
-	servo_period = 2000 #period of PWM component = 20ms
+	#Servo Constants, for TowerPro MG995
+	servo_period = 2000 #period of PWM component (ie servo duty cycle) = 20ms
+	maxpulse = 214 # 10.7% of period
+	minpulse = 54 # 2.7% of period
 	
 	# ************************** USER ENTERED PORT ***************************
 	port = raw_input("Enter your serial port (EX: COM14)\n>>")
@@ -22,7 +22,7 @@ if __name__ == '__main__':
 	# ************************** DEFAULT DEBUG PORT ***************************
 	#print "Defaulting port to COM14. Change script if neeeded"
 	#cobs = cobs_serial('COM14', 115200, 1) #apparently the port is offset by 1 (so COM14 is 13)
-
+	
 	# *************************** END PORT CONFIG ****************************
 	
 	
@@ -31,6 +31,7 @@ if __name__ == '__main__':
 	menu += "2. Request the ADC value\n"
 	menu += "3. Set the first/front motor speed\n"
 	menu += "4. Set servo duty cycle\n"
+	#menu += "5. Request ultrasonic distance\n"
 	menu += "5. Exit\n"
 	menu += "\nPlease Enter a number from above menu >>"
 		
@@ -124,3 +125,5 @@ if __name__ == '__main__':
 			bytestosend += comparebytes
 			print "Sending bytes to encode and send: " + repr(list(bytestosend)) #for debugging
 			cobs.encode_and_send(bytestosend) #confirm baud rate and com port
+		elif sel == '5': #ultrasonic read
+			
