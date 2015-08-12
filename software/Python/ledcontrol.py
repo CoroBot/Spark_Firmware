@@ -4,7 +4,7 @@
 
 from cobs_serial import cobs_serial
 import struct
-import hid
+#import hid #  uncomment once integrated ***************************
 
 #USB Constants
 coroware_VID = 0x2bd6 #Issued by USB-IF
@@ -75,7 +75,7 @@ def do_led(cobs):
 		lednum = int(option.strip())
 		if lednum < 1 or lednum > 3:
 			print "Number out of range"
-			continue
+			return
 		numbytes = struct.pack('>H', lednum) #H is for unsigned short
 	except:
 		print "Error converting number"
@@ -138,7 +138,7 @@ def do_servo(cobs):
 		percent = float(option.strip())
 		if percent < 0 or percent > 100:
 			print "Error, Value not between 0 and 100."
-			continue
+			return
 		pwmcompare = ((percent/100) * (maxpulse - minpulse)) + minpulse
 		pwmcompare = servo_period - pwmcompare #left align the positive pulse
 		#print "debug pwmcompare final value before conversion:" + repr(pwmcompare)
