@@ -103,8 +103,8 @@ if __name__ == '__main__':
 			cobs.encode_and_send(cmd)
 		elif sel == '4': # SERVO CONTROL
 			#
-			print "Servo Control \n(see script to change min and max pulse widths. Currently defaulted to a TowerPro MG995 Servo)"
-			option = raw_input("Enter a percentage >>")
+			print "Servo Control \n(see script to change min and max pulse widths. Currently defaulted to a TowerPro MG995 Servo)\n"
+			option = raw_input("Enter a percentage for the pulse width (0-100) >>")
 			try:
 				percent = float(option.strip())
 				if percent < 0 or percent > 100:
@@ -132,7 +132,7 @@ if __name__ == '__main__':
 			cobs.encode_and_send(sam)
 			#print "Reading raw bytes from serial response"
 			retarray = cobs.block_and_return()
-			print "Cobs decode result array: "
+			#print "Cobs decode result array: "
 			#print repr(retarray)
 			try:
 				timerval = struct.unpack('H', retarray)

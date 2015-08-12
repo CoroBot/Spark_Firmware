@@ -2,7 +2,7 @@
 --	Conversion of MSFT_Interface.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Tue Aug 11 22:16:55 2015
+--	Wed Aug 12 13:48:09 2015
 --
 
 USE cypress.cypress.all;

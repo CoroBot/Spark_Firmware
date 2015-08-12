@@ -25,9 +25,9 @@
 // Commands
 #define SET_ATTRIB 1
 #define READ_ADC 8
-#define SPIN_MOTOR 5
+#define READ_TIMER 9
 
-// Local attributes
+// Command Attributes
 #define ATTRIB_LED1 1
 #define ATTRIB_LED2 2
 #define ATTRIB_LED3 3
@@ -93,22 +93,21 @@ int getnums(uint8 *buf, int count);
 void hexp(int by);
 void hexdump(uint8 *buffer, int numbytes);
 
-// merged functions
-void encode_and_send_usb(unsigned char* buf, int length);
-void encode_and_send_uart(unsigned char* buf, int length);
-int blinkLED(void);
+// Serial comm functions
 void handleFrames(void);
 void handle_Frame(uint8_t *frame, unsigned int length);
 void set_attribute(uint8_t *frame, unsigned int length);
-void report_adc_val();
-void report_timer_val();
-void command_motor_forward(uint16 value);
+void encode_and_send_usb(unsigned char* buf, int length);
+void encode_and_send_uart(unsigned char* buf, int length);
 
-//network utility functions, could be moved to cobs
+//network utility functions, could be moved from main
 void uint16toNO(uint16_t invalue, unsigned char *outbuf);
 
 // Hardware Control Functions
-
+int blinkLED(void);
+void report_adc_val();
+void report_timer_val();
+void set_forward_motor_spd(uint16 value);
 
 //Ring Buffer Functions
 int  ringbuff_put(ringbuff_t *ringbuffer, uint8 data);
@@ -126,16 +125,6 @@ int main()
 	init();
 	hw_init();
 	RS485CTL_Write(0);
-
-    //Set up ADC and PWM
-    ADC_Start();
-    ADC_StartConvert();
-    PWM_1_Start();
-    PWM_2_Start();
-    PWM_3_Start();
-    PWM_4_Start();
-    PWM_5_Start();
-    Timer_1_Start();
     
 	USB_Start(0,USB_DWR_VDDD_OPERATION); 
 
@@ -165,57 +154,12 @@ int main()
 }
 
 
-
-
-// ***********************************************
-// Merged functions
-// ***********************************************
-
+// Network utility function - can be moved from main. used to send a 16bit number over the wire
 void uint16toNO(uint16_t invalue, unsigned char *outbuf) {
     outbuf[1] = (invalue & 0xFF);
 	outbuf[0] = (invalue >> 8) & 0xFF;
 }
 
-void encode_and_send_usb(unsigned char* buf, int length) {
-
-    unsigned char indat[length + 4];
-    memcpy(indat, buf, length); 
-    //strncpy(buf, indat, length); 
-    
-    uint32_t crc32 = Crc32_ComputeBuf(0, indat, length);
-    uint32toNO(crc32, &indat[length]);
-    
-    unsigned char outdat[length + 5];
-    encode_cobs(indat, length + 4, outdat);
-    
-    uputc(0);
-    int i;
-    for (i = 0; i < (length + 5); i++) {
-        uputc(outdat[i]); 
-    }
-    uputc(0);
-}
-
-void encode_and_send_uart(unsigned char* buf, int length) {
-
-    unsigned char indat[length + 4];
-    memcpy(indat, buf, length); 
-    //strncpy(buf, indat, length); 
-    
-    uint32_t crc32 = Crc32_ComputeBuf(0, indat, length);
-    uint32toNO(crc32, &indat[length]);
-    
-    unsigned char outdat[length + 5];
-    encode_cobs(indat, length + 4, outdat);
-    
-    //changed to hputc
-    hputc(0);
-    int i;
-    for (i = 0; i < (length + 5); i++) {
-        hputc(outdat[i]); 
-    }
-    hputc(0);
-}
 
 void handleFrames(void) {
     
@@ -271,7 +215,6 @@ void handleFrames(void) {
 		return;
 	}
     
-
 	offset = 0;
 
 	handle_Frame(decoded, rv); // Good frame - Process result
@@ -282,13 +225,9 @@ void handle_Frame(uint8_t *frame, unsigned int length) {
 //		return; // Drop the frame on the floor
 //	}
     
-	length -= 4; // Snip off CRC32
+	length -= 4; // Snip off CRC32 ********************* WONT BE NEEDED ONCE USB COMMS ARE INTEGRATED **************
 
 	switch (frame[1]) {
-		
-		case 0: // Send buffered frame
-			//send_frame_really();
-			break;
 		
 		case SET_ATTRIB: // Set attribute (integer)
 			set_attribute(frame, length);
@@ -304,58 +243,15 @@ void handle_Frame(uint8_t *frame, unsigned int length) {
 			//Enable_Output = true;
 			break;
 
-		case SPIN_MOTOR: // Disable Output
-			//Enable_Output = false;
-            //command_motor_forward();
-            
-            //encode_and_send_uart();
-			break;
-		case 8: // Read ADC value
-            report_adc_val(); //temporarily just sets LED1 to the adc read value.
+		case READ_ADC: // Read ADC value
+            report_adc_val();
             break;
-        case 9: // Read Timer Value - ultrasonic
+        case READ_TIMER: // Read Timer Value - ultrasonic
             report_timer_val();
             break;
 		default:
 			break;
 	}	
-}
-
-void report_timer_val() {
-    //blinkLED();
-
-    uint16 timerResult = Timer_1_ReadCapture();  
-    
-    //PWM_1_WriteCompare(timerResult);
-    
-    // encode and send back over wire?
-    unsigned char indat[2];
-    uint16toNO(timerResult, &indat[0]);
-    encode_and_send_usb(indat, 2);
-}
-
-void command_motor_forward(uint16 value) {
-    unsigned char psoc4_cmd[5];
-    psoc4_cmd[0] = 0x1; //hard coded to "set" "front motor" "speed"
-    psoc4_cmd[1] = 0x1;
-    psoc4_cmd[2] = 0x1;
-    uint16toNO(value, &psoc4_cmd[3]); //provide value
-    
-    encode_and_send_uart(psoc4_cmd, 5); //untested.
-    //blinkLED();
-}
-
-void report_adc_val() {
-    //blinkLED();
-    //ADC_StartConvert();
-    int16 adcResult = ADC_GetResult16(0x00u);   
-    
-    //PWM_1_WriteCompare(adcResult);
-    
-    // encode and send back over wire?
-    unsigned char indat[2];
-    uint16toNO(adcResult, &indat[0]);
-    encode_and_send_usb(indat, 2);
 }
 
 void set_attribute(uint8_t *frame, unsigned int length) {
@@ -365,7 +261,6 @@ void set_attribute(uint8_t *frame, unsigned int length) {
 	}
     
 	//decode both integers
-    
 	uint16_t attrib = NO_to_int16(&frame[3]); //first two data bytes are attribute
 	uint16_t value = NO_to_int16(&frame[5]); //second two bytes are value
 
@@ -384,18 +279,61 @@ void set_attribute(uint8_t *frame, unsigned int length) {
             PWM_4_WriteCompare(value);
             break;
         case ATTRIB_MOT1_SPD:
-            command_motor_forward(value); //send the uint16 value to the PSOC4 in Rileys format
+            set_forward_motor_spd(value); //send the uint16 value to the PSOC4 in Rileys format
             break;
 		default:
 			break;
 	}
 }
 
-// ******************************
-// End merged functions
-// ******************************
+// Serial comm convience functions
 
-//Note, reordered from above, just to make debugging easier.
+// Sends a frame from the psoc5 to the computer using serial ring buffers.
+void encode_and_send_usb(unsigned char* buf, int length) {
+
+    unsigned char indat[length + 4];
+    memcpy(indat, buf, length); 
+    //strncpy(buf, indat, length); 
+    
+    uint32_t crc32 = Crc32_ComputeBuf(0, indat, length);
+    uint32toNO(crc32, &indat[length]);
+    
+    unsigned char outdat[length + 5];
+    encode_cobs(indat, length + 4, outdat);
+    
+    uputc(0);
+    int i;
+    for (i = 0; i < (length + 5); i++) {
+        uputc(outdat[i]); 
+    }
+    uputc(0);
+}
+
+// Sends a frame from the psoc5 to the psoc4 using serial ring buffers.
+void encode_and_send_uart(unsigned char* buf, int length) {
+
+    unsigned char indat[length + 4];
+    memcpy(indat, buf, length); 
+    //strncpy(buf, indat, length); 
+    
+    uint32_t crc32 = Crc32_ComputeBuf(0, indat, length);
+    uint32toNO(crc32, &indat[length]);
+    
+    unsigned char outdat[length + 5];
+    encode_cobs(indat, length + 4, outdat);
+    
+    //changed to hputc
+    hputc(0);
+    int i;
+    for (i = 0; i < (length + 5); i++) {
+        hputc(outdat[i]); 
+    }
+    hputc(0);
+}
+
+// Hardware Control Function definitions
+
+// blink an LED twice (for debugging mainly)
 int blinkLED(void) {
 
     PWM_1_WriteCompare(PWM_1_ReadPeriod()); //sets the duty cycle to on 100% of time
@@ -412,6 +350,41 @@ int blinkLED(void) {
     
     return 0;
 }
+
+// Reads the ultrasonic echo timer, and sends it to the computer
+void report_timer_val() {
+    uint16 timerResult = Timer_1_ReadCapture();  
+
+    // encode and send back over wire
+    unsigned char indat[2];
+    uint16toNO(timerResult, &indat[0]);
+    encode_and_send_usb(indat, 2);
+}
+
+
+// reads the ADC result and sends it to the computer
+void report_adc_val() {
+    int16 adcResult = ADC_GetResult16(0x00u);   
+
+    // encode and send back over wire?
+    unsigned char indat[2];
+    uint16toNO(adcResult, &indat[0]);
+    encode_and_send_usb(indat, 2);
+}
+
+// Sends a command to the PSOC4 to set the motor speed
+void set_forward_motor_spd(uint16 value) {
+    unsigned char psoc4_cmd[5];
+    psoc4_cmd[0] = 0x1; //hard coded to "set" "front motor" "speed"
+    psoc4_cmd[1] = 0x1;
+    psoc4_cmd[2] = 0x1;
+    uint16toNO(value, &psoc4_cmd[3]); //provide value
+    
+    encode_and_send_uart(psoc4_cmd, 5); //untested.
+    //blinkLED();
+}
+
+
 
 void init(void) {
 
@@ -442,6 +415,24 @@ void init(void) {
 	h_send.head = 0;
 	h_send.tail = 0;
 	h_send.available = 0;	
+    
+    // Set up ADC
+    ADC_Start();
+    ADC_StartConvert();
+    
+    // PWMs for LED control
+    PWM_1_Start();
+    PWM_2_Start();
+    PWM_3_Start();
+    
+    // set up PWM for servo control
+    PWM_4_Start();
+    
+    // set up Ultrasonic trigger PWM
+    PWM_5_Start();
+    
+    // Set up ultrasonic capture timer
+    Timer_1_Start();
 
 }
 
