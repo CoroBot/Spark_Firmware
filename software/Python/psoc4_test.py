@@ -16,18 +16,35 @@ menu_header = """
 ****************************
 """
 
-menu = """
-Option Menu:
-  1. 
-  2. 
-  3. 
-  4. 
-  5. 
-  6. Exit.
+motor_menu = """
+Select which motor to control:
+  0. (reserved)
+  1. Front
+  2. Rear
+  3. Both
+  4. Exit
+  
+  >>"""
 
+option_menu = """
+Option menu:
+  0. Direction
+  1. Speed
+  2. Encoder
+  3. Current
+  4. Mode
+  5. Power
+  6. Exit
+  
   Please Enter a number from above menu >>"""
-
-
+  
+getset_menu = """
+Get or Set functionality?
+  0. Get
+  1. Set
+  
+  >>"""
+  
 def main():
 	print menu_header
 	
@@ -43,27 +60,98 @@ def main():
 	# *************************** END PORT CONFIG ****************************
 	
 	#User Menu
-		
 	#Loop until user quits	
+	
 	while True:
-		option = raw_input(menu)
-		sel = option.strip()
-		if sel == '6':
+		#clear()
+		#try
+		#motornum = int(raw_input(motor_menu))
+		motornum = getNumInRange(0, 4, motor_menu);
+		if motornum == -1:
+			continue
+		if motornum == 4:
 			break
-		elif sel == '1': #CONTROL LEDS
-			do_led(cobs)
-			#print "test"
-		elif sel == '2': #READ ADC VALUE
-			do_adc(cobs)
-		elif sel == '3': #TEST MOTORS
-			do_motor(cobs)
-		elif sel == '4': #CONTROL SERVOS
-			do_servo(cobs)
-		elif sel == '5': #READ ULTRASONIC SENSOR
-			do_ultrasonic(cobs)
+		#print "debug: you entered: " + repr(motornum)
+		
+		#type = int(raw_input(option_menu))
+		type = getNumInRange(0, 6, option_menu)
+		if type == -1: 
+			continue
+		#print "debug: you entered: " + repr(type)
+		
+		if type == 6:
+			break
+		elif type == 0: #DIRECTION
+			do_direction(motornum, type, cobs)
+		elif type == 1: #SPEED
+			do_speed(cobs)
+		elif type == 2: #ENCODER
+			do_encoder(cobs)
+		elif type == 3: #CURRENT
+			do_current(cobs)
+		elif type == 4: #MODE
+			do_mode(cobs)
+		elif type == 5: #POWER
+			do_power(cobs);
+	
+# Returns a number after prompting the user for a number (or the custom prompt 
+# provided in the argument). Returns -1 if the number is out of the range or 
+# not a number format. The default range is 16bits (0, 65535).	
+def getNumInRange(min = 0, max = 65535, prompt="Please enter a number >>"):
+	try:
+		returnMe = int(raw_input(prompt))
+	except:
+		print "Error: The input cannot be converted to an integer."
+		return -1
+	if (returnMe < min or returnMe > max): 
+		print "Error: The input is out of range: " + repr(min) + ", " + repr(max)
+		return -1
+	return returnMe
+	
+def writeToSerial(cobs):
+	try:
+		cobs.encode_and_send(buf)
+	except:
+		print "Error: Could not write to serial. Try power cycling board."
+		print "Additional Info: Buffer contents " + repr(list(buf))
+	
+def do_direction(motornum, type, cobs):
+	#print "Direction"
+	getset = getNumInRange(0,1, getset_menu)
+	cmd = bytearray()
+	cmd += struct.pack('B', motornum)
+	cmd += struct.pack('B', getset)
+	cmd += struct.pack('B', 0) #0 for direction
+	
+	if getset == 1:
+		direction = getNumInRange(0,1, "\nChoose direction:\n  0. Forward\n  1. Reverse\n  >>")
+		if direction == -1:
+			return
+		cmd += struct.pack('H', direction);
+	else:
+		cmd += struct.pack('H', 0);
+		
+	print "Sending bytes to encode and send: " + repr(list(cmd)) #for debugging
+	#cobs.encode_and_send(cmd) #confirm baud rate and com port
+	
+	
+def do_speed(cobs):
+	print "Speed"
+	
+def do_encoder(cobs):
+	print "Encoder"
+	#send request and block for response
+	
+def do_current(cobs):
+	print "Current"
+	#send request and block for response
+	
+def do_mode(cobs):
+	print "Mode"
 
-				
-				
+def do_power(cobs):
+	print "Power"
+		
 def do_led(cobs):
 	print "LED Control"
 	option = raw_input("Enter an LED to control, 1-3\n>>")
@@ -166,8 +254,22 @@ def do_ultrasonic(cobs):
 		print int(timerval[0])
 	except:
 		print "Error converting timer value"
-				
-				
+
+# console clear taken from stackoverflow	
+#	https://gist.github.com/jmendeth/3130325
+class clear:
+	def __call__(self):
+		import os
+		if os.name==('ce','nt','dos'): os.system('cls')
+		elif os.name=='posix': os.system('clear')
+		else: print('\n'*120)
+	def __neg__(self): self()
+	def __repr__(self):
+		self();return ''
+
+clear=clear()
+		
+		
 if __name__ == '__main__':
 	main()
 
