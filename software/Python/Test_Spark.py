@@ -178,6 +178,8 @@ class Spark_Drive(object):
 			do_servo(comm)
 		elif sel == '5': #READ ULTRASONIC SENSOR
 			do_ultrasonic(comm)
+		elif sel == '6': #TEST LOOPBACK
+			do_echo(comm)
 
 				
 				
@@ -189,7 +191,6 @@ def do_led(comm):
 		if lednum < 1 or lednum > 3:
 			print "Number out of range"
 			continue
-		numbytes = struct.pack('>H', lednum) #H is for unsigned short
 	except:
 		print "Error converting number"
 		return
@@ -197,53 +198,30 @@ def do_led(comm):
 	option = raw_input("Enter a new compare value for the LED duty cycle, 0-65535\n>>")
 	try:
 		ledval = int(option.strip())
-		valbytes = struct.pack('>H', ledval)
 	except:
 		print "Error converting value"
 		return
-				
-	bob = bytearray([0x01, 0x01, 0x04])
-	bob += numbytes
-	bob += valbytes
-	print "Sending bytes to encode and send: " + repr(list(bob)) #for debugging
-	cobs.encode_and_send(bob) #confirm baud rate and com port
+	comm.set_led_brightness(lednum, ledval)
 
-def do_adc(cobs):
-	#adc req
-	#print "Setting LED1 to the result of ADC Read"
-	sam = bytearray([0x01, 0x08, 0x00])
-	cobs.encode_and_send(sam)
-	#print "Reading raw bytes from serial response"
-	retarray = cobs.block_and_return()
-	#print "Cobs decode result array: "
-	#print repr(retarray)
-	try:
-		adcval = struct.unpack('H', retarray)
-		print "ADC val :"
-		print int(adcval[0])
-	except:
-		print "Error converting adc value"
 
-def do_motor(cobs):
+		
+		
+def do_adc(comm):
+	print "ADC Channel 0:", comm.get_adc(0)
+
+def do_motor(comm):
 	#motor speed
 	
 	option = raw_input("Enter a new compare value for the motor duty cycle, 0-65535\n>>")
 	try:
 		val = int(option.strip())
-		valbytes = struct.pack('>H', val)
 	except:
 		print "Error converting value"
 		return
-						
-	print "Sending command to the psoc5, commanding it to talk to the psoc4"
-	cmd = bytearray([0x01, 0x01, 0x04])
-	cmd += struct.pack('>H', 5)
-	cmd += valbytes
-	#print "debug: array to encode: " + repr(cmd)
-	print "debug: sending array to encode and send routine"
-	cobs.encode_and_send(cmd)
+	comm.set_motor_speed(1, val)
+	
 		
-def do_servo(cobs):
+def do_servo(comm):
 	#
 	print "Servo Control \n(see script to change min and max pulse widths. Currently defaulted to a TowerPro MG995 Servo)"
 	option = raw_input("Enter a percentage >>")
@@ -255,28 +233,15 @@ def do_servo(cobs):
 		pwmcompare = ((percent/100) * (maxpulse - minpulse)) + minpulse
 		pwmcompare = servo_period - pwmcompare #left align the positive pulse
 		#print "debug pwmcompare final value before conversion:" + repr(pwmcompare)
-		comparebytes = struct.pack('>H', pwmcompare) #H is for unsigned short
 	except:
 		print "Error converting number"
 		return
+	comm.set_servo_width(1, pwmcompare)
 	
-	numbytes = struct.pack('>H', 4) #H is for unsigned short
 	
-	bytestosend = bytearray([0x01, 0x01, 0x04])
-	bytestosend += numbytes
-	bytestosend += comparebytes
-	print "Sending bytes to encode and send: " + repr(list(bytestosend)) #for debugging
-	cobs.encode_and_send(bytestosend) #confirm baud rate and com port
+def do_ultrasonic(comm):	
+	comm.get_ultrasonic(1)
 
-def do_ultrasonic(cobs):	
-	#timer req
-	#print "Setting LED1 to the result of ADC Read"
-	sam = bytearray([0x01, 0x09, 0x00])
-	cobs.encode_and_send(sam)
-	#print "Reading raw bytes from serial response"
-	retarray = cobs.block_and_return()
-	print "Cobs decode result array: "
-	#print repr(retarray)
 	try:
 		timerval = struct.unpack('H', retarray)
 		print "Timer val :"
