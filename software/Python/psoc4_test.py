@@ -1,34 +1,29 @@
 #!/usr/bin/env python
 
-# Script for LED control demo. 
+# Script for PSOC4 exercise
 
 from cobs_serial import cobs_serial
 import struct
 import hid
 
 #USB Constants
-coroware_VID = 0x2bd6 #Issued by USB-IF
-spark_PID = 0xff02 #Development hardware - will change when device is released
-
-#Servo Constants, for TowerPro MG995
-servo_period = 2000 #period of PWM component (ie servo duty cycle) = 20ms
-maxpulse = 214 # 10.7% of period
-minpulse = 54 # 2.7% of period
+#coroware_VID = 0x2bd6 #Issued by USB-IF
+#spark_PID = 0xff02 #Development hardware - will change when device is released
 
 menu_header = """
 ****************************
-**** Spark Control Test ****
+**** PSOC4 Control Test ****
 ****************************
 """
 
 menu = """
 Option Menu:
-  1. Control LEDs
-  2. Request the ADC value
-  3. Set the first/front motor speed
-  4. Set servo duty cycle
-  5. Request ultrasonic distance
-  6. Exit
+  1. 
+  2. 
+  3. 
+  4. 
+  5. 
+  6. Exit.
 
   Please Enter a number from above menu >>"""
 
@@ -57,6 +52,7 @@ def main():
 			break
 		elif sel == '1': #CONTROL LEDS
 			do_led(cobs)
+			#print "test"
 		elif sel == '2': #READ ADC VALUE
 			do_adc(cobs)
 		elif sel == '3': #TEST MOTORS

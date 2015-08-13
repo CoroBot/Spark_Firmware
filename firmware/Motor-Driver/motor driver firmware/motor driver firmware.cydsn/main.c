@@ -35,6 +35,7 @@ uint8 front_direction = 0;
 uint8 rear_direction = 0;
 
 // Function Declarations
+void hw_init();
 void handleFrames(void);
 void handle_Frame(uint8_t *frame, unsigned int length);
 //void encode_and_send(uint16 fmotorcur, uint16 rmotorcur, uint16 fmotorenc, uint16 rmotorenc);
@@ -52,7 +53,27 @@ void set_rearmotor(uint8_t* frame);
 int main()
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
-    //start the relevant components
+    
+    hw_init();
+    
+    for(;;)
+    {
+        handleFrames();                         //deal with any relevant incoming frames
+        
+        //move to "update dir/speed function"?
+        Front_Dir_Write(front_direction);       //write the front directional control register
+        Rear_Dir_Write(rear_direction);         //write the rear directional control register
+        PWM_Front_WriteCompare(front_speed);    //set the speed of the front wheel
+        PWM_Rear_WriteCompare(rear_speed);      //set the speed of the rear wheel
+        
+        
+        read_current_and_encoder();             //read the adc values and the quadrature encoder values
+        CyDelayUs(100);                         //this delay is just to prevent it form dropping too many frames
+    }
+}
+
+void hw_init() {
+    //start the relevant components ********** move to an init call
     PWM_Front_Start();
     PWM_Rear_Start();
     QuadDec_Front_Start();
@@ -62,16 +83,6 @@ int main()
     UART_Start();
     Motor_Current_ADC_Start();
 
-    for(;;)
-    {
-        handleFrames();                         //deal with any relevant incoming frames
-        Front_Dir_Write(front_direction);       //write the front directional control register
-        Rear_Dir_Write(rear_direction);         //write the rear directional control register
-        PWM_Front_WriteCompare(front_speed);    //set the speed of the front wheel
-        PWM_Rear_WriteCompare(rear_speed);      //set the speed of the rear wheel
-        read_current_and_encoder();             //read the adc values and the quadrature encoder values
-        CyDelayUs(100);                         //this delay is just to prevent it form dropping too many frames
-    }
 }
 
 void read_current_and_encoder()
