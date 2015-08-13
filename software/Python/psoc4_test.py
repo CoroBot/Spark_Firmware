@@ -5,6 +5,7 @@
 from cobs_serial import cobs_serial
 import struct
 import hid
+import sys
 
 #USB Constants
 #coroware_VID = 0x2bd6 #Issued by USB-IF
@@ -50,12 +51,12 @@ def main():
 	
 	# Open the serial port
 	# ************************** USER ENTERED PORT ***************************
-	port = raw_input("Enter your serial port (EX: COM14)\n>>")
-	cobs = cobs_serial(port, 115200, 1)
+	#port = raw_input("Enter your serial port (EX: COM14)\n>>")
+	#cobs = cobs_serial(port, 115200, 1)
 	
 	# ************************** DEFAULT DEBUG PORT ***************************
-	#print "Defaulting port to COM14. Change script if neeeded"
-	#cobs = cobs_serial('COM14', 115200, 1) #apparently the port is offset by 1 (so COM14 is 13)
+	print "Defaulting port to COM17. Change script if neeeded"
+	cobs = cobs_serial('COM17', 115200, 1)
 	
 	# *************************** END PORT CONFIG ****************************
 	
@@ -63,22 +64,24 @@ def main():
 	#Loop until user quits	
 	
 	while True:
+		#sys.stderr.write("\x1b[2J\x1b[H")
+		#print("\033c");
 		#clear()
-		#try
-		#motornum = int(raw_input(motor_menu))
+		
+		print menu_header
+
+		# ask the user for the motor and command type
 		motornum = getNumInRange(0, 4, motor_menu);
 		if motornum == -1:
 			continue
 		if motornum == 4:
 			break
-		#print "debug: you entered: " + repr(motornum)
-		
-		#type = int(raw_input(option_menu))
+
 		type = getNumInRange(0, 6, option_menu)
 		if type == -1: 
 			continue
-		#print "debug: you entered: " + repr(type)
 		
+		# decide how to handle user input
 		if type == 6:
 			break
 		elif type == 0: #DIRECTION
@@ -115,13 +118,13 @@ def writeToSerial(cobs):
 		print "Error: Could not write to serial. Try power cycling board."
 		print "Additional Info: Buffer contents " + repr(list(buf))
 	
-def do_direction(motornum, type, cobs):
+def do_direction(motornum, type, cobs, debug = False):
 	#print "Direction"
 	getset = getNumInRange(0,1, getset_menu)
 	cmd = bytearray()
 	cmd += struct.pack('B', motornum)
 	cmd += struct.pack('B', getset)
-	cmd += struct.pack('B', 0) #0 for direction
+	cmd += struct.pack('B', 0) #0 for "option direction"
 	
 	if getset == 1:
 		direction = getNumInRange(0,1, "\nChoose direction:\n  0. Forward\n  1. Reverse\n  >>")
@@ -129,28 +132,50 @@ def do_direction(motornum, type, cobs):
 			return
 		cmd += struct.pack('H', direction);
 	else:
-		cmd += struct.pack('H', 0);
+		cmd += struct.pack('>H', 0);
 		
-	print "Sending bytes to encode and send: " + repr(list(cmd)) #for debugging
-	#cobs.encode_and_send(cmd) #confirm baud rate and com port
+	if debug:
+		print "Debug: Sending bytes to encode and send: " + repr(list(cmd)) 
+		
+	cobs.encode_and_send(cmd) 
+
+	#If a return value is expected, recieve and print it.
+	if getset == 0:
+		retarray = cobs.block_and_return()
+		if debug:
+			print "Cobs decode result array: "
+			print repr(retarray)
+		
+		try:
+			direction_returned = struct.unpack('>H', retarray)
+			print "Direction of motor #" + repr(motornum) + ": " + repr(int(direction_returned[0]))
+		except:
+			print "Error converting value"
 	
-	
-def do_speed(cobs):
+	raw_input("\nPress enter to continue...")
+		
+def do_speed(motornum, type, cobs, debug = False):
 	print "Speed"
 	
-def do_encoder(cobs):
+	
+def do_encoder(motornum, type, cobs, debug = False):
 	print "Encoder"
 	#send request and block for response
 	
-def do_current(cobs):
+def do_current(motornum, type, cobs, debug = False):
 	print "Current"
 	#send request and block for response
 	
-def do_mode(cobs):
+def do_mode(motornum, type, cobs, debug = False):
 	print "Mode"
 
-def do_power(cobs):
+def do_power(motornum, type, cobs, debug = False):
 	print "Power"
+		
+		
+		
+
+#################### OLD FUNCTIONS #########################		
 		
 def do_led(cobs):
 	print "LED Control"
@@ -254,21 +279,6 @@ def do_ultrasonic(cobs):
 		print int(timerval[0])
 	except:
 		print "Error converting timer value"
-
-# console clear taken from stackoverflow	
-#	https://gist.github.com/jmendeth/3130325
-class clear:
-	def __call__(self):
-		import os
-		if os.name==('ce','nt','dos'): os.system('cls')
-		elif os.name=='posix': os.system('clear')
-		else: print('\n'*120)
-	def __neg__(self): self()
-	def __repr__(self):
-		self();return ''
-
-clear=clear()
-		
 		
 if __name__ == '__main__':
 	main()
