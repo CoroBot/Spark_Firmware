@@ -116,7 +116,7 @@ class Spark_Drive(object):
 		self.unit_loopback = 0
 		self.unit_motor = 1
 		self.unit_led = 2
-		self.unit_servo = 4
+		self.unit_servo = 3
 		self.unit_adc = 4
 		self.unit_ultrasonic = 5
 		
