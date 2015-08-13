@@ -87,15 +87,15 @@ def main():
 		elif type == 0: #DIRECTION
 			do_direction(motornum, type, cobs)
 		elif type == 1: #SPEED
-			do_speed(cobs)
+			do_speed(motornum, type, cobs)
 		elif type == 2: #ENCODER
-			do_encoder(cobs)
+			do_encoder(motornum, type, cobs)
 		elif type == 3: #CURRENT
-			do_current(cobs)
+			do_current(motornum, type, cobs)
 		elif type == 4: #MODE
-			do_mode(cobs)
+			do_mode(motornum, type, cobs)
 		elif type == 5: #POWER
-			do_power(cobs);
+			do_power(motornum, type, cobs);
 	
 # Returns a number after prompting the user for a number (or the custom prompt 
 # provided in the argument). Returns -1 if the number is out of the range or 
@@ -140,23 +140,16 @@ def prepareCommand(motornum, getset, option):
 	return returnMe
 		
 def do_direction(motornum, type, cobs, debug = False):
-	#print "Direction"
 	getset = getNumInRange(0,1, getset_menu)
-	
 	cmd = prepareCommand(motornum, getset, 0) #0 for option direction
 	
-	#cmd = bytearray()
-	#cmd += struct.pack('B', motornum)
-	#cmd += struct.pack('B', getset)
-	#cmd += struct.pack('B', 0) #0 for "option direction"
-	
 	if getset == 1:
-		direction = getNumInRange(0,1, "\nChoose direction:\n  0. Forward\n  1. Reverse\n  >>")
-		if direction == -1:
+		input = getNumInRange(0,1, "\nChoose direction:\n  0. Forward\n  1. Reverse\n  >>")
+		if input == -1:
 			return
-		cmd += struct.pack('H', direction);
+		cmd += struct.pack('>H', input)
 	else:
-		cmd += struct.pack('>H', 0);
+		cmd += struct.pack('>H', 0)
 		
 	if debug:
 		print "Debug: Sending bytes to encode and send: " + repr(list(cmd)) 
@@ -166,38 +159,121 @@ def do_direction(motornum, type, cobs, debug = False):
 	#If a return value is expected, recieve and print it.
 	if getset == 0:
 		response = getResponse(cobs, debug) 
-		#retarray = cobs.block_and_return()
-		#if debug:
-			#print "Cobs decode result array: "
-			#print repr(retarray)
-		
-		#try:
-			#direction_returned = struct.unpack('>H', retarray)
 		if response != -1:
 			print "Direction of motor #" + repr(motornum) + ": " + repr(response)
 			
-		#except:
-			#print "Error converting value"
-	
 	raw_input("\nPress enter to continue...")
 		
 def do_speed(motornum, type, cobs, debug = False):
-	print "Speed"
+	getset = getNumInRange(0,1, getset_menu)
+	cmd = prepareCommand(motornum, getset, 1) 
+	
+	if getset == 1:
+		input = getNumInRange(0,65535, "\nEnter a 16bit integer for new speed (0-65535) >>")
+		if input == -1:
+			return
+		cmd += struct.pack('>H', input)
+	else:
+		cmd += struct.pack('>H', 0)
+		
+	if debug:
+		print "Debug: Sending bytes to encode and send: " + repr(list(cmd)) 
+		
+	cobs.encode_and_send(cmd) 
+
+	#If a return value is expected, recieve and print it.
+	if getset == 0:
+		response = getResponse(cobs, debug) 
+		if response != -1:
+			print "Speed of motor #" + repr(motornum) + ": " + repr(response)
+			
+	raw_input("\nPress enter to continue...")
 	
 	
 def do_encoder(motornum, type, cobs, debug = False):
-	print "Encoder"
-	#send request and block for response
+	getset = 0
+	cmd = prepareCommand(motornum, getset, 2) 
+	cmd += struct.pack('>H', 0)
+		
+	if debug:
+		print "Debug: Sending bytes to encode and send: " + repr(list(cmd)) 
+		
+	cobs.encode_and_send(cmd) 
+
+	#If a return value is expected, recieve and print it.
+	response = getResponse(cobs, debug) 
+	if response != -1:
+		print "Encoder return value of motor #" + repr(motornum) + ": " + repr(response)
+			
+	raw_input("\nPress enter to continue...")
+	
 	
 def do_current(motornum, type, cobs, debug = False):
-	print "Current"
-	#send request and block for response
+	getset = 0
+	cmd = prepareCommand(motornum, getset, 3) 
+	cmd += struct.pack('>H', 0)
+		
+	if debug:
+		print "Debug: Sending bytes to encode and send: " + repr(list(cmd)) 
+		
+	cobs.encode_and_send(cmd) 
+
+	#If a return value is expected, recieve and print it.
+	response = getResponse(cobs, debug) 
+	if response != -1:
+		print "Current value of motor #" + repr(motornum) + ": " + repr(response)
+			
+	raw_input("\nPress enter to continue...")
 	
 def do_mode(motornum, type, cobs, debug = False):
-	print "Mode"
+	getset = getNumInRange(0,1, getset_menu)
+	cmd = prepareCommand(motornum, getset, 4) 
+	
+	if getset == 1:
+		input = getNumInRange(0,1, "\nChoose mode: (0 or 1) >>")
+		if input == -1:
+			return
+		cmd += struct.pack('>H', input)
+	else:
+		cmd += struct.pack('>H', 0)
+		
+	if debug:
+		print "Debug: Sending bytes to encode and send: " + repr(list(cmd)) 
+		
+	cobs.encode_and_send(cmd) 
+
+	#If a return value is expected, recieve and print it.
+	if getset == 0:
+		response = getResponse(cobs, debug) 
+		if response != -1:
+			print "Mode of motor #" + repr(motornum) + ": " + repr(response)
+			
+	raw_input("\nPress enter to continue...")
 
 def do_power(motornum, type, cobs, debug = False):
-	print "Power"
+	getset = getNumInRange(0,1, getset_menu)
+	cmd = prepareCommand(motornum, getset, 5)
+	
+	if getset == 1:
+		input = getNumInRange(0,1, "\nChoose power setting: (0 or 1) >>")
+		if input == -1:
+			return
+		cmd += struct.pack('>H', input)
+	else:
+		cmd += struct.pack('>H', 0)
+		
+	if debug:
+		print "Debug: Sending bytes to encode and send: " + repr(list(cmd)) 
+		
+	cobs.encode_and_send(cmd) 
+
+	#If a return value is expected, recieve and print it.
+	if getset == 0:
+		response = getResponse(cobs, debug) 
+		if response != -1:
+			print "Power state of motor #" + repr(motornum) + ": " + repr(response)
+			
+	raw_input("\nPress enter to continue...")
 		
 		
 		
