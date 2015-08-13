@@ -117,14 +117,38 @@ def writeToSerial(cobs):
 	except:
 		print "Error: Could not write to serial. Try power cycling board."
 		print "Additional Info: Buffer contents " + repr(list(buf))
+
+def getResponse(cobs, debug = False):
+	retarray = cobs.block_and_return()
+	if debug:
+		print "Cobs decode result array: "
+		print repr(retarray)
 	
+	try:
+		decoded_data = struct.unpack('>H', retarray)
+		return decoded_data[0]
+		#print "Direction of motor #" + repr(motornum) + ": " + repr(int(direction_returned[0]))
+	except:
+		print "Error converting incoming value to an int."	
+		return -1
+
+def prepareCommand(motornum, getset, option):
+	returnMe = bytearray()
+	returnMe += struct.pack('B', motornum)
+	returnMe += struct.pack('B', getset)
+	returnMe += struct.pack('B', option)
+	return returnMe
+		
 def do_direction(motornum, type, cobs, debug = False):
 	#print "Direction"
 	getset = getNumInRange(0,1, getset_menu)
-	cmd = bytearray()
-	cmd += struct.pack('B', motornum)
-	cmd += struct.pack('B', getset)
-	cmd += struct.pack('B', 0) #0 for "option direction"
+	
+	cmd = prepareCommand(motornum, getset, 0) #0 for option direction
+	
+	#cmd = bytearray()
+	#cmd += struct.pack('B', motornum)
+	#cmd += struct.pack('B', getset)
+	#cmd += struct.pack('B', 0) #0 for "option direction"
 	
 	if getset == 1:
 		direction = getNumInRange(0,1, "\nChoose direction:\n  0. Forward\n  1. Reverse\n  >>")
@@ -141,16 +165,19 @@ def do_direction(motornum, type, cobs, debug = False):
 
 	#If a return value is expected, recieve and print it.
 	if getset == 0:
-		retarray = cobs.block_and_return()
-		if debug:
-			print "Cobs decode result array: "
-			print repr(retarray)
+		response = getResponse(cobs, debug) 
+		#retarray = cobs.block_and_return()
+		#if debug:
+			#print "Cobs decode result array: "
+			#print repr(retarray)
 		
-		try:
-			direction_returned = struct.unpack('>H', retarray)
-			print "Direction of motor #" + repr(motornum) + ": " + repr(int(direction_returned[0]))
-		except:
-			print "Error converting value"
+		#try:
+			#direction_returned = struct.unpack('>H', retarray)
+		if response != -1:
+			print "Direction of motor #" + repr(motornum) + ": " + repr(response)
+			
+		#except:
+			#print "Error converting value"
 	
 	raw_input("\nPress enter to continue...")
 		
