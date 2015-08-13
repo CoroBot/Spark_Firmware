@@ -4,7 +4,6 @@
 
 from cobs_serial import cobs_serial
 import struct
-import platform
 import hid
 
 #USB Constants
@@ -29,33 +28,24 @@ Option Menu:
   3. Set the first/front motor speed
   4. Set servo duty cycle
   5. Request ultrasonic distance
-  6. Test HID Loopback
-  X. Exit
+  6. Exit
 
   Please Enter a number from above menu >>"""
 
-class Spark(object):
-	def __init__(self):
-		self.hid = hid.device()
-		self.prefix = []
-		if platform.system() == 'Windows':
-			self.prefix=[0x80]
-	def open(self):
-		try:
-			return hid.open(coroware_VID, spark_PID)
-		except:
-			return None
 
-  
-  
-  
-  
-  
-  
- def main():
+def main():
 	print menu_header
 	
-	comm = Spark()
+	# Open the serial port
+	# ************************** USER ENTERED PORT ***************************
+	port = raw_input("Enter your serial port (EX: COM14)\n>>")
+	cobs = cobs_serial(port, 115200, 1)
+	
+	# ************************** DEFAULT DEBUG PORT ***************************
+	#print "Defaulting port to COM14. Change script if neeeded"
+	#cobs = cobs_serial('COM14', 115200, 1) #apparently the port is offset by 1 (so COM14 is 13)
+	
+	# *************************** END PORT CONFIG ****************************
 	
 	#User Menu
 		
@@ -63,7 +53,7 @@ class Spark(object):
 	while True:
 		option = raw_input(menu)
 		sel = option.strip()
-		if sel == 'X':
+		if sel == '6':
 			break
 		elif sel == '1': #CONTROL LEDS
 			do_led(cobs)
