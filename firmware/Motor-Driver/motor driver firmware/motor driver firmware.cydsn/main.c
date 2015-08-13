@@ -15,11 +15,26 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include <serial_comms.h>
+#include <motor_control.h>
+
+// Defines
 #define true 1
 #define false 0
 #define SYSTEM_DATA_LENGTH 2
 #define COBS_FRAME_OVERHEAD 5
 #define CRC_LENGTH 4
+#define MIN_FRAME_LENGTH 5
+#define MAX_FRAME_LENGTH 64
+
+#define TARGET_FRONT_MOTOR 1
+#define TARGET_REAR_MOTOR 2
+#define TARGET_BOTH_MOTOR 3
+
+#define TARGET_OFFSET 0
+#define SETGET_OFFSET 1
+#define OPTION_OFFSET 2
+#define DATA_OFFSET 3
 
 // Global Variables
 uint16 front_current;
@@ -36,6 +51,7 @@ uint8 rear_direction = 0;
 
 // Function Declarations
 void hw_init();
+void updateMotors();
 void handleFrames(void);
 void handle_Frame(uint8_t *frame, unsigned int length);
 //void encode_and_send(uint16 fmotorcur, uint16 rmotorcur, uint16 fmotorenc, uint16 rmotorenc);
@@ -60,20 +76,15 @@ int main()
     {
         handleFrames();                         //deal with any relevant incoming frames
         
-        //move to "update dir/speed function"?
-        Front_Dir_Write(front_direction);       //write the front directional control register
-        Rear_Dir_Write(rear_direction);         //write the rear directional control register
-        PWM_Front_WriteCompare(front_speed);    //set the speed of the front wheel
-        PWM_Rear_WriteCompare(rear_speed);      //set the speed of the rear wheel
-        
+        updateMotors(); //Does this really need to be called every main? or only when something changes? (in sets)
         
         read_current_and_encoder();             //read the adc values and the quadrature encoder values
         CyDelayUs(100);                         //this delay is just to prevent it form dropping too many frames
     }
 }
 
+//start the relevant components
 void hw_init() {
-    //start the relevant components ********** move to an init call
     PWM_Front_Start();
     PWM_Rear_Start();
     QuadDec_Front_Start();
@@ -83,6 +94,14 @@ void hw_init() {
     UART_Start();
     Motor_Current_ADC_Start();
 
+}
+
+//Apply the current global values to the corresponding hardware modules
+void updateMotors() {
+    Front_Dir_Write(front_direction);       //write the front directional control register
+    Rear_Dir_Write(rear_direction);         //write the rear directional control register
+    PWM_Front_WriteCompare(front_speed);    //set the speed of the front wheel
+    PWM_Rear_WriteCompare(rear_speed);      //set the speed of the rear wheel
 }
 
 void read_current_and_encoder()
@@ -168,20 +187,20 @@ void encode_and_send(uint16 tosend) {
 
 void handleFrames(void) {
 	static int offset = 0;
-	static uint8_t inframe[64];
-	static uint8_t decoded[64];
+	static uint8_t inframe[MAX_FRAME_LENGTH];
+	static uint8_t decoded[MAX_FRAME_LENGTH];
 	
 	int32_t inbyte;
 	
 	while (1) {
 		inbyte = UART_UartGetByte();
-		if (inbyte >255) { // Out of bytes for now. Wait for another go-round.
+		if (inbyte >0xFF) { // Out of bytes for now. Wait for another go-round.
 			return; 
 		}
 		// Zeroes are frame delimeters. If the byte is not a zero, it's part of the data.
 		// If so, add it to the input buffer - with boundary checking to avoid buffer overruns.
 		if (inbyte != 0) {
-			if (offset == 63) { // Frame too long - dump.
+			if (offset == (MAX_FRAME_LENGTH - 1)) { // Frame too long - dump.
 				offset = 0;
 				continue; // Jump back to start of loop
 			}
@@ -191,7 +210,7 @@ void handleFrames(void) {
 		}
 		// At this point we know that inbyte == 0
 		
-		if (offset < 5) { // Frame too short - dump
+		if (offset < MIN_FRAME_LENGTH) { // Frame too short - dump 
 			offset = 0;
 			continue;
 		}
@@ -202,8 +221,8 @@ void handleFrames(void) {
 		offset = 0;
 		return;
 	}
-	uint32_t cmp_crc32 = NO_to_uint32(&decoded[rv-4]);
-	uint32_t crc32 = Crc32_ComputeBuf(0, decoded, rv-4);
+	uint32_t cmp_crc32 = NO_to_uint32(&decoded[rv-CRC_LENGTH]);
+	uint32_t crc32 = Crc32_ComputeBuf(0, decoded, rv-CRC_LENGTH);
 	if (crc32 != cmp_crc32) { // Bad CRC32 - dump frame
 		offset = 0;
 		return;
@@ -219,15 +238,15 @@ void handle_Frame(uint8_t *frame, unsigned int length)
         //something not universe breaking maybe?
         return;
     }
-    else if(frame[0] == 1)//going to front motor
+    else if(frame[TARGET_OFFSET] == TARGET_FRONT_MOTOR)//going to front motor //TARGET_FRONT_MOTOR = 1
     {
         frontmotor(frame);
     }
-    else if(frame[0] == 2)//going to rear motor
+    else if(frame[TARGET_OFFSET] == TARGET_REAR_MOTOR)//going to rear motor //TARGET_REAR_MOTOR = 2
     {
         rearmotor(frame);
     }
-    else if(frame[0] == 3)//going to both motors
+    else if(frame[TARGET_OFFSET] == TARGET_BOTH_MOTOR)//going to both motors //TARGET_BOTH_MOTOR = 3
     {
         frontmotor(frame);
         rearmotor(frame);
@@ -279,7 +298,8 @@ void set_frontmotor(uint8_t* frame)
     switch(frame[2])
     {
         case 0: //set motor direction
-            front_direction = frame[3];
+            //front_direction = frame[3];
+            front_direction = NO_to_int16(&frame[3]);
             break;
         case 1://set motor speed
             front_speed = (frame[3] << 8) +frame[4];

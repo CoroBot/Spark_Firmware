@@ -85,7 +85,7 @@ def main():
 		if type == 6:
 			break
 		elif type == 0: #DIRECTION
-			do_direction(motornum, type, cobs)
+			do_direction(motornum, type, cobs, True)
 		elif type == 1: #SPEED
 			do_speed(motornum, type, cobs)
 		elif type == 2: #ENCODER
