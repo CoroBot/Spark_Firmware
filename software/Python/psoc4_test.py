@@ -90,7 +90,7 @@ def main():
 		if type == 7:
 			break
 		elif type == 0: #DIRECTION
-			do_direction(motornum, type, cobs)
+			do_direction(motornum, type, cobs, True)
 		elif type == 1: #SPEED
 			do_speed(motornum, type, cobs)
 		elif type == 2: #ENCODER
@@ -158,9 +158,9 @@ def do_direction(motornum, type, cobs, debug = False):
 		input = getNumInRange(0,1, "\nChoose direction:\n  0. Forward\n  1. Reverse\n  >>")
 		if input == -1:
 			return
-		cmd += struct.pack('>H', input)
+		cmd += struct.pack('B', input)
 	else:
-		cmd += struct.pack('>H', 0)
+		cmd += struct.pack('B', 0)
 		
 	if debug:
 		print "Debug: Sending bytes to encode and send: " + repr(list(cmd)) 
@@ -205,7 +205,7 @@ def do_speed(motornum, type, cobs, debug = False):
 def do_encoder(motornum, type, cobs, debug = False):
 	getset = 0
 	cmd = prepareCommand(motornum, getset, 2) 
-	cmd += struct.pack('>H', 0)
+	cmd += struct.pack('B', 0)
 		
 	if debug:
 		print "Debug: Sending bytes to encode and send: " + repr(list(cmd)) 
@@ -223,7 +223,7 @@ def do_encoder(motornum, type, cobs, debug = False):
 def do_current(motornum, type, cobs, debug = False):
 	getset = 0
 	cmd = prepareCommand(motornum, getset, 3) 
-	cmd += struct.pack('>H', 0)
+	cmd += struct.pack('B', 0)
 		
 	if debug:
 		print "Debug: Sending bytes to encode and send: " + repr(list(cmd)) 
@@ -245,9 +245,9 @@ def do_mode(motornum, type, cobs, debug = False):
 		input = getNumInRange(0,1, "\nChoose mode: (0 or 1) >>")
 		if input == -1:
 			return
-		cmd += struct.pack('>H', input)
+		cmd += struct.pack('B', input)
 	else:
-		cmd += struct.pack('>H', 0)
+		cmd += struct.pack('B', 0)
 		
 	if debug:
 		print "Debug: Sending bytes to encode and send: " + repr(list(cmd)) 
@@ -270,9 +270,9 @@ def do_power(motornum, type, cobs, debug = False):
 		input = getNumInRange(0,1, "\nChoose power setting: (0 or 1) >>")
 		if input == -1:
 			return
-		cmd += struct.pack('>H', input)
+		cmd += struct.pack('B', input)
 	else:
-		cmd += struct.pack('>H', 0)
+		cmd += struct.pack('B', 0)
 		
 	if debug:
 		print "Debug: Sending bytes to encode and send: " + repr(list(cmd)) 

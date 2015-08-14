@@ -38,6 +38,8 @@
         <Files Root="E:\K Documents\Coroware\github_coro\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn">
           <File BuildType="BUILD" Toolchain="">.\main.c</File>
           <File BuildType="BUILD" Toolchain="">.\cobs.c</File>
+          <File BuildType="BUILD" Toolchain="">.\motor_control.c</File>
+          <File BuildType="BUILD" Toolchain="">.\serial_comms.c</File>
           <File BuildType="BUILD" Toolchain="">.\cobs.h</File>
           <File BuildType="BUILD" Toolchain="">.\serial_comms.h</File>
           <File BuildType="BUILD" Toolchain="">.\motor_control.h</File>
