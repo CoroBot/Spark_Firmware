@@ -35,6 +35,10 @@ Option Menu:
 
   Please Enter a number from above menu >>"""
 
+def ordlist(x):
+	return [ord(l) if type(l) == str else l for l in x]
+  
+  
 class HID_Comm(object):
 	def __init__(self):
 		self.hiddev = hid.device()
@@ -59,7 +63,9 @@ class HID_Comm(object):
 		if not self.isopen:
 			raise IOError, "Not Open"
 		prefix = self.prefix[:]
-		prefix.extend(list(data))
+		prefix.extend(ordlist(data))
+		print repr(prefix)
+		self.hiddev.write(prefix)
 
 	def receive(self, numbytes=64, blocking=True):
 		if not self.isopen:
@@ -74,7 +80,9 @@ class HID_Comm(object):
 	def send_frame(self, unit, subunit, command, data):
 		if not self.isopen:
 			raise IOError, "Not Open"
-		out = struct.pack("BBBs", unit, subunit, command, data)
+		out = ordlist(struct.pack("BBB", unit, subunit, command))
+		out.extend(ordlist(data))
+		print repr(out)
 		if len(out)>64:
 			raise ValueError
 		self.send(out)
@@ -101,7 +109,7 @@ class HID_Comm(object):
 		
 	def get_value(self, unit, subunit, setting):
 		command_get_value = 0 
-		additional = struct_pack(">H", setting)
+		additional = struct.pack(">H", setting)
 		self.send_frame(unit, subunit, command_get_value, additional)
 		runit, rsubunit, rsetting, radditional = self.receive_frame()
 		rsetting, rvalue = struct.unpack(">H>H")
@@ -133,29 +141,31 @@ class Spark_Drive(object):
 		self.command_read = 0
 		
 	def set_motor_speed(self, motornum, speed):
-		comm.set_value(self.unit_motor, motornum, self.setting_pwm, speed)
+		self.comm.set_value(self.unit_motor, motornum, self.setting_pwm, speed)
 	
 	def set_motor_direction(self, motornum, direction):
-		comm.set_value(self.unit_motor, motornum, self.setting_direction, direction)
+		self.comm.set_value(self.unit_motor, motornum, self.setting_direction, direction)
 
 	def set_led_brightness(self, lednum, brightness):
-		comm.set_value(self.unit_led, lednum, self.setting_pwm, brightness)
+		self.comm.set_value(self.unit_led, lednum, self.setting_pwm, brightness)
 		
 	def set_servo_width(self, servonum, width):
-		comm.set_value(self.unit_servo, servonum, self.setting_pwm, width)
+		self.comm.set_value(self.unit_servo, servonum, self.setting_pwm, width)
 	
 	def get_adc(self, adcnum):
-		return comm.get_value(self.unit_adc, adcnum, self.setting_ADC)
+		return self.comm.get_value(self.unit_adc, adcnum, self.setting_ADC)
 	
 	def get_ultrasonic(self, ultrasonic_num):
-		return comm.get_value(self.unit_ultrasonic, ultrasonic_num, self.setting_USonic)
-  
- def main():
+		return self.comm.get_value(self.unit_ultrasonic, ultrasonic_num, self.setting_USonic)
+
+
+
+def main():
 	hidcomm = HID_Comm()
 	try:
 		hidcomm.open()
-	except IOError
-		print "Spark not found"
+	except IOError, ex:
+		print "Spark not found:",ex
 		sys.exit()
 
 	spark = Spark_Drive(hidcomm)
@@ -169,17 +179,17 @@ class Spark_Drive(object):
 		if sel == 'X':
 			break
 		elif sel == '1': #CONTROL LEDS
-			do_led(comm)
+			do_led(spark)
 		elif sel == '2': #READ ADC VALUE
-			do_adc(comm)
+			do_adc(spark)
 		elif sel == '3': #TEST MOTORS
-			do_motor(comm)
+			do_motor(spark)
 		elif sel == '4': #CONTROL SERVOS
-			do_servo(comm)
+			do_servo(spark)
 		elif sel == '5': #READ ULTRASONIC SENSOR
-			do_ultrasonic(comm)
+			do_ultrasonic(spark)
 		elif sel == '6': #TEST LOOPBACK
-			do_echo(comm)
+			do_echo(spark)
 
 				
 				
@@ -190,7 +200,7 @@ def do_led(comm):
 		lednum = int(option.strip())
 		if lednum < 1 or lednum > 3:
 			print "Number out of range"
-			continue
+			return
 	except:
 		print "Error converting number"
 		return
@@ -229,7 +239,7 @@ def do_servo(comm):
 		percent = float(option.strip())
 		if percent < 0 or percent > 100:
 			print "Error, Value not between 0 and 100."
-			continue
+			return
 		pwmcompare = ((percent/100) * (maxpulse - minpulse)) + minpulse
 		pwmcompare = servo_period - pwmcompare #left align the positive pulse
 		#print "debug pwmcompare final value before conversion:" + repr(pwmcompare)
@@ -248,7 +258,13 @@ def do_ultrasonic(comm):
 		print int(timerval[0])
 	except:
 		print "Error converting timer value"
-				
+
+def do_echo(comm):
+	hid = comm.comm
+	hid.send([0,1,2,3,4,5,6,7])
+	print repr(hid.receive());
+
+		
 				
 if __name__ == '__main__':
 	main()
