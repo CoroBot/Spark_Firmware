@@ -19,11 +19,12 @@ menu_header = """
 
 motor_menu = """
 Select which motor to control:
-  0. (reserved)
+  0. (reserved, currently no function)
   1. Front
   2. Rear
   3. Both
-  4. Exit
+  4. STOP ALL MOTORS
+  5. Exit
   
   >>"""
 
@@ -35,7 +36,8 @@ Option menu:
   3. Current
   4. Mode
   5. Power
-  6. Exit
+  6. STOP ALL MOTORS
+  7. Exit
   
   Please Enter a number from above menu >>"""
   
@@ -71,21 +73,24 @@ def main():
 		print menu_header
 
 		# ask the user for the motor and command type
-		motornum = getNumInRange(0, 4, motor_menu);
-		if motornum == -1:
+		motornum = getNumInRange(0, 5, motor_menu);
+		if motornum == -1 or motornum == 0:
 			continue
 		if motornum == 4:
-			break
+			stopMotors(cobs)
+			continue
+		if motornum == 5:
+			break		
 
-		type = getNumInRange(0, 6, option_menu)
+		type = getNumInRange(0, 7, option_menu)
 		if type == -1: 
 			continue
 		
 		# decide how to handle user input
-		if type == 6:
+		if type == 7:
 			break
 		elif type == 0: #DIRECTION
-			do_direction(motornum, type, cobs, True)
+			do_direction(motornum, type, cobs)
 		elif type == 1: #SPEED
 			do_speed(motornum, type, cobs)
 		elif type == 2: #ENCODER
@@ -96,6 +101,12 @@ def main():
 			do_mode(motornum, type, cobs)
 		elif type == 5: #POWER
 			do_power(motornum, type, cobs);
+		elif type == 6: #STOP MOTORS
+			stopMotors(cobs)
+
+def stopMotors(cobs):
+	cmd = bytearray([0x3, 0x1, 0x1, 0x0, 0x0])
+	writeToSerial(cmd, cobs)
 	
 # Returns a number after prompting the user for a number (or the custom prompt 
 # provided in the argument). Returns -1 if the number is out of the range or 
@@ -111,7 +122,7 @@ def getNumInRange(min = 0, max = 65535, prompt="Please enter a number >>"):
 		return -1
 	return returnMe
 	
-def writeToSerial(cobs):
+def writeToSerial(buf, cobs):
 	try:
 		cobs.encode_and_send(buf)
 	except:
@@ -154,7 +165,8 @@ def do_direction(motornum, type, cobs, debug = False):
 	if debug:
 		print "Debug: Sending bytes to encode and send: " + repr(list(cmd)) 
 		
-	cobs.encode_and_send(cmd) 
+	#cobs.encode_and_send(cmd) 
+	writeToSerial(cmd, cobs)
 
 	#If a return value is expected, recieve and print it.
 	if getset == 0:
@@ -179,7 +191,7 @@ def do_speed(motornum, type, cobs, debug = False):
 	if debug:
 		print "Debug: Sending bytes to encode and send: " + repr(list(cmd)) 
 		
-	cobs.encode_and_send(cmd) 
+	writeToSerial(cmd, cobs)
 
 	#If a return value is expected, recieve and print it.
 	if getset == 0:
@@ -198,7 +210,7 @@ def do_encoder(motornum, type, cobs, debug = False):
 	if debug:
 		print "Debug: Sending bytes to encode and send: " + repr(list(cmd)) 
 		
-	cobs.encode_and_send(cmd) 
+	writeToSerial(cmd, cobs) 
 
 	#If a return value is expected, recieve and print it.
 	response = getResponse(cobs, debug) 
@@ -216,7 +228,7 @@ def do_current(motornum, type, cobs, debug = False):
 	if debug:
 		print "Debug: Sending bytes to encode and send: " + repr(list(cmd)) 
 		
-	cobs.encode_and_send(cmd) 
+	writeToSerial(cmd, cobs)
 
 	#If a return value is expected, recieve and print it.
 	response = getResponse(cobs, debug) 
@@ -240,7 +252,7 @@ def do_mode(motornum, type, cobs, debug = False):
 	if debug:
 		print "Debug: Sending bytes to encode and send: " + repr(list(cmd)) 
 		
-	cobs.encode_and_send(cmd) 
+	writeToSerial(cmd, cobs)
 
 	#If a return value is expected, recieve and print it.
 	if getset == 0:
@@ -265,7 +277,7 @@ def do_power(motornum, type, cobs, debug = False):
 	if debug:
 		print "Debug: Sending bytes to encode and send: " + repr(list(cmd)) 
 		
-	cobs.encode_and_send(cmd) 
+	writeToSerial(cmd, cobs)
 
 	#If a return value is expected, recieve and print it.
 	if getset == 0:

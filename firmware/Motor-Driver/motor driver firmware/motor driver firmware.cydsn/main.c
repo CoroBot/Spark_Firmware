@@ -27,6 +27,7 @@
 #define MIN_FRAME_LENGTH 5
 #define MAX_FRAME_LENGTH 64
 
+#define TARGET_RESERVED 0
 #define TARGET_FRONT_MOTOR 1
 #define TARGET_REAR_MOTOR 2
 #define TARGET_BOTH_MOTOR 3
@@ -233,7 +234,7 @@ void handleFrames(void) {
 
 void handle_Frame(uint8_t *frame, unsigned int length)
 {
-    if(frame[0] == 0)
+    if(frame[TARGET_OFFSET] == TARGET_RESERVED)
     {
         //something not universe breaking maybe?
         return;
@@ -256,11 +257,11 @@ void handle_Frame(uint8_t *frame, unsigned int length)
 //this function handles all the commands for the front motor.
 void frontmotor(uint8_t *frame)
 {
-    if(frame[1] == 0)//okay we know we need to get something
+    if(frame[SETGET_OFFSET] == 0)//okay we know we need to get something
     {
         get_frontmotor(frame);
     }
-    else if(frame[1] == 1)//we need to set something instead
+    else if(frame[SETGET_OFFSET] == 1)//we need to set something instead
     {
         set_frontmotor(frame);
     }
@@ -269,7 +270,7 @@ void frontmotor(uint8_t *frame)
 //handles getting all the data from the front motor
 void get_frontmotor(uint8_t* frame)
 {
-    switch(frame[2])
+    switch(frame[OPTION_OFFSET])
     {
         case 0: //get motor direction
             encode_and_send(front_direction);
@@ -295,25 +296,27 @@ void get_frontmotor(uint8_t* frame)
 //handles setting values for the front motor
 void set_frontmotor(uint8_t* frame)
 {
-    switch(frame[2])
+    switch(frame[OPTION_OFFSET])
     {
         case 0: //set motor direction
             //front_direction = frame[3];
-            front_direction = NO_to_int16(&frame[3]);
+            front_direction = NO_to_int16(&frame[DATA_OFFSET]);
             break;
         case 1://set motor speed
-            front_speed = (frame[3] << 8) +frame[4];
+            //front_speed = (frame[3] << 8) +frame[4];
+            front_speed = NO_to_int16(&frame[DATA_OFFSET]);
             break;
         case 2://set encoder counter
-            QuadDec_Front_WriteCounter((frame[3] << 8) +frame[4]);
+            QuadDec_Front_WriteCounter(NO_to_int16(&frame[3]));
+            //QuadDec_Front_WriteCounter((frame[3] << 8) +frame[4]);
             break;
         case 3://set current data -- not possible, remove?
             break;
         case 4://set mode pin
-            Mode_Front_Write(frame[3]);
+            Mode_Front_Write(frame[DATA_OFFSET]);
             break;
         case 5://set power pin
-            Power_Front_Write(frame[3]);
+            Power_Front_Write(frame[DATA_OFFSET]);
             break;
     }
 }
@@ -321,11 +324,11 @@ void set_frontmotor(uint8_t* frame)
 //this function handles all of the commands for the rear motor.
 void rearmotor(uint8_t *frame)
 {
-    if(frame[1] == 0)//okay we know we need to get something
+    if(frame[SETGET_OFFSET] == 0)//okay we know we need to get something
     {
         get_rearmotor(frame);
     }
-    else if(frame[1] == 1)//we need to set something instead
+    else if(frame[SETGET_OFFSET] == 1)//we need to set something instead
     {
         set_rearmotor(frame);
     }
@@ -334,7 +337,7 @@ void rearmotor(uint8_t *frame)
 //handles getting values form the rear motor
 void get_rearmotor(uint8_t* frame)
 {
-    switch(frame[2])
+    switch(frame[OPTION_OFFSET])
     {
         case 0: //get motor direction
             encode_and_send(rear_direction);
@@ -360,24 +363,24 @@ void get_rearmotor(uint8_t* frame)
 //handles setting all the values for the rear motor
 void set_rearmotor(uint8_t* frame)
 {
-    switch(frame[2])
+    switch(frame[OPTION_OFFSET])
     {
         case 0: //set motor direction
-            rear_direction = frame[3];
+            rear_direction = frame[DATA_OFFSET];
             break;
         case 1://set motor speed
-            rear_speed = (frame[3] << 8) +frame[4];
+            rear_speed = NO_to_int16(&frame[DATA_OFFSET]);
             break;
         case 2://set encoder counter
-            QuadDec_Rear_WriteCounter((frame[3] << 8) +frame[4]);
+            QuadDec_Rear_WriteCounter(NO_to_int16(&frame[DATA_OFFSET]));
             break;
         case 3://set current data -- not possible, remove?
             break;
         case 4://set mode pin
-            Mode_Rear_Write(frame[3]);
+            Mode_Rear_Write(frame[DATA_OFFSET]);
             break;
         case 5://set power pin
-            Power_Rear_Write(frame[3]);
+            Power_Rear_Write(frame[DATA_OFFSET]);
             break;
     }
 }
