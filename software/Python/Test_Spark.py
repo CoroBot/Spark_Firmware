@@ -64,7 +64,6 @@ class HID_Comm(object):
 			raise IOError, "Not Open"
 		prefix = self.prefix[:]
 		prefix.extend(ordlist(data))
-		print repr(prefix)
 		self.hiddev.write(prefix)
 
 	def receive(self, numbytes=64, blocking=True):
@@ -82,15 +81,14 @@ class HID_Comm(object):
 			raise IOError, "Not Open"
 		out = ordlist(struct.pack("BBB", unit, subunit, command))
 		out.extend(ordlist(data))
-		print repr(out)
 		if len(out)>64:
 			raise ValueError
 		self.send(out)
 		
 	def set_value(self, unit, subunit, setting, value):
 		command_set_value = 1 
-		additional = struct.pack(">H>H", setting, value)
-		comm.send_frame(unit, subunit, command_set_value, additional)
+		additional = struct.pack(">HH", setting, value)
+		self.send_frame(unit, subunit, command_set_value, additional)
 		
 
 	def receive_frame(self, blocking=True):
@@ -103,16 +101,15 @@ class HID_Comm(object):
 		if unit < 0:
 			raise IOError, "Invalid Frame: Invalid Unit #"
 		subunit = data[1]
-		data_type = data[2]
-		additional = data[3:]
-		return (unit, subunit, data_type, additional)
+		additional = data[2:]
+		return (unit, subunit, additional)
 		
 	def get_value(self, unit, subunit, setting):
 		command_get_value = 0 
 		additional = struct.pack(">H", setting)
 		self.send_frame(unit, subunit, command_get_value, additional)
-		runit, rsubunit, rsetting, radditional = self.receive_frame()
-		rsetting, rvalue = struct.unpack(">H>H")
+		runit, rsubunit, radditional = self.receive_frame()
+		rsetting, rvalue = struct.unpack(">HH", bytearray(radditional[:4]))
 		if unit <> runit or subunit <> rsubunit or setting <> rsetting:
 			raise IOError, "Invalid Frame: data mismatch"
 		return rvalue
