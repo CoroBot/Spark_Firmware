@@ -109,6 +109,7 @@ class HID_Comm(object):
 		additional = struct.pack(">H", setting)
 		self.send_frame(unit, subunit, command_get_value, additional)
 		runit, rsubunit, radditional = self.receive_frame()
+		print repr(runit) + " " + repr(rsubunit) + " " +repr(radadditional) #debug
 		rsetting, rvalue = struct.unpack(">HH", bytearray(radditional[:4]))
 		if unit <> runit or subunit <> rsubunit or setting <> rsetting:
 			raise IOError, "Invalid Frame: data mismatch"
@@ -247,8 +248,8 @@ def do_servo(comm):
 	
 	
 def do_ultrasonic(comm):	
-	comm.get_ultrasonic(0) #changed from 1 to zero
-
+	print "Ultrasonic 0: ", comm.get_ultrasonic(0) #changed from 1 to zero
+	
 	try:
 		timerval = struct.unpack('H', retarray)
 		print "Timer val :"
