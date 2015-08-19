@@ -247,7 +247,7 @@ def do_servo(comm):
 	
 	
 def do_ultrasonic(comm):	
-	comm.get_ultrasonic(1)
+	comm.get_ultrasonic(0) #changed from 1 to zero
 
 	try:
 		timerval = struct.unpack('H', retarray)
