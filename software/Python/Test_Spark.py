@@ -27,7 +27,7 @@ menu = """
 Option Menu:
   1. Control LEDs
   2. Request the ADC value
-  3. Set the first/front motor speed
+  3. Set motor speeds
   4. Set servo duty cycle
   5. Request ultrasonic distance
   6. Test HID Loopback
@@ -138,7 +138,7 @@ class Spark_Drive(object):
 		self.command_read = 0
 		
 	def set_motor_speed(self, motornum, speed):
-		self.comm.set_value(self.unit_motor, motornum, self.setting_pwm, speed)
+		self.comm.set_value(self.unit_motor, motornum, self.setting_pwm, speed) #unit, subu, sett, value
 	
 	def set_motor_direction(self, motornum, direction):
 		self.comm.set_value(self.unit_motor, motornum, self.setting_direction, direction)
@@ -218,14 +218,20 @@ def do_adc(comm):
 
 def do_motor(comm):
 	#motor speed
-	
+	raw_motor_num = raw_input("Which motor? 0 = Both, 6 = Left, 5 = Right \n>>")
+	try:
+		motornum = int(raw_motor_num.strip())
+	except:
+		print "Error converting motornum"
+		return
+		
 	option = raw_input("Enter a new compare value for the motor duty cycle, 0-65535\n>>")
 	try:
 		val = int(option.strip())
 	except:
 		print "Error converting value"
 		return
-	comm.set_motor_speed(1, val)
+	comm.set_motor_speed(motornum, val)
 	
 		
 def do_servo(comm):
