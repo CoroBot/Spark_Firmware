@@ -218,20 +218,40 @@ def do_adc(comm):
 
 def do_motor(comm):
 	#motor speed
-	raw_motor_num = raw_input("Which motor? 0 = Both, 6 = Left, 5 = Right \n>>")
+	raw_motor_num = raw_input("Which motor? (Special values: 0 = Both, 6 = Left, 5 = Right)\n>>")
 	try:
 		motornum = int(raw_motor_num.strip())
 	except:
 		print "Error converting motornum"
 		return
-		
-	option = raw_input("Enter a new compare value for the motor duty cycle, 0-65535\n>>")
+	
 	try:
-		val = int(option.strip())
+		raw_option = raw_input("Enter 0 for direction, 1 for speed\n>>")
+		option = int(raw_option.strip())
 	except:
 		print "Error converting value"
-		return
-	comm.set_motor_speed(motornum, val)
+		return	
+	
+	if option == 1:
+		#do_speed(comm)
+		try:
+			raw_val = raw_input("Enter a new compare value for the motor duty cycle, 0-65535\n>>")
+			val = int(raw_val.strip())
+		except:
+			print "Error converting speed value"
+			return
+		comm.set_motor_speed(motornum, val)		
+	elif option == 0:
+		#do_direction(comm)
+		try:
+			raw_val = raw_input("Enter 0 for forward, 1 for reverse\n>>")
+			val = int(raw_val.strip())
+		except:
+			print "Error converting direction value"
+			return
+		comm.set_motor_direction(motornum, val)		
+		
+
 	
 		
 def do_servo(comm):
