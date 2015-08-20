@@ -165,9 +165,9 @@ def do_direction(motornum, type, cobs, debug = False):
 		input = getNumInRange(0,1, "\nChoose direction:\n  0. Forward\n  1. Reverse\n  >>")
 		if input == -1:
 			return
-		cmd += struct.pack('B', input)
+		cmd += struct.pack('>H', input)
 	else:
-		cmd += struct.pack('B', 0)
+		cmd += struct.pack('>H', 0)
 		
 	if debug:
 		print "Debug: Sending bytes to encode and send: " + repr(list(cmd)) 
