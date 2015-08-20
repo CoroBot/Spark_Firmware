@@ -110,8 +110,8 @@ void set_frontmotor(uint8_t* frame)
     switch(frame[OPTION_OFFSET])
     {
         case 0: //set motor direction
-            front_direction = frame[DATA_OFFSET];
-            //front_direction = NO_to_int16(&frame[DATA_OFFSET]);
+            //front_direction = frame[DATA_OFFSET];
+            front_direction = NO_to_int16(&frame[DATA_OFFSET]);
             break;
         case 1://set motor speed
             //front_speed = (frame[3] << 8) +frame[4];
@@ -124,10 +124,10 @@ void set_frontmotor(uint8_t* frame)
         case 3://set current data -- not possible, remove?
             break;
         case 4://set mode pin
-            Mode_Front_Write(frame[DATA_OFFSET]);
+            Mode_Front_Write(NO_to_int16(&frame[DATA_OFFSET]));
             break;
         case 5://set power pin
-            Power_Front_Write(frame[DATA_OFFSET]);
+            Power_Front_Write(NO_to_int16(&frame[DATA_OFFSET]));
             break;
     }
 }
@@ -177,7 +177,7 @@ void set_rearmotor(uint8_t* frame)
     switch(frame[OPTION_OFFSET])
     {
         case 0: //set motor direction
-            rear_direction = frame[DATA_OFFSET];
+            rear_direction = NO_to_int16(&frame[DATA_OFFSET]);
             break;
         case 1://set motor speed
             rear_speed = NO_to_int16(&frame[DATA_OFFSET]);
@@ -188,10 +188,10 @@ void set_rearmotor(uint8_t* frame)
         case 3://set current data -- not possible, remove?
             break;
         case 4://set mode pin
-            Mode_Rear_Write(frame[DATA_OFFSET]);
+            Mode_Rear_Write(NO_to_int16(&frame[DATA_OFFSET]));
             break;
         case 5://set power pin
-            Power_Rear_Write(frame[DATA_OFFSET]);
+            Power_Rear_Write(NO_to_int16(&frame[DATA_OFFSET]));
             break;
     }
 }
