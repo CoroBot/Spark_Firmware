@@ -6,7 +6,7 @@
 
 #Build Date:         May  8 2015 09:27:37
 
-#File Generated:     Aug 9 2015 18:28:41
+#File Generated:     Aug 19 2015 23:49:20
 
 #Purpose:            
 
@@ -63,6 +63,27 @@ D2088: Phase 3, elapsed time : 0.0 (sec)
 
 Phase 4
 D2088: Phase 4, elapsed time : 0.0 (sec)
+
+Phase 6
+D2088: Phase 6, elapsed time : 0.0 (sec)
+
+Phase 7
+D2088: Phase 7, elapsed time : 0.0 (sec)
+
+Final Design Statistics
+    Number of Combinational MCs 	:	5
+    Number of Sequential MCs    	:	0
+    Number of DPs               	:	0
+    Number of Controls          	:	2
+    Number of Status            	:	0
+    Number of SyncCells         	:	0
+    Number of count7cells       	:	0
+    Number of IOs       	:	20
+
+Device Utilization Summary
+    Macrocells                  :	5/32
+    IOs                         :	20/36
+
 
 Phase 6
 D2088: Phase 6, elapsed time : 0.0 (sec)

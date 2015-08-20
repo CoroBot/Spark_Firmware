@@ -1,5 +1,5 @@
 -- Project:   motor driver firmware
--- Generated: 08/09/2015 18:28:40
+-- Generated: 08/19/2015 23:49:20
 -- PSoC Creator  3.2
 
 ENTITY \motor driver firmware\ IS
@@ -185,7 +185,7 @@ ARCHITECTURE __DEFAULT__ OF \motor driver firmware\ IS
     ATTRIBUTE lib_model OF \UART:tx(0)\ : LABEL IS "iocell18";
     ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell5";
     ATTRIBUTE lib_model OF cursense1(0) : LABEL IS "iocell19";
-    ATTRIBUTE Location OF cursense1(0) : LABEL IS "P3[4]";
+    ATTRIBUTE Location OF cursense1(0) : LABEL IS "P3[5]";
     ATTRIBUTE lib_model OF cursense2(0) : LABEL IS "iocell20";
     ATTRIBUTE Location OF cursense2(0) : LABEL IS "P0[3]";
     COMPONENT controlcell
@@ -1238,9 +1238,9 @@ BEGIN
             ff_div_8 => Net_983_ff8,
             ff_div_9 => Net_983_ff9,
             ff_div_7 => \Motor_Current_ADC:Net_1845_ff7\,
-            ff_div_2 => \UART:Net_847_ff2\,
             ff_div_10 => Net_397_ff10,
-            ff_div_11 => Net_397_ff11);
+            ff_div_11 => Net_397_ff11,
+            ff_div_2 => \UART:Net_847_ff2\);
 
     ClockGenBlock:m0s8clockgenblockcell;
 

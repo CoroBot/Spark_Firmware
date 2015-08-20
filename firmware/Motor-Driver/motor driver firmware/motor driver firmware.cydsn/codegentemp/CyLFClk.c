@@ -1340,7 +1340,7 @@ void CySysClkIloStop(void)
     *    "Low Frequency Clocks" tab and choose the appropriate option for the used
     *    WDT counter.
     *
-    *  - Through the CySysWdtSetMode() function. Call it with the appropriate ÅgmodeÅh
+    *  - Through the CySysWdtSetMode() function. Call it with the appropriate ìmodeî
     *    parameter for the used WDT counter.
     *
     *  For the "INTERRUPT" mode, the recommended sequence is the following:
