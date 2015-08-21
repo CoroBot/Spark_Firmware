@@ -55,7 +55,7 @@ void handleFrames(void) {
 	
 	while (1) {
 		inbyte = UART_UartGetByte();
-		if (inbyte >0xFF) { // Out of bytes for now. Wait for another go-round.
+		if (inbyte == UART_UART_RX_UNDERFLOW) { // Out of bytes for now. Wait for another go-round.
 			return; 
 		}
 		// Zeroes are frame delimeters. If the byte is not a zero, it's part of the data.

@@ -1,6 +1,6 @@
 -- Project:   motor driver firmware
--- Generated: 08/20/2015 00:52:32
--- PSoC Creator  3.2
+-- Generated: 08/21/2015 12:04:55
+-- PSoC Creator  3.2 SP1
 
 ENTITY \motor driver firmware\ IS
     PORT(
@@ -55,9 +55,9 @@ ARCHITECTURE __DEFAULT__ OF \motor driver firmware\ IS
     SIGNAL Net_1011 : bit;
     SIGNAL Net_1019 : bit;
     SIGNAL Net_137 : bit;
-    ATTRIBUTE placement_force OF Net_137 : SIGNAL IS "U(1,0,B)1";
+    ATTRIBUTE placement_force OF Net_137 : SIGNAL IS "U(1,0,A)3";
     SIGNAL Net_149 : bit;
-    ATTRIBUTE placement_force OF Net_149 : SIGNAL IS "U(1,0,A)0";
+    ATTRIBUTE placement_force OF Net_149 : SIGNAL IS "U(1,0,B)3";
     SIGNAL Net_152 : bit;
     SIGNAL Net_153 : bit;
     SIGNAL Net_160 : bit;
@@ -152,7 +152,7 @@ ARCHITECTURE __DEFAULT__ OF \motor driver firmware\ IS
     SIGNAL \UART:ss_3\ : bit;
     SIGNAL \\\UART:tx(0)\\__PA\ : bit;
     SIGNAL __ONE__ : bit;
-    ATTRIBUTE placement_force OF __ONE__ : SIGNAL IS "U(0,1,B)2";
+    ATTRIBUTE placement_force OF __ONE__ : SIGNAL IS "U(1,0,B)2";
     ATTRIBUTE POWER OF __ONE__ : SIGNAL IS true;
     SIGNAL __ZERO__ : bit;
     ATTRIBUTE GROUND OF __ZERO__ : SIGNAL IS true;
@@ -203,7 +203,7 @@ ARCHITECTURE __DEFAULT__ OF \motor driver firmware\ IS
     ATTRIBUTE lib_model OF Power_Front(0) : LABEL IS "iocell15";
     ATTRIBUTE Location OF Power_Front(0) : LABEL IS "P2[4]";
     ATTRIBUTE lib_model OF Power_Rear(0) : LABEL IS "iocell16";
-    ATTRIBUTE Location OF Power_Rear(0) : LABEL IS "P0[4]";
+    ATTRIBUTE Location OF Power_Rear(0) : LABEL IS "P3[5]";
     ATTRIBUTE lib_model OF \Front_Dir:Sync:ctrl_reg\ : LABEL IS "controlcell1";
     ATTRIBUTE Location OF \Front_Dir:Sync:ctrl_reg\ : LABEL IS "U(0,0)";
     ATTRIBUTE Location OF \Motor_Current_ADC:IRQ\ : LABEL IS "[IntrHod=(0)][IntrId=(14)]";
@@ -220,9 +220,9 @@ ARCHITECTURE __DEFAULT__ OF \motor driver firmware\ IS
     ATTRIBUTE lib_model OF \UART:tx(0)\ : LABEL IS "iocell18";
     ATTRIBUTE Location OF \UART:tx(0)\ : LABEL IS "P4[1]";
     ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell5";
-    ATTRIBUTE Location OF __ONE__ : LABEL IS "U(0,1)";
+    ATTRIBUTE Location OF __ONE__ : LABEL IS "U(1,0)";
     ATTRIBUTE lib_model OF cursense1(0) : LABEL IS "iocell19";
-    ATTRIBUTE Location OF cursense1(0) : LABEL IS "P3[5]";
+    ATTRIBUTE Location OF cursense1(0) : LABEL IS "P3[4]";
     ATTRIBUTE lib_model OF cursense2(0) : LABEL IS "iocell20";
     ATTRIBUTE Location OF cursense2(0) : LABEL IS "P0[3]";
     COMPONENT controlcell
@@ -1265,9 +1265,9 @@ BEGIN
             ff_div_8 => Net_397_ff11,
             ff_div_9 => Net_397_ff10,
             ff_div_7 => \Motor_Current_ADC:Net_1845_ff7\,
+            ff_div_2 => \UART:Net_847_ff2\,
             ff_div_10 => Net_983_ff9,
-            ff_div_11 => Net_983_ff8,
-            ff_div_2 => \UART:Net_847_ff2\);
+            ff_div_11 => Net_983_ff8);
 
     ClockGenBlock:m0s8clockgenblockcell;
 

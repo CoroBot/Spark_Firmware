@@ -335,10 +335,10 @@
 
 /* UART_SCBCLK */
 #define UART_SCBCLK__DIVIDER_MASK 0x0000FFFFu
-#define UART_SCBCLK__ENABLE CYREG_CLK_DIVIDER_A01
+#define UART_SCBCLK__ENABLE CYREG_CLK_DIVIDER_C00
 #define UART_SCBCLK__ENABLE_MASK 0x80000000u
 #define UART_SCBCLK__MASK 0x80000000u
-#define UART_SCBCLK__REGISTER CYREG_CLK_DIVIDER_A01
+#define UART_SCBCLK__REGISTER CYREG_CLK_DIVIDER_C00
 
 /* UART_tx */
 #define UART_tx__0__DM__MASK 0x38u
@@ -377,7 +377,7 @@
 #define AIN1_1__0__MASK 0x40u
 #define AIN1_1__0__OUT_SEL CYREG_UDB_PA2_CFG10
 #define AIN1_1__0__OUT_SEL_SHIFT 12u
-#define AIN1_1__0__OUT_SEL_VAL 3u
+#define AIN1_1__0__OUT_SEL_VAL 0u
 #define AIN1_1__0__PA__CFG0 CYREG_UDB_PA2_CFG0
 #define AIN1_1__0__PA__CFG1 CYREG_UDB_PA2_CFG1
 #define AIN1_1__0__PA__CFG10 CYREG_UDB_PA2_CFG10
@@ -435,7 +435,7 @@
 #define AIN1_2__0__MASK 0x80u
 #define AIN1_2__0__OUT_SEL CYREG_UDB_PA3_CFG10
 #define AIN1_2__0__OUT_SEL_SHIFT 14u
-#define AIN1_2__0__OUT_SEL_VAL 3u
+#define AIN1_2__0__OUT_SEL_VAL 0u
 #define AIN1_2__0__PA__CFG0 CYREG_UDB_PA3_CFG0
 #define AIN1_2__0__PA__CFG1 CYREG_UDB_PA3_CFG1
 #define AIN1_2__0__PA__CFG10 CYREG_UDB_PA3_CFG10
@@ -493,7 +493,7 @@
 #define AIN2_1__0__MASK 0x80u
 #define AIN2_1__0__OUT_SEL CYREG_UDB_PA2_CFG10
 #define AIN2_1__0__OUT_SEL_SHIFT 14u
-#define AIN2_1__0__OUT_SEL_VAL 1u
+#define AIN2_1__0__OUT_SEL_VAL 3u
 #define AIN2_1__0__PA__CFG0 CYREG_UDB_PA2_CFG0
 #define AIN2_1__0__PA__CFG1 CYREG_UDB_PA2_CFG1
 #define AIN2_1__0__PA__CFG10 CYREG_UDB_PA2_CFG10
@@ -551,7 +551,7 @@
 #define AIN2_2__0__MASK 0x01u
 #define AIN2_2__0__OUT_SEL CYREG_UDB_PA0_CFG10
 #define AIN2_2__0__OUT_SEL_SHIFT 0u
-#define AIN2_2__0__OUT_SEL_VAL 3u
+#define AIN2_2__0__OUT_SEL_VAL 0u
 #define AIN2_2__0__PA__CFG0 CYREG_UDB_PA0_CFG0
 #define AIN2_2__0__PA__CFG1 CYREG_UDB_PA0_CFG1
 #define AIN2_2__0__PA__CFG10 CYREG_UDB_PA0_CFG10
@@ -609,7 +609,7 @@
 #define BIN1_1__0__MASK 0x01u
 #define BIN1_1__0__OUT_SEL CYREG_UDB_PA3_CFG10
 #define BIN1_1__0__OUT_SEL_SHIFT 0u
-#define BIN1_1__0__OUT_SEL_VAL 2u
+#define BIN1_1__0__OUT_SEL_VAL 0u
 #define BIN1_1__0__PA__CFG0 CYREG_UDB_PA3_CFG0
 #define BIN1_1__0__PA__CFG1 CYREG_UDB_PA3_CFG1
 #define BIN1_1__0__PA__CFG10 CYREG_UDB_PA3_CFG10
@@ -667,7 +667,7 @@
 #define BIN1_2__0__MASK 0x02u
 #define BIN1_2__0__OUT_SEL CYREG_UDB_PA0_CFG10
 #define BIN1_2__0__OUT_SEL_SHIFT 2u
-#define BIN1_2__0__OUT_SEL_VAL 0u
+#define BIN1_2__0__OUT_SEL_VAL 3u
 #define BIN1_2__0__PA__CFG0 CYREG_UDB_PA0_CFG0
 #define BIN1_2__0__PA__CFG1 CYREG_UDB_PA0_CFG1
 #define BIN1_2__0__PA__CFG10 CYREG_UDB_PA0_CFG10
@@ -725,7 +725,7 @@
 #define BIN2_1__0__MASK 0x02u
 #define BIN2_1__0__OUT_SEL CYREG_UDB_PA3_CFG10
 #define BIN2_1__0__OUT_SEL_SHIFT 2u
-#define BIN2_1__0__OUT_SEL_VAL 1u
+#define BIN2_1__0__OUT_SEL_VAL 2u
 #define BIN2_1__0__PA__CFG0 CYREG_UDB_PA3_CFG0
 #define BIN2_1__0__PA__CFG1 CYREG_UDB_PA3_CFG1
 #define BIN2_1__0__PA__CFG10 CYREG_UDB_PA3_CFG10
@@ -783,7 +783,7 @@
 #define BIN2_2__0__MASK 0x04u
 #define BIN2_2__0__OUT_SEL CYREG_UDB_PA0_CFG10
 #define BIN2_2__0__OUT_SEL_SHIFT 4u
-#define BIN2_2__0__OUT_SEL_VAL 3u
+#define BIN2_2__0__OUT_SEL_VAL 0u
 #define BIN2_2__0__PA__CFG0 CYREG_UDB_PA0_CFG0
 #define BIN2_2__0__PA__CFG1 CYREG_UDB_PA0_CFG1
 #define BIN2_2__0__PA__CFG10 CYREG_UDB_PA0_CFG10
@@ -831,10 +831,10 @@
 
 /* Clock_1 */
 #define Clock_1__DIVIDER_MASK 0x0000FFFFu
-#define Clock_1__ENABLE CYREG_CLK_DIVIDER_C00
+#define Clock_1__ENABLE CYREG_CLK_DIVIDER_A01
 #define Clock_1__ENABLE_MASK 0x80000000u
 #define Clock_1__MASK 0x80000000u
-#define Clock_1__REGISTER CYREG_CLK_DIVIDER_C00
+#define Clock_1__REGISTER CYREG_CLK_DIVIDER_A01
 
 /* Clock_2 */
 #define Clock_2__DIVIDER_MASK 0x0000FFFFu
@@ -998,17 +998,17 @@
 #define PWM_Front_cy_m0s8_tcpwm_1__TR_CTRL2 CYREG_TCPWM_CNT3_TR_CTRL2
 
 /* cursense1 */
-#define cursense1__0__DM__MASK 0x38000u
-#define cursense1__0__DM__SHIFT 15
+#define cursense1__0__DM__MASK 0x7000u
+#define cursense1__0__DM__SHIFT 12
 #define cursense1__0__DR CYREG_PRT3_DR
 #define cursense1__0__HSIOM CYREG_HSIOM_PORT_SEL3
-#define cursense1__0__HSIOM_MASK 0x00F00000u
-#define cursense1__0__HSIOM_SHIFT 20u
+#define cursense1__0__HSIOM_MASK 0x000F0000u
+#define cursense1__0__HSIOM_SHIFT 16u
 #define cursense1__0__INTCFG CYREG_PRT3_INTCFG
 #define cursense1__0__INTSTAT CYREG_PRT3_INTSTAT
-#define cursense1__0__MASK 0x20u
+#define cursense1__0__MASK 0x10u
 #define cursense1__0__OUT_SEL CYREG_UDB_PA3_CFG10
-#define cursense1__0__OUT_SEL_SHIFT 10u
+#define cursense1__0__OUT_SEL_SHIFT 8u
 #define cursense1__0__OUT_SEL_VAL 1u
 #define cursense1__0__PA__CFG0 CYREG_UDB_PA3_CFG0
 #define cursense1__0__PA__CFG1 CYREG_UDB_PA3_CFG1
@@ -1029,11 +1029,11 @@
 #define cursense1__0__PC2 CYREG_PRT3_PC2
 #define cursense1__0__PORT 3u
 #define cursense1__0__PS CYREG_PRT3_PS
-#define cursense1__0__SHIFT 5
+#define cursense1__0__SHIFT 4
 #define cursense1__DR CYREG_PRT3_DR
 #define cursense1__INTCFG CYREG_PRT3_INTCFG
 #define cursense1__INTSTAT CYREG_PRT3_INTSTAT
-#define cursense1__MASK 0x20u
+#define cursense1__MASK 0x10u
 #define cursense1__PA__CFG0 CYREG_UDB_PA3_CFG0
 #define cursense1__PA__CFG1 CYREG_UDB_PA3_CFG1
 #define cursense1__PA__CFG10 CYREG_UDB_PA3_CFG10
@@ -1053,7 +1053,7 @@
 #define cursense1__PC2 CYREG_PRT3_PC2
 #define cursense1__PORT 3u
 #define cursense1__PS CYREG_PRT3_PS
-#define cursense1__SHIFT 5
+#define cursense1__SHIFT 4
 
 /* cursense2 */
 #define cursense2__0__DM__MASK 0xE00u
@@ -1067,7 +1067,7 @@
 #define cursense2__0__MASK 0x08u
 #define cursense2__0__OUT_SEL CYREG_UDB_PA0_CFG10
 #define cursense2__0__OUT_SEL_SHIFT 6u
-#define cursense2__0__OUT_SEL_VAL 2u
+#define cursense2__0__OUT_SEL_VAL 1u
 #define cursense2__0__PA__CFG0 CYREG_UDB_PA0_CFG0
 #define cursense2__0__PA__CFG1 CYREG_UDB_PA0_CFG1
 #define cursense2__0__PA__CFG10 CYREG_UDB_PA0_CFG10
@@ -1169,59 +1169,59 @@
 #define Mode_Front__SHIFT 5
 
 /* Power_Rear */
-#define Power_Rear__0__DM__MASK 0x7000u
-#define Power_Rear__0__DM__SHIFT 12
-#define Power_Rear__0__DR CYREG_PRT0_DR
-#define Power_Rear__0__HSIOM CYREG_HSIOM_PORT_SEL0
-#define Power_Rear__0__HSIOM_MASK 0x000F0000u
-#define Power_Rear__0__HSIOM_SHIFT 16u
-#define Power_Rear__0__INTCFG CYREG_PRT0_INTCFG
-#define Power_Rear__0__INTSTAT CYREG_PRT0_INTSTAT
-#define Power_Rear__0__MASK 0x10u
-#define Power_Rear__0__PA__CFG0 CYREG_UDB_PA0_CFG0
-#define Power_Rear__0__PA__CFG1 CYREG_UDB_PA0_CFG1
-#define Power_Rear__0__PA__CFG10 CYREG_UDB_PA0_CFG10
-#define Power_Rear__0__PA__CFG11 CYREG_UDB_PA0_CFG11
-#define Power_Rear__0__PA__CFG12 CYREG_UDB_PA0_CFG12
-#define Power_Rear__0__PA__CFG13 CYREG_UDB_PA0_CFG13
-#define Power_Rear__0__PA__CFG14 CYREG_UDB_PA0_CFG14
-#define Power_Rear__0__PA__CFG2 CYREG_UDB_PA0_CFG2
-#define Power_Rear__0__PA__CFG3 CYREG_UDB_PA0_CFG3
-#define Power_Rear__0__PA__CFG4 CYREG_UDB_PA0_CFG4
-#define Power_Rear__0__PA__CFG5 CYREG_UDB_PA0_CFG5
-#define Power_Rear__0__PA__CFG6 CYREG_UDB_PA0_CFG6
-#define Power_Rear__0__PA__CFG7 CYREG_UDB_PA0_CFG7
-#define Power_Rear__0__PA__CFG8 CYREG_UDB_PA0_CFG8
-#define Power_Rear__0__PA__CFG9 CYREG_UDB_PA0_CFG9
-#define Power_Rear__0__PC CYREG_PRT0_PC
-#define Power_Rear__0__PC2 CYREG_PRT0_PC2
-#define Power_Rear__0__PORT 0u
-#define Power_Rear__0__PS CYREG_PRT0_PS
-#define Power_Rear__0__SHIFT 4
-#define Power_Rear__DR CYREG_PRT0_DR
-#define Power_Rear__INTCFG CYREG_PRT0_INTCFG
-#define Power_Rear__INTSTAT CYREG_PRT0_INTSTAT
-#define Power_Rear__MASK 0x10u
-#define Power_Rear__PA__CFG0 CYREG_UDB_PA0_CFG0
-#define Power_Rear__PA__CFG1 CYREG_UDB_PA0_CFG1
-#define Power_Rear__PA__CFG10 CYREG_UDB_PA0_CFG10
-#define Power_Rear__PA__CFG11 CYREG_UDB_PA0_CFG11
-#define Power_Rear__PA__CFG12 CYREG_UDB_PA0_CFG12
-#define Power_Rear__PA__CFG13 CYREG_UDB_PA0_CFG13
-#define Power_Rear__PA__CFG14 CYREG_UDB_PA0_CFG14
-#define Power_Rear__PA__CFG2 CYREG_UDB_PA0_CFG2
-#define Power_Rear__PA__CFG3 CYREG_UDB_PA0_CFG3
-#define Power_Rear__PA__CFG4 CYREG_UDB_PA0_CFG4
-#define Power_Rear__PA__CFG5 CYREG_UDB_PA0_CFG5
-#define Power_Rear__PA__CFG6 CYREG_UDB_PA0_CFG6
-#define Power_Rear__PA__CFG7 CYREG_UDB_PA0_CFG7
-#define Power_Rear__PA__CFG8 CYREG_UDB_PA0_CFG8
-#define Power_Rear__PA__CFG9 CYREG_UDB_PA0_CFG9
-#define Power_Rear__PC CYREG_PRT0_PC
-#define Power_Rear__PC2 CYREG_PRT0_PC2
-#define Power_Rear__PORT 0u
-#define Power_Rear__PS CYREG_PRT0_PS
-#define Power_Rear__SHIFT 4
+#define Power_Rear__0__DM__MASK 0x38000u
+#define Power_Rear__0__DM__SHIFT 15
+#define Power_Rear__0__DR CYREG_PRT3_DR
+#define Power_Rear__0__HSIOM CYREG_HSIOM_PORT_SEL3
+#define Power_Rear__0__HSIOM_MASK 0x00F00000u
+#define Power_Rear__0__HSIOM_SHIFT 20u
+#define Power_Rear__0__INTCFG CYREG_PRT3_INTCFG
+#define Power_Rear__0__INTSTAT CYREG_PRT3_INTSTAT
+#define Power_Rear__0__MASK 0x20u
+#define Power_Rear__0__PA__CFG0 CYREG_UDB_PA3_CFG0
+#define Power_Rear__0__PA__CFG1 CYREG_UDB_PA3_CFG1
+#define Power_Rear__0__PA__CFG10 CYREG_UDB_PA3_CFG10
+#define Power_Rear__0__PA__CFG11 CYREG_UDB_PA3_CFG11
+#define Power_Rear__0__PA__CFG12 CYREG_UDB_PA3_CFG12
+#define Power_Rear__0__PA__CFG13 CYREG_UDB_PA3_CFG13
+#define Power_Rear__0__PA__CFG14 CYREG_UDB_PA3_CFG14
+#define Power_Rear__0__PA__CFG2 CYREG_UDB_PA3_CFG2
+#define Power_Rear__0__PA__CFG3 CYREG_UDB_PA3_CFG3
+#define Power_Rear__0__PA__CFG4 CYREG_UDB_PA3_CFG4
+#define Power_Rear__0__PA__CFG5 CYREG_UDB_PA3_CFG5
+#define Power_Rear__0__PA__CFG6 CYREG_UDB_PA3_CFG6
+#define Power_Rear__0__PA__CFG7 CYREG_UDB_PA3_CFG7
+#define Power_Rear__0__PA__CFG8 CYREG_UDB_PA3_CFG8
+#define Power_Rear__0__PA__CFG9 CYREG_UDB_PA3_CFG9
+#define Power_Rear__0__PC CYREG_PRT3_PC
+#define Power_Rear__0__PC2 CYREG_PRT3_PC2
+#define Power_Rear__0__PORT 3u
+#define Power_Rear__0__PS CYREG_PRT3_PS
+#define Power_Rear__0__SHIFT 5
+#define Power_Rear__DR CYREG_PRT3_DR
+#define Power_Rear__INTCFG CYREG_PRT3_INTCFG
+#define Power_Rear__INTSTAT CYREG_PRT3_INTSTAT
+#define Power_Rear__MASK 0x20u
+#define Power_Rear__PA__CFG0 CYREG_UDB_PA3_CFG0
+#define Power_Rear__PA__CFG1 CYREG_UDB_PA3_CFG1
+#define Power_Rear__PA__CFG10 CYREG_UDB_PA3_CFG10
+#define Power_Rear__PA__CFG11 CYREG_UDB_PA3_CFG11
+#define Power_Rear__PA__CFG12 CYREG_UDB_PA3_CFG12
+#define Power_Rear__PA__CFG13 CYREG_UDB_PA3_CFG13
+#define Power_Rear__PA__CFG14 CYREG_UDB_PA3_CFG14
+#define Power_Rear__PA__CFG2 CYREG_UDB_PA3_CFG2
+#define Power_Rear__PA__CFG3 CYREG_UDB_PA3_CFG3
+#define Power_Rear__PA__CFG4 CYREG_UDB_PA3_CFG4
+#define Power_Rear__PA__CFG5 CYREG_UDB_PA3_CFG5
+#define Power_Rear__PA__CFG6 CYREG_UDB_PA3_CFG6
+#define Power_Rear__PA__CFG7 CYREG_UDB_PA3_CFG7
+#define Power_Rear__PA__CFG8 CYREG_UDB_PA3_CFG8
+#define Power_Rear__PA__CFG9 CYREG_UDB_PA3_CFG9
+#define Power_Rear__PC CYREG_PRT3_PC
+#define Power_Rear__PC2 CYREG_PRT3_PC2
+#define Power_Rear__PORT 3u
+#define Power_Rear__PS CYREG_PRT3_PS
+#define Power_Rear__SHIFT 5
 
 /* Power_Front */
 #define Power_Front__0__DM__MASK 0x7000u
@@ -1364,9 +1364,9 @@
 #define Motor_Current_ADC_cy_psoc4_sar__SAR_STATUS CYREG_SAR_STATUS
 
 /* Motor_Current_ADC_cy_psoc4_sarmux_8 */
-#define Motor_Current_ADC_cy_psoc4_sarmux_8__CH_0_PIN 2
+#define Motor_Current_ADC_cy_psoc4_sarmux_8__CH_0_PIN 3
 #define Motor_Current_ADC_cy_psoc4_sarmux_8__CH_0_PORT 7
-#define Motor_Current_ADC_cy_psoc4_sarmux_8__CH_1_PIN 3
+#define Motor_Current_ADC_cy_psoc4_sarmux_8__CH_1_PIN 2
 #define Motor_Current_ADC_cy_psoc4_sarmux_8__CH_1_PORT 7
 #define Motor_Current_ADC_cy_psoc4_sarmux_8__SAR_CHAN_CONFIG00 CYREG_SAR_CHAN_CONFIG00
 #define Motor_Current_ADC_cy_psoc4_sarmux_8__SAR_CHAN_CONFIG01 CYREG_SAR_CHAN_CONFIG01
@@ -1419,7 +1419,7 @@
 
 /* Miscellaneous */
 #define CY_PROJECT_NAME "motor driver firmware"
-#define CY_VERSION "PSoC Creator  3.2"
+#define CY_VERSION "PSoC Creator  3.2 SP1"
 #define CYDEV_BCLK__HFCLK__HZ 24000000U
 #define CYDEV_BCLK__HFCLK__KHZ 24000U
 #define CYDEV_BCLK__HFCLK__MHZ 24U
@@ -1428,9 +1428,9 @@
 #define CYDEV_BCLK__SYSCLK__MHZ 24U
 #define CYDEV_CHIP_DIE_GEN4 2u
 #define CYDEV_CHIP_DIE_LEOPARD 1u
-#define CYDEV_CHIP_DIE_PANTHER 12u
-#define CYDEV_CHIP_DIE_PSOC4A 5u
-#define CYDEV_CHIP_DIE_PSOC5LP 11u
+#define CYDEV_CHIP_DIE_PANTHER 13u
+#define CYDEV_CHIP_DIE_PSOC4A 6u
+#define CYDEV_CHIP_DIE_PSOC5LP 12u
 #define CYDEV_CHIP_DIE_UNKNOWN 0u
 #define CYDEV_CHIP_FAMILY_PSOC3 1u
 #define CYDEV_CHIP_FAMILY_PSOC4 2u
@@ -1439,16 +1439,17 @@
 #define CYDEV_CHIP_FAMILY_USED CYDEV_CHIP_FAMILY_PSOC4
 #define CYDEV_CHIP_JTAG_ID 0x04C81193u
 #define CYDEV_CHIP_MEMBER_3A 1u
-#define CYDEV_CHIP_MEMBER_4A 5u
-#define CYDEV_CHIP_MEMBER_4C 9u
+#define CYDEV_CHIP_MEMBER_4A 6u
+#define CYDEV_CHIP_MEMBER_4C 10u
 #define CYDEV_CHIP_MEMBER_4D 3u
-#define CYDEV_CHIP_MEMBER_4E 4u
-#define CYDEV_CHIP_MEMBER_4F 6u
+#define CYDEV_CHIP_MEMBER_4E 5u
+#define CYDEV_CHIP_MEMBER_4F 7u
 #define CYDEV_CHIP_MEMBER_4G 2u
-#define CYDEV_CHIP_MEMBER_4L 8u
-#define CYDEV_CHIP_MEMBER_4M 7u
-#define CYDEV_CHIP_MEMBER_5A 11u
-#define CYDEV_CHIP_MEMBER_5B 10u
+#define CYDEV_CHIP_MEMBER_4H 4u
+#define CYDEV_CHIP_MEMBER_4L 9u
+#define CYDEV_CHIP_MEMBER_4M 8u
+#define CYDEV_CHIP_MEMBER_5A 12u
+#define CYDEV_CHIP_MEMBER_5B 11u
 #define CYDEV_CHIP_MEMBER_UNKNOWN 0u
 #define CYDEV_CHIP_MEMBER_USED CYDEV_CHIP_MEMBER_4A
 #define CYDEV_CHIP_DIE_EXPECT CYDEV_CHIP_MEMBER_USED
@@ -1481,6 +1482,7 @@
 #define CYDEV_CHIP_REVISION_4G_ES 17u
 #define CYDEV_CHIP_REVISION_4G_ES2 33u
 #define CYDEV_CHIP_REVISION_4G_PRODUCTION 17u
+#define CYDEV_CHIP_REVISION_4H_PRODUCTION 0u
 #define CYDEV_CHIP_REVISION_4L_PRODUCTION 0u
 #define CYDEV_CHIP_REVISION_4M_PRODUCTION 0u
 #define CYDEV_CHIP_REVISION_5A_ES0 0u

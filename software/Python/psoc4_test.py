@@ -4,7 +4,7 @@
 
 from cobs_serial import cobs_serial
 import struct
-import hid
+#import hid
 import sys
 
 #USB Constants
