@@ -7,6 +7,8 @@ import sys
 import struct
 import platform
 import hid
+import zmq
+
 
 #USB Constants
 coroware_VID = 0x2bd6 #Issued by USB-IF
@@ -114,6 +116,80 @@ class HID_Comm(object):
 			raise IOError, "Invalid Frame: data mismatch"			
 		return rvalue
 
+
+class NET_ZMQ_Comm(object):
+	def __init__(self):
+		self.context = zmq.Context()
+		self.prefix = []
+		self.isopen=False
+
+	def open(self, addr):
+		if self.isopen:
+			raise ValueError, "Already Open"
+		self.socket = self.context.socket(zmq.XREQ)
+		self.socket.connect(addr)
+		self.isopen = True
+
+	def close(self):
+		if not self.isopen:
+			raise ValueError, "Not Open"
+		self.socket.close()
+		self.isopen = False
+
+	def send(self, data, recv=False):
+		if not self.isopen:
+			raise IOError, "Not Open"
+		recvflag = "0"
+		if recv == True:
+			self.recvflag = "1"
+		base = self.prefix[:]
+		base.extend(ordlist(data))
+		self.socket.send_multipart([base, recvflag])
+
+	def receive(self):
+		if not self.isopen:
+			raise IOError, "Not Open"
+		data = self.socket.recv_multipart()
+		return data[0]
+
+	def send_frame(self, unit, subunit, command, data, recv = False):
+		if not self.isopen:
+			raise IOError, "Not Open"
+		out = ordlist(struct.pack("BBB", unit, subunit, command))
+		out.extend(ordlist(data))
+		if len(out)>64:
+			raise ValueError
+		self.send(out, recv = recv)
+		
+	def set_value(self, unit, subunit, setting, value):
+		command_set_value = 1 
+		additional = struct.pack(">HH", setting, value)
+		self.send_frame(unit, subunit, command_set_value, additional)
+		
+	def receive_frame(self):
+		if not self.isopen:
+			raise IOError, "Not Open"
+		data = self.receive()
+		if len(data) < 3:
+			raise IOError, "Invalid Frame: Too short"
+		unit = data[0] - 0x80
+		if unit < 0:
+			raise IOError, "Invalid Frame: Invalid Unit #"
+		subunit = data[1]
+		additional = data[2:]
+		return (unit, subunit, additional)
+		
+	def get_value(self, unit, subunit, setting):
+		command_get_value = 0 
+		additional = struct.pack(">H", setting)
+		self.send_frame(unit, subunit, command_get_value, additional, recv = True)
+		runit, rsubunit, radditional = self.receive_frame()
+		rsetting, rvalue = struct.unpack(">HH", bytearray(radditional[:4]))
+		if unit <> runit or subunit <> rsubunit or setting <> rsetting:		
+			raise IOError, "Invalid Frame: data mismatch"			
+		return rvalue
+
+
 		
 class Spark_Drive(object):
 	def __init__(self, comm):
@@ -158,16 +234,25 @@ class Spark_Drive(object):
 
 
 def main():
-	hidcomm = HID_Comm()
-	try:
-		hidcomm.open()
-	except IOError, ex:
-		print "Spark not found:",ex
-		sys.exit()
-
-	spark = Spark_Drive(hidcomm)
-	
 	print menu_header
+	
+	addr = raw_input("Address of target (tcp://its.ip.add.ress:port) or hit enter for local USB:")
+	if addr == "":
+		comm = HID_Comm()
+		try:
+			comm.open()
+		except IOError, ex:
+			print "Spark not found:",ex
+			sys.exit()
+	else:
+		comm = NET_ZMQ_Comm()
+		try:
+			comm.open(addr)
+		except:
+			print "Error connecting to Spark"
+			sys.exit()
+	
+	spark = Spark_Drive(comm)
 	
 	#Loop until user quits	
 	while True:
@@ -189,7 +274,6 @@ def main():
 			do_echo(spark)
 
 				
-				
 def do_led(comm):
 	print "LED Control"
 	option = raw_input("Enter an LED to control, 1-3\n>>")
@@ -210,12 +294,11 @@ def do_led(comm):
 		return
 	comm.set_led_brightness(lednum, ledval)
 
-
-		
-		
+	
 def do_adc(comm):
 	print "ADC Channel 0:", comm.get_adc(0)
 
+	
 def do_motor(comm):
 	#motor speed
 	raw_motor_num = raw_input("Which motor? (Special values: 0 = Both, 6 = Left, 5 = Right)\n>>")
@@ -250,12 +333,9 @@ def do_motor(comm):
 			print "Error converting direction value"
 			return
 		comm.set_motor_direction(motornum, val)		
-		
 
-	
 		
 def do_servo(comm):
-	#
 	print "Servo Control \n(see script to change min and max pulse widths. Currently defaulted to a TowerPro MG995 Servo)"
 	option = raw_input("Enter a percentage >>")
 	try:
@@ -275,13 +355,13 @@ def do_servo(comm):
 def do_ultrasonic(comm):	
 	print "Ultrasonic 1: ", comm.get_ultrasonic(1)
 
+	
 def do_echo(comm):
 	hid = comm.comm
 	hid.send([0,1,2,3,4,5,6,7])
 	print repr(hid.receive());
 
 		
-				
 if __name__ == '__main__':
 	main()
 
