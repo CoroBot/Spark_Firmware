@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-from cobs_serial import cobs_serial
 import sys
 from Spark_Control import HID_Comm, NET_ZMQ_Comm, Spark_Drive
 
