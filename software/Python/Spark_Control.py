@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-# Script for LED control demo. 
-
 from cobs_serial import cobs_serial
 import sys
 import struct
