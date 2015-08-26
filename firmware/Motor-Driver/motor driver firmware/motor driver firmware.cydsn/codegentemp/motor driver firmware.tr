@@ -29,8 +29,8 @@ Clock: CyRouted1                        | N/A  | Target: 24.00 MHz  |
 Clock: CySYSCLK                         | N/A  | Target: 24.00 MHz  | 
 Clock: Motor_Current_ADC_intClock       | N/A  | Target: 6.00 MHz   | 
 Clock: Motor_Current_ADC_intClock(FFB)  | N/A  | Target: 6.00 MHz   | 
-Clock: UART_SCBCLK                      | N/A  | Target: 1.41 MHz   | 
-Clock: UART_SCBCLK(FFB)                 | N/A  | Target: 1.41 MHz   | 
+Clock: UART_SCBCLK                      | N/A  | Target: 0.69 MHz   | 
+Clock: UART_SCBCLK(FFB)                 | N/A  | Target: 0.69 MHz   | 
 
  =====================================================================
                     End of Clock Frequency Summary
