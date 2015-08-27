@@ -16,9 +16,10 @@ def main():
 		frame = bytearray(indat[1])
 		replyflag = indat[2]
 		comm.send(frame)
+		print "B"
 		if replyflag == "1":
 			replydata = comm.receive()
-			zsock.send_multipart([origin, replydata])
+			zsock.send_multipart([origin, bytearray(replydata)])
 
 if __name__ == '__main__':
 	main()

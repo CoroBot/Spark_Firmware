@@ -121,10 +121,11 @@ class NET_ZMQ_Comm(object):
 			raise IOError, "Not Open"
 		recvflag = "0"
 		if recv == True:
-			self.recvflag = "1"
+			recvflag = "1"
 		base = self.prefix[:]
 		base.extend(ordlist(data))
-		self.socket.send_multipart([base, recvflag])
+		out = bytearray(base)
+		self.socket.send_multipart([out, recvflag])
 
 	def receive(self):
 		if not self.isopen:
@@ -152,11 +153,11 @@ class NET_ZMQ_Comm(object):
 		data = self.receive()
 		if len(data) < 3:
 			raise IOError, "Invalid Frame: Too short"
-		unit = data[0] - 0x80
+		unit = ord(data[0]) - 0x80
 		if unit < 0:
 			raise IOError, "Invalid Frame: Invalid Unit #"
-		subunit = data[1]
-		additional = data[2:]
+		subunit = ord(data[1])
+		additional = ordlist(data[2:])
 		return (unit, subunit, additional)
 		
 	def get_value(self, unit, subunit, setting):
