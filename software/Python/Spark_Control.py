@@ -18,11 +18,20 @@ maxpulse = 214 # 10.7% of period
 minpulse = 54 # 2.7% of period
 
 def ordlist(x):
+	"""Ordlist(x): takes a string or bytearray and returns a list of integers, each of which
+       is the ordinal value of the same offest in the string.
+	   Example:
+	       ordlist("\x01\x02\x03") -> [1,2,3]"""
 	return [ord(l) if type(l) == str else l for l in x]
   
   
 class HID_Comm(object):
+	"""HID_COMM Object:
+	  The HID_COMM object is designed to be used from inside the Spark_Control object. 
+	  Essentially, it abstracts the USB Human Interface (Generic) driver code to 
+	  allow the Spark_Control interface to use any of several communications layers."""
 	def __init__(self):
+		"""Creates a HID_Comm object - initializing the underlying USB HID Generia device driver"""
 		self.hiddev = hid.device()
 		self.prefix = []
 		if platform.system() == 'Windows':
@@ -30,18 +39,23 @@ class HID_Comm(object):
 		self.isopen=False
 
 	def open(self, vid=coroware_VID, pid=spark_PID):
+		"""This call opens the HID Generic driver for reading and writing - and attaches it to a specific
+		USB HID peripheral with vendor ID of vid and product ID of pid."""
 		if self.isopen:
 			raise ValueError, "Already Open"
 		self.hiddev.open(vid,pid)
 		self.isopen = True
 
 	def close(self):
+		"""Closes the underlying HIS peripheral and releases it back to the underlying OS."""
 		if not self.isopen:
 			raise ValueError, "Not Open"
 		self.hiddev.close()
 		self.isopen = False
 
 	def send(self, data):
+		"""Raw HID Generic send - this is a thin wrapper over the underlying library call to fix up isues
+		on Windows and prevent avoidable segfaults inside the library"""
 		if not self.isopen:
 			raise IOError, "Not Open"
 		prefix = self.prefix[:]
@@ -49,6 +63,8 @@ class HID_Comm(object):
 		self.hiddev.write(prefix)
 
 	def receive(self, numbytes=64, blocking=True):
+		"""Raw HID Generic receive - this is a thin wrapper over the underlying library call to fix up isues
+		on Windows and prevent avoidable segfaults inside the library. Use blocking=False for a non-blocking read."""
 		if not self.isopen:
 			raise IOError, "Not Open"
 		if not blocking:
@@ -59,6 +75,13 @@ class HID_Comm(object):
 		return data
 
 	def send_frame(self, unit, subunit, command, data):
+		"""send_frame(unit, subunit, command, data):
+		    unit: Target unit # (byte)
+			subunit: Target instance # (byte)
+			command: Command to deliver to target (byte)
+			data: additional data to send on channel to be delivered to target (bytearray)
+		Formats a standard frame and sends it on the HID Generic channel. Uses the same data structure as we're
+		using for COBS frames."""
 		if not self.isopen:
 			raise IOError, "Not Open"
 		out = ordlist(struct.pack("BBB", unit, subunit, command))
@@ -68,12 +91,20 @@ class HID_Comm(object):
 		self.send(out)
 		
 	def set_value(self, unit, subunit, setting, value):
+		"""Sends a 'set value' command to the target.
+		set_value(unit, subunit, setting, value):
+		     Unit: Target Unit # (byte)
+			 Subunit: Target instance # (byte)
+			 Setting: Which setting to change on the target (uint16)
+			 Value: What to set the target setting to (uint16)"""
 		command_set_value = 1 
 		additional = struct.pack(">HH", setting, value)
 		self.send_frame(unit, subunit, command_set_value, additional)
 		
 
 	def receive_frame(self, blocking=True):
+		"""Receives a frame from the target. Returns a tuple containing the unit, subunit, and a bytestring
+		with the remainder of the frame."""
 		if not self.isopen:
 			raise IOError, "Not Open"
 		data = self.receive(64, blocking)
@@ -87,6 +118,12 @@ class HID_Comm(object):
 		return (unit, subunit, additional)
 		
 	def get_value(self, unit, subunit, setting):
+		"""Sends a 'get value' command to target. Waits for, and receives a return frame containing the requested value.
+		get_value(unit, subunit, setting):
+		     Unit: Target Unit # (byte)
+			 Subunit: Target instance # (byte)
+			 Setting: Which setting to change on the target (uint16)
+		Returns: The requested value (uint16)"""
 		command_get_value = 0 
 		additional = struct.pack(">H", setting)
 		self.send_frame(unit, subunit, command_get_value, additional)
