@@ -182,6 +182,14 @@ class NET_ZMQ_Comm(object):
 		return data[0]
 
 	def send_frame(self, unit, subunit, command, data, recv = False):
+		"""send_frame(unit, subunit, command, data):
+		    unit: Target unit # (byte)
+			subunit: Target instance # (byte)
+			command: Command to deliver to target (byte)
+			data: additional data to send on channel to be delivered to target (bytearray)
+			recv: Whether to wait for a return frame (True/False)
+		Formats a standard frame and sends it on the ZMQ. Uses the same data structure as we're
+		using for COBS frames."""
 		if not self.isopen:
 			raise IOError, "Not Open"
 		out = ordlist(struct.pack("BBB", unit, subunit, command))
@@ -191,11 +199,19 @@ class NET_ZMQ_Comm(object):
 		self.send(out, recv = recv)
 		
 	def set_value(self, unit, subunit, setting, value):
+		"""Sends a 'set value' command to the target.
+		set_value(unit, subunit, setting, value):
+		     Unit: Target Unit # (byte)
+			 Subunit: Target instance # (byte)
+			 Setting: Which setting to change on the target (uint16)
+			 Value: What to set the target setting to (uint16)"""
 		command_set_value = 1 
 		additional = struct.pack(">HH", setting, value)
 		self.send_frame(unit, subunit, command_set_value, additional)
 		
 	def receive_frame(self):
+		"""Receives a frame from the target. Returns a tuple containing the unit, subunit, and a bytestring
+		with the remainder of the frame."""
 		if not self.isopen:
 			raise IOError, "Not Open"
 		data = self.receive()
@@ -209,6 +225,12 @@ class NET_ZMQ_Comm(object):
 		return (unit, subunit, additional)
 		
 	def get_value(self, unit, subunit, setting):
+		"""Sends a 'get value' command to target. Waits for, and receives a return frame containing the requested value.
+		get_value(unit, subunit, setting):
+		     Unit: Target Unit # (byte)
+			 Subunit: Target instance # (byte)
+			 Setting: Which setting to change on the target (uint16)
+		Returns: The requested value (uint16)"""
 		command_get_value = 0 
 		additional = struct.pack(">H", setting)
 		self.send_frame(unit, subunit, command_get_value, additional, recv = True)
