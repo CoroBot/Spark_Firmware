@@ -135,12 +135,18 @@ class HID_Comm(object):
 
 
 class NET_ZMQ_Comm(object):
+	"""NET_ZMQ_Comm Object:
+	  The NET_ZMQ_Comm object is designed to be used from inside the Spark_Control object. 
+	  Essentially, it abstracts the ZeroMQ Network communications code to 
+	  allow the Spark_Control interface to use any of several communications layers."""
 	def __init__(self):
+		"""Creates a NET_ZMQ_Comm object - initializing the underlying ZMQ libraty. Creates a ZeroMQ Context"""
 		self.context = zmq.Context()
 		self.prefix = []
 		self.isopen=False
 
 	def open(self, addr):
+		"""Opens the underlying ZeroMQ socket and connects to the 'server' end."""
 		if self.isopen:
 			raise ValueError, "Already Open"
 		self.socket = self.context.socket(zmq.XREQ)
@@ -148,12 +154,16 @@ class NET_ZMQ_Comm(object):
 		self.isopen = True
 
 	def close(self):
+		"""Closes/Disconnects the underlying ZeroMQ socket and releases the socket to the underlying OS."""
 		if not self.isopen:
 			raise ValueError, "Not Open"
 		self.socket.close()
 		self.isopen = False
 
 	def send(self, data, recv=False):
+		"""Raw ZMQ send - this is a thin wrapper over the underlying library call. The approach taken
+		here fixes up the impedance mismatch between the Spark_Control implementation and the underlying
+		communications layer."""
 		if not self.isopen:
 			raise IOError, "Not Open"
 		recvflag = "0"
@@ -165,6 +175,7 @@ class NET_ZMQ_Comm(object):
 		self.socket.send_multipart([out, recvflag])
 
 	def receive(self):
+		"""receive(): This is a thin wrapper over the underlying library call. """
 		if not self.isopen:
 			raise IOError, "Not Open"
 		data = self.socket.recv_multipart()
