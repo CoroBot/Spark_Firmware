@@ -240,6 +240,42 @@ class NET_ZMQ_Comm(object):
 			raise IOError, "Invalid Frame: data mismatch"			
 		return rvalue
 
+class STUB_Comm(object):
+	"""STUB_Comm Object:
+	  The STUB_Comm object is designed to be used from inside the Spark_Control object. 
+	  Essentially, it fills the role of a communications layer without requiring real hardware."""
+	def __init__(self):
+		self.prefix = []
+		self.vals = {}
+		self.isopen=False
+
+	def open(self, addr):
+		if self.isopen:
+			raise ValueError, "Already Open"
+		self.isopen = True
+
+	def close(self):
+		if not self.isopen:
+			raise ValueError, "Not Open"
+		self.isopen = False
+
+	def send(self, data, recv=False):
+		pass
+		
+	def receive(self):
+		pass
+	
+	def send_frame(self, unit, subunit, command, data, recv = False):
+		pass
+	
+	def set_value(self, unit, subunit, setting, value):
+		self.vals[(unit, subunit, setting)] = value
+	
+	def receive_frame(self):
+		pass
+		
+	def get_value(self, unit, subunit, setting):
+		return self.vals[(unit, subunit, setting)]
 
 		
 class Spark_Drive(object):
