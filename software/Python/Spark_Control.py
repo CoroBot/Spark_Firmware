@@ -240,6 +240,14 @@ class NET_ZMQ_Comm(object):
 			raise IOError, "Invalid Frame: data mismatch"			
 		return rvalue
 
+		
+		
+# Stub communications layer
+#   The only parts of this class that actualld do anything are the set value and get value functions.
+#   set_value sets an internal hash map entry which associates (unit, subunit, setting) with a value.
+#   given the same (unit, subunit, setting), get_value returns the value so stored.
+#   Useful only for testing/development.
+
 class STUB_Comm(object):
 	"""STUB_Comm Object:
 	  The STUB_Comm object is designed to be used from inside the Spark_Control object. 
