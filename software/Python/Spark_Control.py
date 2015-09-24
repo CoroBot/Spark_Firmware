@@ -44,6 +44,7 @@ class HID_Comm(object):
 		if self.isopen:
 			raise ValueError, "Already Open"
 		self.hiddev.open(vid,pid)
+		self.sernum = self.hiddev.get_serial_number_string()
 		self.isopen = True
 
 	def close(self):
@@ -132,6 +133,9 @@ class HID_Comm(object):
 		if unit <> runit or subunit <> rsubunit or setting <> rsetting:		
 			raise IOError, "Invalid Frame: data mismatch"			
 		return rvalue
+		
+	def get_serial(self):
+		return self.sernum
 
 
 class NET_ZMQ_Comm(object):
