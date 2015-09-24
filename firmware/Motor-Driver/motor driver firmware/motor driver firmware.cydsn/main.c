@@ -33,7 +33,7 @@ int main()
     {
         handleFrames();                         //deal with any relevant incoming frames
         
-        updateMotors(); //Does this really need to be called every main? or only when something changes? (in sets)
+        updateMotors(); 
         
         read_current_and_encoder();             //read the adc values and the quadrature encoder values
         CyDelayUs(100);                         //this delay is just to prevent it form dropping too many frames

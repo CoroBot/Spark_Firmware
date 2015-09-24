@@ -2,7 +2,7 @@
 --	Conversion of motor driver firmware.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Tue Aug 25 19:31:24 2015
+--	Thu Sep 24 11:40:02 2015
 --
 
 USE cypress.cypress.all;
@@ -74,13 +74,13 @@ TERMINAL \UART:tmpSIOVREF__tx_net_0\ : bit;
 SIGNAL \UART:tmpINTERRUPT_0__tx_net_0\ : bit;
 SIGNAL \UART:Net_1099\ : bit;
 SIGNAL \UART:Net_1258\ : bit;
+SIGNAL Net_816 : bit;
 SIGNAL \UART:tmpOE__rx_net_0\ : bit;
 SIGNAL \UART:tmpIO_0__rx_net_0\ : bit;
 TERMINAL \UART:tmpSIOVREF__rx_net_0\ : bit;
 SIGNAL \UART:tmpINTERRUPT_0__rx_net_0\ : bit;
 SIGNAL \UART:Net_1175\ : bit;
 SIGNAL \UART:Net_747\ : bit;
-SIGNAL Net_816 : bit;
 SIGNAL \UART:Net_1053\ : bit;
 SIGNAL \UART:Net_1061\ : bit;
 SIGNAL \UART:ss_3\ : bit;
@@ -721,7 +721,7 @@ M1QB:cy_psoc3_pins_v1_10
 		id=>"43ec2fa1-bf22-4b71-9477-b6ca7b97f0b0/2dc2d7a8-ce2b-43c7-af4a-821c8cd73ccf",
 		source_clock_id=>"",
 		divisor=>0,
-		period=>"1446759259.25926",
+		period=>"1335470085.47009",
 		is_direct=>'0',
 		is_digital=>'0')
 	PORT MAP(clock_out=>\UART:Net_847\,
@@ -795,6 +795,9 @@ M1QB:cy_psoc3_pins_v1_10
 		out_clock_en=>tmpOE__M1QA_net_0,
 		out_reset=>zero,
 		interrupt=>\UART:tmpINTERRUPT_0__tx_net_0\);
+\UART:SCB_IRQ\:cy_isr_v1_0
+	GENERIC MAP(int_type=>"10")
+	PORT MAP(int_signal=>Net_816);
 \UART:rx\:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"43ec2fa1-bf22-4b71-9477-b6ca7b97f0b0/78e33e5d-45ea-4b75-88d5-73274e8a7ce4",
 		drive_mode=>"001",

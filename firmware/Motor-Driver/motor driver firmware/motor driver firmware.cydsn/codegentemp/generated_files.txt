@@ -112,6 +112,8 @@
   <file name="I:\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\UART_tx.c" value="ARM_C_FILE;UART_tx" />
   <file name="I:\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\UART_tx.h" value="NONE;UART_tx" />
   <file name="I:\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\UART_tx_aliases.h" value="NONE;UART_tx" />
+  <file name="I:\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\UART_SCB_IRQ.c" value="ARM_C_FILE;UART_SCB_IRQ" />
+  <file name="I:\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\UART_SCB_IRQ.h" value="NONE;UART_SCB_IRQ" />
   <file name="I:\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\UART_rx.c" value="ARM_C_FILE;UART_rx" />
   <file name="I:\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\UART_rx.h" value="NONE;UART_rx" />
   <file name="I:\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\codegentemp\UART_rx_aliases.h" value="NONE;UART_rx" />

@@ -72,6 +72,7 @@
 #include "UART_SCBCLK.h"
 #include "UART_tx.h"
 #include "UART_tx_aliases.h"
+#include "UART_SCB_IRQ.h"
 #include "UART_rx.h"
 #include "UART_rx_aliases.h"
 #include "Motor_Current_ADC_IRQ.h"
