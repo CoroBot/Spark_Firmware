@@ -19,18 +19,16 @@
 #include <motor_control.h>
 
 // Function Declarations
-void hw_init();
+void hardware_init();
 
 
 // Program begins here
-int main()
-{
+int main() {
     CyGlobalIntEnable; /* Enable global interrupts. */
     
-    hw_init();
+    hardware_init();
     
-    for(;;)
-    {
+    for(;;){
         handleFrames();                         //deal with any relevant incoming frames
         
         updateMotors(); 
@@ -41,7 +39,7 @@ int main()
 }
 
 //start the relevant components
-void hw_init() {
+void hardware_init() {
     PWM_Front_Start();
     PWM_Rear_Start();
     QuadDec_Front_Start();

@@ -1,11 +1,11 @@
 /* ========================================
  *
- * Copyright YOUR COMPANY, THE YEAR
+ * Copyright Coroware, Inc. 2015
  * All Rights Reserved
  * UNPUBLISHED, LICENSED SOFTWARE.
  *
  * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
+ * WHICH IS THE PROPERTY OF Coroware, Inc.
  *
  * ========================================
 */
@@ -26,7 +26,7 @@ uint16 rear_encoder;
 uint16 front_speed = 0;
 uint16 rear_speed = 0;
 
-uint8 front_direction = 0;
+uint8 front_direction = 0; //0 moves the motor forward 1 moves in reverse
 uint8 rear_direction = 0;
 
 
@@ -45,20 +45,16 @@ void read_current_and_encoder()
     Motor_Current_ADC_StartConvert();
     int hold_front_current = Motor_Current_ADC_GetResult16(0);
     int hold_rear_current = Motor_Current_ADC_GetResult16(1);
-    if(hold_front_current <=0)
-    {
+    if(hold_front_current <=0){
         front_current = 0;
     }
-    else
-    {
+    else{
         front_current = hold_front_current;
     }
-    if(hold_rear_current <=0)
-    {
+    if(hold_rear_current <=0){
         rear_current = 0;
     }
-    else
-    {
+    else{
         rear_current = hold_rear_current;
     }
     front_encoder = QuadDec_Front_ReadCounter();
@@ -66,23 +62,18 @@ void read_current_and_encoder()
 }
 
 //this function handles all the commands for the front motor.
-void frontmotor(uint8_t *frame)
-{
-    if(frame[SETGET_OFFSET] == GET)//okay we know we need to get something
-    {
+void frontmotor(uint8_t *frame){
+    if(frame[SETGET_OFFSET] == GET){//okay we know we need to get something
         get_frontmotor(frame);
     }
-    else if(frame[SETGET_OFFSET] == SET)//we need to set something instead
-    {
+    else if(frame[SETGET_OFFSET] == SET){//we need to set something instead
         set_frontmotor(frame);
     }
 }
 
 //handles getting all the data from the front motor
-void get_frontmotor(uint8_t* frame)
-{
-    switch(frame[OPTION_OFFSET])
-    {
+void get_frontmotor(uint8_t* frame) {
+    switch(frame[OPTION_OFFSET]) {
         case 0: //get motor direction
             encode_and_send(front_direction);
             break;
@@ -105,10 +96,8 @@ void get_frontmotor(uint8_t* frame)
 }
 
 //handles setting values for the front motor
-void set_frontmotor(uint8_t* frame)
-{
-    switch(frame[OPTION_OFFSET])
-    {
+void set_frontmotor(uint8_t* frame) {
+    switch(frame[OPTION_OFFSET]) {
         case 0: //set motor direction
             //front_direction = frame[DATA_OFFSET];
             front_direction = NO_to_int16(&frame[DATA_OFFSET]);
@@ -133,23 +122,18 @@ void set_frontmotor(uint8_t* frame)
 }
 
 //this function handles all of the commands for the rear motor.
-void rearmotor(uint8_t *frame)
-{
-    if(frame[SETGET_OFFSET] == GET)//okay we know we need to get something
-    {
+void rearmotor(uint8_t *frame) {
+    if(frame[SETGET_OFFSET] == GET) {//okay we know we need to get something
         get_rearmotor(frame);
     }
-    else if(frame[SETGET_OFFSET] == SET)//we need to set something instead
-    {
+    else if(frame[SETGET_OFFSET] == SET) {//we need to set something instead
         set_rearmotor(frame);
     }
 }
 
 //handles getting values form the rear motor
-void get_rearmotor(uint8_t* frame)
-{
-    switch(frame[OPTION_OFFSET])
-    {
+void get_rearmotor(uint8_t* frame) {
+    switch(frame[OPTION_OFFSET]) {
         case 0: //get motor direction
             encode_and_send(rear_direction);
             break;
@@ -172,10 +156,8 @@ void get_rearmotor(uint8_t* frame)
 }
 
 //handles setting all the values for the rear motor
-void set_rearmotor(uint8_t* frame)
-{
-    switch(frame[OPTION_OFFSET])
-    {
+void set_rearmotor(uint8_t* frame) {
+    switch(frame[OPTION_OFFSET]) {
         case 0: //set motor direction
             rear_direction = NO_to_int16(&frame[DATA_OFFSET]);
             break;

@@ -1,11 +1,11 @@
 /* ========================================
  *
- * Copyright YOUR COMPANY, THE YEAR
+ * Copyright Coroware, Inc. 2015
  * All Rights Reserved
  * UNPUBLISHED, LICENSED SOFTWARE.
  *
  * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
+ * WHICH IS THE PROPERTY OF Coroware, Inc.
  *
  * ========================================
 */
@@ -92,23 +92,18 @@ void handleFrames(void) {
 	handle_Frame(decoded, rv); // Good frame - Process result
 }
 
-void handle_Frame(uint8_t *frame, unsigned int length)
-{
-    if(frame[TARGET_OFFSET] == TARGET_RESERVED)
-    {
+void handle_Frame(uint8_t *frame, unsigned int length) {
+    if(frame[TARGET_OFFSET] == TARGET_RESERVED) {
         //something not universe breaking maybe?
         return;
     }
-    else if(frame[TARGET_OFFSET] == TARGET_FRONT_MOTOR)//going to front motor //TARGET_FRONT_MOTOR = 1
-    {
+    else if(frame[TARGET_OFFSET] == TARGET_FRONT_MOTOR) {//going to front motor //TARGET_FRONT_MOTOR = 1
         frontmotor(frame);
     }
-    else if(frame[TARGET_OFFSET] == TARGET_REAR_MOTOR)//going to rear motor //TARGET_REAR_MOTOR = 2
-    {
+    else if(frame[TARGET_OFFSET] == TARGET_REAR_MOTOR) {//going to rear motor //TARGET_REAR_MOTOR = 2
         rearmotor(frame);
     }
-    else if(frame[TARGET_OFFSET] == TARGET_BOTH_MOTOR)//going to both motors //TARGET_BOTH_MOTOR = 3
-    {
+    else if(frame[TARGET_OFFSET] == TARGET_BOTH_MOTOR) {//going to both motors //TARGET_BOTH_MOTOR = 3
         frontmotor(frame);
         rearmotor(frame);
     }
