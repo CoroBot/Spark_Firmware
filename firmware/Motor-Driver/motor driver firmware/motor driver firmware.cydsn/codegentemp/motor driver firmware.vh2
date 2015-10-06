@@ -2,7 +2,7 @@
 --	Conversion of motor driver firmware.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Thu Oct 01 13:26:40 2015
+--	Tue Oct 06 14:30:54 2015
 --
 
 USE cypress.cypress.all;
@@ -14,13 +14,13 @@ END top_RTL;
 ARCHITECTURE R_T_L OF top_RTL IS
 SIGNAL tmpOE__M1QA_net_0 : bit;
 SIGNAL zero : bit;
-SIGNAL Net_160 : bit;
+SIGNAL Net_1093_0 : bit;
 SIGNAL tmpIO_0__M1QA_net_0 : bit;
 TERMINAL tmpSIOVREF__M1QA_net_0 : bit;
 SIGNAL one : bit;
 SIGNAL tmpINTERRUPT_0__M1QA_net_0 : bit;
 SIGNAL tmpOE__M1QB_net_0 : bit;
-SIGNAL Net_161 : bit;
+SIGNAL Net_1093_1 : bit;
 SIGNAL tmpIO_0__M1QB_net_0 : bit;
 TERMINAL tmpSIOVREF__M1QB_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__M1QB_net_0 : bit;
@@ -36,8 +36,8 @@ SIGNAL Net_835 : bit;
 SIGNAL Net_836 : bit;
 SIGNAL Net_837 : bit;
 SIGNAL Net_832 : bit;
-SIGNAL Net_152 : bit;
-SIGNAL Net_153 : bit;
+SIGNAL Net_1095_2 : bit;
+SIGNAL Net_1095_3 : bit;
 SIGNAL Net_397 : bit;
 SIGNAL \QuadDec_Rear:Net_81\ : bit;
 SIGNAL \QuadDec_Rear:Net_75\ : bit;
@@ -51,6 +51,8 @@ SIGNAL Net_826 : bit;
 SIGNAL Net_827 : bit;
 SIGNAL Net_828 : bit;
 SIGNAL Net_823 : bit;
+SIGNAL Net_1095_0 : bit;
+SIGNAL Net_1095_1 : bit;
 SIGNAL \UART:Net_847\ : bit;
 SIGNAL \UART:Net_459\ : bit;
 SIGNAL \UART:Net_652\ : bit;
@@ -103,10 +105,12 @@ SIGNAL \UART:Net_899\ : bit;
 SIGNAL \UART:Net_915\ : bit;
 SIGNAL \UART:Net_1028\ : bit;
 SIGNAL tmpOE__M2QB_net_0 : bit;
+SIGNAL Net_1093_3 : bit;
 SIGNAL tmpIO_0__M2QB_net_0 : bit;
 TERMINAL tmpSIOVREF__M2QB_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__M2QB_net_0 : bit;
 SIGNAL tmpOE__M2QA_net_0 : bit;
+SIGNAL Net_1093_2 : bit;
 SIGNAL tmpIO_0__M2QA_net_0 : bit;
 TERMINAL tmpSIOVREF__M2QA_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__M2QA_net_0 : bit;
@@ -359,26 +363,6 @@ SIGNAL tmpFB_0__AIN1_1_net_0 : bit;
 SIGNAL tmpIO_0__AIN1_1_net_0 : bit;
 TERMINAL tmpSIOVREF__AIN1_1_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__AIN1_1_net_0 : bit;
-TERMINAL Net_2193 : bit;
-TERMINAL Net_843 : bit;
-TERMINAL Net_844 : bit;
-TERMINAL Net_845 : bit;
-TERMINAL Net_846 : bit;
-TERMINAL Net_847 : bit;
-TERMINAL Net_848 : bit;
-TERMINAL Net_849 : bit;
-TERMINAL Net_850 : bit;
-TERMINAL Net_851 : bit;
-TERMINAL Net_852 : bit;
-TERMINAL Net_2194 : bit;
-TERMINAL Net_853 : bit;
-TERMINAL Net_2195 : bit;
-TERMINAL Net_2196 : bit;
-TERMINAL Net_838 : bit;
-TERMINAL Net_839 : bit;
-TERMINAL Net_840 : bit;
-TERMINAL Net_841 : bit;
-TERMINAL Net_842 : bit;
 SIGNAL tmpOE__Power_Front_net_0 : bit;
 SIGNAL tmpFB_0__Power_Front_net_0 : bit;
 SIGNAL tmpIO_0__Power_Front_net_0 : bit;
@@ -536,6 +520,55 @@ SIGNAL \Rear_Dir:control_3\ : bit;
 SIGNAL \Rear_Dir:control_2\ : bit;
 SIGNAL \Rear_Dir:control_1\ : bit;
 SIGNAL \Rear_Dir:control_0\ : bit;
+SIGNAL \GlitchFilter_1:op_clk\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[0]:or_term\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[0]:samples_3\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[0]:samples_2\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[0]:samples_1\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[0]:samples_0\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[0]:and_term\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[0]:last_state\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[1]:or_term\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[1]:samples_3\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[1]:samples_2\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[1]:samples_1\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[1]:samples_0\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[1]:and_term\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[1]:last_state\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[2]:or_term\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[2]:samples_3\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[2]:samples_2\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[2]:samples_1\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[2]:samples_0\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[2]:and_term\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[2]:last_state\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[3]:or_term\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[3]:samples_3\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[3]:samples_2\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[3]:samples_1\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[3]:samples_0\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[3]:and_term\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[3]:last_state\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[0]:samples_3\\D\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[0]:samples_2\\D\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[0]:samples_1\\D\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[0]:samples_0\\D\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[0]:last_state\\D\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[1]:samples_3\\D\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[1]:samples_2\\D\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[1]:samples_1\\D\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[1]:samples_0\\D\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[1]:last_state\\D\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[2]:samples_3\\D\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[2]:samples_2\\D\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[2]:samples_1\\D\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[2]:samples_0\\D\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[2]:last_state\\D\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[3]:samples_3\\D\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[3]:samples_2\\D\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[3]:samples_1\\D\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[3]:samples_0\\D\ : bit;
+SIGNAL \GlitchFilter_1:genblk1[3]:last_state\\D\ : bit;
 BEGIN
 
 zero <=  ('0') ;
@@ -549,6 +582,34 @@ Net_149 <= ((Net_336 and Net_1019));
 Net_98 <= ((not Net_304 and Net_303));
 
 Net_101 <= ((Net_304 and Net_303));
+
+\GlitchFilter_1:genblk1[0]:last_state\\D\ <= ((Net_1093_0 and \GlitchFilter_1:genblk1[0]:samples_3\ and \GlitchFilter_1:genblk1[0]:samples_2\ and \GlitchFilter_1:genblk1[0]:samples_1\ and \GlitchFilter_1:genblk1[0]:samples_0\)
+	OR (Net_1095_0 and \GlitchFilter_1:genblk1[0]:samples_0\)
+	OR (Net_1095_0 and \GlitchFilter_1:genblk1[0]:samples_1\)
+	OR (Net_1095_0 and \GlitchFilter_1:genblk1[0]:samples_2\)
+	OR (Net_1095_0 and \GlitchFilter_1:genblk1[0]:samples_3\)
+	OR (Net_1093_0 and Net_1095_0));
+
+\GlitchFilter_1:genblk1[1]:last_state\\D\ <= ((Net_1093_1 and \GlitchFilter_1:genblk1[1]:samples_3\ and \GlitchFilter_1:genblk1[1]:samples_2\ and \GlitchFilter_1:genblk1[1]:samples_1\ and \GlitchFilter_1:genblk1[1]:samples_0\)
+	OR (Net_1095_1 and \GlitchFilter_1:genblk1[1]:samples_0\)
+	OR (Net_1095_1 and \GlitchFilter_1:genblk1[1]:samples_1\)
+	OR (Net_1095_1 and \GlitchFilter_1:genblk1[1]:samples_2\)
+	OR (Net_1095_1 and \GlitchFilter_1:genblk1[1]:samples_3\)
+	OR (Net_1093_1 and Net_1095_1));
+
+\GlitchFilter_1:genblk1[2]:last_state\\D\ <= ((Net_1093_2 and \GlitchFilter_1:genblk1[2]:samples_3\ and \GlitchFilter_1:genblk1[2]:samples_2\ and \GlitchFilter_1:genblk1[2]:samples_1\ and \GlitchFilter_1:genblk1[2]:samples_0\)
+	OR (Net_1095_2 and \GlitchFilter_1:genblk1[2]:samples_0\)
+	OR (Net_1095_2 and \GlitchFilter_1:genblk1[2]:samples_1\)
+	OR (Net_1095_2 and \GlitchFilter_1:genblk1[2]:samples_2\)
+	OR (Net_1095_2 and \GlitchFilter_1:genblk1[2]:samples_3\)
+	OR (Net_1095_2 and Net_1093_2));
+
+\GlitchFilter_1:genblk1[3]:last_state\\D\ <= ((Net_1093_3 and \GlitchFilter_1:genblk1[3]:samples_3\ and \GlitchFilter_1:genblk1[3]:samples_2\ and \GlitchFilter_1:genblk1[3]:samples_1\ and \GlitchFilter_1:genblk1[3]:samples_0\)
+	OR (Net_1095_3 and \GlitchFilter_1:genblk1[3]:samples_0\)
+	OR (Net_1095_3 and \GlitchFilter_1:genblk1[3]:samples_1\)
+	OR (Net_1095_3 and \GlitchFilter_1:genblk1[3]:samples_2\)
+	OR (Net_1095_3 and \GlitchFilter_1:genblk1[3]:samples_3\)
+	OR (Net_1095_3 and Net_1093_3));
 
 M1QA:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba",
@@ -607,7 +668,7 @@ M1QA:cy_psoc3_pins_v1_10
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__M1QA_net_0),
 		y=>(zero),
-		fb=>Net_160,
+		fb=>Net_1093_0,
 		analog=>(open),
 		io=>(tmpIO_0__M1QA_net_0),
 		siovref=>(tmpSIOVREF__M1QA_net_0),
@@ -676,7 +737,7 @@ M1QB:cy_psoc3_pins_v1_10
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__M1QA_net_0),
 		y=>(zero),
-		fb=>Net_161,
+		fb=>Net_1093_1,
 		analog=>(open),
 		io=>(tmpIO_0__M1QB_net_0),
 		siovref=>(tmpSIOVREF__M1QB_net_0),
@@ -692,10 +753,10 @@ M1QB:cy_psoc3_pins_v1_10
 	GENERIC MAP(cy_registers=>"")
 	PORT MAP(clock=>Net_397,
 		capture=>zero,
-		count=>Net_152,
+		count=>Net_1095_2,
 		reload=>zero,
 		stop=>zero,
-		start=>Net_153,
+		start=>Net_1095_3,
 		underflow=>Net_834,
 		overflow=>Net_833,
 		compare_match=>Net_835,
@@ -706,10 +767,10 @@ M1QB:cy_psoc3_pins_v1_10
 	GENERIC MAP(cy_registers=>"")
 	PORT MAP(clock=>Net_397,
 		capture=>zero,
-		count=>Net_160,
+		count=>Net_1095_0,
 		reload=>zero,
 		stop=>zero,
-		start=>Net_161,
+		start=>Net_1095_1,
 		underflow=>Net_825,
 		overflow=>Net_824,
 		compare_match=>Net_826,
@@ -895,7 +956,7 @@ Clock_1:cy_clock_v1_0
 		divisor=>0,
 		period=>"1000000000",
 		is_direct=>'0',
-		is_digital=>'0')
+		is_digital=>'1')
 	PORT MAP(clock_out=>Net_397,
 		dig_domain_out=>open);
 M2QB:cy_psoc3_pins_v1_10
@@ -955,7 +1016,7 @@ M2QB:cy_psoc3_pins_v1_10
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__M1QA_net_0),
 		y=>(zero),
-		fb=>Net_153,
+		fb=>Net_1093_3,
 		analog=>(open),
 		io=>(tmpIO_0__M2QB_net_0),
 		siovref=>(tmpSIOVREF__M2QB_net_0),
@@ -1024,7 +1085,7 @@ M2QA:cy_psoc3_pins_v1_10
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__M1QA_net_0),
 		y=>(zero),
-		fb=>Net_152,
+		fb=>Net_1093_2,
 		analog=>(open),
 		io=>(tmpIO_0__M2QA_net_0),
 		siovref=>(tmpSIOVREF__M2QA_net_0),
@@ -2276,15 +2337,6 @@ AIN1_1:cy_psoc3_pins_v1_10
 		out_clock_en=>tmpOE__M1QA_net_0,
 		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__AIN1_1_net_0);
-Encoder_Header:cy_annotation_universal_v1_0
-	GENERIC MAP(comp_name=>"Connector20_v1_0",
-		port_names=>"T1, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T2, T20, T3, T4, T5, T6, T7, T8, T9",
-		width=>20)
-	PORT MAP(connect=>(Net_2193, Net_843, Net_844, Net_845,
-			Net_846, Net_847, Net_848, Net_849,
-			Net_850, Net_851, Net_852, Net_2194,
-			Net_853, Net_2195, Net_2196, Net_838,
-			Net_839, Net_840, Net_841, Net_842));
 Power_Front:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"86dd5c1a-6fbc-48a9-8e9f-0e18c702343a",
 		drive_mode=>"110",
@@ -2507,5 +2559,90 @@ Rear_Driver_P12:cy_annotation_universal_v1_0
 		clock=>zero,
 		control=>(\Rear_Dir:control_7\, \Rear_Dir:control_6\, \Rear_Dir:control_5\, \Rear_Dir:control_4\,
 			\Rear_Dir:control_3\, \Rear_Dir:control_2\, \Rear_Dir:control_1\, Net_336));
+\GlitchFilter_1:ClkSync\:cy_psoc3_udb_clock_enable_v1_0
+	GENERIC MAP(sync_mode=>'1')
+	PORT MAP(clock_in=>Net_397,
+		enable=>tmpOE__M1QA_net_0,
+		clock_out=>\GlitchFilter_1:op_clk\);
+\GlitchFilter_1:genblk1[0]:samples_3\:cy_dff
+	PORT MAP(d=>\GlitchFilter_1:genblk1[0]:samples_2\,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>\GlitchFilter_1:genblk1[0]:samples_3\);
+\GlitchFilter_1:genblk1[0]:samples_2\:cy_dff
+	PORT MAP(d=>\GlitchFilter_1:genblk1[0]:samples_1\,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>\GlitchFilter_1:genblk1[0]:samples_2\);
+\GlitchFilter_1:genblk1[0]:samples_1\:cy_dff
+	PORT MAP(d=>\GlitchFilter_1:genblk1[0]:samples_0\,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>\GlitchFilter_1:genblk1[0]:samples_1\);
+\GlitchFilter_1:genblk1[0]:samples_0\:cy_dff
+	PORT MAP(d=>Net_1093_0,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>\GlitchFilter_1:genblk1[0]:samples_0\);
+\GlitchFilter_1:genblk1[0]:last_state\:cy_dff
+	PORT MAP(d=>\GlitchFilter_1:genblk1[0]:last_state\\D\,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>Net_1095_0);
+\GlitchFilter_1:genblk1[1]:samples_3\:cy_dff
+	PORT MAP(d=>\GlitchFilter_1:genblk1[1]:samples_2\,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>\GlitchFilter_1:genblk1[1]:samples_3\);
+\GlitchFilter_1:genblk1[1]:samples_2\:cy_dff
+	PORT MAP(d=>\GlitchFilter_1:genblk1[1]:samples_1\,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>\GlitchFilter_1:genblk1[1]:samples_2\);
+\GlitchFilter_1:genblk1[1]:samples_1\:cy_dff
+	PORT MAP(d=>\GlitchFilter_1:genblk1[1]:samples_0\,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>\GlitchFilter_1:genblk1[1]:samples_1\);
+\GlitchFilter_1:genblk1[1]:samples_0\:cy_dff
+	PORT MAP(d=>Net_1093_1,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>\GlitchFilter_1:genblk1[1]:samples_0\);
+\GlitchFilter_1:genblk1[1]:last_state\:cy_dff
+	PORT MAP(d=>\GlitchFilter_1:genblk1[1]:last_state\\D\,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>Net_1095_1);
+\GlitchFilter_1:genblk1[2]:samples_3\:cy_dff
+	PORT MAP(d=>\GlitchFilter_1:genblk1[2]:samples_2\,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>\GlitchFilter_1:genblk1[2]:samples_3\);
+\GlitchFilter_1:genblk1[2]:samples_2\:cy_dff
+	PORT MAP(d=>\GlitchFilter_1:genblk1[2]:samples_1\,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>\GlitchFilter_1:genblk1[2]:samples_2\);
+\GlitchFilter_1:genblk1[2]:samples_1\:cy_dff
+	PORT MAP(d=>\GlitchFilter_1:genblk1[2]:samples_0\,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>\GlitchFilter_1:genblk1[2]:samples_1\);
+\GlitchFilter_1:genblk1[2]:samples_0\:cy_dff
+	PORT MAP(d=>Net_1093_2,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>\GlitchFilter_1:genblk1[2]:samples_0\);
+\GlitchFilter_1:genblk1[2]:last_state\:cy_dff
+	PORT MAP(d=>\GlitchFilter_1:genblk1[2]:last_state\\D\,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>Net_1095_2);
+\GlitchFilter_1:genblk1[3]:samples_3\:cy_dff
+	PORT MAP(d=>\GlitchFilter_1:genblk1[3]:samples_2\,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>\GlitchFilter_1:genblk1[3]:samples_3\);
+\GlitchFilter_1:genblk1[3]:samples_2\:cy_dff
+	PORT MAP(d=>\GlitchFilter_1:genblk1[3]:samples_1\,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>\GlitchFilter_1:genblk1[3]:samples_2\);
+\GlitchFilter_1:genblk1[3]:samples_1\:cy_dff
+	PORT MAP(d=>\GlitchFilter_1:genblk1[3]:samples_0\,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>\GlitchFilter_1:genblk1[3]:samples_1\);
+\GlitchFilter_1:genblk1[3]:samples_0\:cy_dff
+	PORT MAP(d=>Net_1093_3,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>\GlitchFilter_1:genblk1[3]:samples_0\);
+\GlitchFilter_1:genblk1[3]:last_state\:cy_dff
+	PORT MAP(d=>\GlitchFilter_1:genblk1[3]:last_state\\D\,
+		clk=>\GlitchFilter_1:op_clk\,
+		q=>Net_1095_3);
 
 END R_T_L;

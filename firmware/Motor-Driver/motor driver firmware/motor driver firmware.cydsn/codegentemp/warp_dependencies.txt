@@ -20,5 +20,9 @@ C:/Program\ Files\ (x86)/Cypress/PSoC\ Creator/3.2/PSoC\ Creator/psoc/content/cy
 
 C:/Program\ Files\ (x86)/Cypress/PSoC\ Creator/3.2/PSoC\ Creator/psoc/content/cyprimitives/CyPrimitives.cylib/CyControlReg_v1_80/CyControlReg_v1_80.v : 
 
+C:/Program\ Files\ (x86)/Cypress/PSoC\ Creator/3.2/PSoC\ Creator/psoc/content/cycomponentlibrary/CyComponentLibrary.cylib/GlitchFilter_v2_0/GlitchFilter_v2_0.v : 
+
 C:/Program\ Files\ (x86)/Cypress/PSoC\ Creator/3.2/PSoC\ Creator/warp/lib/common/stdlogic/rtlpkg.vif : 
+
+C:/Program\ Files\ (x86)/Cypress/PSoC\ Creator/3.2/PSoC\ Creator/warp/lib/common/stdlogic/cy_psoc3.vif : 
 

@@ -1,6 +1,6 @@
 // ======================================================================
 // motor driver firmware.v generated from TopDesign.cysch
-// 10/01/2015 at 13:26
+// 10/06/2015 at 14:30
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -1343,9 +1343,23 @@ module TCPWM_P4_v2_0_5 (
 
 endmodule
 
+// Component: GlitchFilter_v2_0
+`ifdef CY_BLK_DIR
+`undef CY_BLK_DIR
+`endif
+
+`ifdef WARP
+`define CY_BLK_DIR "$CYPRESS_DIR\..\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\GlitchFilter_v2_0"
+`include "$CYPRESS_DIR\..\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\GlitchFilter_v2_0\GlitchFilter_v2_0.v"
+`else
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\GlitchFilter_v2_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\GlitchFilter_v2_0\GlitchFilter_v2_0.v"
+`endif
+
 // top
 module top ;
 
+          wire  Net_1100;
           wire  Net_1076;
           wire  Net_1075;
           wire  Net_1074;
@@ -1470,22 +1484,6 @@ module top ;
     electrical  Net_895;
     electrical  Net_894;
     electrical  Net_893;
-    electrical  Net_853;
-    electrical  Net_852;
-    electrical  Net_851;
-    electrical  Net_850;
-    electrical  Net_849;
-    electrical  Net_848;
-    electrical  Net_847;
-    electrical  Net_846;
-    electrical  Net_845;
-    electrical  Net_844;
-    electrical  Net_843;
-    electrical  Net_842;
-    electrical  Net_841;
-    electrical  Net_840;
-    electrical  Net_839;
-    electrical  Net_838;
           wire  Net_864;
           wire  Net_863;
           wire  Net_862;
@@ -1544,6 +1542,8 @@ module top ;
           wire  Net_831;
           wire  Net_830;
           wire  Net_829;
+          wire [3:0] Net_1095;
+          wire [3:0] Net_1093;
     electrical  Net_1963;
     electrical  Net_1938;
     electrical  Net_2013;
@@ -1566,14 +1566,6 @@ module top ;
           wire  Net_137;
           wire  Net_101;
           wire  Net_98;
-    electrical  Net_2196;
-    electrical  Net_2195;
-    electrical  Net_2194;
-    electrical  Net_2193;
-          wire  Net_153;
-          wire  Net_152;
-          wire  Net_161;
-          wire  Net_160;
           wire  Net_397;
 
 	wire [0:0] tmpOE__M1QA_net;
@@ -1635,7 +1627,7 @@ module top ;
 		M1QA
 		 (.oe(tmpOE__M1QA_net),
 		  .y({1'b0}),
-		  .fb({Net_160}),
+		  .fb({Net_1093[0]}),
 		  .io({tmpIO_0__M1QA_net[0:0]}),
 		  .siovref(tmpSIOVREF__M1QA_net),
 		  .interrupt({tmpINTERRUPT_0__M1QA_net[0:0]}),
@@ -1707,7 +1699,7 @@ module top ;
 		M1QB
 		 (.oe(tmpOE__M1QB_net),
 		  .y({1'b0}),
-		  .fb({Net_161}),
+		  .fb({Net_1093[1]}),
 		  .io({tmpIO_0__M1QB_net[0:0]}),
 		  .siovref(tmpSIOVREF__M1QB_net),
 		  .interrupt({tmpINTERRUPT_0__M1QB_net[0:0]}),
@@ -1723,8 +1715,8 @@ module top ;
     TCPWM_P4_v2_0_0 QuadDec_Front (
         .stop(1'b0),
         .reload(1'b0),
-        .start(Net_153),
-        .count(Net_152),
+        .start(Net_1095[3]),
+        .count(Net_1095[2]),
         .capture(1'b0),
         .interrupt(Net_832),
         .ov(Net_833),
@@ -1737,8 +1729,8 @@ module top ;
     TCPWM_P4_v2_0_1 QuadDec_Rear (
         .stop(1'b0),
         .reload(1'b0),
-        .start(Net_161),
-        .count(Net_160),
+        .start(Net_1095[1]),
+        .count(Net_1095[0]),
         .capture(1'b0),
         .interrupt(Net_823),
         .ov(Net_824),
@@ -1761,7 +1753,7 @@ module top ;
 		  .divisor(0),
 		  .period("1000000000"),
 		  .is_direct(0),
-		  .is_digital(0))
+		  .is_digital(1))
 		Clock_1
 		 (.clock_out(Net_397));
 
@@ -1825,7 +1817,7 @@ module top ;
 		M2QB
 		 (.oe(tmpOE__M2QB_net),
 		  .y({1'b0}),
-		  .fb({Net_153}),
+		  .fb({Net_1093[3]}),
 		  .io({tmpIO_0__M2QB_net[0:0]}),
 		  .siovref(tmpSIOVREF__M2QB_net),
 		  .interrupt({tmpINTERRUPT_0__M2QB_net[0:0]}),
@@ -1897,7 +1889,7 @@ module top ;
 		M2QA
 		 (.oe(tmpOE__M2QA_net),
 		  .y({1'b0}),
-		  .fb({Net_152}),
+		  .fb({Net_1093[2]}),
 		  .io({tmpIO_0__M2QA_net[0:0]}),
 		  .siovref(tmpSIOVREF__M2QA_net),
 		  .interrupt({tmpINTERRUPT_0__M2QA_net[0:0]}),
@@ -2931,34 +2923,6 @@ module top ;
 
 	assign tmpOE__AIN1_1_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
 
-    cy_annotation_universal_v1_0 Encoder_Header (
-        .connect({
-            Net_2193,
-            Net_843,
-            Net_844,
-            Net_845,
-            Net_846,
-            Net_847,
-            Net_848,
-            Net_849,
-            Net_850,
-            Net_851,
-            Net_852,
-            Net_2194,
-            Net_853,
-            Net_2195,
-            Net_2196,
-            Net_838,
-            Net_839,
-            Net_840,
-            Net_841,
-            Net_842
-        })
-    );
-    defparam Encoder_Header.comp_name = "Connector20_v1_0";
-    defparam Encoder_Header.port_names = "T1, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T2, T20, T3, T4, T5, T6, T7, T8, T9";
-    defparam Encoder_Header.width = 20;
-
 	wire [0:0] tmpOE__Power_Front_net;
 	wire [0:0] tmpFB_0__Power_Front_net;
 	wire [0:0] tmpIO_0__Power_Front_net;
@@ -3334,6 +3298,15 @@ module top ;
     defparam Rear_Dir.BusDisplay = 0;
     defparam Rear_Dir.ExtrReset = 0;
     defparam Rear_Dir.NumOutputs = 1;
+
+    GlitchFilter_v2_0 GlitchFilter_1 (
+        .d(Net_1093[3:0]),
+        .reset(1'b0),
+        .clock(Net_397),
+        .q(Net_1095[3:0]));
+    defparam GlitchFilter_1.BypassFilter = 0;
+    defparam GlitchFilter_1.GlitchLength = 4;
+    defparam GlitchFilter_1.SignalWidth = 4;
 
 
 

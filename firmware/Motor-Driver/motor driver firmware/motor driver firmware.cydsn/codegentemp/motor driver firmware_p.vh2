@@ -1,5 +1,5 @@
 -- Project:   motor driver firmware
--- Generated: 10/01/2015 13:26:41
+-- Generated: 10/06/2015 14:30:55
 -- PSoC Creator  3.2 SP1
 
 ENTITY \motor driver firmware\ IS
@@ -53,15 +53,22 @@ ARCHITECTURE __DEFAULT__ OF \motor driver firmware\ IS
     SIGNAL Net_1010 : bit;
     SIGNAL Net_1011 : bit;
     SIGNAL Net_1019 : bit;
+    SIGNAL Net_1093_0 : bit;
+    SIGNAL Net_1093_1 : bit;
+    SIGNAL Net_1093_2 : bit;
+    SIGNAL Net_1093_3 : bit;
+    SIGNAL Net_1095_0 : bit;
+    SIGNAL Net_1095_1 : bit;
+    SIGNAL Net_1095_2 : bit;
+    SIGNAL Net_1095_3 : bit;
     SIGNAL Net_137 : bit;
     SIGNAL Net_149 : bit;
-    SIGNAL Net_152 : bit;
-    SIGNAL Net_153 : bit;
-    SIGNAL Net_160 : bit;
-    SIGNAL Net_161 : bit;
     SIGNAL Net_303 : bit;
     SIGNAL Net_304 : bit;
     SIGNAL Net_336 : bit;
+    SIGNAL Net_397_digital : bit;
+    ATTRIBUTE udbclken_assigned OF Net_397_digital : SIGNAL IS "True";
+    ATTRIBUTE global_signal OF Net_397_digital : SIGNAL IS true;
     SIGNAL Net_397_ff10 : bit;
     ATTRIBUTE global_signal OF Net_397_ff10 : SIGNAL IS true;
     SIGNAL Net_397_ff11 : bit;
@@ -105,6 +112,22 @@ ARCHITECTURE __DEFAULT__ OF \motor driver firmware\ IS
     SIGNAL \Front_Dir:control_5\ : bit;
     SIGNAL \Front_Dir:control_6\ : bit;
     SIGNAL \Front_Dir:control_7\ : bit;
+    SIGNAL \GlitchFilter_1:genblk1[0]:samples_0\ : bit;
+    SIGNAL \GlitchFilter_1:genblk1[0]:samples_1\ : bit;
+    SIGNAL \GlitchFilter_1:genblk1[0]:samples_2\ : bit;
+    SIGNAL \GlitchFilter_1:genblk1[0]:samples_3\ : bit;
+    SIGNAL \GlitchFilter_1:genblk1[1]:samples_0\ : bit;
+    SIGNAL \GlitchFilter_1:genblk1[1]:samples_1\ : bit;
+    SIGNAL \GlitchFilter_1:genblk1[1]:samples_2\ : bit;
+    SIGNAL \GlitchFilter_1:genblk1[1]:samples_3\ : bit;
+    SIGNAL \GlitchFilter_1:genblk1[2]:samples_0\ : bit;
+    SIGNAL \GlitchFilter_1:genblk1[2]:samples_1\ : bit;
+    SIGNAL \GlitchFilter_1:genblk1[2]:samples_2\ : bit;
+    SIGNAL \GlitchFilter_1:genblk1[2]:samples_3\ : bit;
+    SIGNAL \GlitchFilter_1:genblk1[3]:samples_0\ : bit;
+    SIGNAL \GlitchFilter_1:genblk1[3]:samples_1\ : bit;
+    SIGNAL \GlitchFilter_1:genblk1[3]:samples_2\ : bit;
+    SIGNAL \GlitchFilter_1:genblk1[3]:samples_3\ : bit;
     SIGNAL \Motor_Current_ADC:Net_1845_ff7\ : bit;
     ATTRIBUTE global_signal OF \Motor_Current_ADC:Net_1845_ff7\ : SIGNAL IS true;
     SIGNAL \Motor_Current_ADC:Net_3108\ : bit;
@@ -153,6 +176,7 @@ ARCHITECTURE __DEFAULT__ OF \motor driver firmware\ IS
     ATTRIBUTE GROUND OF __ZERO__ : SIGNAL IS true;
     SIGNAL cursense1(0)__PA : bit;
     SIGNAL cursense2(0)__PA : bit;
+    SIGNAL dclk_to_genclk : bit;
     SIGNAL tmpOE__M1QA_net_0 : bit;
     ATTRIBUTE POWER OF tmpOE__M1QA_net_0 : SIGNAL IS true;
     SIGNAL zero : bit;
@@ -173,17 +197,37 @@ ARCHITECTURE __DEFAULT__ OF \motor driver firmware\ IS
     ATTRIBUTE lib_model OF Mode_Front(0) : LABEL IS "iocell13";
     ATTRIBUTE lib_model OF Mode_Rear(0) : LABEL IS "iocell14";
     ATTRIBUTE lib_model OF Net_101 : LABEL IS "macrocell1";
-    ATTRIBUTE lib_model OF Net_137 : LABEL IS "macrocell2";
-    ATTRIBUTE lib_model OF Net_149 : LABEL IS "macrocell3";
-    ATTRIBUTE lib_model OF Net_98 : LABEL IS "macrocell4";
+    ATTRIBUTE lib_model OF Net_1095_0 : LABEL IS "macrocell2";
+    ATTRIBUTE lib_model OF Net_1095_1 : LABEL IS "macrocell3";
+    ATTRIBUTE lib_model OF Net_1095_2 : LABEL IS "macrocell4";
+    ATTRIBUTE lib_model OF Net_1095_3 : LABEL IS "macrocell5";
+    ATTRIBUTE lib_model OF Net_137 : LABEL IS "macrocell6";
+    ATTRIBUTE lib_model OF Net_149 : LABEL IS "macrocell7";
+    ATTRIBUTE lib_model OF Net_98 : LABEL IS "macrocell8";
     ATTRIBUTE lib_model OF Power_Front(0) : LABEL IS "iocell15";
     ATTRIBUTE lib_model OF Power_Rear(0) : LABEL IS "iocell16";
     ATTRIBUTE lib_model OF \Front_Dir:Sync:ctrl_reg\ : LABEL IS "controlcell1";
+    ATTRIBUTE lib_model OF \GlitchFilter_1:genblk1[0]:samples_0\ : LABEL IS "macrocell9";
+    ATTRIBUTE lib_model OF \GlitchFilter_1:genblk1[0]:samples_1\ : LABEL IS "macrocell10";
+    ATTRIBUTE lib_model OF \GlitchFilter_1:genblk1[0]:samples_2\ : LABEL IS "macrocell11";
+    ATTRIBUTE lib_model OF \GlitchFilter_1:genblk1[0]:samples_3\ : LABEL IS "macrocell12";
+    ATTRIBUTE lib_model OF \GlitchFilter_1:genblk1[1]:samples_0\ : LABEL IS "macrocell13";
+    ATTRIBUTE lib_model OF \GlitchFilter_1:genblk1[1]:samples_1\ : LABEL IS "macrocell14";
+    ATTRIBUTE lib_model OF \GlitchFilter_1:genblk1[1]:samples_2\ : LABEL IS "macrocell15";
+    ATTRIBUTE lib_model OF \GlitchFilter_1:genblk1[1]:samples_3\ : LABEL IS "macrocell16";
+    ATTRIBUTE lib_model OF \GlitchFilter_1:genblk1[2]:samples_0\ : LABEL IS "macrocell17";
+    ATTRIBUTE lib_model OF \GlitchFilter_1:genblk1[2]:samples_1\ : LABEL IS "macrocell18";
+    ATTRIBUTE lib_model OF \GlitchFilter_1:genblk1[2]:samples_2\ : LABEL IS "macrocell19";
+    ATTRIBUTE lib_model OF \GlitchFilter_1:genblk1[2]:samples_3\ : LABEL IS "macrocell20";
+    ATTRIBUTE lib_model OF \GlitchFilter_1:genblk1[3]:samples_0\ : LABEL IS "macrocell21";
+    ATTRIBUTE lib_model OF \GlitchFilter_1:genblk1[3]:samples_1\ : LABEL IS "macrocell22";
+    ATTRIBUTE lib_model OF \GlitchFilter_1:genblk1[3]:samples_2\ : LABEL IS "macrocell23";
+    ATTRIBUTE lib_model OF \GlitchFilter_1:genblk1[3]:samples_3\ : LABEL IS "macrocell24";
     ATTRIBUTE Location OF \Motor_Current_ADC:cy_psoc4_sar\ : LABEL IS "F(SARADC,0)";
     ATTRIBUTE lib_model OF \Rear_Dir:Sync:ctrl_reg\ : LABEL IS "controlcell2";
     ATTRIBUTE lib_model OF \UART:rx(0)\ : LABEL IS "iocell17";
     ATTRIBUTE lib_model OF \UART:tx(0)\ : LABEL IS "iocell18";
-    ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell5";
+    ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell25";
     ATTRIBUTE lib_model OF cursense1(0) : LABEL IS "iocell19";
     ATTRIBUTE Location OF cursense1(0) : LABEL IS "P3[4]";
     ATTRIBUTE lib_model OF cursense2(0) : LABEL IS "iocell20";
@@ -1240,9 +1284,13 @@ BEGIN
             ff_div_7 => \Motor_Current_ADC:Net_1845_ff7\,
             ff_div_10 => Net_397_ff10,
             ff_div_11 => Net_397_ff11,
+            udb_div_0 => dclk_to_genclk,
             ff_div_2 => \UART:Net_847_ff2\);
 
-    ClockGenBlock:m0s8clockgenblockcell;
+    ClockGenBlock:m0s8clockgenblockcell
+        PORT MAP(
+            gen_clk_out_0 => Net_397_digital,
+            gen_clk_in_0 => dclk_to_genclk);
 
     M1QA:logicalport
         GENERIC MAP(
@@ -1326,7 +1374,7 @@ BEGIN
         PORT MAP(
             pa_out => M1QA(0)__PA,
             oe => open,
-            fb => Net_160,
+            fb => Net_1093_0,
             pad_in => M1QA(0)_PAD,
             in_clock => ClockBlock_HFCLK,
             in_clock_en => '1',
@@ -1417,7 +1465,7 @@ BEGIN
         PORT MAP(
             pa_out => M1QB(0)__PA,
             oe => open,
-            fb => Net_161,
+            fb => Net_1093_1,
             pad_in => M1QB(0)_PAD,
             in_clock => ClockBlock_HFCLK,
             in_clock_en => '1',
@@ -1508,7 +1556,7 @@ BEGIN
         PORT MAP(
             pa_out => M2QA(0)__PA,
             oe => open,
-            fb => Net_152,
+            fb => Net_1093_2,
             pad_in => M2QA(0)_PAD,
             in_clock => ClockBlock_HFCLK,
             in_clock_en => '1',
@@ -1599,7 +1647,7 @@ BEGIN
         PORT MAP(
             pa_out => M2QB(0)__PA,
             oe => open,
-            fb => Net_153,
+            fb => Net_1093_3,
             pad_in => M2QB(0)_PAD,
             in_clock => ClockBlock_HFCLK,
             in_clock_en => '1',
@@ -1794,6 +1842,66 @@ BEGIN
             q => Net_101,
             main_0 => Net_304,
             main_1 => Net_303);
+
+    Net_1095_0:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * main_1 * !main_2 * !main_3 * !main_4 * !main_5) + (main_0 * !main_1 * main_2 * main_3 * main_4 * main_5)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => Net_1095_0,
+            clock_0 => Net_397_digital,
+            main_0 => Net_1093_0,
+            main_1 => Net_1095_0,
+            main_2 => \GlitchFilter_1:genblk1[0]:samples_3\,
+            main_3 => \GlitchFilter_1:genblk1[0]:samples_2\,
+            main_4 => \GlitchFilter_1:genblk1[0]:samples_1\,
+            main_5 => \GlitchFilter_1:genblk1[0]:samples_0\);
+
+    Net_1095_1:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * main_1 * !main_2 * !main_3 * !main_4 * !main_5) + (main_0 * !main_1 * main_2 * main_3 * main_4 * main_5)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => Net_1095_1,
+            clock_0 => Net_397_digital,
+            main_0 => Net_1093_1,
+            main_1 => Net_1095_1,
+            main_2 => \GlitchFilter_1:genblk1[1]:samples_3\,
+            main_3 => \GlitchFilter_1:genblk1[1]:samples_2\,
+            main_4 => \GlitchFilter_1:genblk1[1]:samples_1\,
+            main_5 => \GlitchFilter_1:genblk1[1]:samples_0\);
+
+    Net_1095_2:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * main_1 * main_2 * main_3 * main_4 * main_5) + (main_0 * !main_1 * !main_2 * !main_3 * !main_4 * !main_5)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => Net_1095_2,
+            clock_0 => Net_397_digital,
+            main_0 => Net_1095_2,
+            main_1 => Net_1093_2,
+            main_2 => \GlitchFilter_1:genblk1[2]:samples_3\,
+            main_3 => \GlitchFilter_1:genblk1[2]:samples_2\,
+            main_4 => \GlitchFilter_1:genblk1[2]:samples_1\,
+            main_5 => \GlitchFilter_1:genblk1[2]:samples_0\);
+
+    Net_1095_3:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * main_1 * main_2 * main_3 * main_4 * main_5) + (main_0 * !main_1 * !main_2 * !main_3 * !main_4 * !main_5)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => Net_1095_3,
+            clock_0 => Net_397_digital,
+            main_0 => Net_1095_3,
+            main_1 => Net_1093_3,
+            main_2 => \GlitchFilter_1:genblk1[3]:samples_3\,
+            main_3 => \GlitchFilter_1:genblk1[3]:samples_2\,
+            main_4 => \GlitchFilter_1:genblk1[3]:samples_1\,
+            main_5 => \GlitchFilter_1:genblk1[3]:samples_0\);
 
     Net_137:macrocell
         GENERIC MAP(
@@ -2019,6 +2127,166 @@ BEGIN
             control_0 => Net_304,
             busclk => ClockBlock_HFCLK);
 
+    \GlitchFilter_1:genblk1[0]:samples_0\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \GlitchFilter_1:genblk1[0]:samples_0\,
+            clock_0 => Net_397_digital,
+            main_0 => Net_1093_0);
+
+    \GlitchFilter_1:genblk1[0]:samples_1\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \GlitchFilter_1:genblk1[0]:samples_1\,
+            clock_0 => Net_397_digital,
+            main_0 => \GlitchFilter_1:genblk1[0]:samples_0\);
+
+    \GlitchFilter_1:genblk1[0]:samples_2\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \GlitchFilter_1:genblk1[0]:samples_2\,
+            clock_0 => Net_397_digital,
+            main_0 => \GlitchFilter_1:genblk1[0]:samples_1\);
+
+    \GlitchFilter_1:genblk1[0]:samples_3\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \GlitchFilter_1:genblk1[0]:samples_3\,
+            clock_0 => Net_397_digital,
+            main_0 => \GlitchFilter_1:genblk1[0]:samples_2\);
+
+    \GlitchFilter_1:genblk1[1]:samples_0\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \GlitchFilter_1:genblk1[1]:samples_0\,
+            clock_0 => Net_397_digital,
+            main_0 => Net_1093_1);
+
+    \GlitchFilter_1:genblk1[1]:samples_1\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \GlitchFilter_1:genblk1[1]:samples_1\,
+            clock_0 => Net_397_digital,
+            main_0 => \GlitchFilter_1:genblk1[1]:samples_0\);
+
+    \GlitchFilter_1:genblk1[1]:samples_2\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \GlitchFilter_1:genblk1[1]:samples_2\,
+            clock_0 => Net_397_digital,
+            main_0 => \GlitchFilter_1:genblk1[1]:samples_1\);
+
+    \GlitchFilter_1:genblk1[1]:samples_3\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \GlitchFilter_1:genblk1[1]:samples_3\,
+            clock_0 => Net_397_digital,
+            main_0 => \GlitchFilter_1:genblk1[1]:samples_2\);
+
+    \GlitchFilter_1:genblk1[2]:samples_0\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \GlitchFilter_1:genblk1[2]:samples_0\,
+            clock_0 => Net_397_digital,
+            main_0 => Net_1093_2);
+
+    \GlitchFilter_1:genblk1[2]:samples_1\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \GlitchFilter_1:genblk1[2]:samples_1\,
+            clock_0 => Net_397_digital,
+            main_0 => \GlitchFilter_1:genblk1[2]:samples_0\);
+
+    \GlitchFilter_1:genblk1[2]:samples_2\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \GlitchFilter_1:genblk1[2]:samples_2\,
+            clock_0 => Net_397_digital,
+            main_0 => \GlitchFilter_1:genblk1[2]:samples_1\);
+
+    \GlitchFilter_1:genblk1[2]:samples_3\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \GlitchFilter_1:genblk1[2]:samples_3\,
+            clock_0 => Net_397_digital,
+            main_0 => \GlitchFilter_1:genblk1[2]:samples_2\);
+
+    \GlitchFilter_1:genblk1[3]:samples_0\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \GlitchFilter_1:genblk1[3]:samples_0\,
+            clock_0 => Net_397_digital,
+            main_0 => Net_1093_3);
+
+    \GlitchFilter_1:genblk1[3]:samples_1\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \GlitchFilter_1:genblk1[3]:samples_1\,
+            clock_0 => Net_397_digital,
+            main_0 => \GlitchFilter_1:genblk1[3]:samples_0\);
+
+    \GlitchFilter_1:genblk1[3]:samples_2\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \GlitchFilter_1:genblk1[3]:samples_2\,
+            clock_0 => Net_397_digital,
+            main_0 => \GlitchFilter_1:genblk1[3]:samples_1\);
+
+    \GlitchFilter_1:genblk1[3]:samples_3\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            clk_inv => '0',
+            clken_mode => 1)
+        PORT MAP(
+            q => \GlitchFilter_1:genblk1[3]:samples_3\,
+            clock_0 => Net_397_digital,
+            main_0 => \GlitchFilter_1:genblk1[3]:samples_2\);
+
     \Motor_Current_ADC:IRQ\:interrupt
         GENERIC MAP(
             int_type => "10")
@@ -2107,10 +2375,10 @@ BEGIN
         PORT MAP(
             clock => Net_397_ff10,
             capture => '0',
-            count => Net_152,
+            count => Net_1095_2,
             reload => '0',
             stop => '0',
-            start => Net_153,
+            start => Net_1095_3,
             tr_underflow => Net_834,
             tr_overflow => Net_833,
             tr_compare_match => Net_835,
@@ -2124,10 +2392,10 @@ BEGIN
         PORT MAP(
             clock => Net_397_ff11,
             capture => '0',
-            count => Net_160,
+            count => Net_1095_0,
             reload => '0',
             stop => '0',
-            start => Net_161,
+            start => Net_1095_1,
             tr_underflow => Net_825,
             tr_overflow => Net_824,
             tr_compare_match => Net_826,
