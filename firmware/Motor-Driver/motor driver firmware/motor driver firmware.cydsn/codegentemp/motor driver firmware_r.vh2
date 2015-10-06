@@ -1,6 +1,6 @@
 -- Project:   motor driver firmware
--- Generated: 10/01/2015 13:26:42
--- PSoC Creator  3.2 SP1
+-- Generated: 10/05/2015 16:25:20
+-- PSoC Creator  3.2
 
 ENTITY \motor driver firmware\ IS
     PORT(
