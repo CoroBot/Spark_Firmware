@@ -5,12 +5,6 @@ from Spark_Control import HID_Comm, NET_ZMQ_Comm, Spark_Drive
 from readchar import readkey
 
 
-#Servo Constants, for TowerPro MG995
-servo_period = 2000 #period of PWM component (ie servo duty cycle) = 20ms
-maxpulse = 214 # 10.7% of period
-minpulse = 54 # 2.7% of period
-
-
 def main():
 	addr = raw_input("Address of target (tcp://its.ip.add.ress:port) or hit enter for local USB:")
 	if addr == "-":
@@ -35,7 +29,7 @@ def main():
 
 
 def drive_spark(spark):
-	max_speed = 30000
+	max_speed = 65000
 	dir_l = 0
 	dir_r = 0
 	speed = 0
