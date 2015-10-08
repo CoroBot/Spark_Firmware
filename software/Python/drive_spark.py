@@ -13,6 +13,8 @@ minpulse = 54 # 2.7% of period
 
 def main():
 	addr = raw_input("Address of target (tcp://its.ip.add.ress:port) or hit enter for local USB:")
+	if addr == "-":
+		addr = "tcp://raspberrypi.local:4567"
 	if addr == "":
 		comm = HID_Comm()
 		try:
@@ -59,10 +61,10 @@ def drive_spark(spark):
 			
 		lmotor = left * max_speed
 		rmotor = right * max_speed
-		comm.set_motor_direction(6, dir_l)
-		comm.set_motor_direction(5, dir_r)
-		comm.set_motor_speed(6, lmotor)
-		comm.set_motor_speed(5, rmotor)
+		spark.set_motor_speed(6, lmotor)
+		spark.set_motor_speed(5, rmotor)
+		spark.set_motor_direction(6, dir_l)
+		spark.set_motor_direction(5, dir_r)
 		
 		k = readkey()
 		if k == 'w':
@@ -70,22 +72,24 @@ def drive_spark(spark):
 		if k == 's':
 			speed -= 0.05
 		if k == 'a':
-			vec += 0.05
+			vec -= 0.1
 		if k == 'd':
-			vec -= 0.05
+			vec += 0.1
 		if k == ' ':
 			speed = 0
 			vec = 0
+			dir_l = 0
+			dir_r = 0
 		if k == 'X':
 			break
 			
 		vec = max(min(vec,1),-1)
-		speed = max(min(speed),-1)
+		speed = max(min(speed,1),-1)
 		
-	comm.set_motor_direction(6, 0)
-	comm.set_motor_direction(5, 0)
-	comm.set_motor_speed(6, 0)
-	comm.set_motor_speed(5, 0)
+	spark.set_motor_direction(6, 0)
+	spark.set_motor_direction(5, 0)
+	spark.set_motor_speed(6, 0)
+	spark.set_motor_speed(5, 0)
 	
 		
 		
