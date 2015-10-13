@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 -- Project:   I:\Dropbox\coroware\github\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\motor driver firmware.cyprj
 -- Generated: 10/06/2015 14:30:57
 -- PSoC Creator  3.2 SP1
+=======
+-- Project:   C:\Users\Owner\Documents\GitHub\Spark_Firmware\firmware\Motor-Driver\motor driver firmware\motor driver firmware.cydsn\motor driver firmware.cyprj
+-- Generated: 10/05/2015 16:25:20
+-- PSoC Creator  3.2
+>>>>>>> origin/master
 
 ENTITY \motor driver firmware\ IS
     PORT(

@@ -6,7 +6,11 @@
 
 #Build Date:         May  8 2015 09:27:37
 
+<<<<<<< HEAD
 #File Generated:     Oct 6 2015 14:30:55
+=======
+#File Generated:     Oct 5 2015 16:25:19
+>>>>>>> origin/master
 
 #Purpose:            
 
@@ -176,5 +180,9 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
+<<<<<<< HEAD
 I2076: Total run-time: 0.4 sec.
+=======
+I2076: Total run-time: 0.2 sec.
+>>>>>>> origin/master
 

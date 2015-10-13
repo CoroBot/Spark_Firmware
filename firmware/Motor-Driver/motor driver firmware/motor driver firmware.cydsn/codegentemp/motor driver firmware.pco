@@ -1,5 +1,9 @@
 # motor driver firmware
+<<<<<<< HEAD
 # 2015-10-06 21:30:56Z
+=======
+# 2015-10-05 23:25:20Z
+>>>>>>> origin/master
 
 # IO_2@[IOP=(3)][IoId=(2)] is reserved: SWDDebugEnabled
 dont_use_io iocell 3 2

@@ -51,3 +51,4 @@ SparkFirmware/firmware/Motor-Driver/Spark-Interface/*.cydsn/CortexM3
 SparkFirmware/firmware/Motor-Driver/Spark-Interface/*.cydsn/Generated_Source
 !SparkFirmware/firmware/Motor-Driver/Spark-Interface/*.cydsn/Dependencies
 *.pyc
+*.zip
