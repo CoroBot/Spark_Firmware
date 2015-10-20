@@ -36,15 +36,44 @@ def main():
 def drive_loop(spark):
 	while(1):
 		print("Driving forward")
-		spark.set_motor_speed(6, .5)
-		spark.set_motor_speed(5, .5)
+		spark.set_motor_speed(6, 12500)
+		spark.set_motor_speed(5, 12500)
+		#repeat command to try and get more consistent sets on motor speed.
+		spark.set_motor_speed(6, 12500)
+		spark.set_motor_speed(5, 12500)
+		
 		time.sleep(3)
 	
 		#turn around #or for now, stop.
 		print("stopping for 2")
 		spark.set_motor_speed(6, 0)
+		spark.set_motor_speed(5, 0)
+		#repeat command
+		spark.set_motor_speed(6, 0)
 		spark.set_motor_speed(5, 0)	
 		time.sleep(2)
+
+		#turn around
+		spark.set_motor_direction(6, 1)
+		spark.set_motor_direction(6, 1)
+		spark.set_motor_direction(5, 1)
+		spark.set_motor_direction(5, 1)
+		spark.set_motor_speed(6, 11000)
+		spark.set_motor_speed(5, 11000)
+		spark.set_motor_speed(6, 11000)
+		spark.set_motor_speed(5, 11000)
+		time.sleep(3)
+	
+		spark.set_motor_direction(5, 0)
+		spark.set_motor_direction(6, 0)
+		spark.set_motor_direction(5, 0)
+		spark.set_motor_direction(6, 0)
+		spark.set_motor_speed(5, 0)
+		spark.set_motor_speed(6, 0)
+		spark.set_motor_speed(5, 0)
+		spark.set_motor_speed(6, 0)
+		time.sleep(2)
+		
 	
 if __name__ == '__main__':
 	main()
