@@ -34,15 +34,17 @@ def main():
 	drive_loop(spark)
 	
 def drive_loop(spark):
-	while(1)
-	spark.set_motor_speed(6, .2)
-	spark.set_motor_speed(5, .2)
-	time.sleep(3)
+	while(1):
+		print("Driving forward")
+		spark.set_motor_speed(6, .5)
+		spark.set_motor_speed(5, .5)
+		time.sleep(3)
 	
-	#turn around #or for now, stop.
-	spark.set_motor_speed(6, 0)
-	spark.set_motor_speed(5, 0)	
-	time.sleep(2)
+		#turn around #or for now, stop.
+		print("stopping for 2")
+		spark.set_motor_speed(6, 0)
+		spark.set_motor_speed(5, 0)	
+		time.sleep(2)
 	
 if __name__ == '__main__':
 	main()
