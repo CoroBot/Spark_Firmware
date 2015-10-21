@@ -4,13 +4,6 @@ import sys
 from Spark_Control import HID_Comm, NET_ZMQ_Comm, Spark_Drive
 import time
 
-'''
-		spark.set_motor_speed(6, lmotor)
-		spark.set_motor_speed(5, rmotor)
-		spark.set_motor_direction(6, dir_l)
-		spark.set_motor_direction(5, dir_r)
-'''
-
 def main():
 	addr = raw_input("Address of target (tcp://its.ip.add.ress:port) or hit enter for local USB:")
 	if addr == "-":
@@ -56,13 +49,13 @@ def drive_loop(spark):
 		#turn around
 		spark.set_motor_direction(6, 1)
 		spark.set_motor_direction(6, 1)
-		spark.set_motor_direction(5, 1)
-		spark.set_motor_direction(5, 1)
-		spark.set_motor_speed(6, 11000)
-		spark.set_motor_speed(5, 11000)
-		spark.set_motor_speed(6, 11000)
-		spark.set_motor_speed(5, 11000)
-		time.sleep(3)
+		#spark.set_motor_direction(5, 1)
+		#spark.set_motor_direction(5, 1)
+		spark.set_motor_speed(6, 61000)
+		spark.set_motor_speed(5, 61000)
+		spark.set_motor_speed(6, 61000)
+		spark.set_motor_speed(5, 61000)
+		time.sleep(2)
 	
 		spark.set_motor_direction(5, 0)
 		spark.set_motor_direction(6, 0)
