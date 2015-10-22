@@ -31,6 +31,8 @@ def main():
 	print menu_header
 	
 	addr = raw_input("Address of target (tcp://its.ip.add.ress:port) or hit enter for local USB:")
+	if addr == "-":
+		addr = "tcp://raspberrypi.local:4567"
 	if addr == "":
 		comm = HID_Comm()
 		try:
