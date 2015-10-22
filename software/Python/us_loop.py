@@ -37,8 +37,8 @@ def main():
 	
 def us_loop(spark):
 	while(1):
-		print(repr(spark.get_ultrasonic(2)))
-		sleep(1)
+		print(spark.get_ultrasonic(1))
+		time.sleep(1)
 		
 if __name__ == '__main__':
 	main()
