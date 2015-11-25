@@ -6,8 +6,11 @@ from Spark_Control import HID_Comm, NET_ZMQ_Comm, Spark_Drive
 pygame.init()
 
 deadzone = 300
+<<<<<<< HEAD
 servoCenter = 18700
 servoRange = 1000
+=======
+>>>>>>> babc1ef0de143c69e5ce6c3bc2e1ab1a0740b12a
 
 pygame.joystick.init()
 
@@ -50,7 +53,10 @@ def main():
             
 def two_stick(spark, joystick):
         global deadzone
+<<<<<<< HEAD
         global servoCenter
+=======
+>>>>>>> babc1ef0de143c69e5ce6c3bc2e1ab1a0740b12a
         for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                         done=True
@@ -83,15 +89,21 @@ def two_stick(spark, joystick):
 
 def one_stick(spark, joystick):
         global deadzone
+<<<<<<< HEAD
         global servoCenter
         global servoRange
+=======
+>>>>>>> babc1ef0de143c69e5ce6c3bc2e1ab1a0740b12a
         for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                         done=True
         LRjoystick = joystick.get_axis(0)
         FBjoystick = joystick.get_axis(1)
+<<<<<<< HEAD
         cameraPan = joystick.get_axis(3)
         cameraTilt = joystick.get_axis(4)
+=======
+>>>>>>> babc1ef0de143c69e5ce6c3bc2e1ab1a0740b12a
         leftval = FBjoystick-LRjoystick
         rightval = FBjoystick+LRjoystick
         if leftval < 0:
@@ -114,8 +126,11 @@ def one_stick(spark, joystick):
                 rightpwm = 65535
         spark.set_motor_speed(5, leftpwm)
         spark.set_motor_speed(6, rightpwm)
+<<<<<<< HEAD
         spark.set_servo_width(1,servoCenter+(servoRange*cameraTilt))
         spark.set_servo_width(2,servoCenter+(servoRange*cameraPan))
+=======
+>>>>>>> babc1ef0de143c69e5ce6c3bc2e1ab1a0740b12a
         if joystick.get_button(6) == 1 and joystick.get_button(7) == 1:
                 pygame.quit()
                 sys.exit()
