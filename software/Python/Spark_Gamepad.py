@@ -3,20 +3,18 @@ import sys
 import math
 from Spark_Control import HID_Comm, NET_ZMQ_Comm, Spark_Drive
 
-pygame.init()
 
-deadzone = 0.05
-servoCenter = 18700
-servoRange = 1000
-holdPosition = True
-tilt = servoCenter
-pan = servoCenter
-holdModes = True
-mode = False #false is one-stick mode, true is two-stick mode
-
-pygame.joystick.init()
-
-info = """
+class Spark_Gamepad():
+        spark = 0 #this gets turned into the object required to control the spark during initialization
+        deadzone = 0.05
+        servoCenter = 18700
+        servoRange = 1000
+        holdPosition = True
+        tilt = servoCenter
+        pan = servoCenter 
+        holdModes = True
+        mode = False #false is one-stick mode, true is two-stick mode
+        info = """
 this is the gamepad control script for spark
 this scripts defaults to one-stick drive mode in this mode:
 
@@ -36,193 +34,198 @@ in two stick mode the spark will drive like a tank:
         y button:---------------switches control schemes
 
 at any time press start and back at the same time to exit the script"""
+        def __init__(self, sparkIn):
+                self.spark = sparkIn
+                pygame.init()
 
-def main():
-        global holdModes
-        global mode
-	addr = raw_input("Address of target (tcp://its.ip.add.ress:port) or hit enter for local USB:")
-	if addr == "":
-		comm = HID_Comm()
-		try:
-			comm.open()
-		except IOError, ex:
-			print "Spark not found:",ex
-			sys.exit()
-	else:
-		comm = NET_ZMQ_Comm()
-		try:
-			comm.open(addr)
-		except:
-			print "Error connecting to Spark"
-			sys.exit()
-	
-	spark = Spark_Drive(comm)
-	joystick_count = pygame.joystick.get_count()
-        joystick = pygame.joystick.Joystick(0)
-        joystick.init()
-        print info
-        while True:
-                if mode:
-                        while holdModes:
-                                two_stick(spark, joystick)
+        def create_joystick(self):
+                joystick_count = pygame.joystick.get_count()
+                if joystick_count < 1:
+                        print "no joystick found, exiting"
+                        pygame.quit()
+                        sys.exit()
+                elif joystick_count == 1:
+                        joystick = pygame.joystick.Joystick(0)
                 else:
-                        while holdModes:
-                                one_stick(spark, joystick)
-                holdModes = True
-            
-def two_stick(spark, joystick):
-        global deadzone
-        global servoCenter
-        global holdPosition
-        global mode
-        global holdModes
-        panRate = 15
-        tiltRate = 15
-        driveRate = 1
-        for event in pygame.event.get():
-                if joystick.get_button(1) == 1 and event.type == pygame.JOYBUTTONDOWN:
-                        holdPosition = not holdPosition
-                        tilt = servoCenter
-                        pan = servoCenter
-                elif joystick.get_button(3) == 1 and event.type == pygame.JOYBUTTONDOWN:
-                        mode = False
-                        holdModes = False
+                        print "I have detected multiple gamepads: "
+                        for i in range(0,joystick_count):
+                                joystick = pygame.joystick.Joystick(i)
+                                print joystick.get_name(),
+                                print "------device number: ",
+                                print i
+                                joystick.quit()
+                        jsNumber = raw_input("what device would you like to use (device number)?: ")
+                        joystick = pygame.joystick.Joystick(int(jsNumber))
+                joystick.init()
+                return joystick
                 
-        leftJoystick = joystick.get_axis(1)
-        if abs(leftJoystick) < deadzone:
-                leftJoystick = 0
+        def control_loop(self,joystick):
+                print self.info
+                while True:
+                        if self.mode:
+                                while self.holdModes:
+                                        self.two_stick(joystick)
+                        else:
+                                while self.holdModes:
+                                        self.one_stick(joystick)
+                        self.holdModes = True
+                    
+        def two_stick(self, joystick):
+                panRate = 15
+                tiltRate = 15
+                driveRate = 1
                 
-        rightJoystick = joystick.get_axis(4)
-        if abs(rightJoystick) < deadzone:
-                rightJoystick = 0
+                for event in pygame.event.get():
+                        if joystick.get_button(1) == 1 and event.type == pygame.JOYBUTTONDOWN:
+                                self.holdPosition = not self.holdPosition
+                                self.tilt = self.servoCenter
+                                self.pan = self.servoCenter
+                        elif joystick.get_button(3) == 1 and event.type == pygame.JOYBUTTONDOWN:
+                                self.mode = False
+                                self.holdModes = False
+                        
+                axis = self.handle_deadzone(joystick)
+                        
+                dpad = joystick.get_hat(0)
+                lookrate = joystick.get_button(4)
+                drivescale = joystick.get_button(5)
                 
-        dpad = joystick.get_hat(0)
-        lookrate = joystick.get_button(4)
-        drivescale = joystick.get_button(5)
-        
-        if drivescale == 1:
-                driveRate = 0.2
-                
-        if lookrate == 1:
-                tiltRate = 2
-                panRate = 2
-                
-        handle_camera(spark, dpad[1],dpad[0],tiltRate,panRate)
-        handle_motors(spark, leftJoystick, rightJoystick, driveRate)
-                
-        if joystick.get_button(6) == 1 and joystick.get_button(7) == 1:
-                pygame.quit()
-                sys.exit()
+                if drivescale == 1:
+                        driveRate = 0.2
+                        
+                if lookrate == 1:
+                        tiltRate = 2
+                        panRate = 2
+                        
+                self.handle_camera(dpad[1],dpad[0],tiltRate,panRate)
+                self.handle_motors(axis[1], axis[3], driveRate)
+                        
+                if joystick.get_button(6) == 1 and joystick.get_button(7) == 1:
+                        pygame.quit()
+                        sys.exit()
 
-def one_stick(spark, joystick):
-        global deadzone
-        global servoCenter
-        global servoRange
-        global holdPosition
-        global mode
-        global holdModes
-        panRate = 20
-        tiltRate = 20
-        driveRate = 1
-        for event in pygame.event.get():
-                if joystick.get_button(1) == 1 and event.type == pygame.JOYBUTTONDOWN:
-                        holdPosition = not holdPosition
-                        tilt = servoCenter
-                        pan = servoCenter
-                elif joystick.get_button(3) == 1 and event.type == pygame.JOYBUTTONDOWN:
-                        mode = True
-                        holdModes = False
+        def one_stick(self, joystick):
+                panRate = 20
+                tiltRate = 20
+                driveRate = 1
+                for event in pygame.event.get():
+                        if joystick.get_button(1) == 1 and event.type == pygame.JOYBUTTONDOWN:
+                                self.holdPosition = not self.holdPosition
+                                self.tilt = self.servoCenter
+                                self.pan = self.servoCenter
+                        elif joystick.get_button(3) == 1 and event.type == pygame.JOYBUTTONDOWN:
+                                self.mode = True
+                                self.holdModes = False
+                axis = self.handle_deadzone(joystick)                
                         
-        LRjoystick = joystick.get_axis(0)
-        if abs(LRjoystick) < deadzone:
-                LRjoystick = 0
+                leftval = axis[1]-axis[0]
+                rightval = axis[1]+axis[0]
+                lookrate = joystick.get_button(4)
+                drivescale = joystick.get_button(5)
                 
-        FBjoystick = joystick.get_axis(1)
-        if abs(FBjoystick) < deadzone:
-                FBjoystick = 0
-                
-        cameraPan = joystick.get_axis(3)
-        if abs(cameraPan) < deadzone:
-                cameraPan = 0
-                
-        cameraTilt = joystick.get_axis(4)
-        if abs(cameraTilt) < deadzone:
-                cameraTilt = 0
-                
-        leftval = FBjoystick-LRjoystick
-        rightval = FBjoystick+LRjoystick
-        lookrate = joystick.get_button(4)
-        drivescale = joystick.get_button(5)
-        
-        if lookrate == 1:
-                panRate = 2
-                tiltRate = 2
-                
-        if drivescale == 1:
-                driveRate = 0.2
-        
-        handle_motors(spark, leftval, rightval,driveRate)
-        handle_camera(spark,cameraTilt,cameraPan,tiltRate,panRate)
+                if lookrate == 1:
+                        panRate = 2
+                        tiltRate = 2
                         
-        if joystick.get_button(6) == 1 and joystick.get_button(7) == 1:
-                pygame.quit()
-                sys.exit()
+                if drivescale == 1:
+                        driveRate = 0.2
+                
+                self.handle_motors(leftval, rightval,driveRate)
+                self.handle_camera(axis[3],axis[2],tiltRate,panRate)
+                                
+                if joystick.get_button(6) == 1 and joystick.get_button(7) == 1:
+                        pygame.quit()
+                        sys.exit()
 
-def handle_camera(spark, cameraTilt, cameraPan, tiltRate, panRate):
-        global servoCenter
-        global servoRange
-        global holdPosition
-        global pan
-        global tilt
-        if holdPosition == False:
-                spark.set_servo_width(1,servoCenter+(servoRange*cameraTilt))
-                spark.set_servo_width(2,servoCenter+(servoRange*cameraPan))
-                
-        else:
-                tilt = tilt+(cameraTilt*tiltRate)
-                pan = pan+(cameraPan*panRate)
-                if tilt >= (servoCenter-servoRange) and tilt <= (servoCenter+servoRange):
-                        spark.set_servo_width(1,tilt)
+        def handle_deadzone(self,joystick):
+                axis = [0,0,0,0]
+                axis[0] = joystick.get_axis(0)
+                if abs(axis[0]) < self.deadzone:
+                        axis[0] = 0
                         
-                elif tilt < (servoCenter-servoRange):
-                        tilt = (servoCenter-servoRange)
+                axis[1] = joystick.get_axis(1)
+                if abs(axis[1]) < self.deadzone:
+                        axis[1] = 0
                         
-                elif tilt > (servoCenter+servoRange):
-                        tilt = (servoCenter+servoRange)
+                axis[2] = joystick.get_axis(3)
+                if abs(axis[2]) < self.deadzone:
+                        axis[2] = 0
                         
-                if pan >= (servoCenter-servoRange) and pan <= (servoCenter+servoRange):
-                        spark.set_servo_width(2,pan)
-                        
-                elif pan < (servoCenter-servoRange):
-                        pan = (servoCenter-servoRange)
-                        
-                elif pan > (servoCenter+servoRange):
-                        pan = (servoCenter+servoRange)
+                axis[3] = joystick.get_axis(4)
+                if abs(axis[3]) < self.deadzone:
+                        axis[3] = 0
+                return axis
 
-def handle_motors(spark, leftval, rightval, driveRate):
-        driveMult = int(65535*driveRate)
-        if leftval < 0:
-                spark.set_motor_direction(5,0)
-                
-        else:
-                spark.set_motor_direction(5,1)
-                
-        if rightval < 0:
-                spark.set_motor_direction(6,0)
-                
-        else:
-                spark.set_motor_direction(6,1)
-                
-        leftpwm = abs(leftval)*driveMult
-        rightpwm = abs(rightval)*driveMult
-        if leftpwm > 65535:
-                leftpwm = 65535
-                
-        if rightpwm > 65535:
-                rightpwm = 65535
-                
-        spark.set_motor_speed(5, leftpwm)
-        spark.set_motor_speed(6, rightpwm)
+        def handle_camera(self, cameraTilt, cameraPan, tiltRate, panRate):
+                if self.holdPosition == False:
+                        self.spark.set_servo_width(1,self.servoCenter+(self.servoRange*cameraTilt))
+                        self.spark.set_servo_width(2,self.servoCenter+(self.servoRange*cameraPan))
+                        
+                else:
+                        self.tilt = self.tilt+(cameraTilt*tiltRate)
+                        self.pan = self.pan+(cameraPan*panRate)
+                        
+                        if self.tilt >= (self.servoCenter-self.servoRange) and self.tilt <= (self.servoCenter+self.servoRange):
+                                self.spark.set_servo_width(1,self.tilt)
+                                
+                        elif self.tilt < (self.servoCenter-self.servoRange):
+                                self.tilt = (self.servoCenter-self.servoRange)
+                                
+                        elif self.tilt > (self.servoCenter+self.servoRange):
+                                self.tilt = (self.servoCenter+self.servoRange)
+                                
+                        if self.pan >= (self.servoCenter-self.servoRange) and self.pan <= (self.servoCenter+self.servoRange):
+                                self.spark.set_servo_width(2,self.pan)
+                                
+                        elif self.pan < (self.servoCenter-self.servoRange):
+                                self.pan = (self.servoCenter-self.servoRange)
+                                
+                        elif self.pan > (self.servoCenter+self.servoRange):
+                                self.pan = (self.servoCenter+self.servoRange)
+
+        def handle_motors(self, leftval, rightval, driveRate):
+                driveMult = int(65535*driveRate)
+                if leftval < 0:
+                        self.spark.set_motor_direction(5,0)
+                        
+                else:
+                        self.spark.set_motor_direction(5,1)
+                        
+                if rightval < 0:
+                        self.spark.set_motor_direction(6,0)
+                        
+                else:
+                        self.spark.set_motor_direction(6,1)
+                        
+                leftpwm = abs(leftval)*driveMult
+                rightpwm = abs(rightval)*driveMult
+                if leftpwm > 65535:
+                        leftpwm = 65535
+                        
+                if rightpwm > 65535:
+                        rightpwm = 65535
+                        
+                self.spark.set_motor_speed(5, leftpwm)
+                self.spark.set_motor_speed(6, rightpwm)
 
 if __name__ == '__main__':
-    main()
+        addr = raw_input("Address of target (tcp://its.ip.add.ress:port) or hit enter for local USB:")
+        if addr == "":
+                comm = HID_Comm()
+                try:
+                        comm.open()
+                except IOError, ex:
+                        print "Spark not found:",ex
+                        sys.exit()
+        else:
+                comm = NET_ZMQ_Comm()
+                try:
+                        comm.open(addr)
+                except:
+                        print "Error connecting to Spark"
+                        sys.exit()
+        
+        sparkout = Spark_Drive(comm)
+        gamepad = Spark_Gamepad(sparkout)
+        js = gamepad.create_joystick()
+        gamepad.control_loop(js)
