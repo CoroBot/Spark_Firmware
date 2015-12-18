@@ -13,9 +13,9 @@ coroware_VID = 0x2bd6 #Issued by USB-IF
 spark_PID = 0xff02 #Development hardware - will change when device is released
 
 #Servo Constants, for TowerPro MG995
-servo_period = 2000 #period of PWM component (ie servo duty cycle) = 20ms
-maxpulse = 214 # 10.7% of period
-minpulse = 54 # 2.7% of period
+servo_period = 20000 #period of PWM component (ie servo duty cycle) = 20ms
+maxpulse = 2140 # 10.7% of period
+minpulse = 540 # 2.7% of period
 
 def ordlist(x):
 	"""Ordlist(x): takes a string or bytearray and returns a list of integers, each of which

@@ -65,6 +65,7 @@ at any time press start and back at the same time to exit the script"""
                         if self.mode:
                                 while self.holdModes:
                                         self.two_stick(joystick)
+                                        #print self.spark.get_ultrasonic(1)
                         else:
                                 while self.holdModes:
                                         self.one_stick(joystick)
@@ -89,6 +90,10 @@ at any time press start and back at the same time to exit the script"""
                 dpad = joystick.get_hat(0)
                 lookrate = joystick.get_button(4)
                 drivescale = joystick.get_button(5)
+
+                LED1 = joystick.get_axis(2)
+                LED2 = joystick.get_axis(5)
+                self.handle_LEDS(LED1,LED2)
                 
                 if drivescale == 1:
                         driveRate = 0.2
@@ -122,6 +127,10 @@ at any time press start and back at the same time to exit the script"""
                 rightval = axis[1]+axis[0]
                 lookrate = joystick.get_button(4)
                 drivescale = joystick.get_button(5)
+
+                LED1 = joystick.get_axis(2)
+                LED2 = joystick.get_axis(5)
+                self.handle_LEDS(LED1,LED2)
                 
                 if lookrate == 1:
                         panRate = 2
@@ -208,8 +217,19 @@ at any time press start and back at the same time to exit the script"""
                 self.spark.set_motor_speed(5, leftpwm)
                 self.spark.set_motor_speed(6, rightpwm)
 
+        def handle_LEDS(self, LED1, LED2):
+                LED1PWM = (1+LED1)*32768
+                LED2PWM = (1+LED2)*32768
+                self.spark.set_led_brightness(1,LED1PWM)
+                self.spark.set_led_brightness(2,LED2PWM)
+
 if __name__ == '__main__':
-        addr = raw_input("Address of target (tcp://its.ip.add.ress:port) or hit enter for local USB:")
+        addr = ""
+        try:
+                if not sys.argv[1] == "-q":
+                        addr == raw_input("Address of target (tcp://its.ip.add.ress:port) or hit enter for local USB:")
+        except:
+                addr == raw_input("Address of target (tcp://its.ip.add.ress:port) or hit enter for local USB:")
         if addr == "":
                 comm = HID_Comm()
                 try:
