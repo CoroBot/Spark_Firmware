@@ -61,14 +61,16 @@ at any time press start and back at the same time to exit the script"""
                 
         def control_loop(self,joystick):
                 print self.info
+                self.clock = pygame.time.Clock()
                 while True:
                         if self.mode:
                                 while self.holdModes:
                                         self.two_stick(joystick)
-                                        #print self.spark.get_ultrasonic(1)
+                                        self.clock.tick(60)
                         else:
                                 while self.holdModes:
                                         self.one_stick(joystick)
+                                        self.clock.tick(60)
                         self.holdModes = True
                     
         def two_stick(self, joystick):
