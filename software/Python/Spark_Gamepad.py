@@ -7,8 +7,8 @@ from Spark_Control import HID_Comm, NET_ZMQ_Comm, Spark_Drive
 class Spark_Gamepad():
 	spark = 0 #this gets turned into the object required to control the spark during initialization
 	deadzone = 0.05
-	servoCenter = 18700
-	servoRange = 1000
+	servoCenter = 18525
+	servoRange = 900
 	holdPosition = True
 	tilt = servoCenter
 	pan = servoCenter 
