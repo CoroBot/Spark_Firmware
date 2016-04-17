@@ -2,18 +2,13 @@
 
 # Script for i2c control demo. 
 
-from cobs_serial import cobs_serial
+from Spark_Control import HID_Comm, NET_ZMQ_Comm, Spark_Drive
 import struct
 import hid
 
 #USB Constants
 coroware_VID = 0x2bd6 #Issued by USB-IF
 spark_PID = 0xff02 #Development hardware - will change when device is released
-
-#Servo Constants, for TowerPro MG995
-servo_period = 2000 #period of PWM component (ie servo duty cycle) = 20ms
-maxpulse = 214 # 10.7% of period
-minpulse = 54 # 2.7% of period
 
 menu_header = """
 *******************************
@@ -38,6 +33,16 @@ Option Menu:
 
 
 def main():
+
+	comm = HID_Comm()
+	try:
+			comm.open()
+	except IOError, ex:
+			print "Spark not found:",ex
+			sys.exit()	
+			
+	spark = Spark_Drive(comm)
+	
 	print menu_header
 	
 	# Open the serial port

@@ -299,6 +299,7 @@ class Spark_Drive(object):
 		self.unit_servo = 3
 		self.unit_adc = 4
 		self.unit_ultrasonic = 5
+		self.unit_I2C = 6
 		
 		self.setting_pwm = 1
 		self.setting_direction = 2
@@ -329,3 +330,10 @@ class Spark_Drive(object):
 	
 	def get_ultrasonic(self, ultrasonic_num):
 		return self.comm.get_value(self.unit_ultrasonic, ultrasonic_num, self.setting_USonic)
+	
+	def I2C_init(self, buffer):
+		return
+		
+	def I2C_SetFrequency(self, buffer, freq):
+		return
+	
