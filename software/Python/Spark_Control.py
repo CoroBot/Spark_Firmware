@@ -313,6 +313,15 @@ class Spark_Drive(object):
 		self.command_set = 1
 		self.command_read = 0
 		
+		self.command_i2c_setFreq = 0x02
+		self.command_i2c_setPullup = 0x03
+		self.command_i2c_start = 0x04
+		self.command_i2c_restart = 0x05
+		self.command_i2c_sendBytes = 0x06
+		self.command_i2c_recieveBytes = 0x07
+		self.command_i2c_stop = 0x08
+		
+		
 	def set_motor_speed(self, motornum, speed):
 		self.comm.set_value(self.unit_motor, motornum, self.setting_pwm, speed) #unit, subu, sett, value
 	
@@ -332,8 +341,28 @@ class Spark_Drive(object):
 		return self.comm.get_value(self.unit_ultrasonic, ultrasonic_num, self.setting_USonic)
 	
 	def I2C_init(self, buffer):
-		return
+		del i2c_buffer[0:]
+		return len(buffer)
 		
+	#returns 0 if the frequency isn't a valid unsigned short
 	def I2C_SetFrequency(self, buffer, freq):
-		return
+		try:
+			freqbytes = struct.pack('>H', freq) #H is for unsigned short
+		except:
+			return 0
+
+		buffer += command_i2c_setFreq
+		buffer += freqbytes
+		return len(buffer)
+		
+	def I2C_SetPullup(self, buffer, pullup_setting):
+		return len(buffer)
 	
+	def I2C_Execute(self, outbuffer):
+		self.comm.send_frame(self.unit_I2C, 0x00, 0x00, outbuffer) #unit, subunit, command, data)
+		runit, rsubunit, rbuffer = self.comm.recieve_frame()
+		return rbuffer #return also errcode
+		
+		
+		
+		

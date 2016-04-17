@@ -85,9 +85,6 @@ def drive_spark(spark):
 	spark.set_motor_speed(6, 0)
 	spark.set_motor_speed(5, 0)
 	
-		
-		
-
 
 
 	
