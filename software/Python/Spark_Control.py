@@ -356,6 +356,8 @@ class Spark_Drive(object):
 		return len(buffer)
 		
 	def I2C_SetPullup(self, buffer, pullup_setting):
+		buffer += struct.pack('B', self.command_i2c_setPullup)
+		buffer += struct.pack('B', pullup_setting)
 		return len(buffer)
 	
 	def I2C_Execute(self, outbuffer):

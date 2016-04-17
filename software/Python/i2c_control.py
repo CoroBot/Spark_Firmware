@@ -70,19 +70,19 @@ def main():
 		elif sel == '2': #setFreq
 			add_setFreq(spark, i2c_buffer)
 		elif sel == '3': #setPullup
-			add_setPullup(spark)
+			add_setPullup(spark, i2c_buffer)
 		elif sel == '4': #start
-			add_start(spark)
+			add_start(spark, i2c_buffer)
 		elif sel == '5': #restart
-			add_restart(spark)
+			add_restart(spark, i2c_buffer)
 		elif sel == '6': #sendBytes
-			add_send(spark)
+			add_send(spark, i2c_buffer)
 		elif sel == '7': #recieveBytes
-			add_recieve(spark)
+			add_recieve(spark, i2c_buffer)
 		elif sel == '8': #stop
-			add_stop(spark)
+			add_stop(spark, i2c_buffer)
 		elif sel == '9': #execute
-			do_execute(spark)				
+			do_execute(spark, i2c_buffer)				
 
 def do_init(comm, i2c_buffer):
         comm.I2C_init(i2c_buffer)
@@ -103,9 +103,24 @@ def add_setFreq(comm, i2c_buffer):
         comm.I2C_SetFrequency(i2c_buffer, freq)
 	print "Updated buffer contents: " + repr(list(i2c_buffer))
 
-def do_execute():
-        print "Final buffer contents: " + repr(list(i2c_buffer))
 
+
+def do_execute(comm, i2c_buffer):
+        print "DEBUG: Final buffer contents: " + repr(list(i2c_buffer))
+
+def add_setPullup(comm, i2c_buffer):
+	print "Sets the internal pullup. 1 for on, otherwise off."
+	option = raw_input("Enter a new state for the internal pullup resistor, 1-0\n>>")
+	try:
+		state = int(option.strip())
+		if state < 0 or state > 1:
+			print "Number out of range"
+			return
+	except:
+		print "Error converting number"
+		return
+	comm.I2C_SetPullup(i2c_buffer, state)
+	print "Updated buffer contents: " +repr(list(i2c_buffer))
 
 			
 if __name__ == '__main__':
