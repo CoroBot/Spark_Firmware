@@ -341,7 +341,7 @@ class Spark_Drive(object):
 		return self.comm.get_value(self.unit_ultrasonic, ultrasonic_num, self.setting_USonic)
 	
 	def I2C_init(self, buffer):
-		del i2c_buffer[0:]
+		del buffer[0:]
 		return len(buffer)
 		
 	#returns 0 if the frequency isn't a valid unsigned short
@@ -351,7 +351,7 @@ class Spark_Drive(object):
 		except:
 			return 0
 
-		buffer += command_i2c_setFreq
+		buffer += struct.pack('B', self.command_i2c_setFreq)
 		buffer += freqbytes
 		return len(buffer)
 		

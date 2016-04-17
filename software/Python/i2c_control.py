@@ -2,9 +2,10 @@
 
 # Script for i2c control demo. 
 
-#from Spark_Control import HID_Comm, NET_ZMQ_Comm, Spark_Drive
+from Spark_Control import HID_Comm, NET_ZMQ_Comm, Spark_Drive
 import struct
 import hid
+import sys
 
 #USB Constants
 coroware_VID = 0x2bd6 #Issued by USB-IF
@@ -34,14 +35,14 @@ Option Menu:
 
 def main():
 
-##	comm = HID_Comm()
-##	try:
-##			comm.open()
-##	except IOError, ex:
-##			print "Spark not found:",ex
-##			sys.exit()	
-##			
-##	spark = Spark_Drive(comm)
+	comm = HID_Comm()
+	try:
+			comm.open()
+	except IOError, ex:
+			print "Spark not found:",ex
+			#sys.exit()	
+			
+	spark = Spark_Drive(comm)
 	
 	print menu_header
 	
@@ -57,7 +58,6 @@ def main():
 	# *************************** END PORT CONFIG ****************************
 
 	i2c_buffer = bytearray([0x00])
-        spark = ""
 		
 	#Loop until user quits	
 	while True:
@@ -66,9 +66,9 @@ def main():
 		if sel == 'X':
 			break
 		elif sel == '1': #init
-			do_init(spark)
+			do_init(spark, i2c_buffer)
 		elif sel == '2': #setFreq
-			add_setFreq(spark)
+			add_setFreq(spark, i2c_buffer)
 		elif sel == '3': #setPullup
 			add_setPullup(spark)
 		elif sel == '4': #start
@@ -84,11 +84,11 @@ def main():
 		elif sel == '9': #execute
 			do_execute(spark)				
 
-def do_init(self, i2c_buffer):
-        spark.I2C_init(i2c_buffer)
+def do_init(comm, i2c_buffer):
+        comm.I2C_init(i2c_buffer)
         print "Updated buffer contents: " + repr(list(i2c_buffer))
         
-def add_setFreq():
+def add_setFreq(comm, i2c_buffer):
         print "Sets the frequency of the I2C component"
         option = raw_input("Enter a new frequency value for the I2C master in kHz, 1-65535\n>>")
 	try:
@@ -100,7 +100,7 @@ def add_setFreq():
 		print "Error converting number"
 		return
 
-        spark.I2C_SetFrequency(i2c_buffer, freq)
+        comm.I2C_SetFrequency(i2c_buffer, freq)
 	print "Updated buffer contents: " + repr(list(i2c_buffer))
 
 def do_execute():
