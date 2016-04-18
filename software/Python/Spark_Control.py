@@ -364,7 +364,7 @@ class Spark_Drive(object):
 	
 	def I2C_Execute(self, buffer, rbuffer, maxlen):
 		#unfinished
-		return 9999
+		return "unimplemented"
 
 		if len(buffer) > 63:
 			return 0

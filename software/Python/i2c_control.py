@@ -57,7 +57,7 @@ def main():
 	
 	# *************************** END PORT CONFIG ****************************
 
-	i2c_buffer = bytearray([0x00])
+	i2c_buffer = bytearray([])
 		
 	#Loop until user quits	
 	while True:
@@ -160,7 +160,7 @@ def do_execute(comm, i2c_buffer):
 	#STUB
         print "DEBUG: Final buffer contents: " + repr(list(i2c_buffer))
 	retbuffer = bytearray()
-	#comm.I2C_execute(i2c_buffer, retbuffer,  maxlen = 64)
+	#comm.I2C_execute(i2c_buffer, retbuffer, 64)
 			
 if __name__ == '__main__':
 	main()
