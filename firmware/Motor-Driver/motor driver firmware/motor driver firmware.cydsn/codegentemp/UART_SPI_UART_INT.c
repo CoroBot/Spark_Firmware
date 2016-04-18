@@ -18,6 +18,7 @@
 #include "UART_PVT.h"
 #include "UART_SPI_UART_PVT.h"
 
+
 #if (UART_SCB_IRQ_INTERNAL)
 /*******************************************************************************
 * Function Name: UART_SPI_UART_ISR
@@ -42,6 +43,10 @@ CY_ISR(UART_SPI_UART_ISR)
 #if (UART_INTERNAL_TX_SW_BUFFER_CONST)
     uint32 locTail;
 #endif /* (UART_INTERNAL_TX_SW_BUFFER_CONST) */
+
+#ifdef UART_SPI_UART_ISR_ENTRY_CALLBACK
+    UART_SPI_UART_ISR_EntryCallback();
+#endif /* UART_SPI_UART_ISR_ENTRY_CALLBACK */
 
     if (NULL != UART_customIntrHandler)
     {
@@ -146,6 +151,11 @@ CY_ISR(UART_SPI_UART_ISR)
         }
     }
     #endif
+    
+#ifdef UART_SPI_UART_ISR_EXIT_CALLBACK
+    UART_SPI_UART_ISR_ExitCallback();
+#endif /* UART_SPI_UART_ISR_EXIT_CALLBACK */
+    
 }
 
 #endif /* (UART_SCB_IRQ_INTERNAL) */

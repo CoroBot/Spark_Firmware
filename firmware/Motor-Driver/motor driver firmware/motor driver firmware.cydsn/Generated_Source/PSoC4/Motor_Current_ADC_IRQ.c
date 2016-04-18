@@ -20,6 +20,7 @@
 #include <CyLib.h>
 #include <Motor_Current_ADC_IRQ.h>
 
+
 #if !defined(Motor_Current_ADC_IRQ__REMOVED) /* Check for removal by optimization */
 
 /*******************************************************************************
@@ -157,6 +158,10 @@ void Motor_Current_ADC_IRQ_Stop(void)
 *******************************************************************************/
 CY_ISR(Motor_Current_ADC_IRQ_Interrupt)
 {
+    #ifdef Motor_Current_ADC_IRQ_INTERRUPT_INTERRUPT_CALLBACK
+        Motor_Current_ADC_IRQ_Interrupt_InterruptCallback();
+    #endif /* Motor_Current_ADC_IRQ_INTERRUPT_INTERRUPT_CALLBACK */ 
+
     /*  Place your Interrupt code here. */
     /* `#START Motor_Current_ADC_IRQ_Interrupt` */
 

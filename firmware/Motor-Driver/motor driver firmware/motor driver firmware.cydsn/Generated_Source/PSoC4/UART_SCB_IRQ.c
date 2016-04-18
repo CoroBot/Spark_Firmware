@@ -20,6 +20,7 @@
 #include <CyLib.h>
 #include <UART_SCB_IRQ.h>
 
+
 #if !defined(UART_SCB_IRQ__REMOVED) /* Check for removal by optimization */
 
 /*******************************************************************************
@@ -157,6 +158,10 @@ void UART_SCB_IRQ_Stop(void)
 *******************************************************************************/
 CY_ISR(UART_SCB_IRQ_Interrupt)
 {
+    #ifdef UART_SCB_IRQ_INTERRUPT_INTERRUPT_CALLBACK
+        UART_SCB_IRQ_Interrupt_InterruptCallback();
+    #endif /* UART_SCB_IRQ_INTERRUPT_INTERRUPT_CALLBACK */ 
+
     /*  Place your Interrupt code here. */
     /* `#START UART_SCB_IRQ_Interrupt` */
 

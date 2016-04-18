@@ -21,18 +21,18 @@
                     1::Clock Frequency Summary
 ===================================================================== 
 Number of clocks: 14
-Clock: Clock_1                          | Frequency: 75.57 MHz  | Target: 1.00 MHz   | 
+Clock: Clock_1                          | Frequency: 76.86 MHz  | Target: 1.00 MHz   | 
 Clock: Clock_1(FFB)                     | N/A                   | Target: 1.00 MHz   | 
 Clock: Clock_2                          | N/A                   | Target: 12.00 MHz  | 
 Clock: Clock_2(FFB)                     | N/A                   | Target: 12.00 MHz  | 
-Clock: CyHFCLK                          | Frequency: 75.57 MHz  | Target: 24.00 MHz  | 
+Clock: CyHFCLK                          | Frequency: 76.86 MHz  | Target: 24.00 MHz  | 
 Clock: CyILO                            | N/A                   | Target: 0.03 MHz   | 
 Clock: CyIMO                            | N/A                   | Target: 24.00 MHz  | 
 Clock: CyLFCLK                          | N/A                   | Target: 0.03 MHz   | 
 Clock: CyRouted1                        | N/A                   | Target: 24.00 MHz  | 
 Clock: CySYSCLK                         | N/A                   | Target: 24.00 MHz  | 
-Clock: Motor_Current_ADC_intClock       | N/A                   | Target: 6.00 MHz   | 
-Clock: Motor_Current_ADC_intClock(FFB)  | N/A                   | Target: 6.00 MHz   | 
+Clock: Motor_Current_ADC_intClock       | N/A                   | Target: 3.00 MHz   | 
+Clock: Motor_Current_ADC_intClock(FFB)  | N/A                   | Target: 3.00 MHz   | 
 Clock: UART_SCBCLK                      | N/A                   | Target: 0.75 MHz   | 
 Clock: UART_SCBCLK(FFB)                 | N/A                   | Target: 0.75 MHz   | 
 
@@ -47,8 +47,8 @@ Clock: UART_SCBCLK(FFB)                 | N/A                   | Target: 0.75 M
 
 Launch Clock  Capture Clock  Constraint(R-R)  Slack(R-R)  Constraint(R-F)  Slack(R-F)  Constraint(F-F)  Slack(F-F)  Constraint(F-R)  Slack(F-R)  
 ------------  -------------  ---------------  ----------  ---------------  ----------  ---------------  ----------  ---------------  ----------  
-Clock_1       Clock_1        1e+006           990894      N/A              N/A         N/A              N/A         N/A              N/A         
-CyHFCLK       Clock_1        41666.7          28434       N/A              N/A         N/A              N/A         N/A              N/A         
+Clock_1       Clock_1        1e+006           989920      N/A              N/A         N/A              N/A         N/A              N/A         
+CyHFCLK       Clock_1        41666.7          28656       N/A              N/A         N/A              N/A         N/A              N/A         
 
  =====================================================================
                     End of Clock Relationship Summary
@@ -73,22 +73,22 @@ Port Name  Setup to Clk  Clock Name:Phase
 
 Port Name      Clock to Out  Clock Name:Phase  
 -------------  ------------  ----------------  
-AIN1_1(0)_PAD  35882         Clock_1(FFB):R    
-AIN1_1(0)_PAD  33810         CyHFCLK:R         
-AIN1_2(0)_PAD  31858         Clock_2(FFB):R    
-AIN1_2(0)_PAD  30906         CyHFCLK:R         
-AIN2_1(0)_PAD  35644         Clock_1(FFB):R    
-AIN2_1(0)_PAD  34129         CyHFCLK:R         
-AIN2_2(0)_PAD  31440         Clock_2(FFB):R    
-AIN2_2(0)_PAD  30484         CyHFCLK:R         
-BIN1_1(0)_PAD  33573         Clock_1(FFB):R    
-BIN1_1(0)_PAD  31501         CyHFCLK:R         
-BIN1_2(0)_PAD  31928         Clock_2(FFB):R    
-BIN1_2(0)_PAD  30976         CyHFCLK:R         
-BIN2_1(0)_PAD  32597         Clock_1(FFB):R    
-BIN2_1(0)_PAD  31083         CyHFCLK:R         
-BIN2_2(0)_PAD  31740         Clock_2(FFB):R    
-BIN2_2(0)_PAD  30784         CyHFCLK:R         
+AIN1_1(0)_PAD  34883         Clock_1(FFB):R    
+AIN1_1(0)_PAD  34794         CyHFCLK:R         
+AIN1_2(0)_PAD  31239         Clock_2(FFB):R    
+AIN1_2(0)_PAD  30990         CyHFCLK:R         
+AIN2_1(0)_PAD  33638         Clock_1(FFB):R    
+AIN2_1(0)_PAD  33526         CyHFCLK:R         
+AIN2_2(0)_PAD  31090         Clock_2(FFB):R    
+AIN2_2(0)_PAD  30819         CyHFCLK:R         
+BIN1_1(0)_PAD  30619         Clock_1(FFB):R    
+BIN1_1(0)_PAD  30529         CyHFCLK:R         
+BIN1_2(0)_PAD  31237         Clock_2(FFB):R    
+BIN1_2(0)_PAD  30987         CyHFCLK:R         
+BIN2_1(0)_PAD  31085         Clock_1(FFB):R    
+BIN2_1(0)_PAD  30973         CyHFCLK:R         
+BIN2_2(0)_PAD  31390         Clock_2(FFB):R    
+BIN2_2(0)_PAD  31119         CyHFCLK:R         
 
 
                          3.3::Pad to Pad
@@ -106,14 +106,14 @@ Port Name (Source)  Port Name (Destination)  Delay
 4.1::Critical Path Report for Clock_1
 *************************************
 Clock: Clock_1
-Frequency: 75.57 MHz | Target: 1.00 MHz
+Frequency: 76.86 MHz | Target: 1.00 MHz
 
 ++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : M1QA(0)/fb
-Path End       : Net_1095_0/main_0
-Capture Clock  : Net_1095_0/clock_0
-Path slack     : 28434p
+Path Begin     : M2QA(0)/fb
+Path End       : Net_1095_2/main_1
+Capture Clock  : Net_1095_2/clock_0
+Path slack     : 28656p
 
 Capture Clock Arrival Time                          0
 + Clock path delay                                  0
@@ -124,21 +124,21 @@ End-of-path required time (ps)                  38157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       9722
++ Data path delay                       9501
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           9722
+End-of-path arrival time (ps)           9501
  
 Launch Clock Path
 pin name                                              model name          delay     AT  edge  Fanout
 ----------------------------------------------------  ------------------  -----  -----  ----  ------
 ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
-M1QA(0)/in_clock                                      iocell9                 0      0  RISE       1
+M2QA(0)/in_clock                                      iocell6                 0      0  RISE       1
 
 Data path
 pin name           model name   delay     AT  slack  edge  Fanout
 -----------------  -----------  -----  -----  -----  ----  ------
-M1QA(0)/fb         iocell9       4047   4047  28434  RISE       1
-Net_1095_0/main_0  macrocell2    5675   9722  28434  RISE       1
+M2QA(0)/fb         iocell6       4047   4047  28656  RISE       1
+Net_1095_2/main_1  macrocell20   5454   9501  28656  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -146,21 +146,21 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_0/clock_0                                        macrocell2                 0      0  RISE       1
+Net_1095_2/clock_0                                        macrocell20                0      0  RISE       1
 
 
 ===================================================================== 
 4.2::Critical Path Report for CyHFCLK
 *************************************
 Clock: CyHFCLK
-Frequency: 75.57 MHz | Target: 24.00 MHz
+Frequency: 76.86 MHz | Target: 24.00 MHz
 
 ++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : M1QA(0)/fb
-Path End       : Net_1095_0/main_0
-Capture Clock  : Net_1095_0/clock_0
-Path slack     : 28434p
+Path Begin     : M2QA(0)/fb
+Path End       : Net_1095_2/main_1
+Capture Clock  : Net_1095_2/clock_0
+Path slack     : 28656p
 
 Capture Clock Arrival Time                          0
 + Clock path delay                                  0
@@ -171,21 +171,21 @@ End-of-path required time (ps)                  38157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       9722
++ Data path delay                       9501
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           9722
+End-of-path arrival time (ps)           9501
  
 Launch Clock Path
 pin name                                              model name          delay     AT  edge  Fanout
 ----------------------------------------------------  ------------------  -----  -----  ----  ------
 ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
-M1QA(0)/in_clock                                      iocell9                 0      0  RISE       1
+M2QA(0)/in_clock                                      iocell6                 0      0  RISE       1
 
 Data path
 pin name           model name   delay     AT  slack  edge  Fanout
 -----------------  -----------  -----  -----  -----  ----  ------
-M1QA(0)/fb         iocell9       4047   4047  28434  RISE       1
-Net_1095_0/main_0  macrocell2    5675   9722  28434  RISE       1
+M2QA(0)/fb         iocell6       4047   4047  28656  RISE       1
+Net_1095_2/main_1  macrocell20   5454   9501  28656  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -193,7 +193,7 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_0/clock_0                                        macrocell2                 0      0  RISE       1
+Net_1095_2/clock_0                                        macrocell20                0      0  RISE       1
 
 
 
@@ -211,10 +211,10 @@ Net_1095_0/clock_0                                        macrocell2            
 
 ++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : M1QA(0)/fb
-Path End       : Net_1095_0/main_0
-Capture Clock  : Net_1095_0/clock_0
-Path slack     : 28434p
+Path Begin     : M2QA(0)/fb
+Path End       : Net_1095_2/main_1
+Capture Clock  : Net_1095_2/clock_0
+Path slack     : 28656p
 
 Capture Clock Arrival Time                          0
 + Clock path delay                                  0
@@ -225,21 +225,21 @@ End-of-path required time (ps)                  38157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       9722
++ Data path delay                       9501
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           9722
+End-of-path arrival time (ps)           9501
  
 Launch Clock Path
 pin name                                              model name          delay     AT  edge  Fanout
 ----------------------------------------------------  ------------------  -----  -----  ----  ------
 ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
-M1QA(0)/in_clock                                      iocell9                 0      0  RISE       1
+M2QA(0)/in_clock                                      iocell6                 0      0  RISE       1
 
 Data path
 pin name           model name   delay     AT  slack  edge  Fanout
 -----------------  -----------  -----  -----  -----  ----  ------
-M1QA(0)/fb         iocell9       4047   4047  28434  RISE       1
-Net_1095_0/main_0  macrocell2    5675   9722  28434  RISE       1
+M2QA(0)/fb         iocell6       4047   4047  28656  RISE       1
+Net_1095_2/main_1  macrocell20   5454   9501  28656  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -247,7 +247,7 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_0/clock_0                                        macrocell2                 0      0  RISE       1
+Net_1095_2/clock_0                                        macrocell20                0      0  RISE       1
 
 
 5.2::Critical Path Report for (Clock_1:R vs. Clock_1:R)
@@ -256,9 +256,9 @@ Net_1095_0/clock_0                                        macrocell2            
 ++++ Path 2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 Path Begin     : \GlitchFilter_1:genblk1[2]:samples_0\/q
-Path End       : \GlitchFilter_1:genblk1[2]:samples_1\/main_0
-Capture Clock  : \GlitchFilter_1:genblk1[2]:samples_1\/clock_0
-Path slack     : 990894p
+Path End       : Net_1095_2/main_5
+Capture Clock  : Net_1095_2/clock_0
+Path slack     : 989920p
 
 Capture Clock Arrival Time                           0
 + Clock path delay                                   0
@@ -269,9 +269,9 @@ End-of-path required time (ps)                  996490
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       5596
++ Data path delay                       6570
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           5596
+End-of-path arrival time (ps)           6570
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -279,13 +279,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[2]:samples_0\/clock_0             macrocell17                0      0  RISE       1
+\GlitchFilter_1:genblk1[2]:samples_0\/clock_0             macrocell19                0      0  RISE       1
 
 Data path
-pin name                                      model name   delay     AT   slack  edge  Fanout
---------------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[2]:samples_0\/q       macrocell17   1250   1250  990894  RISE       1
-\GlitchFilter_1:genblk1[2]:samples_1\/main_0  macrocell18   4346   5596  990894  RISE       1
+pin name                                 model name   delay     AT   slack  edge  Fanout
+---------------------------------------  -----------  -----  -----  ------  ----  ------
+\GlitchFilter_1:genblk1[2]:samples_0\/q  macrocell19   1250   1250  989920  RISE       1
+Net_1095_2/main_5                        macrocell20   5320   6570  989920  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -293,7 +293,7 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[2]:samples_1\/clock_0             macrocell18                0      0  RISE       1
+Net_1095_2/clock_0                                        macrocell20                0      0  RISE       1
 
 
 
@@ -307,10 +307,10 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 
 ++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : M1QA(0)/fb
-Path End       : Net_1095_0/main_0
-Capture Clock  : Net_1095_0/clock_0
-Path slack     : 28434p
+Path Begin     : M2QA(0)/fb
+Path End       : Net_1095_2/main_1
+Capture Clock  : Net_1095_2/clock_0
+Path slack     : 28656p
 
 Capture Clock Arrival Time                          0
 + Clock path delay                                  0
@@ -321,21 +321,21 @@ End-of-path required time (ps)                  38157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       9722
++ Data path delay                       9501
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           9722
+End-of-path arrival time (ps)           9501
  
 Launch Clock Path
 pin name                                              model name          delay     AT  edge  Fanout
 ----------------------------------------------------  ------------------  -----  -----  ----  ------
 ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
-M1QA(0)/in_clock                                      iocell9                 0      0  RISE       1
+M2QA(0)/in_clock                                      iocell6                 0      0  RISE       1
 
 Data path
 pin name           model name   delay     AT  slack  edge  Fanout
 -----------------  -----------  -----  -----  -----  ----  ------
-M1QA(0)/fb         iocell9       4047   4047  28434  RISE       1
-Net_1095_0/main_0  macrocell2    5675   9722  28434  RISE       1
+M2QA(0)/fb         iocell6       4047   4047  28656  RISE       1
+Net_1095_2/main_1  macrocell20   5454   9501  28656  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -343,99 +343,15 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_0/clock_0                                        macrocell2                 0      0  RISE       1
+Net_1095_2/clock_0                                        macrocell20                0      0  RISE       1
 
 
 
 ++++ Path 2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : M2QA(0)/fb
-Path End       : Net_1095_2/main_1
-Capture Clock  : Net_1095_2/clock_0
-Path slack     : 28649p
-
-Capture Clock Arrival Time                          0
-+ Clock path delay                                  0
-+ Cycle adjust (CyHFCLK:R#24 vs. Clock_1:R#2)   41667
-- Setup time                                    -3510
----------------------------------------------   ----- 
-End-of-path required time (ps)                  38157
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       9508
--------------------------------------   ---- 
-End-of-path arrival time (ps)           9508
- 
-Launch Clock Path
-pin name                                              model name          delay     AT  edge  Fanout
-----------------------------------------------------  ------------------  -----  -----  ----  ------
-ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
-M2QA(0)/in_clock                                      iocell11                0      0  RISE       1
-
-Data path
-pin name           model name   delay     AT  slack  edge  Fanout
------------------  -----------  -----  -----  -----  ----  ------
-M2QA(0)/fb         iocell11      4047   4047  28649  RISE       1
-Net_1095_2/main_1  macrocell4    5461   9508  28649  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_2/clock_0                                        macrocell4                 0      0  RISE       1
-
-
-
-++++ Path 3 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : M2QB(0)/fb
-Path End       : Net_1095_3/main_1
-Capture Clock  : Net_1095_3/clock_0
-Path slack     : 29147p
-
-Capture Clock Arrival Time                          0
-+ Clock path delay                                  0
-+ Cycle adjust (CyHFCLK:R#24 vs. Clock_1:R#2)   41667
-- Setup time                                    -3510
----------------------------------------------   ----- 
-End-of-path required time (ps)                  38157
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       9010
--------------------------------------   ---- 
-End-of-path arrival time (ps)           9010
- 
-Launch Clock Path
-pin name                                              model name          delay     AT  edge  Fanout
-----------------------------------------------------  ------------------  -----  -----  ----  ------
-ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
-M2QB(0)/in_clock                                      iocell12                0      0  RISE       1
-
-Data path
-pin name           model name   delay     AT  slack  edge  Fanout
------------------  -----------  -----  -----  -----  ----  ------
-M2QB(0)/fb         iocell12      4047   4047  29147  RISE       1
-Net_1095_3/main_1  macrocell5    4963   9010  29147  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_3/clock_0                                        macrocell5                 0      0  RISE       1
-
-
-
-++++ Path 4 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
 Path Begin     : M1QA(0)/fb
-Path End       : \GlitchFilter_1:genblk1[0]:samples_0\/main_0
-Capture Clock  : \GlitchFilter_1:genblk1[0]:samples_0\/clock_0
+Path End       : Net_1095_0/main_0
+Capture Clock  : Net_1095_0/clock_0
 Path slack     : 29157p
 
 Capture Clock Arrival Time                          0
@@ -447,21 +363,63 @@ End-of-path required time (ps)                  38157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       8999
++ Data path delay                       9000
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           8999
+End-of-path arrival time (ps)           9000
  
 Launch Clock Path
 pin name                                              model name          delay     AT  edge  Fanout
 ----------------------------------------------------  ------------------  -----  -----  ----  ------
 ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
-M1QA(0)/in_clock                                      iocell9                 0      0  RISE       1
+M1QA(0)/in_clock                                      iocell1                 0      0  RISE       1
+
+Data path
+pin name           model name   delay     AT  slack  edge  Fanout
+-----------------  -----------  -----  -----  -----  ----  ------
+M1QA(0)/fb         iocell1       4047   4047  29157  RISE       1
+Net_1095_0/main_0  macrocell10   4953   9000  29157  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+Net_1095_0/clock_0                                        macrocell10                0      0  RISE       1
+
+
+
+++++ Path 3 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : M1QA(0)/fb
+Path End       : \GlitchFilter_1:genblk1[0]:samples_0\/main_0
+Capture Clock  : \GlitchFilter_1:genblk1[0]:samples_0\/clock_0
+Path slack     : 29165p
+
+Capture Clock Arrival Time                          0
++ Clock path delay                                  0
++ Cycle adjust (CyHFCLK:R#24 vs. Clock_1:R#2)   41667
+- Setup time                                    -3510
+---------------------------------------------   ----- 
+End-of-path required time (ps)                  38157
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       8991
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           8991
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+M1QA(0)/in_clock                                      iocell1                 0      0  RISE       1
 
 Data path
 pin name                                      model name   delay     AT  slack  edge  Fanout
 --------------------------------------------  -----------  -----  -----  -----  ----  ------
-M1QA(0)/fb                                    iocell9       4047   4047  28434  RISE       1
-\GlitchFilter_1:genblk1[0]:samples_0\/main_0  macrocell9    4952   8999  29157  RISE       1
+M1QA(0)/fb                                    iocell1       4047   4047  29157  RISE       1
+\GlitchFilter_1:genblk1[0]:samples_0\/main_0  macrocell9    4944   8991  29165  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -473,12 +431,12 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 
 
 
-++++ Path 5 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+++++ Path 4 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 Path Begin     : M2QB(0)/fb
 Path End       : \GlitchFilter_1:genblk1[3]:samples_0\/main_0
 Capture Clock  : \GlitchFilter_1:genblk1[3]:samples_0\/clock_0
-Path slack     : 29159p
+Path slack     : 29488p
 
 Capture Clock Arrival Time                          0
 + Clock path delay                                  0
@@ -489,21 +447,21 @@ End-of-path required time (ps)                  38157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       8998
++ Data path delay                       8669
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           8998
+End-of-path arrival time (ps)           8669
  
 Launch Clock Path
 pin name                                              model name          delay     AT  edge  Fanout
 ----------------------------------------------------  ------------------  -----  -----  ----  ------
 ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
-M2QB(0)/in_clock                                      iocell12                0      0  RISE       1
+M2QB(0)/in_clock                                      iocell5                 0      0  RISE       1
 
 Data path
 pin name                                      model name   delay     AT  slack  edge  Fanout
 --------------------------------------------  -----------  -----  -----  -----  ----  ------
-M2QB(0)/fb                                    iocell12      4047   4047  29147  RISE       1
-\GlitchFilter_1:genblk1[3]:samples_0\/main_0  macrocell21   4951   8998  29159  RISE       1
+M2QB(0)/fb                                    iocell5       4047   4047  29488  RISE       1
+\GlitchFilter_1:genblk1[3]:samples_0\/main_0  macrocell24   4622   8669  29488  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -511,16 +469,58 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[3]:samples_0\/clock_0             macrocell21                0      0  RISE       1
+\GlitchFilter_1:genblk1[3]:samples_0\/clock_0             macrocell24                0      0  RISE       1
+
+
+
+++++ Path 5 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : M2QB(0)/fb
+Path End       : Net_1095_3/main_1
+Capture Clock  : Net_1095_3/clock_0
+Path slack     : 29488p
+
+Capture Clock Arrival Time                          0
++ Clock path delay                                  0
++ Cycle adjust (CyHFCLK:R#24 vs. Clock_1:R#2)   41667
+- Setup time                                    -3510
+---------------------------------------------   ----- 
+End-of-path required time (ps)                  38157
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       8669
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           8669
+ 
+Launch Clock Path
+pin name                                              model name          delay     AT  edge  Fanout
+----------------------------------------------------  ------------------  -----  -----  ----  ------
+ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
+M2QB(0)/in_clock                                      iocell5                 0      0  RISE       1
+
+Data path
+pin name           model name   delay     AT  slack  edge  Fanout
+-----------------  -----------  -----  -----  -----  ----  ------
+M2QB(0)/fb         iocell5       4047   4047  29488  RISE       1
+Net_1095_3/main_1  macrocell25   4622   8669  29488  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+Net_1095_3/clock_0                                        macrocell25                0      0  RISE       1
 
 
 
 ++++ Path 6 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 Path Begin     : M1QB(0)/fb
-Path End       : Net_1095_1/main_0
-Capture Clock  : Net_1095_1/clock_0
-Path slack     : 29514p
+Path End       : \GlitchFilter_1:genblk1[1]:samples_0\/main_0
+Capture Clock  : \GlitchFilter_1:genblk1[1]:samples_0\/clock_0
+Path slack     : 29489p
 
 Capture Clock Arrival Time                          0
 + Clock path delay                                  0
@@ -531,21 +531,21 @@ End-of-path required time (ps)                  38157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       8643
++ Data path delay                       8668
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           8643
+End-of-path arrival time (ps)           8668
  
 Launch Clock Path
 pin name                                              model name          delay     AT  edge  Fanout
 ----------------------------------------------------  ------------------  -----  -----  ----  ------
 ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
-M1QB(0)/in_clock                                      iocell10                0      0  RISE       1
+M1QB(0)/in_clock                                      iocell2                 0      0  RISE       1
 
 Data path
-pin name           model name   delay     AT  slack  edge  Fanout
------------------  -----------  -----  -----  -----  ----  ------
-M1QB(0)/fb         iocell10      4047   4047  29514  RISE       1
-Net_1095_1/main_0  macrocell3    4596   8643  29514  RISE       1
+pin name                                      model name   delay     AT  slack  edge  Fanout
+--------------------------------------------  -----------  -----  -----  -----  ----  ------
+M1QB(0)/fb                                    iocell2       4047   4047  29489  RISE       1
+\GlitchFilter_1:genblk1[1]:samples_0\/main_0  macrocell14   4621   8668  29489  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -553,16 +553,16 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_1/clock_0                                        macrocell3                 0      0  RISE       1
+\GlitchFilter_1:genblk1[1]:samples_0\/clock_0             macrocell14                0      0  RISE       1
 
 
 
 ++++ Path 7 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 Path Begin     : M1QB(0)/fb
-Path End       : \GlitchFilter_1:genblk1[1]:samples_0\/main_0
-Capture Clock  : \GlitchFilter_1:genblk1[1]:samples_0\/clock_0
-Path slack     : 29514p
+Path End       : Net_1095_1/main_0
+Capture Clock  : Net_1095_1/clock_0
+Path slack     : 29489p
 
 Capture Clock Arrival Time                          0
 + Clock path delay                                  0
@@ -573,21 +573,21 @@ End-of-path required time (ps)                  38157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       8643
++ Data path delay                       8668
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           8643
+End-of-path arrival time (ps)           8668
  
 Launch Clock Path
 pin name                                              model name          delay     AT  edge  Fanout
 ----------------------------------------------------  ------------------  -----  -----  ----  ------
 ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
-M1QB(0)/in_clock                                      iocell10                0      0  RISE       1
+M1QB(0)/in_clock                                      iocell2                 0      0  RISE       1
 
 Data path
-pin name                                      model name   delay     AT  slack  edge  Fanout
---------------------------------------------  -----------  -----  -----  -----  ----  ------
-M1QB(0)/fb                                    iocell10      4047   4047  29514  RISE       1
-\GlitchFilter_1:genblk1[1]:samples_0\/main_0  macrocell13   4596   8643  29514  RISE       1
+pin name           model name   delay     AT  slack  edge  Fanout
+-----------------  -----------  -----  -----  -----  ----  ------
+M1QB(0)/fb         iocell2       4047   4047  29489  RISE       1
+Net_1095_1/main_0  macrocell15   4621   8668  29489  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -595,7 +595,7 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[1]:samples_0\/clock_0             macrocell13                0      0  RISE       1
+Net_1095_1/clock_0                                        macrocell15                0      0  RISE       1
 
 
 
@@ -604,7 +604,7 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 Path Begin     : M2QA(0)/fb
 Path End       : \GlitchFilter_1:genblk1[2]:samples_0\/main_0
 Capture Clock  : \GlitchFilter_1:genblk1[2]:samples_0\/clock_0
-Path slack     : 29521p
+Path slack     : 29518p
 
 Capture Clock Arrival Time                          0
 + Clock path delay                                  0
@@ -615,21 +615,21 @@ End-of-path required time (ps)                  38157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       8636
++ Data path delay                       8639
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           8636
+End-of-path arrival time (ps)           8639
  
 Launch Clock Path
 pin name                                              model name          delay     AT  edge  Fanout
 ----------------------------------------------------  ------------------  -----  -----  ----  ------
 ClockBlock/hfclk                                      m0s8clockblockcell      0      0  RISE       1
-M2QA(0)/in_clock                                      iocell11                0      0  RISE       1
+M2QA(0)/in_clock                                      iocell6                 0      0  RISE       1
 
 Data path
 pin name                                      model name   delay     AT  slack  edge  Fanout
 --------------------------------------------  -----------  -----  -----  -----  ----  ------
-M2QA(0)/fb                                    iocell11      4047   4047  28649  RISE       1
-\GlitchFilter_1:genblk1[2]:samples_0\/main_0  macrocell17   4589   8636  29521  RISE       1
+M2QA(0)/fb                                    iocell6       4047   4047  28656  RISE       1
+\GlitchFilter_1:genblk1[2]:samples_0\/main_0  macrocell19   4592   8639  29518  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -637,16 +637,16 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[2]:samples_0\/clock_0             macrocell17                0      0  RISE       1
+\GlitchFilter_1:genblk1[2]:samples_0\/clock_0             macrocell19                0      0  RISE       1
 
 
 
 ++++ Path 9 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 Path Begin     : \GlitchFilter_1:genblk1[2]:samples_0\/q
-Path End       : \GlitchFilter_1:genblk1[2]:samples_1\/main_0
-Capture Clock  : \GlitchFilter_1:genblk1[2]:samples_1\/clock_0
-Path slack     : 990894p
+Path End       : Net_1095_2/main_5
+Capture Clock  : Net_1095_2/clock_0
+Path slack     : 989920p
 
 Capture Clock Arrival Time                           0
 + Clock path delay                                   0
@@ -657,9 +657,9 @@ End-of-path required time (ps)                  996490
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       5596
++ Data path delay                       6570
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           5596
+End-of-path arrival time (ps)           6570
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -667,13 +667,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[2]:samples_0\/clock_0             macrocell17                0      0  RISE       1
+\GlitchFilter_1:genblk1[2]:samples_0\/clock_0             macrocell19                0      0  RISE       1
 
 Data path
-pin name                                      model name   delay     AT   slack  edge  Fanout
---------------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[2]:samples_0\/q       macrocell17   1250   1250  990894  RISE       1
-\GlitchFilter_1:genblk1[2]:samples_1\/main_0  macrocell18   4346   5596  990894  RISE       1
+pin name                                 model name   delay     AT   slack  edge  Fanout
+---------------------------------------  -----------  -----  -----  ------  ----  ------
+\GlitchFilter_1:genblk1[2]:samples_0\/q  macrocell19   1250   1250  989920  RISE       1
+Net_1095_2/main_5                        macrocell20   5320   6570  989920  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -681,16 +681,16 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[2]:samples_1\/clock_0             macrocell18                0      0  RISE       1
+Net_1095_2/clock_0                                        macrocell20                0      0  RISE       1
 
 
 
 ++++ Path 10 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 Path Begin     : \GlitchFilter_1:genblk1[2]:samples_0\/q
-Path End       : Net_1095_2/main_5
-Capture Clock  : Net_1095_2/clock_0
-Path slack     : 991449p
+Path End       : \GlitchFilter_1:genblk1[2]:samples_1\/main_0
+Capture Clock  : \GlitchFilter_1:genblk1[2]:samples_1\/clock_0
+Path slack     : 991282p
 
 Capture Clock Arrival Time                           0
 + Clock path delay                                   0
@@ -701,9 +701,9 @@ End-of-path required time (ps)                  996490
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       5041
++ Data path delay                       5208
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           5041
+End-of-path arrival time (ps)           5208
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -711,265 +711,15 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[2]:samples_0\/clock_0             macrocell17                0      0  RISE       1
-
-Data path
-pin name                                 model name   delay     AT   slack  edge  Fanout
----------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[2]:samples_0\/q  macrocell17   1250   1250  990894  RISE       1
-Net_1095_2/main_5                        macrocell4    3791   5041  991449  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_2/clock_0                                        macrocell4                 0      0  RISE       1
-
-
-
-++++ Path 11 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : Net_1095_2/q
-Path End       : Net_1095_2/main_0
-Capture Clock  : Net_1095_2/clock_0
-Path slack     : 991723p
-
-Capture Clock Arrival Time                           0
-+ Clock path delay                                   0
-+ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
-- Setup time                                     -3510
---------------------------------------------   ------- 
-End-of-path required time (ps)                  996490
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       4767
--------------------------------------   ---- 
-End-of-path arrival time (ps)           4767
- 
-Launch Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_2/clock_0                                        macrocell4                 0      0  RISE       1
-
-Data path
-pin name           model name   delay     AT   slack  edge  Fanout
------------------  -----------  -----  -----  ------  ----  ------
-Net_1095_2/q       macrocell4    1250   1250  991723  RISE       1
-Net_1095_2/main_0  macrocell4    3517   4767  991723  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_2/clock_0                                        macrocell4                 0      0  RISE       1
-
-
-
-++++ Path 12 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : Net_1095_1/q
-Path End       : Net_1095_1/main_1
-Capture Clock  : Net_1095_1/clock_0
-Path slack     : 991809p
-
-Capture Clock Arrival Time                           0
-+ Clock path delay                                   0
-+ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
-- Setup time                                     -3510
---------------------------------------------   ------- 
-End-of-path required time (ps)                  996490
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       4681
--------------------------------------   ---- 
-End-of-path arrival time (ps)           4681
- 
-Launch Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_1/clock_0                                        macrocell3                 0      0  RISE       1
-
-Data path
-pin name           model name   delay     AT   slack  edge  Fanout
------------------  -----------  -----  -----  ------  ----  ------
-Net_1095_1/q       macrocell3    1250   1250  991809  RISE       1
-Net_1095_1/main_1  macrocell3    3431   4681  991809  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_1/clock_0                                        macrocell3                 0      0  RISE       1
-
-
-
-++++ Path 13 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : Net_1095_3/q
-Path End       : Net_1095_3/main_0
-Capture Clock  : Net_1095_3/clock_0
-Path slack     : 992063p
-
-Capture Clock Arrival Time                           0
-+ Clock path delay                                   0
-+ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
-- Setup time                                     -3510
---------------------------------------------   ------- 
-End-of-path required time (ps)                  996490
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       4427
--------------------------------------   ---- 
-End-of-path arrival time (ps)           4427
- 
-Launch Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_3/clock_0                                        macrocell5                 0      0  RISE       1
-
-Data path
-pin name           model name   delay     AT   slack  edge  Fanout
------------------  -----------  -----  -----  ------  ----  ------
-Net_1095_3/q       macrocell5    1250   1250  992063  RISE       1
-Net_1095_3/main_0  macrocell5    3177   4427  992063  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_3/clock_0                                        macrocell5                 0      0  RISE       1
-
-
-
-++++ Path 14 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : \GlitchFilter_1:genblk1[0]:samples_0\/q
-Path End       : \GlitchFilter_1:genblk1[0]:samples_1\/main_0
-Capture Clock  : \GlitchFilter_1:genblk1[0]:samples_1\/clock_0
-Path slack     : 992217p
-
-Capture Clock Arrival Time                           0
-+ Clock path delay                                   0
-+ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
-- Setup time                                     -3510
---------------------------------------------   ------- 
-End-of-path required time (ps)                  996490
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       4273
--------------------------------------   ---- 
-End-of-path arrival time (ps)           4273
- 
-Launch Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[0]:samples_0\/clock_0             macrocell9                 0      0  RISE       1
+\GlitchFilter_1:genblk1[2]:samples_0\/clock_0             macrocell19                0      0  RISE       1
 
 Data path
 pin name                                      model name   delay     AT   slack  edge  Fanout
 --------------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[0]:samples_0\/q       macrocell9    1250   1250  992217  RISE       1
-\GlitchFilter_1:genblk1[0]:samples_1\/main_0  macrocell10   3023   4273  992217  RISE       1
+\GlitchFilter_1:genblk1[2]:samples_0\/q       macrocell19   1250   1250  989920  RISE       1
+\GlitchFilter_1:genblk1[2]:samples_1\/main_0  macrocell18   3958   5208  991282  RISE       1
 
 Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[0]:samples_1\/clock_0             macrocell10                0      0  RISE       1
-
-
-
-++++ Path 15 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : \GlitchFilter_1:genblk1[0]:samples_0\/q
-Path End       : Net_1095_0/main_5
-Capture Clock  : Net_1095_0/clock_0
-Path slack     : 992237p
-
-Capture Clock Arrival Time                           0
-+ Clock path delay                                   0
-+ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
-- Setup time                                     -3510
---------------------------------------------   ------- 
-End-of-path required time (ps)                  996490
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       4253
--------------------------------------   ---- 
-End-of-path arrival time (ps)           4253
- 
-Launch Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[0]:samples_0\/clock_0             macrocell9                 0      0  RISE       1
-
-Data path
-pin name                                 model name   delay     AT   slack  edge  Fanout
----------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[0]:samples_0\/q  macrocell9    1250   1250  992217  RISE       1
-Net_1095_0/main_5                        macrocell2    3003   4253  992237  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_0/clock_0                                        macrocell2                 0      0  RISE       1
-
-
-
-++++ Path 16 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : \GlitchFilter_1:genblk1[2]:samples_1\/q
-Path End       : Net_1095_2/main_4
-Capture Clock  : Net_1095_2/clock_0
-Path slack     : 992425p
-
-Capture Clock Arrival Time                           0
-+ Clock path delay                                   0
-+ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
-- Setup time                                     -3510
---------------------------------------------   ------- 
-End-of-path required time (ps)                  996490
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       4065
--------------------------------------   ---- 
-End-of-path arrival time (ps)           4065
- 
-Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
 --------------------------------------------------------  ---------------------  -----  -----  ----  ------
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
@@ -977,11 +727,41 @@ ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell 
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
 \GlitchFilter_1:genblk1[2]:samples_1\/clock_0             macrocell18                0      0  RISE       1
 
+
+
+++++ Path 11 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : Net_1095_0/q
+Path End       : Net_1095_0/main_1
+Capture Clock  : Net_1095_0/clock_0
+Path slack     : 991781p
+
+Capture Clock Arrival Time                           0
++ Clock path delay                                   0
++ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
+- Setup time                                     -3510
+--------------------------------------------   ------- 
+End-of-path required time (ps)                  996490
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4709
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4709
+ 
+Launch Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+Net_1095_0/clock_0                                        macrocell10                0      0  RISE       1
+
 Data path
-pin name                                 model name   delay     AT   slack  edge  Fanout
----------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[2]:samples_1\/q  macrocell18   1250   1250  992425  RISE       1
-Net_1095_2/main_4                        macrocell4    2815   4065  992425  RISE       1
+pin name           model name   delay     AT   slack  edge  Fanout
+-----------------  -----------  -----  -----  ------  ----  ------
+Net_1095_0/q       macrocell10   1250   1250  991781  RISE       1
+Net_1095_0/main_1  macrocell10   3459   4709  991781  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -989,16 +769,236 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_2/clock_0                                        macrocell4                 0      0  RISE       1
+Net_1095_0/clock_0                                        macrocell10                0      0  RISE       1
+
+
+
+++++ Path 12 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : Net_1095_3/q
+Path End       : Net_1095_3/main_0
+Capture Clock  : Net_1095_3/clock_0
+Path slack     : 991822p
+
+Capture Clock Arrival Time                           0
++ Clock path delay                                   0
++ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
+- Setup time                                     -3510
+--------------------------------------------   ------- 
+End-of-path required time (ps)                  996490
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4668
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4668
+ 
+Launch Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+Net_1095_3/clock_0                                        macrocell25                0      0  RISE       1
+
+Data path
+pin name           model name   delay     AT   slack  edge  Fanout
+-----------------  -----------  -----  -----  ------  ----  ------
+Net_1095_3/q       macrocell25   1250   1250  991822  RISE       1
+Net_1095_3/main_0  macrocell25   3418   4668  991822  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+Net_1095_3/clock_0                                        macrocell25                0      0  RISE       1
+
+
+
+++++ Path 13 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : Net_1095_1/q
+Path End       : Net_1095_1/main_1
+Capture Clock  : Net_1095_1/clock_0
+Path slack     : 992051p
+
+Capture Clock Arrival Time                           0
++ Clock path delay                                   0
++ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
+- Setup time                                     -3510
+--------------------------------------------   ------- 
+End-of-path required time (ps)                  996490
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4439
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4439
+ 
+Launch Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+Net_1095_1/clock_0                                        macrocell15                0      0  RISE       1
+
+Data path
+pin name           model name   delay     AT   slack  edge  Fanout
+-----------------  -----------  -----  -----  ------  ----  ------
+Net_1095_1/q       macrocell15   1250   1250  992051  RISE       1
+Net_1095_1/main_1  macrocell15   3189   4439  992051  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+Net_1095_1/clock_0                                        macrocell15                0      0  RISE       1
+
+
+
+++++ Path 14 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \GlitchFilter_1:genblk1[1]:samples_2\/q
+Path End       : Net_1095_1/main_3
+Capture Clock  : Net_1095_1/clock_0
+Path slack     : 992057p
+
+Capture Clock Arrival Time                           0
++ Clock path delay                                   0
++ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
+- Setup time                                     -3510
+--------------------------------------------   ------- 
+End-of-path required time (ps)                  996490
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4433
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4433
+ 
+Launch Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\GlitchFilter_1:genblk1[1]:samples_2\/clock_0             macrocell12                0      0  RISE       1
+
+Data path
+pin name                                 model name   delay     AT   slack  edge  Fanout
+---------------------------------------  -----------  -----  -----  ------  ----  ------
+\GlitchFilter_1:genblk1[1]:samples_2\/q  macrocell12   1250   1250  992057  RISE       1
+Net_1095_1/main_3                        macrocell15   3183   4433  992057  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+Net_1095_1/clock_0                                        macrocell15                0      0  RISE       1
+
+
+
+++++ Path 15 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \GlitchFilter_1:genblk1[1]:samples_1\/q
+Path End       : \GlitchFilter_1:genblk1[1]:samples_2\/main_0
+Capture Clock  : \GlitchFilter_1:genblk1[1]:samples_2\/clock_0
+Path slack     : 992109p
+
+Capture Clock Arrival Time                           0
++ Clock path delay                                   0
++ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
+- Setup time                                     -3510
+--------------------------------------------   ------- 
+End-of-path required time (ps)                  996490
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4381
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4381
+ 
+Launch Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\GlitchFilter_1:genblk1[1]:samples_1\/clock_0             macrocell13                0      0  RISE       1
+
+Data path
+pin name                                      model name   delay     AT   slack  edge  Fanout
+--------------------------------------------  -----------  -----  -----  ------  ----  ------
+\GlitchFilter_1:genblk1[1]:samples_1\/q       macrocell13   1250   1250  992109  RISE       1
+\GlitchFilter_1:genblk1[1]:samples_2\/main_0  macrocell12   3131   4381  992109  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\GlitchFilter_1:genblk1[1]:samples_2\/clock_0             macrocell12                0      0  RISE       1
+
+
+
+++++ Path 16 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \GlitchFilter_1:genblk1[1]:samples_3\/q
+Path End       : Net_1095_1/main_2
+Capture Clock  : Net_1095_1/clock_0
+Path slack     : 992357p
+
+Capture Clock Arrival Time                           0
++ Clock path delay                                   0
++ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
+- Setup time                                     -3510
+--------------------------------------------   ------- 
+End-of-path required time (ps)                  996490
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4133
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4133
+ 
+Launch Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\GlitchFilter_1:genblk1[1]:samples_3\/clock_0             macrocell11                0      0  RISE       1
+
+Data path
+pin name                                 model name   delay     AT   slack  edge  Fanout
+---------------------------------------  -----------  -----  -----  ------  ----  ------
+\GlitchFilter_1:genblk1[1]:samples_3\/q  macrocell11   1250   1250  992357  RISE       1
+Net_1095_1/main_2                        macrocell15   2883   4133  992357  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+Net_1095_1/clock_0                                        macrocell15                0      0  RISE       1
 
 
 
 ++++ Path 17 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 Path Begin     : \GlitchFilter_1:genblk1[2]:samples_1\/q
-Path End       : \GlitchFilter_1:genblk1[2]:samples_2\/main_0
-Capture Clock  : \GlitchFilter_1:genblk1[2]:samples_2\/clock_0
-Path slack     : 992451p
+Path End       : Net_1095_2/main_4
+Capture Clock  : Net_1095_2/clock_0
+Path slack     : 992450p
 
 Capture Clock Arrival Time                           0
 + Clock path delay                                   0
@@ -1009,9 +1009,53 @@ End-of-path required time (ps)                  996490
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       4039
++ Data path delay                       4040
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           4039
+End-of-path arrival time (ps)           4040
+ 
+Launch Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\GlitchFilter_1:genblk1[2]:samples_1\/clock_0             macrocell18                0      0  RISE       1
+
+Data path
+pin name                                 model name   delay     AT   slack  edge  Fanout
+---------------------------------------  -----------  -----  -----  ------  ----  ------
+\GlitchFilter_1:genblk1[2]:samples_1\/q  macrocell18   1250   1250  992450  RISE       1
+Net_1095_2/main_4                        macrocell20   2790   4040  992450  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+Net_1095_2/clock_0                                        macrocell20                0      0  RISE       1
+
+
+
+++++ Path 18 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \GlitchFilter_1:genblk1[2]:samples_1\/q
+Path End       : \GlitchFilter_1:genblk1[2]:samples_2\/main_0
+Capture Clock  : \GlitchFilter_1:genblk1[2]:samples_2\/clock_0
+Path slack     : 992456p
+
+Capture Clock Arrival Time                           0
++ Clock path delay                                   0
++ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
+- Setup time                                     -3510
+--------------------------------------------   ------- 
+End-of-path required time (ps)                  996490
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4034
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4034
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1024,8 +1068,8 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 Data path
 pin name                                      model name   delay     AT   slack  edge  Fanout
 --------------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[2]:samples_1\/q       macrocell18   1250   1250  992425  RISE       1
-\GlitchFilter_1:genblk1[2]:samples_2\/main_0  macrocell19   2789   4039  992451  RISE       1
+\GlitchFilter_1:genblk1[2]:samples_1\/q       macrocell18   1250   1250  992450  RISE       1
+\GlitchFilter_1:genblk1[2]:samples_2\/main_0  macrocell17   2784   4034  992456  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1033,60 +1077,16 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[2]:samples_2\/clock_0             macrocell19                0      0  RISE       1
-
-
-
-++++ Path 18 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : \GlitchFilter_1:genblk1[1]:samples_2\/q
-Path End       : \GlitchFilter_1:genblk1[1]:samples_3\/main_0
-Capture Clock  : \GlitchFilter_1:genblk1[1]:samples_3\/clock_0
-Path slack     : 992545p
-
-Capture Clock Arrival Time                           0
-+ Clock path delay                                   0
-+ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
-- Setup time                                     -3510
---------------------------------------------   ------- 
-End-of-path required time (ps)                  996490
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       3945
--------------------------------------   ---- 
-End-of-path arrival time (ps)           3945
- 
-Launch Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[1]:samples_2\/clock_0             macrocell15                0      0  RISE       1
-
-Data path
-pin name                                      model name   delay     AT   slack  edge  Fanout
---------------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[1]:samples_2\/q       macrocell15   1250   1250  992545  RISE       1
-\GlitchFilter_1:genblk1[1]:samples_3\/main_0  macrocell16   2695   3945  992545  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[1]:samples_3\/clock_0             macrocell16                0      0  RISE       1
+\GlitchFilter_1:genblk1[2]:samples_2\/clock_0             macrocell17                0      0  RISE       1
 
 
 
 ++++ Path 19 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \GlitchFilter_1:genblk1[1]:samples_2\/q
-Path End       : Net_1095_1/main_3
-Capture Clock  : Net_1095_1/clock_0
-Path slack     : 992546p
+Path Begin     : \GlitchFilter_1:genblk1[3]:samples_2\/q
+Path End       : Net_1095_3/main_3
+Capture Clock  : Net_1095_3/clock_0
+Path slack     : 992543p
 
 Capture Clock Arrival Time                           0
 + Clock path delay                                   0
@@ -1097,9 +1097,9 @@ End-of-path required time (ps)                  996490
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       3944
++ Data path delay                       3947
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           3944
+End-of-path arrival time (ps)           3947
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1107,13 +1107,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[1]:samples_2\/clock_0             macrocell15                0      0  RISE       1
+\GlitchFilter_1:genblk1[3]:samples_2\/clock_0             macrocell22                0      0  RISE       1
 
 Data path
 pin name                                 model name   delay     AT   slack  edge  Fanout
 ---------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[1]:samples_2\/q  macrocell15   1250   1250  992545  RISE       1
-Net_1095_1/main_3                        macrocell3    2694   3944  992546  RISE       1
+\GlitchFilter_1:genblk1[3]:samples_2\/q  macrocell22   1250   1250  992543  RISE       1
+Net_1095_3/main_3                        macrocell25   2697   3947  992543  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1121,16 +1121,16 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_1/clock_0                                        macrocell3                 0      0  RISE       1
+Net_1095_3/clock_0                                        macrocell25                0      0  RISE       1
 
 
 
 ++++ Path 20 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \GlitchFilter_1:genblk1[2]:samples_2\/q
-Path End       : Net_1095_2/main_3
-Capture Clock  : Net_1095_2/clock_0
-Path slack     : 992642p
+Path Begin     : \GlitchFilter_1:genblk1[3]:samples_2\/q
+Path End       : \GlitchFilter_1:genblk1[3]:samples_3\/main_0
+Capture Clock  : \GlitchFilter_1:genblk1[3]:samples_3\/clock_0
+Path slack     : 992544p
 
 Capture Clock Arrival Time                           0
 + Clock path delay                                   0
@@ -1141,9 +1141,9 @@ End-of-path required time (ps)                  996490
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       3848
++ Data path delay                       3946
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           3848
+End-of-path arrival time (ps)           3946
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1151,13 +1151,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[2]:samples_2\/clock_0             macrocell19                0      0  RISE       1
+\GlitchFilter_1:genblk1[3]:samples_2\/clock_0             macrocell22                0      0  RISE       1
 
 Data path
-pin name                                 model name   delay     AT   slack  edge  Fanout
----------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[2]:samples_2\/q  macrocell19   1250   1250  992642  RISE       1
-Net_1095_2/main_3                        macrocell4    2598   3848  992642  RISE       1
+pin name                                      model name   delay     AT   slack  edge  Fanout
+--------------------------------------------  -----------  -----  -----  ------  ----  ------
+\GlitchFilter_1:genblk1[3]:samples_2\/q       macrocell22   1250   1250  992543  RISE       1
+\GlitchFilter_1:genblk1[3]:samples_3\/main_0  macrocell21   2696   3946  992544  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1165,16 +1165,16 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_2/clock_0                                        macrocell4                 0      0  RISE       1
+\GlitchFilter_1:genblk1[3]:samples_3\/clock_0             macrocell21                0      0  RISE       1
 
 
 
 ++++ Path 21 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \GlitchFilter_1:genblk1[2]:samples_2\/q
-Path End       : \GlitchFilter_1:genblk1[2]:samples_3\/main_0
-Capture Clock  : \GlitchFilter_1:genblk1[2]:samples_3\/clock_0
-Path slack     : 992647p
+Path Begin     : \GlitchFilter_1:genblk1[3]:samples_1\/q
+Path End       : \GlitchFilter_1:genblk1[3]:samples_2\/main_0
+Capture Clock  : \GlitchFilter_1:genblk1[3]:samples_2\/clock_0
+Path slack     : 992549p
 
 Capture Clock Arrival Time                           0
 + Clock path delay                                   0
@@ -1185,9 +1185,9 @@ End-of-path required time (ps)                  996490
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       3843
++ Data path delay                       3941
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           3843
+End-of-path arrival time (ps)           3941
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1195,13 +1195,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[2]:samples_2\/clock_0             macrocell19                0      0  RISE       1
+\GlitchFilter_1:genblk1[3]:samples_1\/clock_0             macrocell23                0      0  RISE       1
 
 Data path
 pin name                                      model name   delay     AT   slack  edge  Fanout
 --------------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[2]:samples_2\/q       macrocell19   1250   1250  992642  RISE       1
-\GlitchFilter_1:genblk1[2]:samples_3\/main_0  macrocell20   2593   3843  992647  RISE       1
+\GlitchFilter_1:genblk1[3]:samples_1\/q       macrocell23   1250   1250  992549  RISE       1
+\GlitchFilter_1:genblk1[3]:samples_2\/main_0  macrocell22   2691   3941  992549  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1209,16 +1209,16 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[2]:samples_3\/clock_0             macrocell20                0      0  RISE       1
+\GlitchFilter_1:genblk1[3]:samples_2\/clock_0             macrocell22                0      0  RISE       1
 
 
 
 ++++ Path 22 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \GlitchFilter_1:genblk1[1]:samples_0\/q
-Path End       : Net_1095_1/main_5
-Capture Clock  : Net_1095_1/clock_0
-Path slack     : 992704p
+Path Begin     : \GlitchFilter_1:genblk1[3]:samples_0\/q
+Path End       : \GlitchFilter_1:genblk1[3]:samples_1\/main_0
+Capture Clock  : \GlitchFilter_1:genblk1[3]:samples_1\/clock_0
+Path slack     : 992555p
 
 Capture Clock Arrival Time                           0
 + Clock path delay                                   0
@@ -1229,9 +1229,9 @@ End-of-path required time (ps)                  996490
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       3786
++ Data path delay                       3935
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           3786
+End-of-path arrival time (ps)           3935
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1239,13 +1239,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[1]:samples_0\/clock_0             macrocell13                0      0  RISE       1
+\GlitchFilter_1:genblk1[3]:samples_0\/clock_0             macrocell24                0      0  RISE       1
 
 Data path
-pin name                                 model name   delay     AT   slack  edge  Fanout
----------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[1]:samples_0\/q  macrocell13   1250   1250  992704  RISE       1
-Net_1095_1/main_5                        macrocell3    2536   3786  992704  RISE       1
+pin name                                      model name   delay     AT   slack  edge  Fanout
+--------------------------------------------  -----------  -----  -----  ------  ----  ------
+\GlitchFilter_1:genblk1[3]:samples_0\/q       macrocell24   1250   1250  992555  RISE       1
+\GlitchFilter_1:genblk1[3]:samples_1\/main_0  macrocell23   2685   3935  992555  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1253,16 +1253,16 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_1/clock_0                                        macrocell3                 0      0  RISE       1
+\GlitchFilter_1:genblk1[3]:samples_1\/clock_0             macrocell23                0      0  RISE       1
 
 
 
 ++++ Path 23 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \GlitchFilter_1:genblk1[1]:samples_0\/q
-Path End       : \GlitchFilter_1:genblk1[1]:samples_1\/main_0
-Capture Clock  : \GlitchFilter_1:genblk1[1]:samples_1\/clock_0
-Path slack     : 992706p
+Path Begin     : \GlitchFilter_1:genblk1[3]:samples_1\/q
+Path End       : Net_1095_3/main_4
+Capture Clock  : Net_1095_3/clock_0
+Path slack     : 992561p
 
 Capture Clock Arrival Time                           0
 + Clock path delay                                   0
@@ -1273,9 +1273,9 @@ End-of-path required time (ps)                  996490
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       3784
++ Data path delay                       3929
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           3784
+End-of-path arrival time (ps)           3929
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1283,13 +1283,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[1]:samples_0\/clock_0             macrocell13                0      0  RISE       1
+\GlitchFilter_1:genblk1[3]:samples_1\/clock_0             macrocell23                0      0  RISE       1
 
 Data path
-pin name                                      model name   delay     AT   slack  edge  Fanout
---------------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[1]:samples_0\/q       macrocell13   1250   1250  992704  RISE       1
-\GlitchFilter_1:genblk1[1]:samples_1\/main_0  macrocell14   2534   3784  992706  RISE       1
+pin name                                 model name   delay     AT   slack  edge  Fanout
+---------------------------------------  -----------  -----  -----  ------  ----  ------
+\GlitchFilter_1:genblk1[3]:samples_1\/q  macrocell23   1250   1250  992549  RISE       1
+Net_1095_3/main_4                        macrocell25   2679   3929  992561  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1297,15 +1297,235 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[1]:samples_1\/clock_0             macrocell14                0      0  RISE       1
+Net_1095_3/clock_0                                        macrocell25                0      0  RISE       1
 
 
 
 ++++ Path 24 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \GlitchFilter_1:genblk1[1]:samples_1\/q
-Path End       : Net_1095_1/main_4
+Path Begin     : \GlitchFilter_1:genblk1[3]:samples_0\/q
+Path End       : Net_1095_3/main_5
+Capture Clock  : Net_1095_3/clock_0
+Path slack     : 992566p
+
+Capture Clock Arrival Time                           0
++ Clock path delay                                   0
++ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
+- Setup time                                     -3510
+--------------------------------------------   ------- 
+End-of-path required time (ps)                  996490
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3924
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3924
+ 
+Launch Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\GlitchFilter_1:genblk1[3]:samples_0\/clock_0             macrocell24                0      0  RISE       1
+
+Data path
+pin name                                 model name   delay     AT   slack  edge  Fanout
+---------------------------------------  -----------  -----  -----  ------  ----  ------
+\GlitchFilter_1:genblk1[3]:samples_0\/q  macrocell24   1250   1250  992555  RISE       1
+Net_1095_3/main_5                        macrocell25   2674   3924  992566  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+Net_1095_3/clock_0                                        macrocell25                0      0  RISE       1
+
+
+
+++++ Path 25 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \GlitchFilter_1:genblk1[2]:samples_2\/q
+Path End       : Net_1095_2/main_3
+Capture Clock  : Net_1095_2/clock_0
+Path slack     : 992645p
+
+Capture Clock Arrival Time                           0
++ Clock path delay                                   0
++ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
+- Setup time                                     -3510
+--------------------------------------------   ------- 
+End-of-path required time (ps)                  996490
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3845
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3845
+ 
+Launch Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\GlitchFilter_1:genblk1[2]:samples_2\/clock_0             macrocell17                0      0  RISE       1
+
+Data path
+pin name                                 model name   delay     AT   slack  edge  Fanout
+---------------------------------------  -----------  -----  -----  ------  ----  ------
+\GlitchFilter_1:genblk1[2]:samples_2\/q  macrocell17   1250   1250  992645  RISE       1
+Net_1095_2/main_3                        macrocell20   2595   3845  992645  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+Net_1095_2/clock_0                                        macrocell20                0      0  RISE       1
+
+
+
+++++ Path 26 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \GlitchFilter_1:genblk1[2]:samples_2\/q
+Path End       : \GlitchFilter_1:genblk1[2]:samples_3\/main_0
+Capture Clock  : \GlitchFilter_1:genblk1[2]:samples_3\/clock_0
+Path slack     : 992645p
+
+Capture Clock Arrival Time                           0
++ Clock path delay                                   0
++ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
+- Setup time                                     -3510
+--------------------------------------------   ------- 
+End-of-path required time (ps)                  996490
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3845
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3845
+ 
+Launch Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\GlitchFilter_1:genblk1[2]:samples_2\/clock_0             macrocell17                0      0  RISE       1
+
+Data path
+pin name                                      model name   delay     AT   slack  edge  Fanout
+--------------------------------------------  -----------  -----  -----  ------  ----  ------
+\GlitchFilter_1:genblk1[2]:samples_2\/q       macrocell17   1250   1250  992645  RISE       1
+\GlitchFilter_1:genblk1[2]:samples_3\/main_0  macrocell16   2595   3845  992645  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\GlitchFilter_1:genblk1[2]:samples_3\/clock_0             macrocell16                0      0  RISE       1
+
+
+
+++++ Path 27 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \GlitchFilter_1:genblk1[1]:samples_0\/q
+Path End       : \GlitchFilter_1:genblk1[1]:samples_1\/main_0
+Capture Clock  : \GlitchFilter_1:genblk1[1]:samples_1\/clock_0
+Path slack     : 992685p
+
+Capture Clock Arrival Time                           0
++ Clock path delay                                   0
++ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
+- Setup time                                     -3510
+--------------------------------------------   ------- 
+End-of-path required time (ps)                  996490
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3805
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3805
+ 
+Launch Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\GlitchFilter_1:genblk1[1]:samples_0\/clock_0             macrocell14                0      0  RISE       1
+
+Data path
+pin name                                      model name   delay     AT   slack  edge  Fanout
+--------------------------------------------  -----------  -----  -----  ------  ----  ------
+\GlitchFilter_1:genblk1[1]:samples_0\/q       macrocell14   1250   1250  992685  RISE       1
+\GlitchFilter_1:genblk1[1]:samples_1\/main_0  macrocell13   2555   3805  992685  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\GlitchFilter_1:genblk1[1]:samples_1\/clock_0             macrocell13                0      0  RISE       1
+
+
+
+++++ Path 28 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \GlitchFilter_1:genblk1[1]:samples_0\/q
+Path End       : Net_1095_1/main_5
 Capture Clock  : Net_1095_1/clock_0
+Path slack     : 992692p
+
+Capture Clock Arrival Time                           0
++ Clock path delay                                   0
++ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
+- Setup time                                     -3510
+--------------------------------------------   ------- 
+End-of-path required time (ps)                  996490
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       3798
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           3798
+ 
+Launch Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\GlitchFilter_1:genblk1[1]:samples_0\/clock_0             macrocell14                0      0  RISE       1
+
+Data path
+pin name                                 model name   delay     AT   slack  edge  Fanout
+---------------------------------------  -----------  -----  -----  ------  ----  ------
+\GlitchFilter_1:genblk1[1]:samples_0\/q  macrocell14   1250   1250  992685  RISE       1
+Net_1095_1/main_5                        macrocell15   2548   3798  992692  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+Net_1095_1/clock_0                                        macrocell15                0      0  RISE       1
+
+
+
+++++ Path 29 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \GlitchFilter_1:genblk1[0]:samples_2\/q
+Path End       : \GlitchFilter_1:genblk1[0]:samples_3\/main_0
+Capture Clock  : \GlitchFilter_1:genblk1[0]:samples_3\/clock_0
 Path slack     : 992707p
 
 Capture Clock Arrival Time                           0
@@ -1327,13 +1547,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[1]:samples_1\/clock_0             macrocell14                0      0  RISE       1
+\GlitchFilter_1:genblk1[0]:samples_2\/clock_0             macrocell7                 0      0  RISE       1
 
 Data path
-pin name                                 model name   delay     AT   slack  edge  Fanout
----------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[1]:samples_1\/q  macrocell14   1250   1250  992707  RISE       1
-Net_1095_1/main_4                        macrocell3    2533   3783  992707  RISE       1
+pin name                                      model name   delay     AT   slack  edge  Fanout
+--------------------------------------------  -----------  -----  -----  ------  ----  ------
+\GlitchFilter_1:genblk1[0]:samples_2\/q       macrocell7    1250   1250  992707  RISE       1
+\GlitchFilter_1:genblk1[0]:samples_3\/main_0  macrocell6    2533   3783  992707  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1341,15 +1561,15 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_1/clock_0                                        macrocell3                 0      0  RISE       1
+\GlitchFilter_1:genblk1[0]:samples_3\/clock_0             macrocell6                 0      0  RISE       1
 
 
 
-++++ Path 25 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+++++ Path 30 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \GlitchFilter_1:genblk1[1]:samples_1\/q
-Path End       : \GlitchFilter_1:genblk1[1]:samples_2\/main_0
-Capture Clock  : \GlitchFilter_1:genblk1[1]:samples_2\/clock_0
+Path Begin     : \GlitchFilter_1:genblk1[0]:samples_2\/q
+Path End       : Net_1095_0/main_3
+Capture Clock  : Net_1095_0/clock_0
 Path slack     : 992712p
 
 Capture Clock Arrival Time                           0
@@ -1371,13 +1591,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[1]:samples_1\/clock_0             macrocell14                0      0  RISE       1
+\GlitchFilter_1:genblk1[0]:samples_2\/clock_0             macrocell7                 0      0  RISE       1
 
 Data path
-pin name                                      model name   delay     AT   slack  edge  Fanout
---------------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[1]:samples_1\/q       macrocell14   1250   1250  992707  RISE       1
-\GlitchFilter_1:genblk1[1]:samples_2\/main_0  macrocell15   2528   3778  992712  RISE       1
+pin name                                 model name   delay     AT   slack  edge  Fanout
+---------------------------------------  -----------  -----  -----  ------  ----  ------
+\GlitchFilter_1:genblk1[0]:samples_2\/q  macrocell7    1250   1250  992707  RISE       1
+Net_1095_0/main_3                        macrocell10   2528   3778  992712  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1385,16 +1605,16 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[1]:samples_2\/clock_0             macrocell15                0      0  RISE       1
+Net_1095_0/clock_0                                        macrocell10                0      0  RISE       1
 
 
 
-++++ Path 26 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+++++ Path 31 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : Net_1095_0/q
-Path End       : Net_1095_0/main_1
-Capture Clock  : Net_1095_0/clock_0
-Path slack     : 992929p
+Path Begin     : Net_1095_2/q
+Path End       : Net_1095_2/main_0
+Capture Clock  : Net_1095_2/clock_0
+Path slack     : 992922p
 
 Capture Clock Arrival Time                           0
 + Clock path delay                                   0
@@ -1405,9 +1625,9 @@ End-of-path required time (ps)                  996490
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       3561
++ Data path delay                       3568
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           3561
+End-of-path arrival time (ps)           3568
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1415,13 +1635,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_0/clock_0                                        macrocell2                 0      0  RISE       1
+Net_1095_2/clock_0                                        macrocell20                0      0  RISE       1
 
 Data path
 pin name           model name   delay     AT   slack  edge  Fanout
 -----------------  -----------  -----  -----  ------  ----  ------
-Net_1095_0/q       macrocell2    1250   1250  992929  RISE       1
-Net_1095_0/main_1  macrocell2    2311   3561  992929  RISE       1
+Net_1095_2/q       macrocell20   1250   1250  992922  RISE       1
+Net_1095_2/main_0  macrocell20   2318   3568  992922  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1429,15 +1649,15 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_0/clock_0                                        macrocell2                 0      0  RISE       1
+Net_1095_2/clock_0                                        macrocell20                0      0  RISE       1
 
 
 
-++++ Path 27 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+++++ Path 32 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \GlitchFilter_1:genblk1[0]:samples_3\/q
-Path End       : Net_1095_0/main_2
-Capture Clock  : Net_1095_0/clock_0
+Path Begin     : \GlitchFilter_1:genblk1[1]:samples_2\/q
+Path End       : \GlitchFilter_1:genblk1[1]:samples_3\/main_0
+Capture Clock  : \GlitchFilter_1:genblk1[1]:samples_3\/clock_0
 Path slack     : 992936p
 
 Capture Clock Arrival Time                           0
@@ -1459,101 +1679,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[0]:samples_3\/clock_0             macrocell12                0      0  RISE       1
-
-Data path
-pin name                                 model name   delay     AT   slack  edge  Fanout
----------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[0]:samples_3\/q  macrocell12   1250   1250  992936  RISE       1
-Net_1095_0/main_2                        macrocell2    2304   3554  992936  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_0/clock_0                                        macrocell2                 0      0  RISE       1
-
-
-
-++++ Path 28 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : \GlitchFilter_1:genblk1[0]:samples_2\/q
-Path End       : Net_1095_0/main_3
-Capture Clock  : Net_1095_0/clock_0
-Path slack     : 992940p
-
-Capture Clock Arrival Time                           0
-+ Clock path delay                                   0
-+ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
-- Setup time                                     -3510
---------------------------------------------   ------- 
-End-of-path required time (ps)                  996490
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       3550
--------------------------------------   ---- 
-End-of-path arrival time (ps)           3550
- 
-Launch Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[0]:samples_2\/clock_0             macrocell11                0      0  RISE       1
-
-Data path
-pin name                                 model name   delay     AT   slack  edge  Fanout
----------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[0]:samples_2\/q  macrocell11   1250   1250  992940  RISE       1
-Net_1095_0/main_3                        macrocell2    2300   3550  992940  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_0/clock_0                                        macrocell2                 0      0  RISE       1
-
-
-
-++++ Path 29 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : \GlitchFilter_1:genblk1[0]:samples_2\/q
-Path End       : \GlitchFilter_1:genblk1[0]:samples_3\/main_0
-Capture Clock  : \GlitchFilter_1:genblk1[0]:samples_3\/clock_0
-Path slack     : 992940p
-
-Capture Clock Arrival Time                           0
-+ Clock path delay                                   0
-+ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
-- Setup time                                     -3510
---------------------------------------------   ------- 
-End-of-path required time (ps)                  996490
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       3550
--------------------------------------   ---- 
-End-of-path arrival time (ps)           3550
- 
-Launch Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[0]:samples_2\/clock_0             macrocell11                0      0  RISE       1
+\GlitchFilter_1:genblk1[1]:samples_2\/clock_0             macrocell12                0      0  RISE       1
 
 Data path
 pin name                                      model name   delay     AT   slack  edge  Fanout
 --------------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[0]:samples_2\/q       macrocell11   1250   1250  992940  RISE       1
-\GlitchFilter_1:genblk1[0]:samples_3\/main_0  macrocell12   2300   3550  992940  RISE       1
+\GlitchFilter_1:genblk1[1]:samples_2\/q       macrocell12   1250   1250  992057  RISE       1
+\GlitchFilter_1:genblk1[1]:samples_3\/main_0  macrocell11   2304   3554  992936  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1561,148 +1693,16 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[0]:samples_3\/clock_0             macrocell12                0      0  RISE       1
-
-
-
-++++ Path 30 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : \GlitchFilter_1:genblk1[0]:samples_1\/q
-Path End       : Net_1095_0/main_4
-Capture Clock  : Net_1095_0/clock_0
-Path slack     : 992941p
-
-Capture Clock Arrival Time                           0
-+ Clock path delay                                   0
-+ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
-- Setup time                                     -3510
---------------------------------------------   ------- 
-End-of-path required time (ps)                  996490
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       3549
--------------------------------------   ---- 
-End-of-path arrival time (ps)           3549
- 
-Launch Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[0]:samples_1\/clock_0             macrocell10                0      0  RISE       1
-
-Data path
-pin name                                 model name   delay     AT   slack  edge  Fanout
----------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[0]:samples_1\/q  macrocell10   1250   1250  992941  RISE       1
-Net_1095_0/main_4                        macrocell2    2299   3549  992941  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_0/clock_0                                        macrocell2                 0      0  RISE       1
-
-
-
-++++ Path 31 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : \GlitchFilter_1:genblk1[0]:samples_1\/q
-Path End       : \GlitchFilter_1:genblk1[0]:samples_2\/main_0
-Capture Clock  : \GlitchFilter_1:genblk1[0]:samples_2\/clock_0
-Path slack     : 992941p
-
-Capture Clock Arrival Time                           0
-+ Clock path delay                                   0
-+ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
-- Setup time                                     -3510
---------------------------------------------   ------- 
-End-of-path required time (ps)                  996490
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       3549
--------------------------------------   ---- 
-End-of-path arrival time (ps)           3549
- 
-Launch Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[0]:samples_1\/clock_0             macrocell10                0      0  RISE       1
-
-Data path
-pin name                                      model name   delay     AT   slack  edge  Fanout
---------------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[0]:samples_1\/q       macrocell10   1250   1250  992941  RISE       1
-\GlitchFilter_1:genblk1[0]:samples_2\/main_0  macrocell11   2299   3549  992941  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[0]:samples_2\/clock_0             macrocell11                0      0  RISE       1
-
-
-
-++++ Path 32 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : \GlitchFilter_1:genblk1[2]:samples_3\/q
-Path End       : Net_1095_2/main_2
-Capture Clock  : Net_1095_2/clock_0
-Path slack     : 992950p
-
-Capture Clock Arrival Time                           0
-+ Clock path delay                                   0
-+ Cycle adjust (Clock_1:R#1 vs. Clock_1:R#2)   1000000
-- Setup time                                     -3510
---------------------------------------------   ------- 
-End-of-path required time (ps)                  996490
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       3540
--------------------------------------   ---- 
-End-of-path arrival time (ps)           3540
- 
-Launch Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[2]:samples_3\/clock_0             macrocell20                0      0  RISE       1
-
-Data path
-pin name                                 model name   delay     AT   slack  edge  Fanout
----------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[2]:samples_3\/q  macrocell20   1250   1250  992950  RISE       1
-Net_1095_2/main_2                        macrocell4    2290   3540  992950  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_2/clock_0                                        macrocell4                 0      0  RISE       1
+\GlitchFilter_1:genblk1[1]:samples_3\/clock_0             macrocell11                0      0  RISE       1
 
 
 
 ++++ Path 33 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \GlitchFilter_1:genblk1[3]:samples_2\/q
-Path End       : Net_1095_3/main_3
-Capture Clock  : Net_1095_3/clock_0
-Path slack     : 992984p
+Path Begin     : \GlitchFilter_1:genblk1[2]:samples_3\/q
+Path End       : Net_1095_2/main_2
+Capture Clock  : Net_1095_2/clock_0
+Path slack     : 992947p
 
 Capture Clock Arrival Time                           0
 + Clock path delay                                   0
@@ -1713,9 +1713,9 @@ End-of-path required time (ps)                  996490
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       3506
++ Data path delay                       3543
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           3506
+End-of-path arrival time (ps)           3543
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1723,13 +1723,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[3]:samples_2\/clock_0             macrocell23                0      0  RISE       1
+\GlitchFilter_1:genblk1[2]:samples_3\/clock_0             macrocell16                0      0  RISE       1
 
 Data path
 pin name                                 model name   delay     AT   slack  edge  Fanout
 ---------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[3]:samples_2\/q  macrocell23   1250   1250  992984  RISE       1
-Net_1095_3/main_3                        macrocell5    2256   3506  992984  RISE       1
+\GlitchFilter_1:genblk1[2]:samples_3\/q  macrocell16   1250   1250  992947  RISE       1
+Net_1095_2/main_2                        macrocell20   2293   3543  992947  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1737,16 +1737,16 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_3/clock_0                                        macrocell5                 0      0  RISE       1
+Net_1095_2/clock_0                                        macrocell20                0      0  RISE       1
 
 
 
 ++++ Path 34 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \GlitchFilter_1:genblk1[3]:samples_2\/q
-Path End       : \GlitchFilter_1:genblk1[3]:samples_3\/main_0
-Capture Clock  : \GlitchFilter_1:genblk1[3]:samples_3\/clock_0
-Path slack     : 992984p
+Path Begin     : \GlitchFilter_1:genblk1[0]:samples_1\/q
+Path End       : \GlitchFilter_1:genblk1[0]:samples_2\/main_0
+Capture Clock  : \GlitchFilter_1:genblk1[0]:samples_2\/clock_0
+Path slack     : 992987p
 
 Capture Clock Arrival Time                           0
 + Clock path delay                                   0
@@ -1757,9 +1757,9 @@ End-of-path required time (ps)                  996490
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       3506
++ Data path delay                       3503
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           3506
+End-of-path arrival time (ps)           3503
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1767,13 +1767,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[3]:samples_2\/clock_0             macrocell23                0      0  RISE       1
+\GlitchFilter_1:genblk1[0]:samples_1\/clock_0             macrocell8                 0      0  RISE       1
 
 Data path
 pin name                                      model name   delay     AT   slack  edge  Fanout
 --------------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[3]:samples_2\/q       macrocell23   1250   1250  992984  RISE       1
-\GlitchFilter_1:genblk1[3]:samples_3\/main_0  macrocell24   2256   3506  992984  RISE       1
+\GlitchFilter_1:genblk1[0]:samples_1\/q       macrocell8    1250   1250  992987  RISE       1
+\GlitchFilter_1:genblk1[0]:samples_2\/main_0  macrocell7    2253   3503  992987  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1781,16 +1781,16 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[3]:samples_3\/clock_0             macrocell24                0      0  RISE       1
+\GlitchFilter_1:genblk1[0]:samples_2\/clock_0             macrocell7                 0      0  RISE       1
 
 
 
 ++++ Path 35 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \GlitchFilter_1:genblk1[3]:samples_1\/q
-Path End       : Net_1095_3/main_4
-Capture Clock  : Net_1095_3/clock_0
-Path slack     : 993002p
+Path Begin     : \GlitchFilter_1:genblk1[0]:samples_1\/q
+Path End       : Net_1095_0/main_4
+Capture Clock  : Net_1095_0/clock_0
+Path slack     : 992987p
 
 Capture Clock Arrival Time                           0
 + Clock path delay                                   0
@@ -1801,9 +1801,9 @@ End-of-path required time (ps)                  996490
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       3488
++ Data path delay                       3503
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           3488
+End-of-path arrival time (ps)           3503
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1811,13 +1811,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[3]:samples_1\/clock_0             macrocell22                0      0  RISE       1
+\GlitchFilter_1:genblk1[0]:samples_1\/clock_0             macrocell8                 0      0  RISE       1
 
 Data path
 pin name                                 model name   delay     AT   slack  edge  Fanout
 ---------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[3]:samples_1\/q  macrocell22   1250   1250  993002  RISE       1
-Net_1095_3/main_4                        macrocell5    2238   3488  993002  RISE       1
+\GlitchFilter_1:genblk1[0]:samples_1\/q  macrocell8    1250   1250  992987  RISE       1
+Net_1095_0/main_4                        macrocell10   2253   3503  992987  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1825,16 +1825,16 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_3/clock_0                                        macrocell5                 0      0  RISE       1
+Net_1095_0/clock_0                                        macrocell10                0      0  RISE       1
 
 
 
 ++++ Path 36 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \GlitchFilter_1:genblk1[3]:samples_1\/q
-Path End       : \GlitchFilter_1:genblk1[3]:samples_2\/main_0
-Capture Clock  : \GlitchFilter_1:genblk1[3]:samples_2\/clock_0
-Path slack     : 993002p
+Path Begin     : \GlitchFilter_1:genblk1[0]:samples_3\/q
+Path End       : Net_1095_0/main_2
+Capture Clock  : Net_1095_0/clock_0
+Path slack     : 992988p
 
 Capture Clock Arrival Time                           0
 + Clock path delay                                   0
@@ -1845,9 +1845,9 @@ End-of-path required time (ps)                  996490
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       3488
++ Data path delay                       3502
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           3488
+End-of-path arrival time (ps)           3502
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1855,13 +1855,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[3]:samples_1\/clock_0             macrocell22                0      0  RISE       1
+\GlitchFilter_1:genblk1[0]:samples_3\/clock_0             macrocell6                 0      0  RISE       1
 
 Data path
-pin name                                      model name   delay     AT   slack  edge  Fanout
---------------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[3]:samples_1\/q       macrocell22   1250   1250  993002  RISE       1
-\GlitchFilter_1:genblk1[3]:samples_2\/main_0  macrocell23   2238   3488  993002  RISE       1
+pin name                                 model name   delay     AT   slack  edge  Fanout
+---------------------------------------  -----------  -----  -----  ------  ----  ------
+\GlitchFilter_1:genblk1[0]:samples_3\/q  macrocell6    1250   1250  992988  RISE       1
+Net_1095_0/main_2                        macrocell10   2252   3502  992988  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1869,16 +1869,16 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[3]:samples_2\/clock_0             macrocell23                0      0  RISE       1
+Net_1095_0/clock_0                                        macrocell10                0      0  RISE       1
 
 
 
 ++++ Path 37 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \GlitchFilter_1:genblk1[1]:samples_3\/q
-Path End       : Net_1095_1/main_2
-Capture Clock  : Net_1095_1/clock_0
-Path slack     : 993003p
+Path Begin     : \GlitchFilter_1:genblk1[0]:samples_0\/q
+Path End       : \GlitchFilter_1:genblk1[0]:samples_1\/main_0
+Capture Clock  : \GlitchFilter_1:genblk1[0]:samples_1\/clock_0
+Path slack     : 993001p
 
 Capture Clock Arrival Time                           0
 + Clock path delay                                   0
@@ -1889,9 +1889,9 @@ End-of-path required time (ps)                  996490
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       3487
++ Data path delay                       3489
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           3487
+End-of-path arrival time (ps)           3489
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1899,13 +1899,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[1]:samples_3\/clock_0             macrocell16                0      0  RISE       1
+\GlitchFilter_1:genblk1[0]:samples_0\/clock_0             macrocell9                 0      0  RISE       1
 
 Data path
-pin name                                 model name   delay     AT   slack  edge  Fanout
----------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[1]:samples_3\/q  macrocell16   1250   1250  993003  RISE       1
-Net_1095_1/main_2                        macrocell3    2237   3487  993003  RISE       1
+pin name                                      model name   delay     AT   slack  edge  Fanout
+--------------------------------------------  -----------  -----  -----  ------  ----  ------
+\GlitchFilter_1:genblk1[0]:samples_0\/q       macrocell9    1250   1250  993001  RISE       1
+\GlitchFilter_1:genblk1[0]:samples_1\/main_0  macrocell8    2239   3489  993001  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1913,16 +1913,16 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_1/clock_0                                        macrocell3                 0      0  RISE       1
+\GlitchFilter_1:genblk1[0]:samples_1\/clock_0             macrocell8                 0      0  RISE       1
 
 
 
 ++++ Path 38 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \GlitchFilter_1:genblk1[3]:samples_3\/q
-Path End       : Net_1095_3/main_2
-Capture Clock  : Net_1095_3/clock_0
-Path slack     : 993005p
+Path Begin     : \GlitchFilter_1:genblk1[0]:samples_0\/q
+Path End       : Net_1095_0/main_5
+Capture Clock  : Net_1095_0/clock_0
+Path slack     : 993001p
 
 Capture Clock Arrival Time                           0
 + Clock path delay                                   0
@@ -1933,9 +1933,9 @@ End-of-path required time (ps)                  996490
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       3485
++ Data path delay                       3489
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           3485
+End-of-path arrival time (ps)           3489
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1943,13 +1943,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[3]:samples_3\/clock_0             macrocell24                0      0  RISE       1
+\GlitchFilter_1:genblk1[0]:samples_0\/clock_0             macrocell9                 0      0  RISE       1
 
 Data path
 pin name                                 model name   delay     AT   slack  edge  Fanout
 ---------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[3]:samples_3\/q  macrocell24   1250   1250  993005  RISE       1
-Net_1095_3/main_2                        macrocell5    2235   3485  993005  RISE       1
+\GlitchFilter_1:genblk1[0]:samples_0\/q  macrocell9    1250   1250  993001  RISE       1
+Net_1095_0/main_5                        macrocell10   2239   3489  993001  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1957,16 +1957,16 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_3/clock_0                                        macrocell5                 0      0  RISE       1
+Net_1095_0/clock_0                                        macrocell10                0      0  RISE       1
 
 
 
 ++++ Path 39 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \GlitchFilter_1:genblk1[3]:samples_0\/q
-Path End       : Net_1095_3/main_5
-Capture Clock  : Net_1095_3/clock_0
-Path slack     : 993016p
+Path Begin     : \GlitchFilter_1:genblk1[1]:samples_1\/q
+Path End       : Net_1095_1/main_4
+Capture Clock  : Net_1095_1/clock_0
+Path slack     : 993011p
 
 Capture Clock Arrival Time                           0
 + Clock path delay                                   0
@@ -1977,9 +1977,9 @@ End-of-path required time (ps)                  996490
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       3474
++ Data path delay                       3479
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           3474
+End-of-path arrival time (ps)           3479
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1987,13 +1987,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[3]:samples_0\/clock_0             macrocell21                0      0  RISE       1
+\GlitchFilter_1:genblk1[1]:samples_1\/clock_0             macrocell13                0      0  RISE       1
 
 Data path
 pin name                                 model name   delay     AT   slack  edge  Fanout
 ---------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[3]:samples_0\/q  macrocell21   1250   1250  993016  RISE       1
-Net_1095_3/main_5                        macrocell5    2224   3474  993016  RISE       1
+\GlitchFilter_1:genblk1[1]:samples_1\/q  macrocell13   1250   1250  992109  RISE       1
+Net_1095_1/main_4                        macrocell15   2229   3479  993011  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -2001,16 +2001,16 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-Net_1095_3/clock_0                                        macrocell5                 0      0  RISE       1
+Net_1095_1/clock_0                                        macrocell15                0      0  RISE       1
 
 
 
 ++++ Path 40 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \GlitchFilter_1:genblk1[3]:samples_0\/q
-Path End       : \GlitchFilter_1:genblk1[3]:samples_1\/main_0
-Capture Clock  : \GlitchFilter_1:genblk1[3]:samples_1\/clock_0
-Path slack     : 993016p
+Path Begin     : \GlitchFilter_1:genblk1[3]:samples_3\/q
+Path End       : Net_1095_3/main_2
+Capture Clock  : Net_1095_3/clock_0
+Path slack     : 993012p
 
 Capture Clock Arrival Time                           0
 + Clock path delay                                   0
@@ -2021,9 +2021,9 @@ End-of-path required time (ps)                  996490
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       3474
++ Data path delay                       3478
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           3474
+End-of-path arrival time (ps)           3478
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -2031,13 +2031,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[3]:samples_0\/clock_0             macrocell21                0      0  RISE       1
+\GlitchFilter_1:genblk1[3]:samples_3\/clock_0             macrocell21                0      0  RISE       1
 
 Data path
-pin name                                      model name   delay     AT   slack  edge  Fanout
---------------------------------------------  -----------  -----  -----  ------  ----  ------
-\GlitchFilter_1:genblk1[3]:samples_0\/q       macrocell21   1250   1250  993016  RISE       1
-\GlitchFilter_1:genblk1[3]:samples_1\/main_0  macrocell22   2224   3474  993016  RISE       1
+pin name                                 model name   delay     AT   slack  edge  Fanout
+---------------------------------------  -----------  -----  -----  ------  ----  ------
+\GlitchFilter_1:genblk1[3]:samples_3\/q  macrocell21   1250   1250  993012  RISE       1
+Net_1095_3/main_2                        macrocell25   2228   3478  993012  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -2045,7 +2045,7 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\GlitchFilter_1:genblk1[3]:samples_1\/clock_0             macrocell22                0      0  RISE       1
+Net_1095_3/clock_0                                        macrocell25                0      0  RISE       1
 
 
 ===================================================================== 
