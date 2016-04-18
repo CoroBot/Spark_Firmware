@@ -340,6 +340,8 @@ class Spark_Drive(object):
 	def get_ultrasonic(self, ultrasonic_num):
 		return self.comm.get_value(self.unit_ultrasonic, ultrasonic_num, self.setting_USonic)
 	
+	## I2C Commands ##
+	
 	def I2C_init(self, buffer):
 		del buffer[0:]
 		return len(buffer)
@@ -365,6 +367,29 @@ class Spark_Drive(object):
 		runit, rsubunit, rbuffer = self.comm.recieve_frame()
 		return rbuffer #return also errcode
 		
+	def I2C_addStart(self, outbuffer):
+		buffer += struct.pack('B', self.command_i2c_start)
+		return len(buffer)
+		
+	def I2C_addRestart(self, outbuffer):
+		buffer += struct.pack('B', self.command_i2c_restart)
+		return len(buffer)
+		
+	def I2C_addStop(self, outbuffer):
+		buffer += struct.pack('B', self.command_i2c_stop)
+		return len(buffer)	
+
+	def I2C_addSend(self, outbuffer, bytes):
 		
 		
-		
+		return len(buffer)
+	
+	def I2C_addRecieve(self, outbuffer, num):
+		try:
+			numbytes = struct.pack('>H', num)
+		except:
+			return 0
+
+		buffer += struct.pack('B', self.command_i2c_recieveBytes)
+		buffer += numbytes		
+		return len(buffer)

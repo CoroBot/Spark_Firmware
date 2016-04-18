@@ -87,10 +87,37 @@ def main():
 def do_init(comm, i2c_buffer):
         comm.I2C_init(i2c_buffer)
         print "Updated buffer contents: " + repr(list(i2c_buffer))
-        
+def add_start(comm, i2c_buffer):
+        comm.I2C_addStart(i2c_buffer)
+        print "Updated buffer contents: " + repr(list(i2c_buffer))
+def add_stop(comm, i2c_buffer):
+        comm.I2C_addStop(i2c_buffer)
+        print "Updated buffer contents: " + repr(list(i2c_buffer))
+def add_restart(comm, i2c_buffer):
+        comm.I2C_addRestart(i2c_buffer)
+        print "Updated buffer contents: " + repr(list(i2c_buffer))	
+
+def add_send(comm, i2c_buffer):
+		#STUB
+		print "Updated buffer contents: " + repr(list(i2c_buffer))	
+
+def add_recieve(comm, i2c_buffer):
+	option = raw_input("Enter the number of bytes to request, 1-255\n>>")
+	try:
+		num = int(option.strip())
+		if num < 1 or num > 255:
+			print "Number out of range"
+			return
+	except:
+		print "Error converting number"
+		return
+
+	comm.I2C_addRecieve(i2c_buffer, num)
+	print "Updated buffer contents: " + repr(list(i2c_buffer))	
+		
 def add_setFreq(comm, i2c_buffer):
-        print "Sets the frequency of the I2C component"
-        option = raw_input("Enter a new frequency value for the I2C master in kHz, 1-65535\n>>")
+	print "Sets the frequency of the I2C component"
+	option = raw_input("Enter a new frequency value for the I2C master in kHz, 1-65535\n>>")
 	try:
 		freq = int(option.strip())
 		if freq < 1 or freq > 65535:
@@ -100,13 +127,8 @@ def add_setFreq(comm, i2c_buffer):
 		print "Error converting number"
 		return
 
-        comm.I2C_SetFrequency(i2c_buffer, freq)
+	comm.I2C_SetFrequency(i2c_buffer, freq)
 	print "Updated buffer contents: " + repr(list(i2c_buffer))
-
-
-
-def do_execute(comm, i2c_buffer):
-        print "DEBUG: Final buffer contents: " + repr(list(i2c_buffer))
 
 def add_setPullup(comm, i2c_buffer):
 	print "Sets the internal pullup. 1 for on, otherwise off."
@@ -122,6 +144,9 @@ def add_setPullup(comm, i2c_buffer):
 	comm.I2C_SetPullup(i2c_buffer, state)
 	print "Updated buffer contents: " +repr(list(i2c_buffer))
 
+def do_execute(comm, i2c_buffer): 
+		#STUB
+        print "DEBUG: Final buffer contents: " + repr(list(i2c_buffer))
 			
 if __name__ == '__main__':
 	main()
