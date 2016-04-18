@@ -362,29 +362,31 @@ class Spark_Drive(object):
 		buffer += struct.pack('B', pullup_setting)
 		return len(buffer)
 	
-	def I2C_Execute(self, outbuffer):
-		self.comm.send_frame(self.unit_I2C, 0x00, 0x00, outbuffer) #unit, subunit, command, data)
+	def I2C_Execute(self, buffer):
+		self.comm.send_frame(self.unit_I2C, 0x00, 0x00, buffer) #unit, subunit, command, data)
 		runit, rsubunit, rbuffer = self.comm.recieve_frame()
-		return rbuffer #return also errcode
+		return rbuffer #return also errcode? how?
 		
-	def I2C_addStart(self, outbuffer):
+	def I2C_addStart(self, buffer):
 		buffer += struct.pack('B', self.command_i2c_start)
 		return len(buffer)
 		
-	def I2C_addRestart(self, outbuffer):
+	def I2C_addRestart(self, buffer):
 		buffer += struct.pack('B', self.command_i2c_restart)
 		return len(buffer)
 		
-	def I2C_addStop(self, outbuffer):
+	def I2C_addStop(self, buffer):
 		buffer += struct.pack('B', self.command_i2c_stop)
 		return len(buffer)	
 
 	def I2C_addSend(self, outbuffer, bytes):
-		
-		
+		numbytes = struct.pack('>H', len(bytes))
+		buffer += struct.pack('B', self.command_i2c_sendBytes)
+		buffer += numbytes
+		buffer += bytes
 		return len(buffer)
 	
-	def I2C_addRecieve(self, outbuffer, num):
+	def I2C_addRecieve(self, buffer, num):
 		try:
 			numbytes = struct.pack('>H', num)
 		except:
