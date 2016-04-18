@@ -363,6 +363,9 @@ class Spark_Drive(object):
 		return len(buffer)
 	
 	def I2C_Execute(self, buffer):
+		if len(buffer) > 63:
+			return 0
+
 		self.comm.send_frame(self.unit_I2C, 0x00, 0x00, buffer) #unit, subunit, command, data)
 		runit, rsubunit, rbuffer = self.comm.recieve_frame()
 		return rbuffer #return also errcode? how?
@@ -379,7 +382,7 @@ class Spark_Drive(object):
 		buffer += struct.pack('B', self.command_i2c_stop)
 		return len(buffer)	
 
-	def I2C_addSend(self, outbuffer, bytes):
+	def I2C_addSend(self, buffer, bytes):
 		numbytes = struct.pack('>H', len(bytes))
 		buffer += struct.pack('B', self.command_i2c_sendBytes)
 		buffer += numbytes
