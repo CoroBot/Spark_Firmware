@@ -362,13 +362,25 @@ class Spark_Drive(object):
 		buffer += struct.pack('B', pullup_setting)
 		return len(buffer)
 	
-	def I2C_Execute(self, buffer):
+	def I2C_Execute(self, buffer, rbuffer, maxlen):
+		#unfinished
+		return 9999
+
 		if len(buffer) > 63:
 			return 0
 
 		self.comm.send_frame(self.unit_I2C, 0x00, 0x00, buffer) #unit, subunit, command, data)
-		runit, rsubunit, rbuffer = self.comm.recieve_frame()
-		return rbuffer #return also errcode? how?
+		runit, rsubunit, retbuffer = self.comm.recieve_frame()
+		#check the unit to make sure its an I2C reply frame
+		if runit <> self.unit_I2C:
+			raise IOError, "Invalid Frame: data mismatch, expected I2C frame"
+			#return #? what should we do in this situation?			
+		#expected retbuffer format: 1st byte: error code, 2nd+3rd = 16uint length, 4th+ data,
+		if len(retbuffer) > maxlen:
+			#raise <some type of error>, "Returned data longer than user provided  maxlen"
+			return 0
+		rbuffer = retbuffer[1:] #populate the user provided return buffer
+		return retbuffer[0] #return error code
 		
 	def I2C_addStart(self, buffer):
 		buffer += struct.pack('B', self.command_i2c_start)

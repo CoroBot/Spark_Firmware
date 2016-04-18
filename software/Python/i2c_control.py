@@ -98,8 +98,20 @@ def add_restart(comm, i2c_buffer):
         print "Updated buffer contents: " + repr(list(i2c_buffer))	
 
 def add_send(comm, i2c_buffer):
-		#STUB
-		print "Updated buffer contents: " + repr(list(i2c_buffer))	
+	bytes = bytearray()
+	
+	while True:
+		option = raw_input("Enter a single byte in decimal, 0-255. Enter X when done.\n>>")
+		if option == 'X':
+			break
+		try:
+			bytes+= struct.pack('B', int(option))
+			#print "current byte string: " + repr(list(bytes))
+		except:
+			print "Error converting input to bytes"
+	
+	comm.I2C_addSend(i2c_buffer, bytes)
+	print "Updated buffer contents: " + repr(list(i2c_buffer))	
 
 def add_recieve(comm, i2c_buffer):
 	option = raw_input("Enter the number of bytes to request, 1-255\n>>")
@@ -145,8 +157,10 @@ def add_setPullup(comm, i2c_buffer):
 	print "Updated buffer contents: " +repr(list(i2c_buffer))
 
 def do_execute(comm, i2c_buffer): 
-		#STUB
+	#STUB
         print "DEBUG: Final buffer contents: " + repr(list(i2c_buffer))
+	retbuffer = bytearray()
+	#comm.I2C_execute(i2c_buffer, retbuffer,  maxlen = 64)
 			
 if __name__ == '__main__':
 	main()
