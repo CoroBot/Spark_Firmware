@@ -883,6 +883,10 @@ void UART_UartSetRxAddressMask(uint32 addressMask)
     *******************************************************************************/
     CY_ISR(UART_UART_WAKEUP_ISR)
     {
+    #ifdef UART_UART_WAKEUP_ISR_ENTRY_CALLBACK
+        UART_UART_WAKEUP_ISR_EntryCallback();
+    #endif /* UART_UART_WAKEUP_ISR_ENTRY_CALLBACK */
+
         /* Clear interrupt source: the event becomes multi triggered and is
         * only disabled by UART_UartRestoreConfig() call.
         */
@@ -895,6 +899,10 @@ void UART_UartSetRxAddressMask(uint32 addressMask)
             (void) UART_rx_wake_ClearInterrupt();
         #endif /* (UART_UART_RX_WAKE_PIN) */
     #endif /* (UART_SCB_MODE_UNCONFIG_CONST_CFG) */
+
+    #ifdef UART_UART_WAKEUP_ISR_EXIT_CALLBACK
+        UART_UART_WAKEUP_ISR_ExitCallback();
+    #endif /* UART_UART_WAKEUP_ISR_EXIT_CALLBACK */
     }
 #endif /* (UART_UART_RX_WAKEUP_IRQ) */
 

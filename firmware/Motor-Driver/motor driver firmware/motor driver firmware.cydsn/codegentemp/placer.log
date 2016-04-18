@@ -4,13 +4,9 @@
 
 #Version:            1.1
 
-#Build Date:         May  8 2015 09:27:37
+#Build Date:         Oct  1 2015 13:46:59
 
-<<<<<<< HEAD
-#File Generated:     Oct 6 2015 14:30:55
-=======
-#File Generated:     Oct 5 2015 16:25:19
->>>>>>> origin/master
+#File Generated:     Apr 18 2016 14:41:25
 
 #Purpose:            
 
@@ -18,16 +14,16 @@
 
 #***************************************************************************
 
-Executing : C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\bin/sjplacer.exe --proj-name motor driver firmware --netlist-vh2 motor driver firmware_p.vh2 --arch-file C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\dev/arch/p4_udb2x2a.ark --rrg-file C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\dev/psoc4/psoc4a/route_arch-rrg.cydata --irq-file C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\dev/psoc4/psoc4a/irqconn.cydata --dsi-conn-file C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\dev/psoc4/psoc4a/dsiconn.cydata --pins-file pins_44-TQFP.xml --lib-file motor driver firmware_p.lib --sdc-file motor driver firmware.sdc --io-pcf motor driver firmware.pci --outdir .
+Executing : C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\bin/sjplacer.exe --proj-name motor driver firmware --netlist-vh2 motor driver firmware_p.vh2 --arch-file C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\dev/arch/p4_udb2x2a.ark --rrg-file C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\dev/psoc4/psoc4a/route_arch-rrg.cydata --irq-file C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\dev/psoc4/psoc4a/irqconn.cydata --dsi-conn-file C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\dev/psoc4/psoc4a/dsiconn.cydata --pins-file pins_44-TQFP.xml --lib-file motor driver firmware_p.lib --sdc-file motor driver firmware.sdc --io-pcf motor driver firmware.pci --outdir .
 
 		Softjin Techologies Placer, Version 1.1
 
-Build Date : May  8 2015	08:51:53
+Build Date : Oct  1 2015	13:44:59
 
 D2004: Option and Settings Summary
 =============================================================
 Netlist vh2 file          - motor driver firmware_p.vh2
-Architecture file         - C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\dev/arch/p4_udb2x2a.ark
+Architecture file         - C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\dev/arch/p4_udb2x2a.ark
 Package                   - 
 Defparam file             - 
 SDC file                  - motor driver firmware.sdc
@@ -38,7 +34,7 @@ IO Placement file         - motor driver firmware.pci
 D2050: Starting reading inputs for placer
 =============================================================
 D2065: Reading netlist file : "motor driver firmware_p.vh2"
-D2065: Reading arch file : "C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\dev/arch/p4_udb2x2a.ark"
+D2065: Reading arch file : "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\dev/arch/p4_udb2x2a.ark"
 D2051: Reading of inputs for placer completed successfully
 
 D2053: Starting placement of the design
@@ -59,7 +55,7 @@ Design Statistics after Packing
 Device Utilization Summary after Packing
     Macrocells                  :	25/32
     UDBS                        :	4/4
-    IOs                         :	20/36
+    IOs                         :	22/36
 
 
 D2088: Phase 3, elapsed time : 0.0 (sec)
@@ -91,8 +87,8 @@ Clock: CyIMO                | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyLFCLK              | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyRouted1            | Frequency: N/A       | Target:  24.0 MHz
 Clock: CySYSCLK             | Frequency: N/A       | Target:  24.0 MHz
-Clock: Motor_Current_ADC_intClock | Frequency: N/A       | Target:   6.0 MHz
-Clock: Motor_Current_ADC_intClock(FFB) | Frequency: N/A       | Target:   6.0 MHz
+Clock: Motor_Current_ADC_intClock | Frequency: N/A       | Target:   3.0 MHz
+Clock: Motor_Current_ADC_intClock(FFB) | Frequency: N/A       | Target:   3.0 MHz
 Clock: UART_SCBCLK          | Frequency: N/A       | Target:   0.8 MHz
 Clock: UART_SCBCLK(FFB)     | Frequency: N/A       | Target:   0.8 MHz
 
@@ -117,8 +113,8 @@ Clock: CyIMO                | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyLFCLK              | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyRouted1            | Frequency: N/A       | Target:  24.0 MHz
 Clock: CySYSCLK             | Frequency: N/A       | Target:  24.0 MHz
-Clock: Motor_Current_ADC_intClock | Frequency: N/A       | Target:   6.0 MHz
-Clock: Motor_Current_ADC_intClock(FFB) | Frequency: N/A       | Target:   6.0 MHz
+Clock: Motor_Current_ADC_intClock | Frequency: N/A       | Target:   3.0 MHz
+Clock: Motor_Current_ADC_intClock(FFB) | Frequency: N/A       | Target:   3.0 MHz
 Clock: UART_SCBCLK          | Frequency: N/A       | Target:   0.8 MHz
 Clock: UART_SCBCLK(FFB)     | Frequency: N/A       | Target:   0.8 MHz
 
@@ -135,11 +131,11 @@ Final Design Statistics
     Number of Status            	:	0
     Number of SyncCells         	:	0
     Number of count7cells       	:	0
-    Number of IOs       	:	20
+    Number of IOs       	:	22
 
 Device Utilization Summary
     Macrocells                  :	25/32
-    IOs                         :	20/36
+    IOs                         :	22/36
 
 
 
@@ -166,8 +162,8 @@ Clock: CyIMO                | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyLFCLK              | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyRouted1            | Frequency: N/A       | Target:  24.0 MHz
 Clock: CySYSCLK             | Frequency: N/A       | Target:  24.0 MHz
-Clock: Motor_Current_ADC_intClock | Frequency: N/A       | Target:   6.0 MHz
-Clock: Motor_Current_ADC_intClock(FFB) | Frequency: N/A       | Target:   6.0 MHz
+Clock: Motor_Current_ADC_intClock | Frequency: N/A       | Target:   3.0 MHz
+Clock: Motor_Current_ADC_intClock(FFB) | Frequency: N/A       | Target:   3.0 MHz
 Clock: UART_SCBCLK          | Frequency: N/A       | Target:   0.8 MHz
 Clock: UART_SCBCLK(FFB)     | Frequency: N/A       | Target:   0.8 MHz
 
@@ -180,9 +176,5 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
-<<<<<<< HEAD
-I2076: Total run-time: 0.4 sec.
-=======
-I2076: Total run-time: 0.2 sec.
->>>>>>> origin/master
+I2076: Total run-time: 0.5 sec.
 
