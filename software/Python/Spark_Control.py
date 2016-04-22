@@ -363,10 +363,8 @@ class Spark_Drive(object):
 		return len(buffer)
 	
 	def I2C_Execute(self, buffer, rbuffer, maxlen, slave_address):
-		#unfinished
-		return "unimplemented"
 
-		if len(buffer) > 63:
+		if len(buffer) > 60:
 			return 0
 
 		self.comm.send_frame(self.unit_I2C, slave_address, 0x00, buffer) #unit, subunit, command, data)

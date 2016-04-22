@@ -106,9 +106,9 @@ def add_send(comm, i2c_buffer):
 			break
 		try:
 			bytes+= struct.pack('B', int(option))
-			#print "current byte string: " + repr(list(bytes))
+			print "current send byte string: " + repr(list(bytes))
 		except:
-			print "Error converting input to bytes"
+			print "Error converting input to bytes, not added to buffer"
 	
 	comm.I2C_addSend(i2c_buffer, bytes)
 	print "Updated buffer contents: " + repr(list(i2c_buffer))	
@@ -128,7 +128,7 @@ def add_recieve(comm, i2c_buffer):
 	print "Updated buffer contents: " + repr(list(i2c_buffer))	
 		
 def add_setFreq(comm, i2c_buffer):
-	print "Sets the frequency of the I2C component"
+	print "Sets the frequency of the I2C master"
 	option = raw_input("Enter a new frequency value for the I2C master in kHz, 1-65535\n>>")
 	try:
 		freq = int(option.strip())
@@ -158,7 +158,7 @@ def add_setPullup(comm, i2c_buffer):
 
 def do_execute(comm, i2c_buffer): 
 	#take user input on slave address
-	option = raw_input("Enter the slave address byte for all commands, 1-255\n>>")
+	option = raw_input("Enter the slave address byte for all commands, 0-127\n>>")
 	try:
 		num = int(option.strip())
 		if num < 0 or num > 127:
@@ -166,7 +166,7 @@ def do_execute(comm, i2c_buffer):
 			return
 		slave_address = struct.pack('B', num)
 		#from i2c data sheet: Right-justified 7-bit slave address (valid range 0 to 127).
-		#does that match what the above line does?
+		#is that what the line above is doing?
 	except:
 		print "Error converting number"
 		return	
