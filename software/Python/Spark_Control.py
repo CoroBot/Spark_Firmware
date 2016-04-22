@@ -300,6 +300,7 @@ class Spark_Drive(object):
 		self.unit_adc = 4
 		self.unit_ultrasonic = 5
 		self.unit_I2C = 6
+		self.unit_SPI = 7
 		
 		self.setting_pwm = 1
 		self.setting_direction = 2
@@ -313,15 +314,18 @@ class Spark_Drive(object):
 		self.command_set = 1
 		self.command_read = 0
 		
-		self.command_i2c_setFreq = 0x02
-		self.command_i2c_setPullup = 0x03
-		self.command_i2c_start = 0x04
-		self.command_i2c_restart = 0x05
-		self.command_i2c_sendBytes = 0x06
-		self.command_i2c_recieveBytes = 0x07
-		self.command_i2c_stop = 0x08
+		self.command_serial_setFreq = 0x02
+		self.command_serial_setPullup = 0x03
+		self.command_serial_start = 0x04
+		self.command_serial_restart = 0x05
+		self.command_serial_sendBytes = 0x06
+		self.command_serial_recieveBytes = 0x07
+		self.command_serial_stop = 0x08
 		
-		
+	############################################################	
+	##################### Motor Commands #######################
+	############################################################	
+	
 	def set_motor_speed(self, motornum, speed):
 		self.comm.set_value(self.unit_motor, motornum, self.setting_pwm, speed) #unit, subu, sett, value
 	
@@ -340,7 +344,9 @@ class Spark_Drive(object):
 	def get_ultrasonic(self, ultrasonic_num):
 		return self.comm.get_value(self.unit_ultrasonic, ultrasonic_num, self.setting_USonic)
 	
-	## I2C Commands ##
+	############################################################	
+	###################### I2C Commands ########################
+	############################################################
 	
 	def I2C_init(self, buffer):
 		del buffer[0:]
@@ -353,12 +359,12 @@ class Spark_Drive(object):
 		except:
 			return 0
 
-		buffer += struct.pack('B', self.command_i2c_setFreq)
+		buffer += struct.pack('B', self.command_serial_setFreq)
 		buffer += freqbytes
 		return len(buffer)
 		
 	def I2C_SetPullup(self, buffer, pullup_setting):
-		buffer += struct.pack('B', self.command_i2c_setPullup)
+		buffer += struct.pack('B', self.command_serial_setPullup)
 		buffer += struct.pack('B', pullup_setting)
 		return len(buffer)
 	
@@ -381,20 +387,20 @@ class Spark_Drive(object):
 		return retbuffer[0] #return error code
 		
 	def I2C_addStart(self, buffer):
-		buffer += struct.pack('B', self.command_i2c_start)
+		buffer += struct.pack('B', self.command_serial_start)
 		return len(buffer)
 		
 	def I2C_addRestart(self, buffer):
-		buffer += struct.pack('B', self.command_i2c_restart)
+		buffer += struct.pack('B', self.command_serial_restart)
 		return len(buffer)
 		
 	def I2C_addStop(self, buffer):
-		buffer += struct.pack('B', self.command_i2c_stop)
+		buffer += struct.pack('B', self.command_serial_stop)
 		return len(buffer)	
 
 	def I2C_addSend(self, buffer, bytes):
 		numbytes = struct.pack('>H', len(bytes))
-		buffer += struct.pack('B', self.command_i2c_sendBytes)
+		buffer += struct.pack('B', self.command_serial_sendBytes)
 		buffer += numbytes
 		buffer += bytes
 		return len(buffer)
@@ -405,6 +411,73 @@ class Spark_Drive(object):
 		except:
 			return 0
 
-		buffer += struct.pack('B', self.command_i2c_recieveBytes)
+		buffer += struct.pack('B', self.command_serial_recieveBytes)
 		buffer += numbytes		
 		return len(buffer)
+
+	############################################################	
+	###################### SPI Commands ########################
+	############################################################
+	def SPI_init(self, buffer):
+		del buffer[0:]
+		return len(buffer)
+		
+	#returns 0 if the frequency isn't a valid unsigned short
+	def SPI_SetFrequency(self, buffer, freq):
+		try:
+			freqbytes = struct.pack('>H', freq) #H is for unsigned short
+		except:
+			return 0
+
+		buffer += struct.pack('B', self.command_serial_setFreq)
+		buffer += freqbytes
+		return len(buffer)
+		
+	def SPI_SetPullup(self, buffer, pullup_setting):
+		buffer += struct.pack('B', self.command_serial_setPullup)
+		buffer += struct.pack('B', pullup_setting)
+		return len(buffer)
+	
+	def SPI_Execute(self, buffer, rbuffer, maxlen, cs):
+
+		if len(buffer) > 60:
+			return 0
+
+		self.comm.send_frame(self.unit_SPI, cs, 0x00, buffer) #unit, subunit, command, data)
+		runit, rsubunit, retbuffer = self.comm.recieve_frame()
+		#check the unit to make sure its an SPI reply frame
+		if runit <> self.unit_SPI:
+			raise IOError, "Invalid Frame: data mismatch, expected SPI frame"
+			#return #? what should we do in this situation?			
+		#expected retbuffer format: 1st byte: error code, 2nd+3rd = 16uint length, 4th+ data,
+		if len(retbuffer) > maxlen:
+			#raise <some type of error>, "Returned data longer than user provided  maxlen"
+			return 0
+		rbuffer = retbuffer[1:] #populate the user provided return buffer
+		return retbuffer[0] #return error code
+		
+	def SPI_addStart(self, buffer):
+		buffer += struct.pack('B', self.command_serial_start)
+		return len(buffer)
+		
+	def SPI_addStop(self, buffer):
+		buffer += struct.pack('B', self.command_serial_stop)
+		return len(buffer)	
+
+	def SPI_addSend(self, buffer, bytes):
+		numbytes = struct.pack('>H', len(bytes))
+		buffer += struct.pack('B', self.command_serial_sendBytes)
+		buffer += numbytes
+		buffer += bytes
+		return len(buffer)
+	
+	def SPI_addRecieve(self, buffer, num):
+		try:
+			numbytes = struct.pack('>H', num)
+		except:
+			return 0
+
+		buffer += struct.pack('B', self.command_serial_recieveBytes)
+		buffer += numbytes		
+		return len(buffer)
+		
