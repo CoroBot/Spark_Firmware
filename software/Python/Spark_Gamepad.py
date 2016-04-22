@@ -17,6 +17,7 @@ class Spark_Gamepad():
 	leftStickAxis = [0,1]
 	rightStickAxis=[3,4]
 	numAxis=6
+	time_since_last_pkt = 0
 	info = """
 this is the gamepad control script for spark
 this scripts defaults to one-stick drive mode in this mode:
@@ -61,6 +62,8 @@ at any time press start and back at the same time to exit the script"""
 			joystick = pygame.joystick.Joystick(int(jsNumber))
 		joystick.init()
 		self.numAxis = joystick.get_numaxes()
+		print "number of axis detected: "
+		print self.numAxis
 		if self.numAxis == 5:
 			self.rightStickAxis=[4,3];
 		return joystick
@@ -239,7 +242,18 @@ at any time press start and back at the same time to exit the script"""
 			
 		self.spark.set_led_brightness(1,LED1PWM)
 		self.spark.set_led_brightness(2,LED2PWM)
+		
 
+	def ballistic_filter(self,controller, control_last, time_since_last_pkt):
+		weighted_sum_deriv = 0
+		control_weight = 1
+		tune_val = 2
+		for control in controller:
+			weighted_sum_deriv = ((abs(control_last-controller))*control_weight)+weighted_sum_deriv
+		if((weighted_sum_deriv * time_since_last_pkt)>tune_val):
+			return controller
+		else:
+			return None
 if __name__ == '__main__':
 	addr = ""
 	try:
