@@ -157,10 +157,23 @@ def add_setPullup(comm, i2c_buffer):
 	print "Updated buffer contents: " +repr(list(i2c_buffer))
 
 def do_execute(comm, i2c_buffer): 
-	#STUB
-        print "DEBUG: Final buffer contents: " + repr(list(i2c_buffer))
+	#take user input on slave address
+	option = raw_input("Enter the slave address byte for all commands, 1-255\n>>")
+	try:
+		num = int(option.strip())
+		if num < 0 or num > 127:
+			print "Number out of range"
+			return
+		slave_address = struct.pack('B', num)
+		#from i2c data sheet: Right-justified 7-bit slave address (valid range 0 to 127).
+		#does that match what the above line does?
+	except:
+		print "Error converting number"
+		return	
+    print "DEBUG: buffer contents: " + repr(list(i2c_buffer))
+	
 	retbuffer = bytearray()
-	#comm.I2C_execute(i2c_buffer, retbuffer, 64)
+	#comm.I2C_execute(i2c_buffer, retbuffer, 64, slave_address)
 			
 if __name__ == '__main__':
 	main()
