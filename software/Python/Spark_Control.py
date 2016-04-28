@@ -372,8 +372,10 @@ class Spark_Drive(object):
 
 		if len(buffer) > 60:
 			return 0
-
-		self.comm.send_frame(self.unit_I2C, slave_address, 0x00, buffer) #unit, subunit, command, data)
+			
+		lengthbyte = struct.pack('B', self.command_serial_sendBytes)	
+			
+		self.comm.send_frame(self.unit_I2C, slave_address, lengthbyte, buffer) #unit, subunit, command, data)
 		runit, rsubunit, retbuffer = self.comm.recieve_frame()
 		#check the unit to make sure its an I2C reply frame
 		if runit <> self.unit_I2C:
@@ -443,7 +445,9 @@ class Spark_Drive(object):
 		if len(buffer) > 60:
 			return 0
 
-		self.comm.send_frame(self.unit_SPI, cs, 0x00, buffer) #unit, subunit, command, data)
+		lengthbyte = struct.pack('B', self.command_serial_sendBytes)	
+			
+		self.comm.send_frame(self.unit_SPI, cs, lengthbyte, buffer) #unit, subunit, command, data)
 		runit, rsubunit, retbuffer = self.comm.recieve_frame()
 		#check the unit to make sure its an SPI reply frame
 		if runit <> self.unit_SPI:
