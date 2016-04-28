@@ -169,11 +169,10 @@ def do_execute(comm, i2c_buffer):
 		#is that what the line above is doing?
 	except:
 		print "Error converting number"
-		return	
-    print "DEBUG: buffer contents: " + repr(list(i2c_buffer))
-	
-	retbuffer = bytearray()
+		return
+	#retbuffer = bytearray()
 	#comm.I2C_execute(i2c_buffer, retbuffer, 64, slave_address)
+	print "DEBUG: buffer contents: "+repr(list(i2c_buffer))
 			
 if __name__ == '__main__':
 	main()

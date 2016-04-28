@@ -401,6 +401,8 @@ class Spark_Drive(object):
 		return len(buffer)	
 
 	def I2C_addSend(self, buffer, bytes):
+		if len(bytes) > (60-len(buffer)):
+			return 0;
 		numbytes = struct.pack('>H', len(bytes))
 		buffer += struct.pack('B', self.command_serial_sendBytes)
 		buffer += numbytes
@@ -408,6 +410,8 @@ class Spark_Drive(object):
 		return len(buffer)
 	
 	def I2C_addRecieve(self, buffer, num):
+		if num > 60:
+			return 0	
 		try:
 			numbytes = struct.pack('>H', num)
 		except:
